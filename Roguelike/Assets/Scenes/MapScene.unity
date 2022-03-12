@@ -337,6 +337,11 @@ MonoBehaviour:
     MapChar: 69
     IsRoad: 0
     IsCharacter: 1
+  - Prefab: {fileID: 3892502269050869983, guid: 708bbf0a8d16a43919379c6757b49359, type: 3}
+    Type: 5
+    MapChar: 73
+    IsRoad: 0
+    IsCharacter: 1
   MassOffset: {x: 1, y: 1}
 --- !u!4 &343470346
 Transform:
@@ -365,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOver: {fileID: 1176671500}
-  mapData: '000P
+  mapData: '0I0P
 
     0+++
 

@@ -50,7 +50,7 @@ class MapObjectBase : MonoBehaviour
         var massData = Map[movedMass.Type];
         if (movedMass.ExistObject)
         {
-            MoveToExistObjct(movedMass, movedPos);
+            MoveToExistObject(movedMass, movedPos);
         }
         else if (massData.IsRoad)
         {
@@ -64,7 +64,7 @@ class MapObjectBase : MonoBehaviour
 
     }
 
-    protected virtual void MoveToExistObjct(Map.Mass mass, Vector2Int movedPos)
+    protected virtual void MoveToExistObject(Map.Mass mass, Vector2Int movedPos)
     {
         var otherObject = mass.ExistObject.GetComponent<MapObjectBase>();
         if (IsAttackableObject(this, otherObject))
@@ -145,7 +145,7 @@ class MapObjectBase : MonoBehaviour
         IsNowMoving = false;
     }
 
-    private IEnumerator NotMoveCoroutine(Vector2Int target)
+    protected IEnumerator NotMoveCoroutine(Vector2Int target)
     {
         var movedPos = Map.CalcMapPos(target);
 

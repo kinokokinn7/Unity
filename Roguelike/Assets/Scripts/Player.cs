@@ -192,4 +192,46 @@ class Player : MapObjectBase
         MessageWindow.AppendMessage($"プレイヤーのレベルが{Level}に上がった！");
         MessageWindow.AppendMessage($"  HP +5  Atk + 1");
     }
+
+    protected override void MoveToExistObject(Map.Mass mass, Vector2Int movedPos)
+    {
+        var otherObject = mass.ExistObject.GetComponent<MapObjectBase>();
+        if (otherObject is Treasure)
+        {
+            var treasure = (otherObject as Treasure);
+            OpenTreasure(treasure, mass, movedPos);
+            StartCoroutine(NotMoveCoroutine(movedPos));
+            return;
+        }
+        base.MoveToExistObject(mass, movedPos);
+    }
+
+    protected void OpenTreasure(Treasure treasure, Map.Mass mass, Vector2Int movedPos)
+    {
+        MessageWindow.AppendMessage($"宝箱を開けた！");
+        switch (treasure.CurrentType)
+        {
+            case Treasure.Type.LifeUp:
+                Hp += treasure.Value;
+                MessageWindow.AppendMessage($"  HPが回復した！ +{treasure.Value}");
+                break;
+            case Treasure.Type.FoodUp:
+                Food += treasure.Value;
+                MessageWindow.AppendMessage($"  満腹度が回復した！ +{treasure.Value}");
+                break;
+            case Treasure.Type.Weapon:
+                // 装備中の武器の攻撃力に足し合わせるようにしている
+                MessageWindow.AppendMessage($"  新しい武器を手に入れた！ +{treasure.CurrentWeapon}");
+                var newWeapon = treasure.CurrentWeapon.Merge(CurrentWeapon);
+                CurrentWeapon = newWeapon;
+                break;
+            default:
+                throw new System.NotImplementedException();
+        }
+
+        // 宝箱を開けたらマップから削除する
+        mass.ExistObject = null;
+        mass.Type = MassType.Road;
+        UnityEngine.Object.Destroy(treasure.gameObject);
+    }
 }

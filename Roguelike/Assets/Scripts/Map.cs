@@ -10,6 +10,7 @@ enum MassType
     Player, // プレイヤー
     Goal,   // ゴール
     Enemy,  // 敵
+    Treasure,   // 宝箱
 }
 
 [System.Serializable]
