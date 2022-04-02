@@ -342,6 +342,16 @@ MonoBehaviour:
     MapChar: 73
     IsRoad: 0
     IsCharacter: 1
+  - Prefab: {fileID: 3892502269050869983, guid: 32695e72b6c224e0e97a3ea3861c7fd2, type: 3}
+    Type: 6
+    MapChar: 74
+    IsRoad: 0
+    IsCharacter: 1
+  - Prefab: {fileID: 3892502269050869983, guid: bd90f1ffad1aa47ccaf9b51bdee39fb1, type: 3}
+    Type: 7
+    MapChar: 75
+    IsRoad: 0
+    IsCharacter: 1
   MassOffset: {x: 1, y: 1}
 --- !u!4 &343470346
 Transform:
@@ -374,11 +384,11 @@ MonoBehaviour:
 
     0+++
 
-    0E00
+    0E0J
 
     +++0
 
-    G0E0
+    G0EK
 
 '
 --- !u!1 &366028666

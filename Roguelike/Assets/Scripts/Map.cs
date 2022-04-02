@@ -10,7 +10,9 @@ enum MassType
     Player, // プレイヤー
     Goal,   // ゴール
     Enemy,  // 敵
-    Treasure,   // 宝箱
+    Treasure,   // 宝箱（ライフ回復）
+    FoodTreasure,   // 宝箱（食べ物）
+    WeaponTreasure, // 宝箱（武器）
 }
 
 [System.Serializable]
