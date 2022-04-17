@@ -13,6 +13,8 @@ enum MassType
     Treasure,   // 宝箱（ライフ回復）
     FoodTreasure,   // 宝箱（食べ物）
     WeaponTreasure, // 宝箱（武器）
+    Trap,           // 罠
+    FoodTrap,       // 罠（食べ物）
 }
 
 [System.Serializable]
@@ -97,10 +99,11 @@ class Map : MonoBehaviour
 
                 }
 
-                if (massData.IsCharacter)
+                if (massData.Type == MassType.Road)
                 {
-                    massData = this[MassType.Road];
+                    pos.y = -0.5f;
                 }
+
                 mass.Type = massData.Type;
                 mass.MassGameObject = Object.Instantiate(massData.Prefab, transform);
                 mass.MassGameObject.transform.position = pos;
