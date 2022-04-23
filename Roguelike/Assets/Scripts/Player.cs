@@ -203,7 +203,37 @@ class Player : MapObjectBase
             StartCoroutine(NotMoveCoroutine(movedPos));
             return;
         }
+        else if (otherObject is Trap)
+        {
+            var trap = (otherObject as Trap);
+            StampTrap(trap, mass, movedPos);
+            StartCoroutine(NotMoveCoroutine(movedPos));
+            return;
+        }
         base.MoveToExistObject(mass, movedPos);
+    }
+
+    protected void StampTrap(Trap trap, Map.Mass mass, Vector2Int movedPos)
+    {
+        MessageWindow.AppendMessage($"トラップにひっかかった！！");
+        switch (trap.CurrentType)
+        {
+            case Trap.Type.LifeDown:
+                Hp -= trap.Value;
+                MessageWindow.AppendMessage($"{trap.Value}のダメージを受けた！");
+                break;
+            case Trap.Type.FoodDown:
+                Food -= trap.Value;
+                MessageWindow.AppendMessage($"満腹度が{trap.Value}下がった！");
+                break;
+            default:
+                throw new System.NotImplementedException();
+        }
+
+        // 罠はマップから削除する
+        mass.ExistObject = null;
+        mass.Type = MassType.Road;
+        UnityEngine.Object.Destroy(trap.gameObject);
     }
 
     protected void OpenTreasure(Treasure treasure, Map.Mass mass, Vector2Int movedPos)
