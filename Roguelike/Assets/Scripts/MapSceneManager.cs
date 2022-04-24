@@ -6,6 +6,15 @@ using System.Linq;
 public class MapSceneManager : MonoBehaviour
 {
     public GameObject GameOver;
+    public bool IsAutoGenerate = true;
+    [SerializeField] Map.GenerateParam GenerateParam;
+    public void GenerateMap()
+    {
+        var map = GetComponent<Map>();
+        map.DestroyMap();
+        map.GenerateMap(GenerateParam);
+    }
+
 
     [TextArea(3, 15)]
     public string mapData =
@@ -20,7 +29,24 @@ public class MapSceneManager : MonoBehaviour
         GameOver.SetActive(false);
 
         var map = GetComponent<Map>();
-        var lines = mapData.Split('\n').ToList();
-        map.BuildMap(lines);
+        if (IsAutoGenerate)
+        {
+            map.GenerateMap(GenerateParam);
+        }
+        else
+        {
+            var lines = mapData.Split('\n').ToList();
+            map.BuildMap(lines);
+        }
+    }
+
+    // デバッグ用のコード
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GenerateMap();
+        }
+
     }
 }

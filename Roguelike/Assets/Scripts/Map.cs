@@ -198,4 +198,105 @@ class Map : MonoBehaviour
             default: throw new System.NotImplementedException();
         }
     }
+
+    [System.Serializable]
+    public class GenerateParam
+    {
+        public Vector2Int Size = new Vector2Int(20, 20);
+        public int GoalMinDistance = 10;
+        [Range(0, 1)] public float LimitMassPercent = 0.5f;
+        [Range(0, 1)] public float RoadMassPercent = 0.7f;
+    }
+    public void DestroyMap()
+    {
+        for (var i = transform.childCount - 1; i >= 0; i--)
+        {
+            UnityEngine.Object.Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
+    public void GenerateMap(GenerateParam generateParam)
+    {
+        InitMassData();
+
+        var mapData = new List<List<char>>();
+        var wallData = this[MassType.Wall];
+        var line = new List<char>();
+
+        for (var x = 0; x < generateParam.Size.x; x++)
+        {
+            line.Add(wallData.MapChar);
+        }
+        for (var y = 0; y < generateParam.Size.y; y++)
+        {
+            mapData.Add(new List<char>(line));
+        }
+
+        PlacePlayerAndGoal(mapData, generateParam);
+        PlaceMass(mapData, generateParam);
+
+        BuildMap(mapData.Select(_l => _l.Aggregate("", (_s, _c) => _s + _c)).ToList());
+    }
+
+    void PlacePlayerAndGoal(List<List<char>> mapData, GenerateParam generateParam)
+    {
+        var rnd = new System.Random();
+        var playerPos = new Vector2Int(rnd.Next(generateParam.Size.x), rnd.Next(generateParam.Size.y));
+
+        var goalPos = playerPos;
+        do
+        {
+            goalPos = new Vector2Int(rnd.Next(generateParam.Size.x), rnd.Next(generateParam.Size.y));
+        } while ((int)(playerPos - goalPos).magnitude < generateParam.GoalMinDistance);
+
+        // プレイヤーとゴールを結ぶ
+        // その際、中間点を通るようにしている。
+        var centerPos = playerPos;
+        do
+        {
+            centerPos = new Vector2Int(rnd.Next(generateParam.Size.x), rnd.Next(generateParam.Size.y));
+        } while ((playerPos == centerPos) || goalPos == centerPos);
+
+        var roadData = this[MassType.Road];
+        DrawLine(mapData, playerPos, centerPos, roadData.MapChar);
+        DrawLine(mapData, centerPos, goalPos, roadData.MapChar);
+
+        var playerData = this[MassType.Player];
+        var goalData = this[MassType.Goal];
+        mapData[playerPos.y][playerPos.x] = playerData.MapChar;
+        mapData[goalPos.y][goalPos.x] = goalData.MapChar;
+    }
+
+    void DrawLine(List<List<char>> mapData, Vector2Int start, Vector2Int end, char ch)
+    {
+        var pos = start;
+        var vec = (Vector2)(end - start);
+        vec.Normalize();
+        var diff = Vector2.zero;
+        while (pos != end)
+        {
+            diff += vec;
+            if (Mathf.Abs(diff.x) >= 1)
+            {
+                var offset = diff.x > 0 ? 1 : -1;
+                pos.x += offset;
+                diff.x -= offset;
+                mapData[pos.y][pos.x] = ch;
+            }
+            if (Mathf.Abs(diff.y) >= 1)
+            {
+                var offset = diff.y > 0 ? 1 : -1;
+                pos.y += offset;
+                diff.y -= offset;
+                mapData[pos.y][pos.x] = ch;
+            }
+        }
+    }
+
+    void PlaceMass(List<List<char>> mapData, GenerateParam generateParam)
+    {
+    }
 }
+
+
+
