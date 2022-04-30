@@ -295,6 +295,46 @@ class Map : MonoBehaviour
 
     void PlaceMass(List<List<char>> mapData, GenerateParam generateParam)
     {
+        var rnd = new System.Random();
+        var massSum = generateParam.Size.x * generateParam.Size.y;
+        var placeMassCount = massSum * generateParam.LimitMassPercent;
+        var wallData = this[MassType.Wall];
+        var roadData = this[MassType.Road];
+        var placeMassKeys = MassDataDict.Keys
+            .Where(_k => _k != MassType.Wall
+            && _k != MassType.Player
+            && _k != MassType.Goal
+            && _k != MassType.Road)
+            .ToList();
+
+        while (placeMassCount > 0)
+        {
+            var pos = Vector2Int.zero;
+            var loopCount = placeMassCount * 10;
+            do
+            {
+                // mapData[pos.y][pos.x] != wallData.MapChar条件の無限ループ回避用
+                if (loopCount-- < 0)
+                    break;
+                pos = new Vector2Int(rnd.Next(generateParam.Size.x),
+                    rnd.Next(generateParam.Size.y));
+            } while (mapData[pos.y][pos.x] != wallData.MapChar);
+
+            var t = rnd.Next(1000) / 1000f;
+            if (t < generateParam.RoadMassPercent)
+            {
+                mapData[pos.y][pos.x] = roadData.MapChar;
+            }
+            else
+            {
+                var placeMassKey = placeMassKeys[rnd.Next(placeMassKeys.Count)];
+                var placeMass = this[placeMassKey];
+                mapData[pos.y][pos.x] = placeMass.MapChar;
+            }
+            placeMassCount--;
+
+        }
+
     }
 }
 
