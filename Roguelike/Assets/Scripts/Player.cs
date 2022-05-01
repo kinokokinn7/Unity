@@ -6,8 +6,9 @@ using System;
 
 class Player : MapObjectBase
 {
-    public int Level = 1;
-    public int Food = 99;
+    public int Level = 1;   // レベル
+    public int Food = 99;   // 満腹度
+    public int Floor = 1;   // 階層
 
     MessageWindow _messageWindow;
     MessageWindow MessageWindow
@@ -17,8 +18,6 @@ class Player : MapObjectBase
 
     void Start()
     {
-        this.Hp = 10;
-
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
         playerUI.Set(this);
 
@@ -123,9 +122,40 @@ class Player : MapObjectBase
         yield return new WaitWhile(() =>
             UnityEngine.Object.FindObjectsOfType<Enemy>().All(_e => !_e.IsNowMoving));
 
-        // 終了処理
-        DoWaitEvent = true;
+        // ゴール判定
+        var mass = Map[Pos.x, Pos.y];
+        if (mass.Type == MassType.Goal)
+        {
+            StartCoroutine(Goal());
+        }
+        else
+        {
+            // 終了処理
+            DoWaitEvent = true;
+        }
+    }
 
+    private IEnumerator Goal()
+    {
+        yield return new WaitForSeconds(1.0f);  // ゴール時にウェイトを入れる
+
+        // マップを新規生成
+        var mapSceneManager = UnityEngine.Object.FindObjectOfType<MapSceneManager>();
+        mapSceneManager.GenerateMap();
+
+        // プレイヤーのデータを引き継ぐ
+        var player = UnityEngine.Object.FindObjectOfType<Player>();
+        player.Hp = Hp;
+        player.Food = Food;
+        player.Exp = Exp;
+        player.Level = Level;
+        player.CurrentWeapon = CurrentWeapon;
+        player.Attack = Attack;
+        // CurrentWeapon呼び出し時にAttackが上昇してしまうので
+        // Attack代入はCurrentPosition代入の後
+
+        // 階層を1つ下げる
+        player.Floor = Floor + 1;
     }
 
     [Range(0, 100)] public float CameraDistance;

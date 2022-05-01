@@ -11,6 +11,7 @@ class PlayerUI : MonoBehaviour
     [SerializeField] public Text ExpText;
     [SerializeField] public Text FoodText;
     [SerializeField] public Text WeaponText;
+    [SerializeField] public Text FloorText;
 
     public Player Player { get; private set; }
 
@@ -35,6 +36,7 @@ class PlayerUI : MonoBehaviour
         {
             WeaponText.text = "";
         }
+        FloorText.text = Player.Floor.ToString();
     }
 
 }

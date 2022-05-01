@@ -18,7 +18,7 @@ class MapObjectBase : MonoBehaviour
         get => _map != null ? _map : (_map = Object.FindObjectOfType<Map>());
     }
 
-    public int Hp = 5;
+    public int Hp = 10;
     public int Attack = 2;
     public enum Group
     {
