@@ -50,6 +50,23 @@ class Player : MapObjectBase
         }
     }
 
+    public void Recover(SaveData saveData)
+    {
+        CurrentWeapon = null;
+        Level = saveData.Level;
+        Hp = saveData.Hp;
+        Attack = saveData.Attack;
+        Exp = saveData.Exp;
+        if (saveData.WeaponName != "")
+        {
+            var weapon = ScriptableObject.CreateInstance<Weapon>();
+            weapon.Name = saveData.WeaponName;
+            weapon.Attack = saveData.WeaponAttack;
+            CurrentWeapon = weapon;
+        }
+        Floor = saveData.Floor;
+    }
+
     public enum Action
     {
         None,
@@ -182,7 +199,28 @@ class Player : MapObjectBase
         // Attack代入はCurrentPosition代入の後
 
         // 階層を1つ下げる
-        player.Floor = Floor + 1;
+        Floor += 1;
+        player.Floor = Floor;
+
+        var saveData = new SaveData();
+        saveData.Level = Level;
+        saveData.Hp = Hp;
+        saveData.Attack = Attack;
+        saveData.Exp = Exp;
+        if (CurrentWeapon != null)
+        {
+            saveData.Attack -= CurrentWeapon.Attack;
+            saveData.WeaponName = CurrentWeapon.Name;
+            saveData.WeaponAttack = CurrentWeapon.Attack;
+        }
+        else
+        {
+            saveData.WeaponName = "";
+            saveData.WeaponAttack = 0;
+        }
+        saveData.MapData = Map.MapData;
+        saveData.Floor = Floor;
+        saveData.Save();
     }
 
     [Range(0, 100)] public float CameraDistance;
@@ -209,6 +247,8 @@ class Player : MapObjectBase
 
         var mapManager = UnityEngine.Object.FindObjectOfType<MapSceneManager>();
         mapManager.GameOver.SetActive(true);
+
+        SaveData.Destroy();
 
     }
 

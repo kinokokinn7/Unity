@@ -84,6 +84,8 @@ class Map : MonoBehaviour
         get => MassDataDict[type];
     }
 
+    public List<string> MapData { get; private set; }
+
     public void BuildMap(List<string> map)
     {
         InitMassData();
@@ -134,6 +136,7 @@ class Map : MonoBehaviour
             mapSize.y++;
         }
         MapSize = mapSize;
+        MapData = map;
     }
 
     private void InitMassData()

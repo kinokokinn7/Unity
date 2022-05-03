@@ -29,6 +29,26 @@ public class MapSceneManager : MonoBehaviour
         GameOver.SetActive(false);
 
         var map = GetComponent<Map>();
+
+        var saveData = SaveData.Recover();
+        if (saveData != null)
+        {
+            try
+            {
+                map.BuildMap(saveData.MapData);
+
+                mapData = saveData.MapData.Aggregate("", (_s, _c) => _s + _c + '\n');
+                var player = Object.FindObjectOfType<Player>();
+                player.Recover(saveData);
+                return;
+            }
+            catch (System.Exception e)
+            {
+                // エラー処理。復元に失敗したら普通のマップ生成を行う
+                Debug.LogWarning($"Fail to Recover Save Data...");
+            }
+        }
+
         if (IsAutoGenerate)
         {
             map.GenerateMap(GenerateParam);
