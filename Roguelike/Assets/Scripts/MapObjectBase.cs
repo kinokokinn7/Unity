@@ -28,6 +28,21 @@ class MapObjectBase : MonoBehaviour
     }
     public Group CurrentGroup = Group.Other;
 
+    bool _visible = true;
+    public bool Visible
+    {
+        get => _visible;
+        set
+        {
+            _visible = value;
+            foreach (var renderer
+                in GetComponents<Renderer>().Concat(GetComponentsInChildren<Renderer>()))
+            {
+                renderer.enabled = value;
+            }
+        }
+    }
+
 
     // 位置と前方向を設定するメソッド
     public void SetPosAndForward(Vector2Int pos, Direction forward)
@@ -130,6 +145,7 @@ class MapObjectBase : MonoBehaviour
         Pos = target;
         var movedMass = Map[Pos.x, Pos.y];
         movedMass.ExistObject = gameObject;
+        Visible = movedMass.Visible;
 
         // モデルの移動処理
         IsNowMoving = true;

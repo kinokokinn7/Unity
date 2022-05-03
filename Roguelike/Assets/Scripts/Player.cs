@@ -10,6 +10,8 @@ class Player : MapObjectBase
     public int Food = 99;   // 満腹度
     public int Floor = 1;   // 階層
 
+    [Range(1, 10)] public int VisibleRange = 5; // 周りのマスが見える範囲
+
     MessageWindow _messageWindow;
     MessageWindow MessageWindow
     {
@@ -23,6 +25,29 @@ class Player : MapObjectBase
 
         StartCoroutine(CameraMove());
         StartCoroutine(ActionCoroutine());
+
+        // 周囲のマスを見えるようにする
+        UpdateVisibleMass();
+    }
+
+    private void UpdateVisibleMass()
+    {
+        var map = Map;
+        var startPos = Pos - Vector2Int.one * VisibleRange;
+        var endPos = Pos + Vector2Int.one * VisibleRange;
+
+        for (var y = startPos.y; y <= endPos.y; y++)
+        {
+            if (y < 0) continue;
+            if (y >= Map.MapSize.y) break;
+
+            for (var x = startPos.x; x <= endPos.x; x++)
+            {
+                if (x < 0) continue;
+                if (x >= Map.MapSize.x) break;
+                map[x, y].Visible = true;
+            }
+        }
     }
 
     public enum Action
@@ -55,6 +80,8 @@ class Player : MapObjectBase
             }
             UpdateFood();
             NowAction = Action.None;
+
+            UpdateVisibleMass();    // 移動した後に見える部分を広げる
 
             // イベントを確認
             CheckEvent();

@@ -42,6 +42,23 @@ class Map : MonoBehaviour
         public MassType Type;
         public GameObject MassGameObject;
         public GameObject ExistObject;
+
+        public bool Visible
+        {
+            get => MassGameObject.activeSelf;
+            set
+            {
+                // 入力値が既定値と同じ場合は何もしない
+                if (MassGameObject.activeSelf == value) return;
+
+                MassGameObject.SetActive(value);
+                if (ExistObject != null && ExistObject.TryGetComponent<MapObjectBase>(out var obj))
+                {
+                    obj.Visible = value;
+                }
+
+            }
+        }
     }
 
     public MassData[] massDataList;
@@ -108,6 +125,7 @@ class Map : MonoBehaviour
                 mass.MassGameObject = Object.Instantiate(massData.Prefab, transform);
                 mass.MassGameObject.transform.position = pos;
                 lineData.Add(mass);
+                mass.Visible = false;   // 初期状態では非表示にする
             }
             Data.Add(lineData);
 
