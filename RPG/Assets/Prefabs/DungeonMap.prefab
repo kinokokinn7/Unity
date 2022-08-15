@@ -1428,6 +1428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2899320899491654950}
   - component: {fileID: 2899320899491654951}
+  - component: {fileID: 1655171500521379205}
   m_Layer: 0
   m_Name: DungeonMap
   m_TagString: Untagged
@@ -1465,6 +1466,20 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &1655171500521379205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2899320899491654948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9970fc1625a545f692eb492eb3bfb50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _massEvents:
+  - {fileID: 11400000, guid: 7608cf087ea784414bc7ca81ef3e8510, type: 2}
 --- !u!1 &2899320900069111864
 GameObject:
   m_ObjectHideFlags: 0

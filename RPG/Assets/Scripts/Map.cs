@@ -23,6 +23,9 @@ public class Map : MonoBehaviour
         {
             _tilemaps.Add(tilemap.name, tilemap);
         }
+
+        // EventBoxを非表示にする
+        _tilemaps[EVENT_BOX_TILEMAP_NAME].gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -42,8 +45,14 @@ public class Map : MonoBehaviour
     {
         public bool isMovable;
         public TileBase eventTile;
+        public MassEvent massEvent;
     }
 
+    /// <summary>
+    /// 指定位置のマスデータ（イベント、通行可能/禁止）を取得する
+    /// </summary>
+    /// <param name="pos">位置</param>
+    /// <returns></returns>
     public Mass GetMassData(Vector3Int pos)
     {
         var mass = new Mass();
@@ -52,8 +61,14 @@ public class Map : MonoBehaviour
         // 通行可能
         mass.isMovable = true;
 
+        // マスにイベントが存在する場合
+        if (mass.eventTile != null)
+        {
+            // イベントタイルからイベントを検索してマスイベント格納変数にセットする
+            mass.massEvent = FindMassEvent(mass.eventTile);
+        }
         // オブジェクトタイルマップにも指定位置にタイルがある場合
-        if (_tilemaps[OBJECTS_TILEMAP_NAME].GetTile(pos))
+        else if (_tilemaps[OBJECTS_TILEMAP_NAME].GetTile(pos))
         {
             // 通行禁止
             mass.isMovable = false;
@@ -66,6 +81,48 @@ public class Map : MonoBehaviour
         }
         return mass;
 
+    }
+
+    // EventBoxレイヤーにマップチップがある場合は移動できるようにする
+    [SerializeField] List<MassEvent> _massEvents;
+
+    /// <summary>
+    /// マスのイベントを検索する。
+    /// </summary>
+    /// <param name="tile">タイル</param>
+    /// <returns></returns>
+    public MassEvent FindMassEvent(TileBase tile)
+    {
+        return _massEvents.Find(_c => _c.Tile == tile);
+    }
+
+    /// <summary>
+    /// 指定のタイルがタイルマップ上のどの位置に配置されているかを取得する
+    /// </summary>
+    /// <param name="tile">検索するタイル</param>
+    /// <param name="pos">検索結果（タイルマップ上の配置位置）</param>
+    /// <returns>指定のタイルがタイルマップ上に存在する場合はtrue、そうでない場合はfalse</returns>
+    public bool FindMassEventPos(TileBase tile, out Vector3Int pos)
+    {
+        // イベントレイヤーの取得
+        var eventLayer = _tilemaps[EVENT_BOX_TILEMAP_NAME];
+        // タイルマップのレンダラーを取得
+        var renderer = eventLayer.GetComponent<TilemapRenderer>();
+        // イベントレイヤーの最小のローカル位置をセル位置に変換
+        var min = eventLayer.LocalToCell(renderer.bounds.min);
+        // イベントレイヤーの最大のローカル位置をセル位置に変換
+        var max = eventLayer.LocalToCell(renderer.bounds.max);
+
+        pos = Vector3Int.zero;
+        for (pos.y = min.y; pos.y < max.y; pos.y++)
+        {
+            for (pos.x = min.x; pos.x < max.x; pos.x++)
+            {
+                TileBase t = eventLayer.GetTile(pos);
+                if (t == tile) return true;
+            }
+        }
+        return false;
     }
 
 

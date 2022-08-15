@@ -38,6 +38,11 @@ public class RPGSceneManager : MonoBehaviour
                     Player.Pos = movedPos;
                     // 移動が完了するまで待機
                     yield return new WaitWhile(() => Player.IsMoving);
+
+                    if (massData.massEvent != null)
+                    {
+                        massData.massEvent.Exec(this);
+                    }
                 }
             }
             yield return null;
