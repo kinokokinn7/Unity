@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
 
     // 目標：ランダムエンカウント
-    // ・歩き終わったときに必ず敵に会う（ログを出す）
-    // ・...一定確率で
-    // ・...特定の領域で一定確率で敵にあう:（Layerを使う）
     // ・敵にあったらバトルシーンに行く（Panelを出す）
 
     [SerializeField] LayerMask solidObjectsLayer;
     [SerializeField] LayerMask encountLayer;
+    public UnityAction OnEncounts;  // エンカウントした時に実行したい関数を登録できる
 
     Animator animator;
     bool isMoving;
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Random.Range(0, 100) < 10)   // 0-99までの数字がランダムに選ばれて、その数字が50より小さかったら
             {
-                Debug.Log("敵に遭遇");
+                OnEncounts?.Invoke();   // もしOnEncountsに関数が登録されていれば実行する
             }
         }
     }
