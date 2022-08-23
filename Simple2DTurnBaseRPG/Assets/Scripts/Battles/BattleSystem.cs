@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,5 +47,15 @@ public class BattleSystem : MonoBehaviour
             case State.BattleOver:
                 break;
         }
+    }
+
+    private void HandleMoveSelection()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void HandleActionSelection()
+    {
+        throw new NotImplementedException();
     }
 }

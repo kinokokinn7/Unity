@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectableText : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // Textの色を変える
+    // 選択中なら黄色：そうでないなら白
+    Text text;
+
+    private void Awake()
     {
-        
+        text = GetComponent<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // 選択中なら色を変える
+    public void SetSelectedColor(bool selected)
     {
-        
+        if (text == null)
+        {
+            text = GetComponent<Text>();
+        }
+        if (selected)
+        {
+            text.color = Color.yellow;
+        }
+        else
+        {
+            text.color = Color.white;
+        }
     }
 }
