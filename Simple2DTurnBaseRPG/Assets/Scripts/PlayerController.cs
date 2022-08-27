@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         // 移動した地点に、敵がいるか判断する
         if (Physics2D.OverlapCircle(transform.position, 0.2f, encountLayer))
         {
-            if (Random.Range(0, 100) < 10)   // 0-99までの数字がランダムに選ばれて、その数字が50より小さかったら
+            if (Random.Range(0, 100) < 100)   // 0-99までの数字がランダムに選ばれて、その数字が50より小さかったら
             {
                 OnEncounts?.Invoke();   // もしOnEncountsに関数が登録されていれば実行する
             }

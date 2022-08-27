@@ -7,9 +7,11 @@ public class ActionSelectionUI : MonoBehaviour
     // アクションUIの管理
     // たたかう or にげる のどちらを選択中かを把握して色を変える
 
-    [SerializeField] SelectableText[] selectableTexts;
+    SelectableText[] selectableTexts;
 
     int selectedIndex;  // 0:たたかう、1:にげるを選択している
+
+    public int SelectedIndex { get => selectedIndex; }
 
     private void Start()
     {
@@ -22,7 +24,7 @@ public class ActionSelectionUI : MonoBehaviour
         selectableTexts = GetComponentsInChildren<SelectableText>();
     }
 
-    private void Update()
+    public void HandleUpdate()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -46,6 +48,12 @@ public class ActionSelectionUI : MonoBehaviour
                 selectableTexts[i].SetSelectedColor(false);
             }
         }
+    }
+
+    public void Open()
+    {
+        selectedIndex = 0;
+        gameObject.SetActive(true);
     }
 
 }

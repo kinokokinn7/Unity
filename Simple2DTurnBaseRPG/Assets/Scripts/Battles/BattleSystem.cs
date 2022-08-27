@@ -19,17 +19,27 @@ public class BattleSystem : MonoBehaviour
 
     State state;
 
+    [SerializeField] ActionSelectionUI actionSelectionUI;
+
     public UnityAction OnBattleOver;
 
     public void BattleStart()
     {
         state = State.Start;
         Debug.Log("バトル開始");
+        actionSelectionUI.Init();
+        ActionSelection();
     }
 
-    public void BattleOver()
+    void BattleOver()
     {
         OnBattleOver?.Invoke();
+    }
+
+    void ActionSelection()
+    {
+        state = State.ActionSelection;
+        actionSelectionUI.Open();
     }
 
     private void Update()
@@ -56,6 +66,19 @@ public class BattleSystem : MonoBehaviour
 
     private void HandleActionSelection()
     {
-        throw new NotImplementedException();
+        actionSelectionUI.HandleUpdate();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (actionSelectionUI.SelectedIndex == 0)
+            {
+                Debug.Log("たたかう");
+            }
+            else if (actionSelectionUI.SelectedIndex == 1)
+            {
+                // にげる
+                BattleOver();
+            }
+        }
     }
 }
