@@ -2828,6 +2828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionSelectionUI: {fileID: 1140146879}
+  moveSelectionUI: {fileID: 682787721}
 --- !u!1 &491175570
 GameObject:
   m_ObjectHideFlags: 0

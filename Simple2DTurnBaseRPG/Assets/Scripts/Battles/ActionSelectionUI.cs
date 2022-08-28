@@ -56,4 +56,9 @@ public class ActionSelectionUI : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void Close()
+    {
+        gameObject.SetActive(false);
+    }
+
 }

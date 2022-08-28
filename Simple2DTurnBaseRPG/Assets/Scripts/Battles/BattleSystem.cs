@@ -20,6 +20,7 @@ public class BattleSystem : MonoBehaviour
     State state;
 
     [SerializeField] ActionSelectionUI actionSelectionUI;
+    [SerializeField] MoveSelectionUI moveSelectionUI;
 
     public UnityAction OnBattleOver;
 
@@ -28,6 +29,7 @@ public class BattleSystem : MonoBehaviour
         state = State.Start;
         Debug.Log("バトル開始");
         actionSelectionUI.Init();
+        moveSelectionUI.Init();
         ActionSelection();
     }
 
@@ -40,6 +42,19 @@ public class BattleSystem : MonoBehaviour
     {
         state = State.ActionSelection;
         actionSelectionUI.Open();
+    }
+
+    void MoveSelection()
+    {
+        state = State.MoveSelection;
+        moveSelectionUI.Open();
+    }
+
+    void RunTurns()
+    {
+        state = State.RunTurns;
+        Debug.Log("両者の攻撃処理");
+        ActionSelection();
     }
 
     private void Update()
@@ -61,7 +76,20 @@ public class BattleSystem : MonoBehaviour
 
     private void HandleMoveSelection()
     {
-        throw new NotImplementedException();
+        moveSelectionUI.HandleUpdate();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // 技の実行をする
+            actionSelectionUI.Close();
+            moveSelectionUI.Close();
+            RunTurns();
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            moveSelectionUI.Close();
+            ActionSelection();
+        }
     }
 
     private void HandleActionSelection()
@@ -72,7 +100,8 @@ public class BattleSystem : MonoBehaviour
         {
             if (actionSelectionUI.SelectedIndex == 0)
             {
-                Debug.Log("たたかう");
+                // たたかう
+                MoveSelection();
             }
             else if (actionSelectionUI.SelectedIndex == 1)
             {
