@@ -21,6 +21,7 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] ActionSelectionUI actionSelectionUI;
     [SerializeField] MoveSelectionUI moveSelectionUI;
+    [SerializeField] BattleDialog battleDialog;
 
     public UnityAction OnBattleOver;
 
@@ -30,6 +31,14 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("バトル開始");
         actionSelectionUI.Init();
         moveSelectionUI.Init();
+        actionSelectionUI.Close();
+        StartCoroutine(SetupBattle());
+
+    }
+
+    IEnumerator SetupBattle()
+    {
+        yield return battleDialog.TypeDialog("XXがあらわれた！\nどうする？");
         ActionSelection();
     }
 
@@ -50,10 +59,13 @@ public class BattleSystem : MonoBehaviour
         moveSelectionUI.Open();
     }
 
-    void RunTurns()
+    IEnumerator RunTurns()
     {
         state = State.RunTurns;
         Debug.Log("両者の攻撃処理");
+        yield return battleDialog.TypeDialog("YYの攻撃！", auto: false);
+        yield return battleDialog.TypeDialog("XXの攻撃！", auto: false);
+        yield return battleDialog.TypeDialog("どうする？");
         ActionSelection();
     }
 
@@ -83,7 +95,7 @@ public class BattleSystem : MonoBehaviour
             // 技の実行をする
             actionSelectionUI.Close();
             moveSelectionUI.Close();
-            RunTurns();
+            StartCoroutine(RunTurns());
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {

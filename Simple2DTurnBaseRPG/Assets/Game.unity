@@ -2829,6 +2829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionSelectionUI: {fileID: 1140146879}
   moveSelectionUI: {fileID: 682787721}
+  battleDialog: {fileID: 1911106169}
 --- !u!1 &491175570
 GameObject:
   m_ObjectHideFlags: 0
@@ -5383,6 +5384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5292464d13004cfb9d7e04e92750e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 106786284}
+  letterPerSecond: 0.03
 --- !u!1 &1956607226
 GameObject:
   m_ObjectHideFlags: 0

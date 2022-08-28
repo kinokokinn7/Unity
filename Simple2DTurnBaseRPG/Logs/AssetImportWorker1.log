@@ -1,0 +1,1066 @@
+Unity Editor version:    2020.3.17f1 (a4537701e4ab)
+Branch:                  2020.3/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 11.5 (Build 20G71)
+Darwin version:          20.6.0
+Architecture:            x86_64
+Running under Rosetta:   NO
+Available memory:        8192 MB
+Using pre-set license
+Pro License: NO
+
+COMMAND LINE ARGUMENTS:
+/Applications/2020.3.17f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+/Volumes/SSD-PUTA/Dropboxから移行/private/Unity/github/Unity/Simple2DTurnBaseRPG
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+49757
+Successfully changed project path to: /Volumes/SSD-PUTA/Dropboxから移行/private/Unity/github/Unity/Simple2DTurnBaseRPG
+/Volumes/SSD-PUTA/Dropboxから移行/private/Unity/github/Unity/Simple2DTurnBaseRPG
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 53.61 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.17f1 (a4537701e4ab)
+[Subsystems] Discovering subsystems at path /Applications/2020.3.17f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Volumes/SSD-PUTA/Dropboxから移行/private/Unity/github/Unity/Simple2DTurnBaseRPG/Assets
+GfxDevice: creating device client; threaded=0
+2022-08-28 21:22:17.404 Unity[4615:38280] Color LCD preferred device: Intel(R) Iris(TM) Plus Graphics 645 (low power)
+2022-08-28 21:22:17.404 Unity[4615:38280] Metal devices available: 1
+2022-08-28 21:22:17.404 Unity[4615:38280] 0: Intel(R) Iris(TM) Plus Graphics 645 (low power)
+2022-08-28 21:22:17.405 Unity[4615:38280] Using device Intel(R) Iris(TM) Plus Graphics 645 (low power)
+Initializing Metal device caps: Intel(R) Iris(TM) Plus Graphics 645
+Initialize mono
+Mono path[0] = '/Applications/2020.3.17f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/2020.3.17f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Applications/2020.3.17f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56615
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/2020.3.17f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Applications/2020.3.17f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.001791 seconds.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 56.16 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  4.520 seconds
+Domain Reload Profiling:
+	ReloadAssembly (4520ms)
+		BeginReloadAssembly (80ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (671ms)
+			LoadAssemblies (79ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (243ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (63ms)
+			SetupLoadedEditorAssemblies (289ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (7ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (56ms)
+				BeforeProcessingInitializeOnLoad (44ms)
+				ProcessInitializeOnLoadAttributes (142ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.006232 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 53.90 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.779 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1780ms)
+		BeginReloadAssembly (211ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (42ms)
+		EndReloadAssembly (1486ms)
+			LoadAssemblies (124ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (450ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (89ms)
+			SetupLoadedEditorAssemblies (647ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (54ms)
+				BeforeProcessingInitializeOnLoad (110ms)
+				ProcessInitializeOnLoadAttributes (454ms)
+				ProcessInitializeOnLoadMethodAttributes (19ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (10ms)
+Platform modules already initialized, skipping
+Validating Project structure ... 0.002604 seconds.
+Shader import version has changed; will reimport all shaders...
+Upgrading shader files ...0.004572 seconds.
+Application.AssetDatabase Initial Script Refresh Start
+RefreshInfo: InitialScriptRefreshV2(NoUpdateAssetOptions) scanfilter:  ... 1 filters
+RefreshProfiler: Total: 0.000ms
+Application.AssetDatabase Initial Script Refresh End
+Application.AssetDatabase.Refresh Start
+Application.AssetDatabase.Refresh End
+RefreshInfo: StopAssetImportingV2(ForceSynchronousImport) scanfilter: 
+RefreshProfiler: Total: 0.000ms
+Launching external process: /Applications/2020.3.17f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Initializing Unity extensions:
+========================================================================
+Worker process is ready to serve import requests
+Refreshing native plugins compatible for Editor in 0.43 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2099 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 203.4 MB.
+System memory in use after: 202.6 MB.
+
+Unloading 108 unused Assets to reduce memory usage. Loaded Objects now: 2576.
+Total: 5.541091 ms (FindLiveObjects: 0.297598 ms CreateObjectMapping: 0.096359 ms MarkObjects: 4.302477 ms  DeleteObjects: 0.843226 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.546667 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.551048 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.040705 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.004134 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.009881 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.092507 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.005694 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.010616 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.090401 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003843 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.016543 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.085137 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003468 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.007958 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.147468 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.005113 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.012536 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.125852 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002781 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.006128 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.094302 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.008302 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.015185 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.086391 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.013873 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.026961 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.076022 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.007790 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.016552 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.074446 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.006063 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.012068 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.194397 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003404 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.007879 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.085445 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003166 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.008719 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.097947 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.004279 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.009544 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.186285 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.007841 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.017880 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.081469 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.008273 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.017646 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.087519 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002844 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.006402 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.194759 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.005646 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.014233 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.083389 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002795 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.006555 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.099008 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.006013 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.014635 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.180522 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.004089 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.011098 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.090180 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.004299 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.009367 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.087795 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003164 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.006927 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.187645 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.010262 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.018060 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.120570 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.010373 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.020873 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.142077 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003163 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.007168 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.098907 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003732 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.007763 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.091024 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003468 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.007857 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.091859 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003807 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.008444 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.189002 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003186 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.006710 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.092522 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.008574 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.015266 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.186969 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003347 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.007621 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.090073 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.002818 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.006540 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.092910 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.007537 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.016152 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.080999 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.006030 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.013813 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.090316 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003010 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.006672 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.100846 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003457 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.008005 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.180631 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.005347 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.011791 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.188278 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003383 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.008438 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.091109 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.004433 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.009096 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.089439 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003956 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.008845 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.095134 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.007586 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.015281 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.081871 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.009089 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.015453 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.090822 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.004734 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.012167 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.081671 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.010084 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.017078 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.082902 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003930 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.010207 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.091592 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.003259 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.010141 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.090205 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.007683 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.015790 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.082254 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.007112 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.016139 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.082848 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00000000000000000000000000000000') in 0.009490 seconds  code(4) message(Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z')
+  ERROR: Build asset version error: assets/scripts/battles/battlesystem.cs in SourceAssetDB has modification time of '2022-08-28T12:18:40Z' while content on disk has modification time of '2022-08-28T12:22:37Z'
+  Import took 0.015581 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.009289 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.714 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1715ms)
+		BeginReloadAssembly (190ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (8ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (82ms)
+		EndReloadAssembly (1447ms)
+			LoadAssemblies (121ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (532ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (75ms)
+			SetupLoadedEditorAssemblies (569ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (164ms)
+				ProcessInitializeOnLoadAttributes (388ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (14ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.52 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 205.2 MB.
+System memory in use after: 205.3 MB.
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 2580.
+Total: 3.863027 ms (FindLiveObjects: 0.251089 ms CreateObjectMapping: 0.091164 ms MarkObjects: 3.487005 ms  DeleteObjects: 0.032882 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 9.110135 seconds.
+  path: Assets/Scripts/Battles/BattleSystem.cs
+  artifactKey: Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Battles/BattleSystem.cs using Guid(eedc601c6d170427da11ae43d7f5925f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22a789d477f13426c3b83a5780846065') in 0.008273 seconds 
+  Import took 0.011700 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005114 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.575 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1576ms)
+		BeginReloadAssembly (175ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (9ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (81ms)
+		EndReloadAssembly (1318ms)
+			LoadAssemblies (119ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (411ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (77ms)
+			SetupLoadedEditorAssemblies (563ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (152ms)
+				ProcessInitializeOnLoadAttributes (392ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (15ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.57 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 205.4 MB.
+System memory in use after: 205.6 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2583.
+Total: 3.990545 ms (FindLiveObjects: 0.229226 ms CreateObjectMapping: 0.075136 ms MarkObjects: 3.662277 ms  DeleteObjects: 0.022672 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006441 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.55 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.637 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1638ms)
+		BeginReloadAssembly (213ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (9ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (117ms)
+		EndReloadAssembly (1346ms)
+			LoadAssemblies (180ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (417ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (74ms)
+			SetupLoadedEditorAssemblies (533ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (145ms)
+				ProcessInitializeOnLoadAttributes (370ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (14ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 205.6 MB.
+System memory in use after: 205.7 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2586.
+Total: 3.283251 ms (FindLiveObjects: 0.196849 ms CreateObjectMapping: 0.072501 ms MarkObjects: 2.994698 ms  DeleteObjects: 0.018408 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.010383 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.662 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1663ms)
+		BeginReloadAssembly (179ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (8ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (83ms)
+		EndReloadAssembly (1405ms)
+			LoadAssemblies (219ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (415ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (74ms)
+			SetupLoadedEditorAssemblies (550ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (149ms)
+				ProcessInitializeOnLoadAttributes (382ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (15ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.44 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 205.9 MB.
+System memory in use after: 206.0 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2589.
+Total: 3.570642 ms (FindLiveObjects: 0.197517 ms CreateObjectMapping: 0.074266 ms MarkObjects: 3.280790 ms  DeleteObjects: 0.017310 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007571 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.606 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1608ms)
+		BeginReloadAssembly (242ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (15ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (123ms)
+		EndReloadAssembly (1286ms)
+			LoadAssemblies (128ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (416ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (72ms)
+			SetupLoadedEditorAssemblies (532ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (7ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (144ms)
+				ProcessInitializeOnLoadAttributes (371ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (14ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.49 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 206.1 MB.
+System memory in use after: 206.2 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2592.
+Total: 3.413024 ms (FindLiveObjects: 0.285629 ms CreateObjectMapping: 0.085997 ms MarkObjects: 3.009665 ms  DeleteObjects: 0.030807 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007960 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.58 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.571 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1571ms)
+		BeginReloadAssembly (177ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (9ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (83ms)
+		EndReloadAssembly (1314ms)
+			LoadAssemblies (118ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (413ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (76ms)
+			SetupLoadedEditorAssemblies (563ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (7ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (152ms)
+				ProcessInitializeOnLoadAttributes (392ms)
+				ProcessInitializeOnLoadMethodAttributes (8ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (14ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.61 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 206.3 MB.
+System memory in use after: 206.4 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2595.
+Total: 3.756904 ms (FindLiveObjects: 0.221530 ms CreateObjectMapping: 0.086588 ms MarkObjects: 3.405217 ms  DeleteObjects: 0.042430 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008336 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.56 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.631 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1631ms)
+		BeginReloadAssembly (189ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (9ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (94ms)
+		EndReloadAssembly (1357ms)
+			LoadAssemblies (121ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (487ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (75ms)
+			SetupLoadedEditorAssemblies (536ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (149ms)
+				ProcessInitializeOnLoadAttributes (370ms)
+				ProcessInitializeOnLoadMethodAttributes (7ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (14ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.55 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 206.5 MB.
+System memory in use after: 206.6 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2598.
+Total: 3.848105 ms (FindLiveObjects: 0.221735 ms CreateObjectMapping: 0.071970 ms MarkObjects: 3.532932 ms  DeleteObjects: 0.020619 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007104 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 0.54 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.559 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1559ms)
+		BeginReloadAssembly (173ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (8ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (80ms)
+		EndReloadAssembly (1306ms)
+			LoadAssemblies (122ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (409ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (75ms)
+			SetupLoadedEditorAssemblies (560ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (150ms)
+				ProcessInitializeOnLoadAttributes (391ms)
+				ProcessInitializeOnLoadMethodAttributes (8ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (15ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.43 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2088 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 206.7 MB.
+System memory in use after: 206.8 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2601.
+Total: 3.946615 ms (FindLiveObjects: 0.256393 ms CreateObjectMapping: 0.086238 ms MarkObjects: 3.583010 ms  DeleteObjects: 0.019960 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
