@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class BattleUnit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Battler Battler { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    public void Setup(Battler battler)
     {
-        
+        Battler = battler;
     }
 }

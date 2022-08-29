@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattlerBase : MonoBehaviour
+[CreateAssetMenu]
+public class BattlerBase : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Batllerの基礎データ
+    [SerializeField] new string name;
+    [SerializeField] int maxHP;
+    [SerializeField] int at;
+    [SerializeField] Sprite sprite;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string Name { get => name; }
+    public int MaxHP { get => maxHP; }
+    public int At { get => at; }
+    public Sprite Sprite { get => sprite; }
 }
