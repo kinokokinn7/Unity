@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerUnit : MonoBehaviour
+public class PlayerUnit : BattleUnit
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Text nameText;
+    [SerializeField] Text levelText;
+    [SerializeField] Text hpText;
+    [SerializeField] Text atText;
 
-    // Update is called once per frame
-    void Update()
+
+    public override void Setup(Battler battler)
     {
-        
+        base.Setup(battler);
+        // Player:ステータスの設定
+        nameText.text = battler.Base.Name;
+        levelText.text = $"Level:{battler.Level}";
+        hpText.text = $"HP:{battler.Base.MaxHP}";
+        atText.text = $"MP:{battler.Base.AT}";
+
     }
 }

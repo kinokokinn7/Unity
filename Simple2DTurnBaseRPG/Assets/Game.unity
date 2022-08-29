@@ -2830,6 +2830,8 @@ MonoBehaviour:
   actionSelectionUI: {fileID: 1140146879}
   moveSelectionUI: {fileID: 682787721}
   battleDialog: {fileID: 1911106169}
+  playerUnit: {fileID: 2050398988}
+  enemyUnit: {fileID: 1859751503}
 --- !u!1 &491175570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2932,6 +2934,9 @@ MonoBehaviour:
   encountLayer:
     serializedVersion: 2
     m_Bits: 128
+  battler:
+    _base: {fileID: 11400000, guid: ea07a8cc7dc09485f80d869b5e4f31e3, type: 2}
+    level: 10
 --- !u!95 &491175574
 Animator:
   serializedVersion: 3
@@ -5036,6 +5041,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 491175573}
   battleSystem: {fileID: 414511792}
+  enemyBattler:
+    _base: {fileID: 11400000, guid: 825961bf14efe4de9be7dda37a2bcc5b, type: 2}
+    level: 5
 --- !u!4 &1831009774
 Transform:
   m_ObjectHideFlags: 0
@@ -5216,6 +5224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc60f7a301274c2faaae660bba177b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 1722757781}
+  nameText: {fileID: 1080610277}
 --- !u!1 &1880282854
 GameObject:
   m_ObjectHideFlags: 0
@@ -5731,6 +5741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8113c98719b432c82eaf5d20d1e905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameText: {fileID: 364467180}
+  levelText: {fileID: 314752738}
+  hpText: {fileID: 1669195021}
+  atText: {fileID: 2091592838}
 --- !u!1 &2091592836
 GameObject:
   m_ObjectHideFlags: 0

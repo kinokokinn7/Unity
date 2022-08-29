@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class BattleUnit : MonoBehaviour
 {
-    Battler Battler { get; set; }
+    // UIの管理
+    // Battlerの管理
+    public Battler Battler { get; set; }
 
-    public void Setup(Battler battler)
+    public virtual void Setup(Battler battler)
     {
         Battler = battler;
+        // UIの初期化
     }
 }

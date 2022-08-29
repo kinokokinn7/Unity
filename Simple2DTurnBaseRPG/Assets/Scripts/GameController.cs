@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour
     [SerializeField] PlayerController player;
     [SerializeField] BattleSystem battleSystem;
 
+    [SerializeField] Battler enemyBattler;
+
     private void Start()
     {
         player.OnEncounts += StartBattle;
@@ -15,16 +17,16 @@ public class GameController : MonoBehaviour
 
     public void StartBattle()
     {
+        enemyBattler.Init();
         player.gameObject.SetActive(false);
         battleSystem.gameObject.SetActive(true);
-        battleSystem.BattleStart();
+        battleSystem.BattleStart(player.Battler, enemyBattler);
     }
 
     public void EndBattle()
     {
         player.gameObject.SetActive(true);
         battleSystem.gameObject.SetActive(false);
-        battleSystem.BattleStart();
     }
 
     void Update()

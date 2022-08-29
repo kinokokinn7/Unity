@@ -23,21 +23,28 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] MoveSelectionUI moveSelectionUI;
     [SerializeField] BattleDialog battleDialog;
 
+    [SerializeField] BattleUnit playerUnit;
+    [SerializeField] BattleUnit enemyUnit;
+
+
     public UnityAction OnBattleOver;
 
-    public void BattleStart()
+    public void BattleStart(Battler player, Battler enemy)
     {
         state = State.Start;
         Debug.Log("バトル開始");
         actionSelectionUI.Init();
         moveSelectionUI.Init();
         actionSelectionUI.Close();
-        StartCoroutine(SetupBattle());
+        StartCoroutine(SetupBattle(player, enemy));
 
     }
 
-    IEnumerator SetupBattle()
+    IEnumerator SetupBattle(Battler player, Battler enemy)
     {
+        playerUnit.Setup(player);
+        enemyUnit.Setup(enemy);
+
         yield return battleDialog.TypeDialog("XXがあらわれた！\nどうする？");
         ActionSelection();
     }

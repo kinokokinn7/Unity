@@ -13,6 +13,6 @@ public class BattlerBase : ScriptableObject
 
     public string Name { get => name; }
     public int MaxHP { get => maxHP; }
-    public int At { get => at; }
+    public int AT { get => at; }
     public Sprite Sprite { get => sprite; }
 }

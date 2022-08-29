@@ -11,14 +11,24 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] LayerMask solidObjectsLayer;
     [SerializeField] LayerMask encountLayer;
+
+    [SerializeField] Battler battler;
+    public Battler Battler { get => battler; }
+
     public UnityAction OnEncounts;  // エンカウントした時に実行したい関数を登録できる
 
     Animator animator;
     bool isMoving;
 
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        battler.Init();
     }
 
     void Update()
