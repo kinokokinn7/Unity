@@ -45,7 +45,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.Setup(player);
         enemyUnit.Setup(enemy);
 
-        yield return battleDialog.TypeDialog("XXがあらわれた！\nどうする？");
+        yield return battleDialog.TypeDialog($"{enemy.Base.Name}があらわれた！\nどうする？");
         ActionSelection();
     }
 
@@ -69,11 +69,20 @@ public class BattleSystem : MonoBehaviour
     IEnumerator RunTurns()
     {
         state = State.RunTurns;
-        Debug.Log("両者の攻撃処理");
-        yield return battleDialog.TypeDialog("YYの攻撃！", auto: false);
-        yield return battleDialog.TypeDialog("XXの攻撃！", auto: false);
+
+        yield return RunMove(playerUnit, enemyUnit);
+        yield return RunMove(enemyUnit, playerUnit);
+
         yield return battleDialog.TypeDialog("どうする？");
         ActionSelection();
+    }
+
+    IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit)
+    {
+        int damage = targetUnit.Battler.TakeDamage(sourceUnit.Battler);
+        yield return battleDialog.TypeDialog($"{sourceUnit.Battler.Base.Name}の攻撃！\n" +
+            $"{targetUnit.Battler.Base.Name}は{damage}のダメージ！", auto: false);
+        targetUnit.UpdateUI();
     }
 
     private void Update()

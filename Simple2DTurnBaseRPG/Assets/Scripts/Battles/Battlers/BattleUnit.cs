@@ -13,4 +13,8 @@ public class BattleUnit : MonoBehaviour
         Battler = battler;
         // UIの初期化
     }
+
+    public virtual void UpdateUI()
+    {
+    }
 }

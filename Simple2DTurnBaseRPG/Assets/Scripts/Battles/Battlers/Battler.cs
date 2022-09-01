@@ -24,5 +24,12 @@ public class Battler
         AT = _base.AT;
 
     }
+
+    public int TakeDamage(Battler attacker)
+    {
+        int damage = attacker.AT;
+        HP = Mathf.Clamp(HP - damage, 0, MaxHP);
+        return damage;
+    }
 }
 
