@@ -71,7 +71,20 @@ public class BattleSystem : MonoBehaviour
         state = State.RunTurns;
 
         yield return RunMove(playerUnit, enemyUnit);
+        if (state == State.BattleOver)
+        {
+            yield return battleDialog.TypeDialog($"{enemyUnit.Battler.Base.Name}を倒した！");
+            BattleOver();
+            yield break;
+        }
+
         yield return RunMove(enemyUnit, playerUnit);
+        if (state == State.BattleOver)
+        {
+            yield return battleDialog.TypeDialog($"{playerUnit.Battler.Base.Name}は倒れてしまった。");
+            BattleOver();
+            yield break;
+        }
 
         yield return battleDialog.TypeDialog("どうする？");
         ActionSelection();
@@ -83,6 +96,11 @@ public class BattleSystem : MonoBehaviour
         yield return battleDialog.TypeDialog($"{sourceUnit.Battler.Base.Name}の攻撃！\n" +
             $"{targetUnit.Battler.Base.Name}は{damage}のダメージ！", auto: false);
         targetUnit.UpdateUI();
+
+        if (targetUnit.Battler.HP <= 0)
+        {
+            state = State.BattleOver;
+        }
     }
 
     private void Update()
