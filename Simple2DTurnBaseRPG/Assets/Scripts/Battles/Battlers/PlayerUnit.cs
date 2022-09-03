@@ -16,16 +16,16 @@ public class PlayerUnit : BattleUnit
         base.Setup(battler);
         // Player:ステータスの設定
         nameText.text = battler.Base.Name;
-        levelText.text = $"Level:{battler.Level}";
+        levelText.text = $"Lv:{battler.Level}";
         hpText.text = $"HP:{battler.HP}";
-        atText.text = $"MP:{battler.AT}";
+        atText.text = $"AT:{battler.AT}";
 
     }
 
     public override void UpdateUI()
     {
-        levelText.text = $"Level:{Battler.Level}";
+        levelText.text = $"Lv:{Battler.Level}";
         hpText.text = $"HP:{Battler.HP}";
-        atText.text = $"MP:{Battler.AT}";
+        atText.text = $"AT:{Battler.AT}";
     }
 }

@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 314752739}
   - component: {fileID: 314752738}
   m_Layer: 0
-  m_Name: Lv
+  m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,6 +419,8 @@ GameObject:
   - component: {fileID: 413780687}
   - component: {fileID: 413780686}
   - component: {fileID: 413780685}
+  - component: {fileID: 413780688}
+  - component: {fileID: 413780689}
   m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
@@ -2783,6 +2785,37 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &413780688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413780681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d9ec9dbfa2648529a41dc45a12ccd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &413780689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413780681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b30892d23de4417abe5f240265a56d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - _base: {fileID: 11400000, guid: 542e3eeb508644fd1bb644875a497bb1, type: 2}
+    level: 10
+  - _base: {fileID: 11400000, guid: 825961bf14efe4de9be7dda37a2bcc5b, type: 2}
+    level: 9
+  - _base: {fileID: 11400000, guid: 825961bf14efe4de9be7dda37a2bcc5b, type: 2}
+    level: 5
 --- !u!1 &414511790
 GameObject:
   m_ObjectHideFlags: 0
@@ -4713,7 +4746,7 @@ GameObject:
   - component: {fileID: 1669195022}
   - component: {fileID: 1669195021}
   m_Layer: 0
-  m_Name: HP
+  m_Name: AT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4771,7 +4804,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "MP\uFF1A"
+  m_Text: "AT\uFF1A"
 --- !u!222 &1669195022
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5041,9 +5074,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 491175573}
   battleSystem: {fileID: 414511792}
-  enemyBattler:
-    _base: {fileID: 11400000, guid: 825961bf14efe4de9be7dda37a2bcc5b, type: 2}
-    level: 5
 --- !u!4 &1831009774
 Transform:
   m_ObjectHideFlags: 0
@@ -5742,9 +5772,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 364467180}
-  levelText: {fileID: 314752738}
-  hpText: {fileID: 1669195021}
-  atText: {fileID: 2091592838}
+  levelText: {fileID: 2091592838}
+  hpText: {fileID: 314752738}
+  atText: {fileID: 1669195021}
 --- !u!1 &2091592836
 GameObject:
   m_ObjectHideFlags: 0
@@ -5757,7 +5787,7 @@ GameObject:
   - component: {fileID: 2091592839}
   - component: {fileID: 2091592838}
   m_Layer: 0
-  m_Name: MP
+  m_Name: Lv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

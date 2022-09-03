@@ -7,15 +7,13 @@ public class GameController : MonoBehaviour
     [SerializeField] PlayerController player;
     [SerializeField] BattleSystem battleSystem;
 
-    [SerializeField] Battler enemyBattler;
-
     private void Start()
     {
         player.OnEncounts += StartBattle;
         battleSystem.OnBattleOver += EndBattle;
     }
 
-    public void StartBattle()
+    public void StartBattle(Battler enemyBattler)
     {
         enemyBattler.Init();
         player.gameObject.SetActive(false);

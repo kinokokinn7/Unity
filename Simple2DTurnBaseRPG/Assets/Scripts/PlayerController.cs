@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Battler battler;
     public Battler Battler { get => battler; }
 
-    public UnityAction OnEncounts;  // エンカウントした時に実行したい関数を登録できる
+    public UnityAction<Battler> OnEncounts;  // エンカウントした時に実行したい関数を登録できる
 
     Animator animator;
     bool isMoving;
@@ -83,11 +83,13 @@ public class PlayerController : MonoBehaviour
     void CheckForEncounts()
     {
         // 移動した地点に、敵がいるか判断する
-        if (Physics2D.OverlapCircle(transform.position, 0.2f, encountLayer))
+        Collider2D encount = Physics2D.OverlapCircle(transform.position, 0.2f, encountLayer);
+        if (encount)
         {
             if (Random.Range(0, 100) < 100)   // 0-99までの数字がランダムに選ばれて、その数字が50より小さかったら
             {
-                OnEncounts?.Invoke();   // もしOnEncountsに関数が登録されていれば実行する
+                Battler enemy = encount.GetComponent<EncountArea>().GetRandomBattler();
+                OnEncounts?.Invoke(enemy);   // もしOnEncountsに関数が登録されていれば実行する
             }
         }
     }
