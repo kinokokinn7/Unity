@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MoveDungeonMapEvent
   m_EditorClassIdentifier: 
   Tile: {fileID: 11400000, guid: b91d9620c854447859e2b71d8fe96ff9, type: 2}
-  MoveMapPrefab: {fileID: 0}
+  MoveMapPrefab: {fileID: 1655171500521379205, guid: 54075e33b8852434ca72e0047ebe3f86, type: 3}
   StartPosTile: {fileID: 11400000, guid: 01ff886fd0ccd43e1a5b56afc2abcd28, type: 2}
   StartDirection: 0

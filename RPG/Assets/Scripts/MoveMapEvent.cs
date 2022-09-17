@@ -17,6 +17,7 @@ public class MoveMapEvent : MassEvent
 
         if (manager.ActiveMap.FindMassEventPos(StartPosTile, out var pos))
         {
+            Debug.Log(pos);
             manager.Player.SetPosNoCoroutine(pos);
             manager.Player.CurrentDir = StartDirection;
         }
