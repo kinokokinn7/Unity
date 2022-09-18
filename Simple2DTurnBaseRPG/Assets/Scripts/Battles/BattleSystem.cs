@@ -69,8 +69,8 @@ public class BattleSystem : MonoBehaviour
     IEnumerator RunTurns()
     {
         state = State.RunTurns;
-
-        yield return RunMove(playerUnit, enemyUnit);
+        Move playerMove = playerUnit.Battler.Moves[moveSelectionUI.SelectedIndex];
+        yield return RunMove(playerMove, playerUnit, enemyUnit);
         if (state == State.BattleOver)
         {
             yield return battleDialog.TypeDialog($"{enemyUnit.Battler.Base.Name}を倒した！");
@@ -78,7 +78,8 @@ public class BattleSystem : MonoBehaviour
             yield break;
         }
 
-        yield return RunMove(enemyUnit, playerUnit);
+        Move enemyMove = enemyUnit.Battler.GetRandomMove();
+        yield return RunMove(enemyMove, enemyUnit, playerUnit);
         if (state == State.BattleOver)
         {
             yield return battleDialog.TypeDialog($"{playerUnit.Battler.Base.Name}は倒れてしまった。");
@@ -90,10 +91,10 @@ public class BattleSystem : MonoBehaviour
         ActionSelection();
     }
 
-    IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit)
+    IEnumerator RunMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
-        int damage = targetUnit.Battler.TakeDamage(sourceUnit.Battler);
-        yield return battleDialog.TypeDialog($"{sourceUnit.Battler.Base.Name}の攻撃！\n" +
+        int damage = targetUnit.Battler.TakeDamage(move, sourceUnit.Battler);
+        yield return battleDialog.TypeDialog($"{sourceUnit.Battler.Base.Name}の{move.Base.Name}！\n" +
             $"{targetUnit.Battler.Base.Name}は{damage}のダメージ！", auto: false);
         targetUnit.UpdateUI();
 

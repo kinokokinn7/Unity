@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class MoveSelectionUI : MonoBehaviour
 {
-    // 目標：使える技をUIに反映
-    // 
     [SerializeField] RectTransform movesParent;
     [SerializeField] SelectableText moveTextPrefab;
-    SelectableText[] selectableTexts;
+    List<SelectableText> selectableTexts = new List<SelectableText>();
 
     int selectedIndex;
 
@@ -17,8 +15,8 @@ public class MoveSelectionUI : MonoBehaviour
     public void Init(List<Move> moves)
     {
         // 自分の子要素で<SelectableText>コンポーネントを持っているものを集める
-        selectableTexts = GetComponentsInChildren<SelectableText>();
         SetMovesUISize(moves);
+        // selectableTexts = GetComponentsInChildren<SelectableText>();
     }
 
     void SetMovesUISize(List<Move> moves)
@@ -31,6 +29,7 @@ public class MoveSelectionUI : MonoBehaviour
         {
             SelectableText moveText = Instantiate(moveTextPrefab, movesParent);
             moveText.SetText(moves[i].Base.Name);
+            selectableTexts.Add(moveText);
         }
     }
 
@@ -45,9 +44,9 @@ public class MoveSelectionUI : MonoBehaviour
             selectedIndex--;
         }
 
-        selectedIndex = Mathf.Clamp(selectedIndex, 0, selectableTexts.Length - 1);
+        selectedIndex = Mathf.Clamp(selectedIndex, 0, selectableTexts.Count - 1);
 
-        for (int i = 0; i < selectableTexts.Length; i++)
+        for (int i = 0; i < selectableTexts.Count; i++)
         {
             if (selectedIndex == i)
             {

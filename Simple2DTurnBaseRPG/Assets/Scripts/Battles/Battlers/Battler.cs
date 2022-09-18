@@ -38,11 +38,17 @@ public class Battler
 
     }
 
-    public int TakeDamage(Battler attacker)
+    public int TakeDamage(Move move, Battler attacker)
     {
-        int damage = attacker.AT;
+        int damage = attacker.AT + move.Base.Power;
         HP = Mathf.Clamp(HP - damage, 0, MaxHP);
         return damage;
+    }
+
+    public Move GetRandomMove()
+    {
+        int r = Random.Range(0, Moves.Count);
+        return Moves[r];
     }
 }
 
