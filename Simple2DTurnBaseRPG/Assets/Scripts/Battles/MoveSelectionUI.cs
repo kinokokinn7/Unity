@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MoveSelectionUI : MonoBehaviour
 {
+    // 目標：技の数だけ伸びるUIを作る
+    // 
+    [SerializeField] RectTransform movesParent;
     SelectableText[] selectableTexts;
 
     int selectedIndex;
@@ -19,6 +22,14 @@ public class MoveSelectionUI : MonoBehaviour
     {
         // 自分の子要素で<SelectableText>コンポーネントを持っているものを集める
         selectableTexts = GetComponentsInChildren<SelectableText>();
+        SetMovesUISize(7);
+    }
+
+    void SetMovesUISize(int count)
+    {
+        Vector2 uiSize = movesParent.sizeDelta;
+        uiSize.y = 50 + 50 * count;
+        movesParent.sizeDelta = uiSize;
     }
 
     public void HandleUpdate()
