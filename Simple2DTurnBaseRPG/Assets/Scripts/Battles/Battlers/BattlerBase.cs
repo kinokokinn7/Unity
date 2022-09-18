@@ -10,6 +10,7 @@ public class BattlerBase : ScriptableObject
     [SerializeField] int maxHP;
     [SerializeField] int at;
     [SerializeField] Sprite sprite;
+    [SerializeField] List<LearnableMove> learnableMove;
 
     public string Name { get => name; }
     public int MaxHP { get => maxHP; }
