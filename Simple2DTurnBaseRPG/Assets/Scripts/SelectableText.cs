@@ -14,6 +14,15 @@ public class SelectableText : MonoBehaviour
         text = GetComponent<Text>();
     }
 
+    public void SetText(string newName)
+    {
+        if (text == null)
+        {
+            text = GetComponent<Text>();
+        }
+        text.text = newName;
+    }
+
     // 選択中なら色を変える
     public void SetSelectedColor(bool selected)
     {

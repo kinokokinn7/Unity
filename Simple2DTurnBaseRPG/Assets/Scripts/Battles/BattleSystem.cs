@@ -34,7 +34,7 @@ public class BattleSystem : MonoBehaviour
         state = State.Start;
         Debug.Log("バトル開始");
         actionSelectionUI.Init();
-        moveSelectionUI.Init();
+        moveSelectionUI.Init(player.Moves);
         actionSelectionUI.Close();
         StartCoroutine(SetupBattle(player, enemy));
 
