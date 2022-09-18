@@ -3062,7 +3062,7 @@ MonoBehaviour:
     m_Bits: 128
   battler:
     _base: {fileID: 11400000, guid: ea07a8cc7dc09485f80d869b5e4f31e3, type: 2}
-    level: 10
+    level: 3
 --- !u!95 &491175574
 Animator:
   serializedVersion: 3

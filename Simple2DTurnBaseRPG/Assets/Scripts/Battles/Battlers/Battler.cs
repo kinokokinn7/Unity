@@ -16,9 +16,22 @@ public class Battler
     public int HP { get; set; }
     public int AT { get; set; }
 
+    public List<Move> Moves { get; set; }
+
     // 初期化
     public void Init()
     {
+        // 覚えるワザから使えるワザを生成
+        Moves = new List<Move>();
+        foreach (var learnableMove in Base.LearnableMove)
+        {
+            if (learnableMove.Level <= level)
+            {
+                Moves.Add(new Move(learnableMove.MoveBase));
+            }
+        }
+        Debug.Log(Moves.Count);
+
         MaxHP = _base.MaxHP;
         HP = MaxHP;
         AT = _base.AT;

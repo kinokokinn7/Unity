@@ -16,4 +16,5 @@ public class BattlerBase : ScriptableObject
     public int MaxHP { get => maxHP; }
     public int AT { get => at; }
     public Sprite Sprite { get => sprite; }
+    public List<LearnableMove> LearnableMove { get => learnableMove; }
 }

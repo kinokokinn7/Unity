@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveSelectionUI : MonoBehaviour
 {
-    // 目標：技の数だけ伸びるUIを作る
+    // 目標：
     // 
     [SerializeField] RectTransform movesParent;
     SelectableText[] selectableTexts;
