@@ -17,5 +17,5 @@ MonoBehaviour:
   at: 10
   sprite: {fileID: -5621453609727766444, guid: 649cc8c4f12814f78bf1eb4bd249e7ae, type: 3}
   learnableMove:
-  - moveBase: {fileID: 11400000, guid: bef36ec104e70402d8fba72572cb8c7e, type: 2}
+  - moveBase: {fileID: 11400000, guid: 45ab8650c1c97423db3d5584d43122a7, type: 2}
     level: 0

@@ -40,7 +40,7 @@ public class Battler
 
     public int TakeDamage(Move move, Battler attacker)
     {
-        int damage = attacker.AT + move.Base.Power;
+        int damage = attacker.AT;// + move.Base.Power; TODO
         HP = Mathf.Clamp(HP - damage, 0, MaxHP);
         return damage;
     }

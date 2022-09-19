@@ -17,9 +17,11 @@ MonoBehaviour:
   at: 10
   sprite: {fileID: -8251550393852375776, guid: daec3672541984b1abd3e7f711ca9283, type: 3}
   learnableMove:
-  - moveBase: {fileID: 11400000, guid: a817919debe774a7ba94597213805c94, type: 2}
+  - moveBase: {fileID: 11400000, guid: 204f9bc8f0ece4c51a9c3d85d761e8ca, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: bef36ec104e70402d8fba72572cb8c7e, type: 2}
+  - moveBase: {fileID: 11400000, guid: 45ab8650c1c97423db3d5584d43122a7, type: 2}
     level: 5
-  - moveBase: {fileID: 11400000, guid: 48ac835219a494fc3a6ec71cddc343a9, type: 2}
+  - moveBase: {fileID: 11400000, guid: 497c987180d2e48e09bec220890f4dcd, type: 2}
     level: 7
+  - moveBase: {fileID: 11400000, guid: 52691e9d153a84adcaa91acd96392c4c, type: 2}
+    level: 9
