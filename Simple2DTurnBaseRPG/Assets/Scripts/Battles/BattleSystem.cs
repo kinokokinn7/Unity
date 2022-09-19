@@ -95,9 +95,9 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator RunMove(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
-        int damage = targetUnit.Battler.TakeDamage(move, sourceUnit.Battler);
-        yield return battleDialog.TypeDialog($"{sourceUnit.Battler.Base.Name}の{move.Base.Name}！\n" +
-            $"{targetUnit.Battler.Base.Name}は{damage}のダメージ！", auto: false);
+        string resultText = move.Base.RunMoveResult(sourceUnit, targetUnit);
+        yield return battleDialog.TypeDialog(resultText, auto: false);
+        sourceUnit.UpdateUI();
         targetUnit.UpdateUI();
 
         if (targetUnit.Battler.HP <= 0)
