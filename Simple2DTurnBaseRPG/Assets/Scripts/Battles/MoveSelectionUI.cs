@@ -16,7 +16,6 @@ public class MoveSelectionUI : MonoBehaviour
     {
         // 自分の子要素で<SelectableText>コンポーネントを持っているものを集める
         SetMovesUISize(moves);
-        // selectableTexts = GetComponentsInChildren<SelectableText>();
     }
 
     void SetMovesUISize(List<Move> moves)
@@ -68,6 +67,15 @@ public class MoveSelectionUI : MonoBehaviour
     public void Close()
     {
         gameObject.SetActive(false);
+    }
+
+    public void DeleteMoveTexts()
+    {
+        foreach (var text in selectableTexts)
+        {
+            Destroy(text.gameObject);
+        }
+        selectableTexts.Clear();
     }
 
 }

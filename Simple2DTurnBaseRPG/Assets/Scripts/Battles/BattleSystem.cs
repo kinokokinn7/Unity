@@ -51,7 +51,9 @@ public class BattleSystem : MonoBehaviour
 
     void BattleOver()
     {
+        moveSelectionUI.DeleteMoveTexts();
         OnBattleOver?.Invoke();
+
     }
 
     void ActionSelection()
