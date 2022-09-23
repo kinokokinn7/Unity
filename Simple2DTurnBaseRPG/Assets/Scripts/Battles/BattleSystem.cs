@@ -75,7 +75,25 @@ public class BattleSystem : MonoBehaviour
         yield return RunMove(playerMove, playerUnit, enemyUnit);
         if (state == State.BattleOver)
         {
-            yield return battleDialog.TypeDialog($"{enemyUnit.Battler.Base.Name}を倒した！");
+            yield return battleDialog.TypeDialog($"{enemyUnit.Battler.Base.Name}を倒した！", auto: false);
+            // 倒した敵から経験値を得る
+            playerUnit.Battler.HasExp += enemyUnit.Battler.Base.Exp;
+            yield return battleDialog.TypeDialog($"{playerUnit.Battler.Base.Name}は経験値{enemyUnit.Battler.Base.Exp}をかくとく！", auto: false);
+            // 一定以上経験値がたまると、レベルが上がる
+            if (playerUnit.Battler.IsLevelUp())
+            {
+                playerUnit.UpdateUI();
+                yield return battleDialog.TypeDialog($"{playerUnit.Battler.Base.Name}はレベル{playerUnit.Battler.Level}に上がった！", auto: false);
+                // 特定のレベルなら技を覚える
+                Move learnedMove = playerUnit.Battler.LearnedMove();
+                if (learnedMove != null)
+                {
+                    yield return battleDialog.TypeDialog($"{playerUnit.Battler.Base.Name}は{learnedMove.Base.Name}を覚えた！", auto: false);
+                }
+            }
+
+
+
             BattleOver();
             yield break;
         }

@@ -7,6 +7,7 @@ public class Battler
 {
     [SerializeField] BattlerBase _base;
     [SerializeField] int level;
+    public int HasExp { get; set; }
 
     public BattlerBase Base { get => _base; }
     public int Level { get => level; }
@@ -23,7 +24,7 @@ public class Battler
     {
         // 覚えるワザから使えるワザを生成
         Moves = new List<Move>();
-        foreach (var learnableMove in Base.LearnableMove)
+        foreach (var learnableMove in Base.LearnableMoves)
         {
             if (learnableMove.Level <= level)
             {
@@ -55,5 +56,35 @@ public class Battler
         int r = Random.Range(0, Moves.Count);
         return Moves[r];
     }
+
+    public bool IsLevelUp()
+    {
+        if (HasExp >= 100)
+        {
+            HasExp -= 100;
+            level++;
+            return true;
+        }
+        return false;
+    }
+
+    // 新しくワザを覚えるのかどうか
+    public Move LearnedMove()
+    {
+        // 覚えるワザから使えるワザを生成
+        foreach (var learnableMove in Base.LearnableMoves)
+        {
+            // まだ覚えていないもので覚えるワザがあれば登録する
+            if (learnableMove.Level <= level && !Moves.Exists(move => move.Base == learnableMove.MoveBase))
+            {
+                Move move = new Move(learnableMove.MoveBase);
+                Moves.Add(move);
+                return move;
+            }
+        }
+
+        return null;
+    }
+
 }
 

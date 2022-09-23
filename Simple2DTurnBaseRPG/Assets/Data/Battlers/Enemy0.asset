@@ -16,6 +16,7 @@ MonoBehaviour:
   maxHP: 20
   at: 10
   sprite: {fileID: -7452754683524764885, guid: c2127c0a585554e3c8f1f911f0bf4fe0, type: 3}
-  learnableMove:
+  learnableMoves:
   - moveBase: {fileID: 11400000, guid: 204f9bc8f0ece4c51a9c3d85d761e8ca, type: 2}
     level: 0
+  exp: 100
