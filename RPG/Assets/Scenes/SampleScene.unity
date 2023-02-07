@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2899320899491654948, guid: 54075e33b8852434ca72e0047ebe3f86, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2899320899491654950, guid: 54075e33b8852434ca72e0047ebe3f86, type: 3}
       propertyPath: m_RootOrder
@@ -629,6 +629,7 @@ MonoBehaviour:
   MoveSecond: 0.1
   RPGSceneManager: {fileID: 952947728}
   _pos: {x: 12, y: 1, z: 0}
+  DoMoveCamera: 1
   _currentDir: 1
 --- !u!1001 &2938455454797588971
 PrefabInstance:
@@ -637,6 +638,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2494248935971366871, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2938455453541352321, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[4].m_Data
       value: 
@@ -1621,6 +1626,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 764313759
       objectReference: {fileID: 0}
+    - target: {fileID: 7777712013309853320, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
+      propertyPath: RPGSceneManager
+      value: 
+      objectReference: {fileID: 952947728}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
 --- !u!114 &2938455454797588973 stripped
