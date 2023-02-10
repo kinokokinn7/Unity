@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
 public class Map : MonoBehaviour
 {
@@ -14,6 +15,21 @@ public class Map : MonoBehaviour
     readonly static string EVENT_BOX_TILEMAP_NAME = "EventBox";
 
     [SerializeField] List<MassEvent> _massEvents;
+
+    HashSet<CharacterBase> _characters = new HashSet<CharacterBase>();
+    public void AddCharacter(CharacterBase character)
+    {
+        if (!_characters.Contains(character) && character != null)
+        {
+            _characters.Add(character);
+        }
+    }
+
+    public CharacterBase GetCharacter(Vector3Int pos)
+    {
+        return _characters.FirstOrDefault(_c => _c.Pos == pos);
+    }
+
     public MassEvent FindMassEvent(TileBase tile)
     {
         return _massEvents.Find(_c => _c.Tile == tile);
@@ -58,14 +74,22 @@ public class Map : MonoBehaviour
         public bool isMovable;
         public TileBase eventTile;
         public MassEvent massEvent;
+        public CharacterBase character;
     }
     public Mass GetMassData(Vector3Int pos)
     {
         var mass = new Mass();
         mass.eventTile = _tilemaps[EVENT_BOX_TILEMAP_NAME].GetTile(pos);
         mass.isMovable = true;
+        mass.character = GetCharacter(pos);
 
-        if (mass.eventTile != null)
+        // キャラがマス上に存在する場合は通行不可
+        if (mass.character != null)
+        {
+            mass.isMovable = false;
+        }
+        // イベントがマス上に存在する場合は通行不可
+        else if (mass.eventTile != null)
         {
             mass.massEvent = FindMassEvent(mass.eventTile);
         }
@@ -79,4 +103,5 @@ public class Map : MonoBehaviour
         }
         return mass;
     }
+
 }

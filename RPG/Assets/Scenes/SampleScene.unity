@@ -642,6 +642,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2658403372183387071, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2938455453541352321, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[4].m_Data
       value: 
@@ -1625,6 +1629,10 @@ PrefabInstance:
     - target: {fileID: 2938455454823519782, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
       propertyPath: m_SortingLayerID
       value: 764313759
+      objectReference: {fileID: 0}
+    - target: {fileID: 7777712013309853320, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
+      propertyPath: _pos.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7777712013309853320, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
       propertyPath: RPGSceneManager
