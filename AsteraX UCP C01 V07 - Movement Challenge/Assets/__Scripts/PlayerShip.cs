@@ -34,7 +34,7 @@ public class PlayerShip : MonoBehaviour
             dx * Time.deltaTime * speed,
             dy * Time.deltaTime * speed,
             0);
-        transform.Translate(diff);
+        transform.Translate(diff, Space.World);
     }
 
     /// <summary>
@@ -42,9 +42,22 @@ public class PlayerShip : MonoBehaviour
     /// </summary>
     private void Fire(Vector3 direction)
     {
+        GameObject bulletAnchor = GameObject.Find("BulletAnchor");
+
+        // 砲弾をまとめるオブジェクトを生成（存在しない場合のみ）
+        if (bulletAnchor == null)
+        {
+            bulletAnchor = new GameObject("BulletAnchor");
+        }
+
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+        // Bulletの初期設定
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         float bulletSpeed = bulletScript.speed;
         bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+
+        // BulletAnchorにBulletを追加
+        bullet.transform.parent = bulletAnchor.transform;
     }
 }

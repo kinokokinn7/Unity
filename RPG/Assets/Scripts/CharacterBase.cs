@@ -14,7 +14,7 @@ public class CharacterBase : MonoBehaviour
 {
     [Range(0, 2)] public float MoveSecond = 0.1f;
     [SerializeField] protected RPGSceneManager RPGSceneManager;
-
+    public MassEvent Event;
 
     Coroutine _moveCoroutine;
     [SerializeField] Vector3Int _pos;

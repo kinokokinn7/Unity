@@ -61,4 +61,12 @@ public class RPGSceneManager : MonoBehaviour
         }
         return doMove;
     }
+
+    /// <summary>
+    /// メッセージウィンドウを表示します。
+    /// </summary>
+    /// <param name="message">メッセージ</param>
+    public void ShowMessageWindow(string message)
+    {
+    }
 }
