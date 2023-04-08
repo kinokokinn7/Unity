@@ -24,7 +24,7 @@ public class MessageWindow : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void StartMessage(string message)
+    public void StartMessage(string message)
     {
         Message = message;
         StopAllCoroutines();
