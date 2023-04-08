@@ -7,6 +7,14 @@ public class RPGSceneManager : MonoBehaviour
     public Player Player;
     public Map ActiveMap;
 
+    public bool IsPauseScene
+    {
+        get
+        {
+            return !MessageWindow.IsEndMessage;
+        }
+    }
+
     Coroutine _currentCoroutine;
     // Start is called before the first frame update
     void Start()
@@ -34,8 +42,12 @@ public class RPGSceneManager : MonoBehaviour
                         massData.massEvent.Exec(this);
                     }
                 }
+                else if (massData.character != null && massData.character.Event != null)
+                {
+                    massData.character.Event.Exec(this);
+                }
             }
-            yield return null;
+            yield return new WaitWhile(() => IsPauseScene);
         }
     }
 
