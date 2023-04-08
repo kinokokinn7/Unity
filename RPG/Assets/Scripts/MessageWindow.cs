@@ -37,7 +37,7 @@ public class MessageWindow : MonoBehaviour
         IsEndMessage = false;
         DestroyLineText();
 
-        var lines = Message.Split('¥n');
+        var lines = Message.Split(new[] { "¥n" }, StringSplitOptions.None);
         var lineCount = 0;
         var textObjs = new List<Text>();
 
