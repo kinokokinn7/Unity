@@ -16,19 +16,30 @@ public class BattleParameterBase
     [Min(0)] public int Money;
 
     public Weapon AttackWeapon;
-    public Weapon DefenceWeapon;
+    public Weapon DefenseWeapon;
 
     public List<Item> Items;    // 上限4個までを想定して他のものを作成している
 
+    /// <summary>
+    /// 攻撃力。
+    /// </summary>
     public int AttackPower
     {
         get => Attack + (AttackWeapon != null ? AttackWeapon.Power : 0);
     }
+
+    /// <summary>
+    /// 防御力。
+    /// </summary>
     public int DefensePower
     {
         get => DefensePower + (DefenseWeapon != null ? DefenseWeapon.Power : 0);
     }
 
+    /// <summary>
+    /// パラメータ値を他のパラメータベースオブジェクトにコピーします。
+    /// </summary>
+    /// <param name="dest"></param>
     public virtual void CopyTo(BattleParameterBase dest)
     {
         dest.HP = HP;
@@ -38,6 +49,9 @@ public class BattleParameterBase
         dest.Level = Level;
         dest.Exp = Exp;
         dest.Money = Money;
+
+        dest.AttackWeapon = AttackWeapon;
+        dest.DefenseWeapon = DefenseWeapon;
 
         dest.Items = new List<Item>(Items.ToArray());
     }

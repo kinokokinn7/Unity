@@ -932,6 +932,18 @@ MonoBehaviour:
   _pos: {x: 12, y: 1, z: 0}
   DoMoveCamera: 1
   _currentDir: 1
+  InitialBattleParameter: {fileID: 11400000, guid: 757c0d0b901214f9ba2239bc636db77b, type: 2}
+  BattleParameter:
+    HP: 0
+    MaxHP: 0
+    Attack: 0
+    Defense: 0
+    Level: 0
+    Exp: 0
+    Money: 0
+    AttackWeapon: {fileID: 0}
+    DefenseWeapon: {fileID: 0}
+    Items: []
 --- !u!1 &1168658631
 GameObject:
   m_ObjectHideFlags: 0
