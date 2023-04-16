@@ -6,12 +6,18 @@ public class RPGSceneManager : MonoBehaviour
 {
     public Player Player;
     public Map ActiveMap;
+    public Menu Menu;
+
+    public void OpenMenu()
+    {
+        Menu.Open();
+    }
 
     public bool IsPauseScene
     {
         get
         {
-            return !MessageWindow.IsEndMessage;
+            return !MessageWindow.IsEndMessage || Menu.DoOpen;
         }
     }
 
@@ -48,6 +54,13 @@ public class RPGSceneManager : MonoBehaviour
                 }
             }
             yield return new WaitWhile(() => IsPauseScene);
+
+            // スペースキー押下時
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // メニュー画面を開く
+                OpenMenu();
+            }
         }
     }
 
