@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MenuRoot : MonoBehaviour
@@ -23,6 +24,15 @@ public class MenuRoot : MonoBehaviour
             var items = MenuItems;
             _index = Mathf.Clamp(_index, 0, ActiveItemCount - 1);
             UpdateMenuItemSelecting(false);
+            return _index;
+        }
+        set
+        {
+            _index = value;
+
+            var items = MenuItems;
+            _index = Mathf.Clamp(_index, 0, ActiveItemCount - 1);
+            UpdateMenuItemSelecting(false);
             for (var i = 0; i < items.Length; i++)
             {
                 items[i].IsSelecting = (i == _index);
@@ -34,7 +44,7 @@ public class MenuRoot : MonoBehaviour
     {
         get
         {
-            return menuItems[Index];
+            return MenuItems[Index];
         }
     }
 

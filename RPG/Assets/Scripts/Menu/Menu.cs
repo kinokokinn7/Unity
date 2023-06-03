@@ -5,7 +5,7 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     public MenuRoot FirstMenuRoot;
-    Stack<Menu> _menuRootStack;
+    Stack<MenuRoot> _menuRootStack;
 
     /// <summary>
     /// メニューを開いているか否かを表すフラグ。
@@ -50,7 +50,7 @@ public class Menu : MonoBehaviour
         get
         {
             var top = _menuRootStack.Peek();
-            return top.CurrenItem;
+            return top.CurrentItem;
         }
     }
 
@@ -131,7 +131,7 @@ public class Menu : MonoBehaviour
     /// メニューの項目選択を決定します。
     /// </summary>
     /// <param name="current"></param>
-    protected virtual void Decide(menuRoot current)
+    protected virtual void Decide(MenuRoot current)
     {
         var item = current.CurrentItem;
         switch (item.CurrentKind)
