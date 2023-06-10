@@ -13,11 +13,28 @@ public class MainMenu : Menu
     public MenuRoot ItemInventory;
 
     /// <summary>
-    /// アイテム使用時の処理です。
+    /// アイテムを使用します。
     /// </summary>
     public void UseItem()
     {
-        // TODO
+        var index = CurrentMenuObj.Index;
+        var player = RPGSceneManager.Player;
+        var item = GetItem(player.BattleParameter, index);
+
+        // アイテムが無い、または武器防具の場合は使用不可
+        if (item == null || item is Weapon) return;
+
+        // アイテムを使用
+        item.Use(player.BattleParameter);
+
+        // 使用したアイテムを削除
+        // NOTE: 武器は1行目、防具は2行目の想定のため、
+        // アイテムは3行目以降と想定して行を数える
+        int offset = 0;
+        if (player.BattleParameter.AttackWeapon != null) offset++;
+        if (player.BattleParameter.DefenseWeapon != null) offset++;
+        player.BattleParameter.Items.RemoveAt(index - offset);
+
         UpdateUI();
     }
 
@@ -101,5 +118,27 @@ public class MainMenu : Menu
         var root = ParameterRoot.transform.Find(name);
         var textObj = root.Find("Text").GetComponent<Text>();
         textObj.text = text;
+    }
+
+    Item GetItem(BattleParameterBase param, int index)
+    {
+        int i = 0;
+        if (param.AttackWeapon != null)
+        {
+            if (index == i) return param.AttackWeapon;
+            i++;
+        }
+        if (param.DefenseWeapon != null)
+        {
+            if (index == i) return param.DefenseWeapon;
+            i++;
+        }
+
+        index -= i;
+        for (var itemIndex = 0; itemIndex < param.Items.Count; itemIndex++)
+        {
+            if (index == itemIndex) return param.Items[itemIndex];
+        }
+        return null;
     }
 }

@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// プレイヤーまたは敵キャラの
+/// 戦闘パラメータのベースクラス。
+/// </summary>
 [System.Serializable]
 public class BattleParameterBase
 {

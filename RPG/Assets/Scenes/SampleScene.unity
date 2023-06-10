@@ -654,9 +654,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.55, y: 0.35}
-  m_AnchorMax: {x: 0.7, y: 1}
-  m_AnchoredPosition: {x: 7.5, y: -25}
-  m_SizeDelta: {x: -15, y: 0}
+  m_AnchorMax: {x: 0.89, y: 1}
+  m_AnchoredPosition: {x: -28.5, y: -25}
+  m_SizeDelta: {x: -87, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &362877710
 MonoBehaviour:
@@ -3289,10 +3289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e63e6b2e3bd4bd486d9a44b87d1674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstMenuRoot: {fileID: 0}
-  RPGSceneManager: {fileID: 0}
-  ParameterRoot: {fileID: 0}
-  ItemInventory: {fileID: 0}
+  FirstMenuRoot: {fileID: 1838918428}
+  RPGSceneManager: {fileID: 952947728}
+  ParameterRoot: {fileID: 1221219520}
+  ItemInventory: {fileID: 362877714}
 --- !u!1001 &2938455454797588971
 PrefabInstance:
   m_ObjectHideFlags: 0
