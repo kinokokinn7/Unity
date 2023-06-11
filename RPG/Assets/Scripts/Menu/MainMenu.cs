@@ -21,7 +21,7 @@ public class MainMenu : Menu
         var player = RPGSceneManager.Player;
         var item = GetItem(player.BattleParameter, index);
 
-        // アイテムが無い、またはアイテムが武器防具の場合は使用不可
+        // アイテムが無いか、またはアイテムが武器防具の場合は使用不可
         if (item == null || item is Weapon) return;
 
         // アイテムを使用
