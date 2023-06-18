@@ -13,6 +13,11 @@ public class MainMenu : Menu
     public MenuRoot ItemInventory;
 
     /// <summary>
+    /// 説明文。
+    /// </summary>
+    public Text Description;
+
+    /// <summary>
     /// アイテムを使用します。
     /// </summary>
     public void UseItem()
@@ -140,5 +145,38 @@ public class MainMenu : Menu
             if (index == itemIndex) return param.Items[itemIndex];
         }
         return null;
+    }
+
+    /// <summary>
+    /// メインメニュー画面に遷移した場合に
+    /// メニューの項目を変更します。
+    /// </summary>
+    /// <param name="menuRoot"></param>
+    protected override void ChangeMenuItem(MenuRoot menuRoot)
+    {
+        UpdateDescription();
+    }
+
+    /// <summary>
+    /// アイテム説明欄の描画を更新します。
+    /// 
+    /// アイテム管理ウィンドウがフォーカス状態の場合は
+    /// アイテム説明欄を表示して選択中のアイテムの説明を表示します。
+    /// そうでなければアイテム表示欄を非表示にします。
+    /// </summary>
+    private void UpdateDescription()
+    {
+        if (CurrentMenuObj == ItemInventory)
+        {
+            Description.transform.parent.gameObject.SetActive(true);
+            Description.text = GetItem(
+                    RPGSceneManager.Player.BattleParameter,
+                    CurrentMenuObj.Index
+                ).Description;
+        }
+        else
+        {
+            Description.transform.parent.gameObject.SetActive(false);
+        }
     }
 }
