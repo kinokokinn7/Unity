@@ -7,17 +7,29 @@ public class NPC : CharacterBase
 {
     [SerializeField, Range(0.1f, 5f)] float WaitSecond = 1f;
 
+    /// <summary>
+    /// 移動するかどうかのフラグ
+    /// </summary>
+    public bool DoMovable = true;
+
     protected override void Start()
     {
         base.Start();
         StartCoroutine(RandomMove());
     }
 
+    /// <summary>
+    /// ランダムに一歩移動します。
+    /// </summary>
+    /// <returns></returns>
     IEnumerator RandomMove()
     {
         var rnd = new System.Random();
         while (true)
         {
+            // 移動可能フラグがfalseの場合は移動させない
+            yield return new WaitWhile(() => !DoMovable);
+
             // 会話直後に移動させなくするためのもの
             yield return new WaitWhile(() => RPGSceneManager.IsPauseScene);
 
