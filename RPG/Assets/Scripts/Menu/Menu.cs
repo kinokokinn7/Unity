@@ -120,7 +120,7 @@ public class Menu : MonoBehaviour
     }
 
     /// <summary>
-    /// メニューの項目を変更します。
+    /// メニューウィンドウが変更された時にメニューの項目を変更します。
     /// </summary>
     /// <param name="menuRoot"></param>
     protected virtual void ChangeMenuItem(MenuRoot menuRoot)
