@@ -75,6 +75,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LifeRecoveryNPC Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5246703806795447841, guid: bd023bca9422c4fccb378f241cb3368a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246703806795447841, guid: bd023bca9422c4fccb378f241cb3368a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5246703806795447842, guid: bd023bca9422c4fccb378f241cb3368a, type: 3}
       propertyPath: m_Size.x
       value: 0.32
@@ -88,9 +96,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -1394302603465049796, guid: 929447fe3e98d418f9b5502f8603de7d, type: 3}
     - target: {fileID: 5246703806795447842, guid: bd023bca9422c4fccb378f241cb3368a, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246703806795447842, guid: bd023bca9422c4fccb378f241cb3368a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -598983629
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246703806795447842, guid: bd023bca9422c4fccb378f241cb3368a, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5246703806795447842, guid: bd023bca9422c4fccb378f241cb3368a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd023bca9422c4fccb378f241cb3368a, type: 3}
 --- !u!1 &3172611818437407701 stripped

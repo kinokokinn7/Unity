@@ -9,6 +9,7 @@ public class NPCEvent : MassEvent
 
     public override void Exec(RPGSceneManager manager)
     {
+        Debug.Log("NPCEvent.Exec() start");
         manager.ShowMessageWindow(Message);
     }
 }

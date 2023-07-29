@@ -36,6 +36,7 @@ public class LifeRecoveryEvent : MassEvent
     /// <param name="manager"></param>
     public override void Exec(RPGSceneManager manager)
     {
+        Debug.Log("LifeRecoveryEvent.Exec() start");
         var messageWindow = manager.MessageWindow;
         var yesNoMenu = messageWindow.YesNoMenu;
         // 「はい」を選択した場合
@@ -75,5 +76,8 @@ public class LifeRecoveryEvent : MassEvent
         {
             Money.ToString()
         };
+
+        // メッセージウィンドウを表示する
+        manager.ShowMessageWindow(Message);
     }
 }
