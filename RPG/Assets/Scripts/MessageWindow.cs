@@ -80,6 +80,7 @@ public class MessageWindow : MonoBehaviour
             if (line == YES_NO_MENU_LINE_TEXT)
             {
                 // 「はい/いいえ」メニューを開く
+                YesNoMenu.gameObject.SetActive(true);
                 YesNoMenu.Open();
 
                 yield return new WaitWhile(() => YesNoMenu.DoOpen);
@@ -150,3 +151,4 @@ public class MessageWindow : MonoBehaviour
             }
         }
     }
+}

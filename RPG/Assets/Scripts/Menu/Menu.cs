@@ -161,6 +161,11 @@ public class Menu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// メニューでキャンセルした時の処理。
+    /// 1つ前のメニューに戻ります。
+    /// </summary>
+    /// <param name="current"></param>
     protected virtual void Cancel(MenuRoot current)
     {
         current.IsActive = false;
