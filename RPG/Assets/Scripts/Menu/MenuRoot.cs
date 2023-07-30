@@ -40,6 +40,9 @@ public class MenuRoot : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 現在カーソルが指しているメニュー項目。
+    /// </summary>
     public MenuItem CurrentItem
     {
         get
