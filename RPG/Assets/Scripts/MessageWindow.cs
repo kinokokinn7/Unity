@@ -33,6 +33,10 @@ public class MessageWindow : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// メッセージ表示を開始します。
+    /// </summary>
+    /// <param name="message">表示メッセージ</param>
     public void StartMessage(string message)
     {
         Message = message;
@@ -54,12 +58,16 @@ public class MessageWindow : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// メッセージのアニメーションを表示します。
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator MessageAnimation()
     {
         IsEndMessage = false;
         DestroyLineText();
 
-        var lines = Message.Split(new[] { "¥n" }, StringSplitOptions.None);
+        var lines = Message.Split(new[] { "¥n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
         var lineCount = 0;
         var textObjs = new List<Text>();
 
@@ -134,21 +142,21 @@ public class MessageWindow : MonoBehaviour
                     }
                 }
             }
-
-            // 全行表示後、任意のキーが押されたらウィンドウを閉じる
-            yield return new WaitUntil(() => Input.anyKeyDown);
-            Params = null;
-            IsEndMessage = true;
-            gameObject.SetActive(false);
         }
+        // 全行表示後、任意のキーが押されたらウィンドウを閉じる
+        yield return new WaitUntil(() => Input.anyKeyDown);
+        Params = null;
+        IsEndMessage = true;
+        gameObject.SetActive(false);
+    }
 
-        void DestroyLineText()
+    void DestroyLineText()
+    {
+        foreach (var text in TextRoot.GetComponentsInChildren<Text>()
+            .Where(_t => _t != TextTemplate))
         {
-            foreach (var text in TextRoot.GetComponentsInChildren<Text>()
-                .Where(_t => _t != TextTemplate))
-            {
-                UnityEngine.Object.Destroy(text.gameObject);
-            }
+            UnityEngine.Object.Destroy(text.gameObject);
         }
     }
+
 }
