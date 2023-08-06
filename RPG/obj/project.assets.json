@@ -1,0 +1,84 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETStandard,Version=v2.0": {
+      "SingularityGroup.HotReload.Runtime.Public/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/SingularityGroup.HotReload.Runtime.Public.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SingularityGroup.HotReload.Runtime.Public.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SingularityGroup.HotReload.Runtime.Public/1.0.0": {
+      "type": "project",
+      "path": "SingularityGroup.HotReload.Runtime.Public.csproj",
+      "msbuildProject": "SingularityGroup.HotReload.Runtime.Public.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETStandard,Version=v2.0": [
+      "SingularityGroup.HotReload.Runtime.Public >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/hosokawashigeki/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/hosokawashigeki/Documents/Unity/RPG/SingularityGroup.HotReload.Runtime.csproj",
+      "projectName": "SingularityGroup.HotReload.Runtime",
+      "projectPath": "/Users/hosokawashigeki/Documents/Unity/RPG/SingularityGroup.HotReload.Runtime.csproj",
+      "packagesPath": "/Users/hosokawashigeki/.nuget/packages/",
+      "outputPath": "/Users/hosokawashigeki/Documents/Unity/RPG/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/hosokawashigeki/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "netstandard2.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "projectReferences": {
+            "/Users/hosokawashigeki/Documents/Unity/RPG/SingularityGroup.HotReload.Runtime.Public.csproj": {
+              "projectPath": "/Users/hosokawashigeki/Documents/Unity/RPG/SingularityGroup.HotReload.Runtime.Public.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netstandard2.0": {
+        "targetAlias": "netstandard2.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

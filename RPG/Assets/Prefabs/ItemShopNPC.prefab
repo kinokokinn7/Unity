@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSecond: 0.1
   RPGSceneManager: {fileID: 0}
-  Event: {fileID: 0}
+  Event: {fileID: 11400000, guid: 8c7e92ba13bbd4c0289548a283ed1e8e, type: 2}
   _pos: {x: 0, y: 0, z: 0}
   DoMoveCamera: 0
   _currentDir: 1
