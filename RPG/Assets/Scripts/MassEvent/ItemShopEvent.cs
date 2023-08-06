@@ -17,8 +17,8 @@ public class ItemShopEvent : MassEvent
 
     public override void Exec(RPGSceneManager manager)
     {
-        //var itemShop = manager.ItemShopMenu;
-        //itemShop.Open(this);
+        var itemShop = manager.ItemShopMenu;
+        itemShop.Open(this);
     }
 
 }
