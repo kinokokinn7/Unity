@@ -41,6 +41,11 @@ public class BattleParameterBase
     }
 
     /// <summary>
+    /// アイテム上限数。
+    /// </summary>
+    public bool IsLimitItemCount { get => Items.Count >= 4; }
+
+    /// <summary>
     /// パラメータ値を他のパラメータベースオブジェクトにコピーします。
     /// </summary>
     /// <param name="dest"></param>

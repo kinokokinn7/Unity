@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+/// <summary>
+/// メニューの項目を表すクラスです。
+/// </summary>
 public class MenuItem : MonoBehaviour
 {
     public GameObject CursorObj;
