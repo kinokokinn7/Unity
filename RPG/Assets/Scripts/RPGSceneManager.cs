@@ -7,17 +7,21 @@ public class RPGSceneManager : MonoBehaviour
     public Player Player;
     public Map ActiveMap;
     public Menu Menu;
+    public ItemShopMenu ItemShopMenu;
 
     public void OpenMenu()
     {
         Menu.Open();
     }
 
+    /// <summary>
+    /// メニュー表示によりシーンがポーズ状態か否かを表すフラグ。
+    /// </summary>
     public bool IsPauseScene
     {
         get
         {
-            return !MessageWindow.IsEndMessage || Menu.DoOpen;
+            return !MessageWindow.IsEndMessage || Menu.DoOpen || ItemShopMenu.DoOpen;
         }
     }
 

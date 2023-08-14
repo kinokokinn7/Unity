@@ -872,7 +872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.55, y: 0.35}
   m_AnchorMax: {x: 0.89, y: 1}
-  m_AnchoredPosition: {x: -28.5, y: -25}
+  m_AnchoredPosition: {x: -28.5, y: -24.617859}
   m_SizeDelta: {x: -87, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &362877710
@@ -2449,7 +2449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.38, y: 0.35}
   m_AnchorMax: {x: 0.62, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 0, y: -24.446259}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &810495023
@@ -2726,6 +2726,7 @@ MonoBehaviour:
   Player: {fileID: 989526905}
   ActiveMap: {fileID: 2938455454797588973}
   Menu: {fileID: 1987497476}
+  ItemShopMenu: {fileID: 2039531438}
   MessageWindow: {fileID: 986466679}
 --- !u!1 &986466674
 GameObject:
@@ -3206,8 +3207,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6, y: 0.7}
   m_AnchorMax: {x: 0.8, y: 0.85}
-  m_AnchoredPosition: {x: 0, y: -195}
-  m_SizeDelta: {x: 0, y: -10}
+  m_AnchoredPosition: {x: -17.780024, y: -195}
+  m_SizeDelta: {x: 35.559956, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1037482745
 MonoBehaviour:
@@ -4265,18 +4266,18 @@ PrefabInstance:
     - target: {fileID: -4256501219276756324, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
       propertyPath: Callbacks.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1987497476}
+      objectReference: {fileID: 2039531438}
     - target: {fileID: -4256501219276756324, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
       propertyPath: Callbacks.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4256501219276756324, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
       propertyPath: Callbacks.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UseItem
+      value: Select
       objectReference: {fileID: 0}
     - target: {fileID: -4256501219276756324, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
       propertyPath: Callbacks.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenu, Assembly-CSharp
+      value: ItemShopMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: -4256501219276756324, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
       propertyPath: Callbacks.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -5357,6 +5358,7 @@ GameObject:
   - component: {fileID: 2039531436}
   - component: {fileID: 2039531435}
   - component: {fileID: 2039531434}
+  - component: {fileID: 2039531438}
   m_Layer: 5
   m_Name: ItemShopWindow
   m_TagString: Untagged
@@ -5446,6 +5448,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2039531438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039531433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36fd0d32d71b94aafbfb718432846210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstMenuRoot: {fileID: 810495023}
+  RPGSceneManager: {fileID: 952947728}
+  Description: {fileID: 1121778794}
 --- !u!1001 &2938455454797588971
 PrefabInstance:
   m_ObjectHideFlags: 0

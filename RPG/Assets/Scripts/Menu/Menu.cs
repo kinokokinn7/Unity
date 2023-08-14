@@ -14,6 +14,11 @@ public class Menu : MonoBehaviour
     public bool DoOpen { get => gameObject.activeSelf; }
 
     /// <summary>
+    /// 入力操作が可能かどうか設定するフラグ。
+    /// </summary>
+    public bool EnableInput { get; set; } = true;
+
+    /// <summary>
     /// メニューウィンドウを開きます。
     /// </summary>
     public virtual void Open()
@@ -70,6 +75,8 @@ public class Menu : MonoBehaviour
     /// <returns></returns>
     IEnumerator UpdateWhenOpen()
     {
+        EnableInput = true;
+
         // 他のメニューを非アクティブにして、
         // 開いたメニューをアクティブにする
         var menuRoots = GetComponentsInChildren<MenuRoot>();
@@ -112,7 +119,7 @@ public class Menu : MonoBehaviour
             {
                 Cancel(current);
             }
-            yield return null;
+            yield return new WaitUntil(() => EnableInput);
         }
 
         // メニューを全て閉じたら処理終了
