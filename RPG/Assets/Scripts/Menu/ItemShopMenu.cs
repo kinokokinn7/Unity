@@ -18,11 +18,11 @@ public class ItemShopMenu : Menu
         var item = ItemShop.Items[index];
         if (item == null) return;
 
-        MessageWindow messageWindow = RPGSceneManager.MessageWindow;
-        Player player = RPGSceneManager.Player;
+        var messageWindow = RPGSceneManager.MessageWindow;
+        var player = RPGSceneManager.Player;
 
-        YesNoMenu yesNoMenu = messageWindow.YesNoMenu;
-        if (yesNoMenu.DoOpen) return;
+        var yesNoMenu = messageWindow.YesNoMenu;
+        //if (yesNoMenu.DoOpen) return;
 
         // 「はい」を選択した場合
         yesNoMenu.YesAction = () =>
@@ -130,6 +130,8 @@ public class ItemShopMenu : Menu
                 menuItem.gameObject.SetActive(false);
             }
         }
+        var messageWindow = RPGSceneManager.MessageWindow;
+        messageWindow.StartMessage(ItemShop.Message);
     }
 
     /// <summary>
