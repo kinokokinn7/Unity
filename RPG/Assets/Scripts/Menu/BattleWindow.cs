@@ -108,4 +108,31 @@ public class BattleWindow : Menu
         Items.RefreshMenuItems(useItems.ToArray());
     }
 
+    protected override void Cancel(MenuRoot current)
+    {
+        if (CurrentMenuObj != MainCommands)
+        {
+            base.Cancel(current);
+        }
+    }
+
+    public void Attack()
+    {
+
+    }
+
+    public void Defense()
+    {
+
+    }
+
+    public void UseItem()
+    {
+        UpdateItem(RPGSceneManager.Player.BattleParameter);
+    }
+
+    public void Escape()
+    {
+
+    }
 }

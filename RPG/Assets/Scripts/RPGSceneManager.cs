@@ -8,6 +8,7 @@ public class RPGSceneManager : MonoBehaviour
     public Map ActiveMap;
     public Menu Menu;
     public ItemShopMenu ItemShopMenu;
+    [SerializeField] public BattleWindow BattleWindow;
 
     public void OpenMenu()
     {
@@ -21,7 +22,10 @@ public class RPGSceneManager : MonoBehaviour
     {
         get
         {
-            return !MessageWindow.IsEndMessage || Menu.DoOpen || ItemShopMenu.DoOpen;
+            return !MessageWindow.IsEndMessage ||
+                Menu.DoOpen ||
+                ItemShopMenu.DoOpen ||
+                BattleWindow.DoOpen;
         }
     }
 
@@ -30,6 +34,15 @@ public class RPGSceneManager : MonoBehaviour
     void Start()
     {
         _currentCoroutine = StartCoroutine(MovePlayer());
+    }
+
+    private void Update()
+    {
+        // 確認用なので後々削除する
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            BattleWindow.Open();
+        }
     }
 
 
