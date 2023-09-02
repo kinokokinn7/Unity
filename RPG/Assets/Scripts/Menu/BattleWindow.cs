@@ -13,6 +13,8 @@ public class BattleWindow : Menu
     [SerializeField] MenuItem EnemyPrefab;
     [SerializeField] Text Description;
     [SerializeField] GameObject ParameterRoot;
+    [SerializeField] EnemyGroup UseEncounter;
+    public EnemyGroup Encounter { get; private set; }
 
     /// <summary>
     /// 戦闘画面を開きます。
@@ -24,6 +26,33 @@ public class BattleWindow : Menu
         Items.gameObject.SetActive(false);
         Description.transform.parent.gameObject.SetActive(false);
         UpdateUI();
+
+        Encounter = UseEncounter.Clone();
+        SetupEnemies();
+    }
+
+    /// <summary>
+    /// 敵の初期設定を行います。
+    /// </summary>
+    void SetupEnemies()
+    {
+        foreach (var e in Enemies.MenuItems)
+        {
+            UnityEngine.Object.Destroy(e.gameObject);
+        }
+        var newEnemies = new List<MenuItem>();
+        foreach (var e in Encounter.Enemies)
+        {
+            var enemy = UnityEngine.Object.Instantiate(EnemyPrefab, Enemies.transform);
+            enemy.Text = e.Name;
+            var image = enemy.transform.Find("Image").GetComponent<Image>();
+            image.sprite = e.Sprite;
+
+            enemy.CurrentKind = MenuItem.Kind.Event;
+            enemy.Callbacks.AddListener(this.Attack);
+            newEnemies.Add(enemy);
+        }
+        Enemies.RefreshMenuItems(newEnemies.ToArray());
     }
 
     /// <summary>

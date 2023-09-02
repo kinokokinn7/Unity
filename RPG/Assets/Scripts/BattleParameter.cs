@@ -37,7 +37,7 @@ public class BattleParameterBase
     /// </summary>
     public int DefensePower
     {
-        get => DefensePower + (DefenseWeapon != null ? DefenseWeapon.Power : 0);
+        get => Defense + (DefenseWeapon != null ? DefenseWeapon.Power : 0);
     }
 
     /// <summary>
