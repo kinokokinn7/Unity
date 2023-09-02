@@ -147,21 +147,91 @@ public class BattleWindow : Menu
 
     public void Attack()
     {
+        var enemyIndex = CurrentMenuObj.Index;
+        var enemy = Encounter.Enemies[enemyIndex];
+
+        var turnInfo = new TurnInfo();
+        turnInfo.Message = $"{enemy.Name}にこうげき！";
+        turnInfo.DoneCommand = () =>
+        {
+            var player = RPGSceneManager.Player.BattleParameter;
+            BattleParameterBase.AttackResult result;
+            var doKill = player.AttackTo(enemy.Data, out result);
+
+            var messageWindow = RPGSceneManager.MessageWindow;
+            var resultMsg = $"{enemy.Name}に{result.Damage}を与えた！";
+            if (doKill)
+            {
+                resultMsg += $"\n{enemy.Name}を倒した！！";
+                Encounter.Enemies.RemoveAt(enemyIndex);
+                SetupEnemies();
+            }
+            messageWindow.Params = null;
+            messageWindow.StartMessage(resultMsg);
+        };
+        StartTurn(turnInfo);
 
     }
 
     public void Defense()
     {
-
+        var turnInfo = new TurnInfo();
+        turnInfo.Message = "身を守っている！";
+        turnInfo.DoneCommand = () =>
+        {
+            RPGSceneManager.Player.BattleParameter.IsNowDefense = true;
+        };
+        StartTurn(turnInfo);
     }
 
     public void UseItem()
     {
-        UpdateItem(RPGSceneManager.Player.BattleParameter);
+        Items.gameObject.SetActive(false);
+
+        var player = RPGSceneManager.Player.BattleParameter;
+        var itemIndex = CurrentMenuObj.Index;
+        var useItem = player.Items[itemIndex];
+
+        var turnInfo = new TurnInfo();
+        turnInfo.Message = $"{useItem.Name}を使った！";
+        turnInfo.DoneCommand = () =>
+        {
+            var messageWindow = RPGSceneManager.MessageWindow;
+            if (useItem is Weapon)
+            {
+                messageWindow.StartMessage("しかしなにも起こらなかった！");
+            }
+            else
+            {
+                useItem.Use(player);
+                MessageWindow.StartMessage($"{useItem.Name}はなくなった...");
+                player.Items.RemoveAt(itemIndex);
+            }
+        };
+        StartTurn(turnInfo);
     }
 
+    bool DoEscape { get; set; }
+    [Min(0)] public float EscapeWaitSecond = 1f;
     public void Escape()
     {
+        var turnInfo = new TurnInfo();
+        turnInfo.Message = "にげだした！";
+        turnInfo.DomeCommand = () =>
+        {
+            var messageWindow = RPGSceneManager.MessageWindow;
+            var rnd = new System.Random();
+            DoEscape = (float)rnd.NextDouble() < Encounter.EscapeSuccessRate;
 
+            if (DoEscape)
+            {
+                messageWindow.StartMessage("うまくにげきれた！");
+            }
+            else
+            {
+                messageWindow.StartMessage("しかしまわりこまれてしまった！");
+            }
+        };
+        StartTurn(turnInfo);
     }
 }
