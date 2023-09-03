@@ -234,4 +234,63 @@ public class BattleWindow : Menu
         };
         StartTurn(turnInfo);
     }
+
+    private void StartTurn(TurnInfo turnInfo)
+    {
+        if (_turnCoroutine != null) return;
+        while (CurrentMenuObj != MainCommands)
+        {
+            Cancel(CurrentMenuObj);
+        }
+        EnableInput = false;
+
+        _turnCoroutine = StartCoroutine(Turn(turnInfo));
+    }
+
+    Coroutine _turnCoroutine;
+    IEnumerator Turn(TurnInfo turnInfo)
+    {
+        MessageWindow messageWindow = RPGSceneManager.MessageWindow;
+        turnInfo.ShowMessageWindow(messageWindow);
+        yield return new WaitWhile(() => !messageWindow.IsEndMessage);
+        if (turnInfo.DoneCommand != null)
+        {
+            turnInfo.DoneCommand();
+        }
+        yield return new WaitWhile(() => !messageWindow.IsEndMessage);
+        UpdateUI();
+
+        if (DoEscape)
+        {
+            yield return new WaitForSeconds(EscapeWaitSecond);
+            Close();
+        }
+        else
+        {
+            foreach (var enemy in Encounter.Enemies)
+            {
+                var info = enemy.BattleAction(this);
+                info.ShowMessageWindow(messageWindow);
+                yield return new WaitWhile(() => !messageWindow.IsEndMessage);
+                if (info.DoneCommand != null)
+                {
+                    info.DoneCommand();
+                }
+                yield return new WaitWhile(() => !messageWindow.IsEndMessage);
+                UpdateUI();
+            }
+        }
+
+        var player = RPGSceneManager.Player.BattleParameter;
+        if (player.HP <= 0)
+        {
+            messageWindow.StartMessage($"負けてしまった...");
+            yield return new WaitWhile(() => !messageWindow.IsEndMessage);
+            Close();
+        }
+        else if (Encounter.Enemies.Count <= 0)
+        {
+
+        }
+    }
 }
