@@ -36,4 +36,11 @@ public class Enemy : ScriptableObject
         clone.Sprite = Sprite;
         return clone;
     }
+
+    public virtual TurnInfo BattleAction(BattleWindow battleWindow)
+    {
+        var info = new TurnInfo();
+        info.Message = $"{Name}のターン。<未実装>";
+        return info;
+    }
 }

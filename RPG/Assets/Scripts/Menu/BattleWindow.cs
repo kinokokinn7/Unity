@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -204,7 +205,7 @@ public class BattleWindow : Menu
             else
             {
                 useItem.Use(player);
-                MessageWindow.StartMessage($"{useItem.Name}はなくなった...");
+                messageWindow.StartMessage($"{useItem.Name}はなくなった...");
                 player.Items.RemoveAt(itemIndex);
             }
         };
@@ -215,9 +216,9 @@ public class BattleWindow : Menu
     [Min(0)] public float EscapeWaitSecond = 1f;
     public void Escape()
     {
-        var turnInfo = new TurnInfo();
+        TurnInfo turnInfo = new TurnInfo();
         turnInfo.Message = "にげだした！";
-        turnInfo.DomeCommand = () =>
+        turnInfo.DoneCommand = () =>
         {
             var messageWindow = RPGSceneManager.MessageWindow;
             var rnd = new System.Random();
@@ -290,7 +291,23 @@ public class BattleWindow : Menu
         }
         else if (Encounter.Enemies.Count <= 0)
         {
-
+            var exp = UseEncounter.Enemies.Sum(_e => _e.Data.Exp);
+            var money = UseEncounter.Enemies.Sum(_e => _e.Data.Money);
+            var msg = $"戦闘に勝った！"
+                + $"Exp+{exp}かくとく！"
+                + $"お金+${money}かくとく！";
+            messageWindow.StartMessage(msg);
+            yield return new WaitWhile(() => !messageWindow.IsEndMessage);
+            Close();
         }
+
+        TurnEndProcess();
+        _turnCoroutine = null;
+    }
+
+    private void TurnEndProcess()
+    {
+        RPGSceneManager.Player.BattleParameter.IsNowDefense = false;
+        EnableInput = true;
     }
 }

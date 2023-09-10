@@ -40,6 +40,8 @@ public class BattleParameterBase
         get => Defense + (DefenseWeapon != null ? DefenseWeapon.Power : 0);
     }
 
+    public bool IsNowDefense { get; set; } = false;
+
     /// <summary>
     /// アイテム上限数。
     /// </summary>
@@ -64,6 +66,34 @@ public class BattleParameterBase
 
         dest.Items = new List<Item>(Items.ToArray());
     }
+
+    /// <summary>
+    /// こうげきを実行した時のダメージ値とこうげき後の残HPの情報。
+    /// </summary>
+    public class AttackResult
+    {
+        public int LeaveHP;
+        public int Damage;
+    }
+
+    /// <summary>
+    /// こうげきを実行した時のダメージ計算およびHP減算処理。
+    /// </summary>
+    public virtual bool AttackTo(BattleParameterBase target, out AttackResult result)
+    {
+        result = new AttackResult();
+
+        result.Damage = Mathf.Max(0, AttackPower - target.DefensePower);
+        if (target.IsNowDefense)
+        {
+            result.Damage /= 2;
+        }
+        target.HP -= result.Damage;
+        result.LeaveHP = target.HP;
+        return target.HP <= 0;
+    }
+
+
 }
 
 [CreateAssetMenu(menuName = "BattleParameter")]
