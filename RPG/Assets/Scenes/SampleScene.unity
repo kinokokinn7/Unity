@@ -5446,6 +5446,7 @@ MonoBehaviour:
   Description: {fileID: 1624910643}
   ParameterRoot: {fileID: 1819208428}
   UseEncounter: {fileID: 11400000, guid: 943a7543e7f594d8bb619675be8f8691, type: 2}
+  EscapeWaitSecond: 1
 --- !u!1001 &1262030597
 PrefabInstance:
   m_ObjectHideFlags: 0
