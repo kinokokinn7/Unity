@@ -36,16 +36,6 @@ public class RPGSceneManager : MonoBehaviour
         _currentCoroutine = StartCoroutine(MovePlayer());
     }
 
-    private void Update()
-    {
-        // 確認用なので後々削除する
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            BattleWindow.Open();
-        }
-    }
-
-
     IEnumerator MovePlayer()
     {
         while (true)
@@ -63,6 +53,16 @@ public class RPGSceneManager : MonoBehaviour
                     if (massData.massEvent != null)
                     {
                         massData.massEvent.Exec(this);
+                    }
+                    else if (ActiveMap.RandomEncount != null)
+                    {
+                        var rnd = new System.Random();
+                        var encount = ActiveMap.RandomEncount.Encount(rnd);
+                        if (encount != null)
+                        {
+                            BattleWindow.SetUseEncounter(encount);
+                            BattleWindow.Open();
+                        }
                     }
                 }
                 else if (massData.character != null && massData.character.Event != null)

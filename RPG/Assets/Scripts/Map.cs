@@ -7,6 +7,8 @@ using System.Linq;
 public class Map : MonoBehaviour
 {
     public Grid Grid { get => GetComponent<Grid>(); }
+    public RandomEncount RandomEncount;
+
     Dictionary<string, Tilemap> _tilemaps;
 
     readonly static string BACKGROND_TILEMAP_NAME = "Background";
@@ -103,5 +105,4 @@ public class Map : MonoBehaviour
         }
         return mass;
     }
-
 }

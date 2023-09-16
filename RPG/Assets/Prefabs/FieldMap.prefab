@@ -3531,6 +3531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9970fc1625a545f692eb492eb3bfb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RandomEncount: {fileID: 11400000, guid: 2ea90ac7b8a92401e8093f0b56a03dc5, type: 2}
   _massEvents:
   - {fileID: 11400000, guid: 28e4cfa864ef047c1939990b7a40c015, type: 2}
 --- !u!1 &2938455454823519776

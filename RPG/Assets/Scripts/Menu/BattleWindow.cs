@@ -11,20 +11,32 @@ using UnityEngine.UI;
 public class BattleWindow : Menu
 {
     [SerializeField] RPGSceneManager RPGSceneManager;
-    public RPGSceneManager GetRPGSceneManager { get => RPGSceneManager; }
-
     [SerializeField] MenuRoot MainCommands;
     [SerializeField] MenuRoot Items;
     [SerializeField] MenuRoot Enemies;
     [SerializeField] MenuItem EnemyPrefab;
     [SerializeField] Text Description;
     [SerializeField] GameObject ParameterRoot;
-    [SerializeField] EnemyGroup UseEncounter;
     [SerializeField] Animator AttackEffectPrefab;
-    Animator AttackEffect;
-    public EnemyGroup Encounter { get; private set; }
+    [SerializeField] EnemyGroup UseEncounter;
+    public void SetUseEncounter(EnemyGroup encounter)
+    {
+        UseEncounter = encounter;
+    }
 
-    public BattleParameterBase Player { get => RPGSceneManager.Player.BattleParameter; }
+    public EnemyGroup Encounter { get; private set; }
+    public RPGSceneManager GetRPGSceneManager
+    {
+        get => RPGSceneManager;
+    }
+    public BattleParameterBase Player
+    {
+        get => RPGSceneManager.Player.BattleParameter;
+    }
+
+
+
+    Animator AttackEffect;
 
     /// <summary>
     /// 戦闘画面を開きます。
@@ -163,7 +175,7 @@ public class BattleWindow : Menu
         var enemy = Encounter.Enemies[enemyIndex];
 
         var turnInfo = new TurnInfo();
-        turnInfo.Message = $"{enemy.Name}にこうげき！\n"
+        turnInfo.Message = "プレイヤーのこうげき！\n"
             + $"<ANIMATION> 0 Attack"
             ;
 

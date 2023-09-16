@@ -1822,6 +1822,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1655171500521379205, guid: 54075e33b8852434ca72e0047ebe3f86, type: 3}
+      propertyPath: RandomEncount
+      value: 
+      objectReference: {fileID: 11400000, guid: 2535e491e918f411bbae8ee35ec60cb9, type: 2}
     - target: {fileID: 2899320899491654948, guid: 54075e33b8852434ca72e0047ebe3f86, type: 3}
       propertyPath: m_Name
       value: DungeonMap
@@ -4322,8 +4326,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Message: 
-  TextSpeedPerChar: 0.05
-  SpeedUpRate: 3
+  TextSpeedPerChar: 0.001
+  SpeedUpRate: 1
   MaxLineCount: 4
   YesNoMenu: {fileID: 1037482747}
 --- !u!1001 &989526903
@@ -5452,8 +5456,8 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 3831512811245881861, guid: 7f9fb8685fcf043918b367a246a65b74, type: 3}
   Description: {fileID: 1624910643}
   ParameterRoot: {fileID: 1819208428}
-  UseEncounter: {fileID: 11400000, guid: 943a7543e7f594d8bb619675be8f8691, type: 2}
   AttackEffectPrefab: {fileID: -91511882635922960, guid: b0ef1f682a307424098ff415f67e3a84, type: 3}
+  UseEncounter: {fileID: 0}
   EscapeWaitSecond: 1
 --- !u!1001 &1262030597
 PrefabInstance:
@@ -8803,6 +8807,10 @@ PrefabInstance:
       propertyPath: RPGSceneManager
       value: 
       objectReference: {fileID: 952947728}
+    - target: {fileID: 9026162083740201544, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
+      propertyPath: RandomEncount
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ea90ac7b8a92401e8093f0b56a03dc5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10d6215b2d0434683b7ebfe7662f9b46, type: 3}
 --- !u!4 &2938455454797588972 stripped

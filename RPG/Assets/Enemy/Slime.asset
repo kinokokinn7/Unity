@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   Data:
-    HP: 4
+    HP: 3
     MaxHP: 10
     Attack: 4
     Defense: 1
