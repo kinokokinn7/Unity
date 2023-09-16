@@ -5,9 +5,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 戦闘画面。
+/// </summary>
 public class BattleWindow : Menu
 {
     [SerializeField] RPGSceneManager RPGSceneManager;
+    public RPGSceneManager GetRPGSceneManager { get => RPGSceneManager; }
+
     [SerializeField] MenuRoot MainCommands;
     [SerializeField] MenuRoot Items;
     [SerializeField] MenuRoot Enemies;
@@ -18,6 +23,8 @@ public class BattleWindow : Menu
     [SerializeField] Animator AttackEffectPrefab;
     Animator AttackEffect;
     public EnemyGroup Encounter { get; private set; }
+
+    public BattleParameterBase Player { get => RPGSceneManager.Player.BattleParameter; }
 
     /// <summary>
     /// 戦闘画面を開きます。
@@ -169,7 +176,15 @@ public class BattleWindow : Menu
             var doKill = player.AttackTo(enemy.Data, out result);
 
             var messageWindow = RPGSceneManager.MessageWindow;
-            var resultMsg = $"{enemy.Name}に{result.Damage}を与えた！";
+            var resultMsg = "";
+            if (result.Damage > 0)
+            {
+                resultMsg = $"{enemy.Name}に{result.Damage}のダメージを与えた！";
+            }
+            else
+            {
+                resultMsg = $"{enemy.Name}にダメージを与えられなかった！";
+            }
             if (doKill)
             {
                 resultMsg += $"\n{enemy.Name}を倒した！！";
@@ -307,9 +322,9 @@ public class BattleWindow : Menu
         {
             var exp = UseEncounter.Enemies.Sum(_e => _e.Data.Exp);
             var money = UseEncounter.Enemies.Sum(_e => _e.Data.Money);
-            var msg = $"戦闘に勝った！"
-                + $"Exp+{exp}かくとく！"
-                + $"お金+${money}かくとく！";
+            var msg = $"戦闘に勝った！\n"
+                + $"{exp}の経験値をかくとく！\n"
+                + $"{money}Gを手に入れた！";
             messageWindow.StartMessage(msg);
             yield return new WaitWhile(() => !messageWindow.IsEndMessage);
             Close();

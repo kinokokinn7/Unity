@@ -24,6 +24,11 @@ public class Enemy : ScriptableObject
     public Sprite Sprite;
 
     /// <summary>
+    /// 使用する敵AI。
+    /// </summary>
+    public EnemyAI EnemyAI;
+
+    /// <summary>
     /// 敵を複製します。
     /// </summary>
     /// <returns></returns>
@@ -34,13 +39,12 @@ public class Enemy : ScriptableObject
         Data.CopyTo(clone.Data);
         clone.Name = Name;
         clone.Sprite = Sprite;
+        clone.EnemyAI = EnemyAI.Clone();
         return clone;
     }
 
     public virtual TurnInfo BattleAction(BattleWindow battleWindow)
     {
-        var info = new TurnInfo();
-        info.Message = $"{Name}のターン。<未実装>";
-        return info;
+        return EnemyAI.BattleAction(this, battleWindow);
     }
 }

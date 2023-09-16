@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17eccfcc0663c4157b0857f625f0d269, type: 3}
-  m_Name: EnemyA
+  m_Name: Slime
   m_EditorClassIdentifier: 
   Data:
-    HP: 10
+    HP: 4
     MaxHP: 10
-    Attack: 2
+    Attack: 4
     Defense: 1
     Level: 1
-    Exp: 0
-    Money: 10
+    Exp: 1
+    Money: 2
     AttackWeapon: {fileID: 0}
     DefenseWeapon: {fileID: 0}
     Items: []
   Name: "\u3059\u3089\u3044\u3080"
   Sprite: {fileID: 21300000, guid: 1700959159b334bc195e5b97dbf26e06, type: 3}
+  EnemyAI: {fileID: 11400000, guid: 09508cd010de9481e869e386411e8fbb, type: 2}

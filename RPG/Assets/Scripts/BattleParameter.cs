@@ -83,7 +83,10 @@ public class BattleParameterBase
     {
         result = new AttackResult();
 
-        result.Damage = Mathf.Max(0, AttackPower - target.DefensePower);
+        float basicBamage = Mathf.Max(0, AttackPower / 2 - target.DefensePower / 4);
+        float randomDamageAbs = basicBamage / 16 + 1;
+        float randomDamage = Random.Range(-randomDamageAbs, randomDamageAbs);
+        result.Damage = (int)Mathf.Max(Mathf.Floor(basicBamage + randomDamage), 0);
         if (target.IsNowDefense)
         {
             result.Damage /= 2;
