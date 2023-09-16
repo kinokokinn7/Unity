@@ -76,9 +76,6 @@ public class MenuRoot : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// .
-    /// </summary>
     private void Awake()
     {
         UpdateMenuItemSelecting(true);
