@@ -62,7 +62,7 @@ public class MainMenu : Menu
     }
 
     /// <summary>
-    /// メニューに表示されるアイテム項目を更新します。
+    /// メニューに表示されるアイテム項目を更新します
     /// </summary>
     private void UpdateItems()
     {
@@ -70,6 +70,8 @@ public class MainMenu : Menu
         var player = RPGSceneManager.Player;
         var items = player.BattleParameter.Items;
         var menuItems = ItemInventory.MenuItems;
+
+        if (menuItems.Length == 0) return;
 
         // 前アイテム項目を非アクティブにする
         foreach (var menuItem in menuItems)

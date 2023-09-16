@@ -16,7 +16,7 @@ public class Player : CharacterBase
 
     /// <summary>
     /// ゲーム起動直後に呼ばれ、下記処理を実行します。
-    /// ・戦闘パラメータの初期化
+    /// ・戦闘パラメータの初期化 
     /// </summary>
     protected override void Start()
     {

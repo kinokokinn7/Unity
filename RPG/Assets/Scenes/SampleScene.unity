@@ -1128,7 +1128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.55, y: 0.35}
   m_AnchorMax: {x: 0.89, y: 1}
-  m_AnchoredPosition: {x: -28.5, y: -24.617859}
+  m_AnchoredPosition: {x: -28.5, y: -24.930817}
   m_SizeDelta: {x: -87, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &362877710
@@ -3513,7 +3513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.38, y: 0.35}
   m_AnchorMax: {x: 0.62, y: 1}
-  m_AnchoredPosition: {x: 0, y: -24.44629}
+  m_AnchoredPosition: {x: 0, y: -24.756256}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &810495023
@@ -4460,6 +4460,9 @@ MonoBehaviour:
     Level: 0
     Exp: 0
     Money: 0
+    LimitAttack: 1000
+    LimitDefense: 1000
+    LimitHP: 1000
     AttackWeapon: {fileID: 0}
     DefenseWeapon: {fileID: 0}
     Items: []

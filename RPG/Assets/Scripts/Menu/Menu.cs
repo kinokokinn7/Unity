@@ -78,7 +78,7 @@ public class Menu : MonoBehaviour
         EnableInput = true;
 
         // 他のメニューを非アクティブにして、
-        // 開いたメニューをアクティブにする
+        // 開いたメニューをアクティブにする。
         var menuRoots = GetComponentsInChildren<MenuRoot>();
         foreach (var root in menuRoots)
         {

@@ -54,7 +54,7 @@ public class MenuRoot : MonoBehaviour
     MenuItem[] _menuItems;
     public MenuItem[] MenuItems
     {
-        get => _menuItems != null ? _menuItems : (_menuItems = GetComponentsInChildren<MenuItem>());
+        get => _menuItems.Length > 0 ? _menuItems : (_menuItems = GetComponentsInChildren<MenuItem>());
     }
 
     public void RefreshMenuItems(MenuItem[] menuItems)
@@ -76,6 +76,9 @@ public class MenuRoot : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// .
+    /// </summary>
     private void Awake()
     {
         UpdateMenuItemSelecting(true);

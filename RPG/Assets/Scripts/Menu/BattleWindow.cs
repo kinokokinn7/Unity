@@ -33,6 +33,7 @@ public class BattleWindow : Menu
     {
         base.Open();
         MainCommands.Index = 0;
+        DoEscape = false;
         Items.gameObject.SetActive(false);
         Description.transform.parent.gameObject.SetActive(false);
         UpdateUI();
@@ -42,7 +43,7 @@ public class BattleWindow : Menu
     }
 
     /// <summary>
-    /// 敵の初期設定を行います。
+    /// 敵の初期設定を行います
     /// </summary>
     void SetupEnemies()
     {
@@ -144,6 +145,7 @@ public class BattleWindow : Menu
                 menuItem.gameObject.SetActive(false);
             }
         }
+
         Items.RefreshMenuItems(useItems.ToArray());
     }
 
