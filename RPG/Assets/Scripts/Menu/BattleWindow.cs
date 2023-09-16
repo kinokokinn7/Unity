@@ -327,6 +327,21 @@ public class BattleWindow : Menu
                 + $"{money}Gを手に入れた！";
             messageWindow.StartMessage(msg);
             yield return new WaitWhile(() => !messageWindow.IsEndMessage);
+
+            player.Money += money;
+            var prevLevel = player.Level;
+            if (player.GetExp(exp))
+            {
+                msg = $"レベルが上がった！ {prevLevel} -> {player.Level}\n"
+                    + $"  MaxHP -> {player.MaxHP}\n"
+                    + $"  ATK -> {player.AttackPower}\n"
+                    + $"  DEF -> {player.DefensePower}"
+                    ;
+                messageWindow.StartMessage(msg);
+                yield return new WaitWhile(() => !messageWindow.IsEndMessage);
+            }
+            yield return new WaitWhile(() => !messageWindow.IsEndMessage);
+
             Close();
         }
 

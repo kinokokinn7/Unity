@@ -110,6 +110,11 @@ public class MainMenu : Menu
         var player = RPGSceneManager.Player;
         var param = player.BattleParameter;
         SetParameterText("LEVEL", param.Level.ToString());
+        SetParameterText("EXP", param.Exp.ToString());
+        SetParameterText("HP", $"{param.HP}/{param.MaxHP}");
+        SetParameterText("ATK", param.Attack.ToString());
+        SetParameterText("DEF", param.Defense.ToString());
+        SetParameterText("MONEY", param.Money.ToString());
 
     }
 

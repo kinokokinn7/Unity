@@ -19,6 +19,11 @@ public class BattleParameterBase
     [Min(0)] public int Exp;
     [Min(0)] public int Money;
 
+    [Min(1)] public int LimitAttack = 500;
+    [Min(1)] public int LimitDefense = 400;
+    [Min(1)] public int LimitHP = 900;
+
+
     public Weapon AttackWeapon;
     public Weapon DefenseWeapon;
 
@@ -65,6 +70,10 @@ public class BattleParameterBase
         dest.DefenseWeapon = DefenseWeapon;
 
         dest.Items = new List<Item>(Items.ToArray());
+
+        dest.LimitAttack = LimitAttack;
+        dest.LimitDefense = LimitDefense;
+        dest.LimitHP = LimitHP;
     }
 
     /// <summary>
@@ -96,7 +105,30 @@ public class BattleParameterBase
         return target.HP <= 0;
     }
 
+    /// <summary>
+    /// 経験値取得処理。
+    /// レベルアップ判定処理。
+    /// </summary>
+    /// <param name="exp">取得した経験値。</param>
+    /// <returns></returns>
+    public bool GetExp(int exp)
+    {
+        Exp += exp;
+        if (Exp >= (Level + 1) * 5)
+        {
+            AdjustParamWithLevel();
+            return true;
+        }
+        return false;
+    }
 
+    public void AdjustParamWithLevel()
+    {
+        Level = Exp / 5;
+        Attack = (int)(LimitAttack * Level / 100f);
+        Defense = (int)(LimitDefense * Level / 100f);
+        MaxHP = (int)(LimitHP * Level / 100f);
+    }
 }
 
 [CreateAssetMenu(menuName = "BattleParameter")]
