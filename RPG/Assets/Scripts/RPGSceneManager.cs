@@ -8,6 +8,7 @@ public class RPGSceneManager : MonoBehaviour
     public Map ActiveMap;
     public Menu Menu;
     public ItemShopMenu ItemShopMenu;
+    public Vector3Int MassEventPos { get; private set; }
     [SerializeField] public BattleWindow BattleWindow;
 
     public void OpenMenu()
@@ -30,7 +31,6 @@ public class RPGSceneManager : MonoBehaviour
     }
 
     Coroutine _currentCoroutine;
-    // Start is called before the first frame update
     void Start()
     {
         _currentCoroutine = StartCoroutine(MovePlayer());
@@ -52,6 +52,7 @@ public class RPGSceneManager : MonoBehaviour
 
                     if (massData.massEvent != null)
                     {
+                        MassEventPos = movedPos;
                         massData.massEvent.Exec(this);
                     }
                     else if (ActiveMap.RandomEncount != null)
@@ -67,6 +68,7 @@ public class RPGSceneManager : MonoBehaviour
                 }
                 else if (massData.character != null && massData.character.Event != null)
                 {
+                    MassEventPos = movedPos;
                     massData.character.Event.Exec(this);
                 }
             }

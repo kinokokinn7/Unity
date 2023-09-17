@@ -25,10 +25,10 @@ public class TreasureBoxEvent : MassEvent
 
     IEnumerator OpenTreasure(RPGSceneManager manager)
     {
-        var pos = RPGSceneManager.MassEventPos;
-        var treasureBox = RPGSceneManager.ActiveMap.GetCharacter(pos) as treasureBox;
+        var pos = manager.MassEventPos;
+        var treasureBox = manager.ActiveMap.GetCharacter(pos) as TreasureBox;
 
-        var messageWindow = RPGSceneManager.MessageWindow;
+        var messageWindow = manager.MessageWindow;
         messageWindow.Params = null;
         messageWindow.Effects = null;
         messageWindow.StartMessage(OpenText);

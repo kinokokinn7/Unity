@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
 
     /// <summary>
     /// メニューを開いているか否かを表すフラグ。
-    /// true: メニューが開かれている状態
+    /// true: メニューが開かれている状態。
     /// </summary>
     public bool DoOpen { get => gameObject.activeSelf; }
 
