@@ -664,7 +664,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1885408152690123953, guid: 495d05b29535c4035878c13fea7c61a2, type: 3}
       propertyPath: m_Text
-      value: $
+      value: G
       objectReference: {fileID: 0}
     - target: {fileID: 1885408153083222630, guid: 495d05b29535c4035878c13fea7c61a2, type: 3}
       propertyPath: m_Pivot.x
@@ -1606,6 +1606,14 @@ PrefabInstance:
       propertyPath: m_Text
       value: "\u3044\u3044\u3048"
       objectReference: {fileID: 0}
+    - target: {fileID: 3674087180344174300, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674087180344174300, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 3674087181165967305, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
       propertyPath: m_Name
       value: NoItem
@@ -2090,6 +2098,14 @@ PrefabInstance:
     - target: {fileID: 3674087180344174300, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
       propertyPath: m_FontData.m_BestFit
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674087180344174300, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674087180344174300, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3674087181165967305, guid: cf34a084df94649a4ba1954fe94678be, type: 3}
       propertyPath: m_Name
@@ -6874,7 +6890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4, y: 0.5}
   m_AnchorMax: {x: 0.55, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 6, y: -25}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1838918424
