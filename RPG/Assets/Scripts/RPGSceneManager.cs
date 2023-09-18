@@ -10,6 +10,9 @@ public class RPGSceneManager : MonoBehaviour
     public ItemShopMenu ItemShopMenu;
     public Vector3Int MassEventPos { get; private set; }
     [SerializeField] public BattleWindow BattleWindow;
+    [SerializeField, TextArea(3, 15)] string GameOverMessage = "体力がなくなった・・・";
+    [SerializeField] Map RespawnMapPrefab;
+    [SerializeField] Vector3Int RespawnPos;
 
     public void OpenMenu()
     {
@@ -74,6 +77,12 @@ public class RPGSceneManager : MonoBehaviour
             }
             yield return new WaitWhile(() => IsPauseScene);
 
+            if (Player.BattleParameter.HP <= 0)
+            {
+                StartCoroutine(GameOver());
+                yield break;
+            }
+
             // スペースキー押下時
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -115,5 +124,33 @@ public class RPGSceneManager : MonoBehaviour
     public void ShowMessageWindow(string message)
     {
         MessageWindow.StartMessage(message);
+    }
+
+    IEnumerator GameOver()
+    {
+        MessageWindow.StartMessage(GameOverMessage);
+        yield return new WaitUntil(() => MessageWindow.IsEndMessage);
+
+        RespawnMap(true);
+    }
+
+    void RespawnMap(bool isGameOver)
+    {
+        Object.Destroy(ActiveMap.gameObject);
+        ActiveMap = Object.Instantiate(RespawnMapPrefab);
+
+        Player.SetPosNoCoroutine(RespawnPos);
+        Player.CurrentDir = Direction.Down;
+        if (isGameOver)
+        {
+            Player.BattleParameter.HP = 1;
+            Player.BattleParameter.Money = 100;
+        }
+
+        if (_currentCoroutine != null)
+        {
+            StopCoroutine(_currentCoroutine);
+        }
+        _currentCoroutine = StartCoroutine(MovePlayer());
     }
 }
