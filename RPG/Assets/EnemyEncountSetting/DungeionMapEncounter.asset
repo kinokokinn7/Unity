@@ -17,4 +17,4 @@ MonoBehaviour:
   - EncountRate: 0.5
     EnemyGroup: {fileID: 11400000, guid: a1e8f45f5ce894bbf9dbc45ccbc77884, type: 2}
   - EncountRate: 0.2
-    EnemyGroup: {fileID: 11400000, guid: 943a7543e7f594d8bb619675be8f8691, type: 2}
+    EnemyGroup: {fileID: 11400000, guid: 62f81bd4b820d42cf92c97824fe9203b, type: 2}
