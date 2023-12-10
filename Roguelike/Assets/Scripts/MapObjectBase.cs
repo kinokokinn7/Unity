@@ -76,6 +76,23 @@ class MapObjectBase : MonoBehaviour
             MoveToNotMoving(movedMass, movedPos);
         }
 
+        // 向き修正
+        switch (dir)
+        {
+            case Direction.North:
+                this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                break;
+            case Direction.South:
+                this.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+                break;
+            case Direction.East:
+                this.transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+                break;
+            case Direction.West:
+                this.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+                break;
+        }
+
 
     }
 
