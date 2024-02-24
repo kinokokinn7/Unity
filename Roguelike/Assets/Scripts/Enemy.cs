@@ -4,8 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// 敵キャラクターの行動を制御するクラスです。
+/// </summary>
 class Enemy : MapObjectBase
 {
+    /// <summary>
+    /// 敵の移動を開始します。プレイヤーを追跡するか、ランダムに移動します。
+    /// </summary>
     public virtual void MoveStart()
     {
         var player = UnityEngine.Object.FindObjectOfType<Player>();
@@ -26,12 +32,12 @@ class Enemy : MapObjectBase
             + "111";
 
         /// <summary>
-        /// 相手が視野の中にいるかを判定する
+        /// 指定された対象が敵の視野内にあるかどうかを判定します。
         /// </summary>
-        /// <param name="target"></param>
-        /// <param name="startPos"></param>
-        /// <param name="dir"></param>
-        /// <returns></returns>
+        /// <param name="target">対象の位置。</param>
+        /// <param name="startPos">敵の位置。</param>
+        /// <param name="dir">敵の向き。</param>
+        /// <returns>対象が視野内にある場合はtrue。</returns>
         public bool IsInArea(Vector2Int target, Vector2Int startPos, Direction dir)
         {
             var relativePos = target - startPos;
@@ -83,6 +89,11 @@ class Enemy : MapObjectBase
     public bool IsChasing = false;  // 追いかけているか？
     public Scope VisibleArea;       // 視野
 
+    /// <summary>
+    /// プレイヤーを追跡するための移動を行います。
+    /// </summary>
+    /// <param name="target">追跡対象。</param>
+    /// <returns>追跡が開始された場合はtrue。</returns>
     protected bool MoveToFollow(MapObjectBase target)
     {
         if (VisibleArea.IsInArea(target.Pos, Pos, Forward))
@@ -118,8 +129,9 @@ class Enemy : MapObjectBase
         return false;
     }
 
-
-
+    /// <summary>
+    /// 自由に移動するためのメソッドです。ランダムな方向に移動を試みます。
+    /// </summary>
     private void MoveFree()
     {
         // 現在の左方向から順に右回りに進めるマスか確認していく

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+/// <summary>
+/// マップ上のマスの種類を表す列挙型です。
+/// </summary>
 enum MassType
 {
     Road,   // 通路
@@ -17,6 +20,9 @@ enum MassType
     FoodTrap,       // 罠（食べ物）
 }
 
+/// <summary>
+/// マップ上のマスのデータを保持するクラスです。
+/// </summary>
 [System.Serializable]
 class MassData
 {
@@ -35,14 +41,23 @@ enum Direction
     West,   // 西
 }
 
+/// <summary>
+/// マップを生成し、管理するクラスです。
+/// </summary>
 class Map : MonoBehaviour
 {
+    /// <summary>
+    /// マップを構成するマスを表すクラスです。
+    /// </summary>
     public class Mass
     {
         public MassType Type;
         public GameObject MassGameObject;
         public GameObject ExistObject;
 
+        /// <summary>
+        /// マスの可視状態を取得または設定します。
+        /// </summary>
         public bool Visible
         {
             get => MassGameObject.activeSelf;
@@ -61,16 +76,31 @@ class Map : MonoBehaviour
         }
     }
 
-    public MassData[] massDataList;
-    public Vector2 MassOffset = new Vector2(1, 1);
+    public MassData[] massDataList;                  // 利用可能な全マスデータ
+    public Vector2 MassOffset = new Vector2(1, 1);   // マスのオフセット
 
+
+    /// <summary>
+    /// マップの生成中かどうかを示す値を取得します。
+    /// </summary>
     public bool IsNowBuilding { get; private set; }
-    public Vector2Int StartPos { get; set; }        // マップ上の開始位置
-    public Direction StartForward { get; set; }     // プレイヤーの開始時の向き
+
+    /// <summary>
+    /// マップの開始位置を設定または取得します。
+    /// </summary>
+    public Vector2Int StartPos { get; set; }
+
+    /// <summary>
+    /// プレイヤーの開始時の向きを設定または取得します。
+    /// </summary>
+    public Direction StartForward { get; set; }
 
     Dictionary<MassType, MassData> MassDataDict { get; set; }
     Dictionary<char, MassData> MapCharDict { get; set; }
 
+    /// <summary>
+    /// マップのサイズを取得します。
+    /// </summary>
     public Vector2Int MapSize { get; private set; }
     List<List<Mass>> Data { get; set; }
     public Mass this[int x, int y]
@@ -86,6 +116,10 @@ class Map : MonoBehaviour
 
     public List<string> MapData { get; private set; }
 
+    /// <summary>
+    /// マップデータを基にマップを構築します。
+    /// </summary>
+    /// <param name="map">マップデータを表す文字列のリスト。</param>
     public void BuildMap(List<string> map)
     {
         InitMassData();
@@ -139,6 +173,9 @@ class Map : MonoBehaviour
         MapData = map;
     }
 
+    /// <summary>
+    /// マップの各マスデータを初期化します。
+    /// </summary>
     private void InitMassData()
     {
         MassDataDict = new Dictionary<MassType, MassData>();
@@ -151,6 +188,12 @@ class Map : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 指定された座標に基づいてマップ上の位置を計算します。
+    /// </summary>
+    /// <param name="x">X座標。</param>
+    /// <param name="y">Y座標。</param>
+    /// <returns>マップ上の位置を表すVector3。</returns>
     public Vector3 CalcMapPos(int x, int y)
     {
         var pos = Vector3.zero;
@@ -161,6 +204,11 @@ class Map : MonoBehaviour
 
     public Vector3 CalcMapPos(Vector2Int pos) => CalcMapPos(pos.x, pos.y);
 
+    /// <summary>
+    /// 指定された方向に基づいて座標のオフセットを計算します。
+    /// </summary>
+    /// <param name="dir">移動方向。</param>
+    /// <returns>座標のオフセットを表すVector2Int。</returns>
     public Vector2Int CalcDirection(Direction dir)
     {
         switch (dir)
@@ -236,6 +284,10 @@ class Map : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// マップを生成し、初期化します。プレイヤーとゴールの位置を決定し、マップ上に障害物や特別なマスを配置します。
+    /// </summary>
+    /// <param name="generateParam">マップ生成のためのパラメータ。</param>
     public void GenerateMap(GenerateParam generateParam)
     {
         InitMassData();
@@ -259,6 +311,11 @@ class Map : MonoBehaviour
         BuildMap(mapData.Select(_l => _l.Aggregate("", (_s, _c) => _s + _c)).ToList());
     }
 
+    /// <summary>
+    /// プレイヤーとゴールの位置をマップ上に配置し、それらを結ぶ道を作成します。
+    /// </summary>
+    /// <param name="mapData">マップデータ。</param>
+    /// <param name="generateParam">マップ生成のためのパラメータ。</param>
     void PlacePlayerAndGoal(List<List<char>> mapData, GenerateParam generateParam)
     {
         var rnd = new System.Random();
@@ -288,6 +345,13 @@ class Map : MonoBehaviour
         mapData[goalPos.y][goalPos.x] = goalData.MapChar;
     }
 
+    /// <summary>
+    /// マップ上に線を描画します。このメソッドは、プレイヤーからゴールへの経路を作成する際に使用されます。
+    /// </summary>
+    /// <param name="mapData">マップデータ。</param>
+    /// <param name="start">線の開始位置。</param>
+    /// <param name="end">線の終了位置。</param>
+    /// <param name="ch">線を描画するために使用する文字。</param>
     void DrawLine(List<List<char>> mapData, Vector2Int start, Vector2Int end, char ch)
     {
         var pos = start;
@@ -314,6 +378,11 @@ class Map : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// マップ上に特定のマスを配置します。このメソッドは、障害物や特別なアイテムが含まれるマスをランダムに配置するために使用されます。
+    /// </summary>
+    /// <param name="mapData">マップデータ。</param>
+    /// <param name="generateParam">マップ生成のためのパラメータ。</param>
     void PlaceMass(List<List<char>> mapData, GenerateParam generateParam)
     {
         var rnd = new System.Random();
