@@ -1,25 +1,34 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ゲームのセーブデータを管理するクラスです。プレイヤーの状態やゲームの進行状況を保存します。
+/// </summary>
 [System.Serializable]
 class SaveData
 {
-    public int Floor;
-    public int Level;
-    public int Hp;
-    public int Attack;
-    public int Exp;
-    public string WeaponName;
-    public int WeaponAttack;
-    public List<string> MapData;
+    public int Floor; // 現在のフロア
+    public int Level; // プレイヤーのレベル
+    public int Hp; // プレイヤーのHP
+    public int Attack; // プレイヤーの攻撃力
+    public int Exp; // プレイヤーの経験値
+    public string WeaponName; // 装備している武器の名前
+    public int WeaponAttack; // 装備している武器の攻撃力
+    public List<string> MapData; // マップデータ
 
+    /// <summary>
+    /// セーブデータを保存します。現在のオブジェクトの状態をJSON形式で保存します。
+    /// </summary>
     public void Save()
     {
         var json = JsonUtility.ToJson(this);
         PlayerPrefs.SetString("save", json);
     }
 
+    /// <summary>
+    /// セーブデータを回復します。保存されているJSONデータからセーブデータを復元します。
+    /// </summary>
+    /// <returns>復元されたセーブデータ。セーブデータが存在しない場合はnullを返します。</returns>
     public static SaveData Recover()
     {
         if (PlayerPrefs.HasKey("save"))
@@ -33,6 +42,9 @@ class SaveData
         }
     }
 
+    /// <summary>
+    /// 保存されているすべてのセーブデータを破棄します。
+    /// </summary>
     public static void Destroy()
     {
         PlayerPrefs.DeleteAll();
