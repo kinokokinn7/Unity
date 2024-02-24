@@ -29,7 +29,7 @@ public class Map : MonoBehaviour
 
     public CharacterBase GetCharacter(Vector3Int pos)
     {
-        return _characters.FirstOrDefault(_c => _c.Pos == pos);
+        return _characters.Where(_c => _c.IsActive).FirstOrDefault(_c => _c.Pos == pos);
     }
 
     public MassEvent FindMassEvent(TileBase tile)
@@ -104,5 +104,38 @@ public class Map : MonoBehaviour
             mass.isMovable = false;
         }
         return mass;
+    }
+
+    [System.Serializable]
+    public class InstantSaveData
+    {
+        public List<string> characters = new List<string>();
+    }
+
+    public InstantSaveData GetInstantSaveData()
+    {
+        InstantSaveData saveData = new InstantSaveData();
+        saveData.characters = _characters.Select(_c => _c.GetInstantSaveData())
+            .Where(_s => _s != null)
+            .Select(_s => JsonUtility.ToJson(_s)).ToList();
+        return saveData;
+    }
+
+    [System.Serializable]
+    public class SaveData
+    {
+        public List<string> characters = new List<string>();
+    }
+
+    public SaveData GetSaveData()
+    {
+        var saveData = new SaveData();
+        saveData.characters = _characters
+            .Where(_c => !(_c is Player))
+            .Select(_c => _c.GetSaveData())
+            .Where(_s => _massEvents != null)
+            .Select(_s => JsonUtility.ToJson(_s))
+            .ToList();
+        return saveData;
     }
 }

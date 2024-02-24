@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    ".NETStandard,Version=v2.0": {
-      "SingularityGroup.HotReload.Runtime.Public/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/SingularityGroup.HotReload.Runtime.Public.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SingularityGroup.HotReload.Runtime.Public.dll": {}
-        }
-      }
-    }
+    ".NETStandard,Version=v2.0": {}
   },
-  "libraries": {
-    "SingularityGroup.HotReload.Runtime.Public/1.0.0": {
-      "type": "project",
-      "path": "SingularityGroup.HotReload.Runtime.Public.csproj",
-      "msbuildProject": "SingularityGroup.HotReload.Runtime.Public.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETStandard,Version=v2.0": [
-      "SingularityGroup.HotReload.Runtime.Public >= 1.0.0"
-    ]
+    ".NETStandard,Version=v2.0": []
   },
   "packageFolders": {
     "/Users/hosokawashigeki/.nuget/packages/": {}
@@ -32,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/hosokawashigeki/Documents/Unity/RPG/SingularityGroup.HotReload.Runtime.csproj",
-      "projectName": "SingularityGroup.HotReload.Runtime",
-      "projectPath": "/Users/hosokawashigeki/Documents/Unity/RPG/SingularityGroup.HotReload.Runtime.csproj",
+      "projectUniqueName": "/Users/hosokawashigeki/Documents/Unity/RPG/Assembly-CSharp.csproj",
+      "projectName": "Assembly-CSharp",
+      "projectPath": "/Users/hosokawashigeki/Documents/Unity/RPG/Assembly-CSharp.csproj",
       "packagesPath": "/Users/hosokawashigeki/.nuget/packages/",
       "outputPath": "/Users/hosokawashigeki/Documents/Unity/RPG/obj/",
       "projectStyle": "PackageReference",
@@ -50,17 +31,18 @@
       "frameworks": {
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
-          "projectReferences": {
-            "/Users/hosokawashigeki/Documents/Unity/RPG/SingularityGroup.HotReload.Runtime.Public.csproj": {
-              "projectPath": "/Users/hosokawashigeki/Documents/Unity/RPG/SingularityGroup.HotReload.Runtime.Public.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -77,7 +59,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }

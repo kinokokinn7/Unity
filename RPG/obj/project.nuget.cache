@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "43lv0pmKTkGD989oc/3wx9dpn9cUMUGcDFxIsPSYc9uJuggEUH7Hm2m6FvTaNwb89H6JbLAp67B+w6248XyyZA==",
+  "dgSpecHash": "voXb+i32kH70+XGH4DsD1DCiQcW8qR8LnMw+PmywforZCV4zaFYpo6uxG2G7tF13aHe19BogTKCP+Jo6W5LU0Q==",
   "success": true,
-  "projectFilePath": "/Users/hosokawashigeki/Documents/Unity/RPG/SingularityGroup.HotReload.Runtime.csproj",
+  "projectFilePath": "/Users/hosokawashigeki/Documents/Unity/RPG/Assembly-CSharp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

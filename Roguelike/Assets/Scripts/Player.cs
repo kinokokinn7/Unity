@@ -13,11 +13,18 @@ class Player : MapObjectBase
     [Range(1, 10)] public int VisibleRange = 5; // 周りのマスが見える範囲
 
     MessageWindow _messageWindow;
+
+    /// <summary>
+    /// メッセージウィンドウインスタンスを取得または生成します。
+    /// </summary>
     MessageWindow MessageWindow
     {
         get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Find());
     }
 
+    /// <summary>
+    /// オブジェクトの初期化時に一度だけ呼ばれます。プレイヤーUIの設定、カメラの移動、アクションの開始、マスの可視性更新を行います。
+    /// </summary>
     void Start()
     {
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
@@ -26,10 +33,12 @@ class Player : MapObjectBase
         StartCoroutine(CameraMove());
         StartCoroutine(ActionCoroutine());
 
-        // 周囲のマスを見えるようにする
         UpdateVisibleMass();
     }
 
+    /// <summary>
+    /// プレイヤーの周囲のマスを可視状態に更新します。
+    /// </summary>
     private void UpdateVisibleMass()
     {
         var map = Map;
@@ -50,6 +59,10 @@ class Player : MapObjectBase
         }
     }
 
+    /// <summary>
+    /// セーブデータからプレイヤーの状態を復元します。
+    /// </summary>
+    /// <param name="saveData">復元するためのセーブデータ。</param>
     public void Recover(SaveData saveData)
     {
         CurrentWeapon = null;
@@ -67,6 +80,9 @@ class Player : MapObjectBase
         Floor = saveData.Floor;
     }
 
+    /// <summary>
+    /// プレイヤーの可能なアクションを列挙します。
+    /// </summary>
     public enum Action
     {
         None,
@@ -75,16 +91,20 @@ class Player : MapObjectBase
         MoveRight,
         MoveLeft,
     }
+
     public Action NowAction { get; private set; } = Action.None;
     public bool DoWaitEvent { get; set; } = false;
+
+    /// <summary>
+    /// プレイヤーのアクションをコルーチンで管理します。入力待ち、アクションの実行、食糧の更新、可視マスの更新、イベントの確認を行います。
+    /// </summary>
     IEnumerator ActionCoroutine()
     {
         while (true)
         {
-            // 入力待ち
             StartCoroutine(WaitInput());
             yield return new WaitWhile(() => NowAction == Action.None);
-            // アクションの実行
+
             switch (NowAction)
             {
                 case Action.MoveUp:
@@ -92,21 +112,22 @@ class Player : MapObjectBase
                 case Action.MoveRight:
                 case Action.MoveLeft:
                     Move(ToDirection(NowAction));
-                    yield return new WaitWhile(() => IsNowMoving);  // アクション終わるまで待つ
+                    yield return new WaitWhile(() => IsNowMoving);
                     break;
             }
             UpdateFood();
             NowAction = Action.None;
 
-            UpdateVisibleMass();    // 移動した後に見える部分を広げる
+            UpdateVisibleMass();
 
-            // イベントを確認
             CheckEvent();
             yield return new WaitWhile(() => DoWaitEvent);
         }
-
     }
 
+    /// <summary>
+    /// プレイヤーの食糧を更新します。食糧が0になるとHPが減少します。
+    /// </summary>
     void UpdateFood()
     {
         Food--;
@@ -122,6 +143,11 @@ class Player : MapObjectBase
         }
     }
 
+    /// <summary>
+    /// 指定されたアクションに基づいて移動方向を決定します。
+    /// </summary>
+    /// <param name="action">移動方向を決定するためのアクション。</param>
+    /// <returns>決定された移動方向。</returns>
     Direction ToDirection(Action action)
     {
         switch (NowAction)
@@ -134,14 +160,15 @@ class Player : MapObjectBase
         }
     }
 
+    /// <summary>
+    /// プレイヤーの入力を待ちます。キー入力があるまでアクションはNoneに設定されます。
+    /// </summary>
     IEnumerator WaitInput()
     {
         NowAction = Action.None;
-        // キー入力の確認
         while (NowAction == Action.None)
         {
             yield return null;
-            // 入力されたキーの確認
             if (Input.GetKeyDown(KeyCode.UpArrow)) NowAction = Action.MoveUp;
             if (Input.GetKeyDown(KeyCode.DownArrow)) NowAction = Action.MoveDown;
             if (Input.GetKeyDown(KeyCode.RightArrow)) NowAction = Action.MoveRight;
@@ -149,24 +176,27 @@ class Player : MapObjectBase
         }
     }
 
+    /// <summary>
+    /// イベントの確認を行い、存在する場合はそれを実行します。
+    /// </summary>
     void CheckEvent()
     {
         DoWaitEvent = false;
         StartCoroutine(RunEvents());
     }
 
+    /// <summary>
+    /// イベントの実行を行います。敵の移動、敵の移動完了の待機、ゴール判定、ゴール時の処理を含みます。
+
     IEnumerator RunEvents()
     {
-        // 敵の移動処理
         foreach (var enemy in UnityEngine.Object.FindObjectsOfType<Enemy>())
         {
             enemy.MoveStart();
         }
-        // 全ての敵が移動完了するまで待つ
         yield return new WaitWhile(() =>
             UnityEngine.Object.FindObjectsOfType<Enemy>().All(_e => !_e.IsNowMoving));
 
-        // ゴール判定
         var mass = Map[Pos.x, Pos.y];
         if (mass.Type == MassType.Goal)
         {
@@ -174,11 +204,13 @@ class Player : MapObjectBase
         }
         else
         {
-            // 終了処理
             DoWaitEvent = true;
         }
     }
 
+    /// <summary>
+    /// ゴール時の処理を行い、新しいマップの生成、プレイヤーのデータ引継ぎ、セーブデータの作成と保存を含みます。
+    /// </summary>
     private IEnumerator Goal()
     {
         yield return new WaitForSeconds(1.0f);  // ゴール時にウェイトを入れる
@@ -226,6 +258,10 @@ class Player : MapObjectBase
     [Range(0, 100)] public float CameraDistance;
     public Vector3 CameraDirection = new Vector3(0, 10, -3);
 
+    /// <summary>
+    /// カメラをプレイヤーに追従させる処理を行います。
+    /// </summary>
+    /// <returns></returns>
     IEnumerator CameraMove()
     {
         var camera = Camera.main;
@@ -238,6 +274,9 @@ class Player : MapObjectBase
         }
     }
 
+    /// <summary>
+    /// プレイヤーの死亡時の処理を行います。UIの更新とゲームオーバー画面の表示を含みます。
+    /// </summary>
     public override void Dead()
     {
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
@@ -252,6 +291,11 @@ class Player : MapObjectBase
 
     }
 
+    /// <summary>
+    /// プレイヤーが攻撃する際の処理を行います。ダメージの計算と敵の死亡判定を含みます。
+    /// </summary>
+    /// <param name="other">敵キャラ</param>
+    /// <returns></returns>
     public override bool AttackTo(MapObjectBase other)
     {
         MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack}のダメージ！");
@@ -279,6 +323,9 @@ class Player : MapObjectBase
 
     }
 
+    /// <summary>
+    /// プレイヤーのレベルアップ処理を行います。
+    /// </summary>
     public void LevelUp()
     {
         Level += 1;
@@ -310,6 +357,13 @@ class Player : MapObjectBase
         base.MoveToExistObject(mass, movedPos);
     }
 
+    /// <summary>
+    /// トラップに引っかかった時の処理です。
+    /// </summary>
+    /// <param name="trap">トラップ</param>
+    /// <param name="mass">マス</param>
+    /// <param name="movedPos">移動後の座標</param>
+    /// <exception cref="System.NotImplementedException"></exception>
     protected void StampTrap(Trap trap, Map.Mass mass, Vector2Int movedPos)
     {
         MessageWindow.AppendMessage($"トラップにひっかかった！！");
@@ -333,6 +387,13 @@ class Player : MapObjectBase
         UnityEngine.Object.Destroy(trap.gameObject);
     }
 
+    /// <summary>
+    /// 宝箱を開けたときの処理です。
+    /// </summary>
+    /// <param name="treasure">宝箱</param>
+    /// <param name="mass">マス</param>
+    /// <param name="movedPos">移動後の座標</param>
+    /// <exception cref="System.NotImplementedException"></exception>
     protected void OpenTreasure(Treasure treasure, Map.Mass mass, Vector2Int movedPos)
     {
         MessageWindow.AppendMessage($"宝箱を開けた！");

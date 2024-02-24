@@ -19,6 +19,8 @@ public class CharacterBase : MonoBehaviour
     Coroutine _moveCoroutine;
     [SerializeField] Vector3Int _pos;
 
+    Vector3Int InitialPos { get; set; }
+
     public Vector3Int Pos
     {
         get => _pos;
@@ -41,6 +43,17 @@ public class CharacterBase : MonoBehaviour
             }
 
         }
+    }
+
+    public bool IsActive
+    {
+        get => gameObject.activeSelf;
+        set => gameObject.SetActive(value);
+    }
+
+    public string IdentityKey
+    {
+        get => $"{gameObject.name}_{GetType().Name}_{InitialPos}";
     }
 
     public void SetPosNoCoroutine(Vector3Int pos)
@@ -121,6 +134,7 @@ public class CharacterBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        InitialPos = this.Pos;
         SetDirAnimation(_currentDir);
     }
 
@@ -176,5 +190,43 @@ public class CharacterBase : MonoBehaviour
         {
             Camera.main.transform.position = transform.position + Vector3.forward * -10 + playerPivot;
         }
+    }
+
+    [System.Serializable]
+    public class InstantSaveData
+    {
+        public string id;
+        public Vector3Int Pos;
+        public Direction Direction;
+
+        public InstantSaveData() { }
+        public InstantSaveData(CharacterBase character)
+        {
+            this.id = character.IdentityKey;
+            this.Pos = character.Pos;
+            this.Direction = character.CurrentDir;
+        }
+    }
+
+    public virtual InstantSaveData GetInstantSaveData()
+    {
+        return new InstantSaveData(this);
+    }
+
+    [System.Serializable]
+    public class SaveData
+    {
+        public string id;
+
+        public SaveData() { }
+        public SaveData(CharacterBase character)
+        {
+            this.id = character.IdentityKey;
+        }
+    }
+
+    public virtual SaveData GetSaveData()
+    {
+        return null;
     }
 }
