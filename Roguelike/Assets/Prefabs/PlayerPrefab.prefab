@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62bb9d080c3904e36805d02307898a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSecond: 0.1
+  MoveSecond: 0.2
   Exp: 0
   Pos: {x: 0, y: 0}
   Forward: 0

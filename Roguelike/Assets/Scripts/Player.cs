@@ -169,10 +169,10 @@ class Player : MapObjectBase
         while (NowAction == Action.None)
         {
             yield return null;
-            if (Input.GetKeyDown(KeyCode.UpArrow)) NowAction = Action.MoveUp;
-            if (Input.GetKeyDown(KeyCode.DownArrow)) NowAction = Action.MoveDown;
-            if (Input.GetKeyDown(KeyCode.RightArrow)) NowAction = Action.MoveRight;
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) NowAction = Action.MoveLeft;
+            if (Input.GetKey(KeyCode.UpArrow)) NowAction = Action.MoveUp;
+            if (Input.GetKey(KeyCode.DownArrow)) NowAction = Action.MoveDown;
+            if (Input.GetKey(KeyCode.RightArrow)) NowAction = Action.MoveRight;
+            if (Input.GetKey(KeyCode.LeftArrow)) NowAction = Action.MoveLeft;
         }
     }
 
@@ -331,7 +331,7 @@ class Player : MapObjectBase
     public void LevelUp()
     {
         Level += 1;
-        Hp += 5;
+        MaxHp += 5;
         Attack += 1;
         Exp = 0;
 
@@ -339,6 +339,11 @@ class Player : MapObjectBase
         MessageWindow.AppendMessage($"  HP +5  Atk + 1");
     }
 
+    /// <summary>
+    /// アイテムやトラップなどのオブジェクトが存在するマスへ移動します。
+    /// </summary>
+    /// <param name="mass">移動先のマス</param>
+    /// <param name="movedPos">移動後の位置</param>
     protected override void MoveToExistObject(Map.Mass mass, Vector2Int movedPos)
     {
         var otherObject = mass.ExistObject.GetComponent<MapObjectBase>();
@@ -398,11 +403,10 @@ class Player : MapObjectBase
     /// <exception cref="System.NotImplementedException"></exception>
     protected void OpenTreasure(Treasure treasure, Map.Mass mass, Vector2Int movedPos)
     {
-        MessageWindow.AppendMessage($"宝箱を開けた！");
         switch (treasure.CurrentType)
         {
             case Treasure.Type.LifeUp:
-                Hp += treasure.Value;
+                Hp = Mathf.Min((Hp + treasure.Value), MaxHp);
                 MessageWindow.AppendMessage($"  HPが回復した！ +{treasure.Value}");
                 break;
             case Treasure.Type.FoodUp:

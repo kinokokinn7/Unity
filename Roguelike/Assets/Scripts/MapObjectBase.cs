@@ -22,7 +22,8 @@ class MapObjectBase : MonoBehaviour
         get => _map != null ? _map : (_map = Object.FindObjectOfType<Map>());
     }
 
-    public int Hp = 10; // 体力
+    public int Hp = 10; // HP
+    public int MaxHp = 10; // 最大HP
     public int Attack = 2; // 攻撃力
 
     /// <summary>

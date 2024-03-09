@@ -10,6 +10,7 @@ class SaveData
     public int Floor; // 現在のフロア
     public int Level; // プレイヤーのレベル
     public int Hp; // プレイヤーのHP
+    public int MaxHp; // プレイヤーの最大HP
     public int Attack; // プレイヤーの攻撃力
     public int Exp; // プレイヤーの経験値
     public string WeaponName; // 装備している武器の名前
@@ -29,7 +30,7 @@ class SaveData
     /// セーブデータを回復します。保存されているJSONデータからセーブデータを復元します。
     /// </summary>
     /// <returns>復元されたセーブデータ。セーブデータが存在しない場合はnullを返します。</returns>
-    public static SaveData Recover()
+    public static SaveData Load()
     {
         if (PlayerPrefs.HasKey("save"))
         {

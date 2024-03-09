@@ -43,7 +43,7 @@ public class MapSceneManager : MonoBehaviour
 
         var map = GetComponent<Map>();
 
-        var saveData = SaveData.Recover();
+        var saveData = SaveData.Load();
         if (saveData != null)
         {
             try
