@@ -332,6 +332,7 @@ class Player : MapObjectBase
     {
         Level += 1;
         MaxHp += 5;
+        Hp += 5;
         Attack += 1;
         Exp = 0;
 
