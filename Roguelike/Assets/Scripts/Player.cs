@@ -22,6 +22,11 @@ class Player : MapObjectBase
         get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Find());
     }
 
+    public Player()
+    {
+        this.Hp = new Hp(10);
+    }
+
     /// <summary>
     /// オブジェクトの初期化時に一度だけ呼ばれます。プレイヤーUIの設定、カメラの移動、アクションの開始、マスの可視性更新を行います。
     /// </summary>
@@ -67,7 +72,8 @@ class Player : MapObjectBase
     {
         CurrentWeapon = null;
         Level = saveData.Level;
-        Hp = saveData.Hp;
+        Hp.SetCurrentValue(saveData.Hp);
+        Hp.SetMaxValue(saveData.MaxHp);
         Attack = saveData.Attack;
         Exp = saveData.Exp;
         if (saveData.WeaponName != "")
@@ -134,9 +140,9 @@ class Player : MapObjectBase
         if (Food <= 0)
         {
             Food = 0;
-            Hp--;
+            Hp.decreaseCurrentValue(1);
             MessageWindow.AppendMessage($"空腹で1ダメージ！");
-            if (Hp <= 0)
+            if (Hp.isZero())
             {
                 Dead();
             }
@@ -238,7 +244,8 @@ class Player : MapObjectBase
 
         var saveData = new SaveData();
         saveData.Level = Level;
-        saveData.Hp = Hp;
+        saveData.Hp = Hp.GetCurrentValue();
+        saveData.MaxHp = Hp.GetMaxValue();
         saveData.Attack = Attack;
         saveData.Exp = Exp;
         if (CurrentWeapon != null)
@@ -301,10 +308,10 @@ class Player : MapObjectBase
     public override bool AttackTo(MapObjectBase other)
     {
         MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack}のダメージ！");
-        other.Hp -= Attack;
+        other.Hp.decreaseCurrentValue(Attack);
         other.Damaged(Attack);  // 現段階ではEnemy.csでDamagedをオーバーライドしていないので何もしない
 
-        if (other.Hp <= 0)
+        if (other.Hp.isZero())
         {
             MessageWindow.AppendMessage($"敵を倒した！ {other.Exp}ポイントの経験値を手に入れた！");
             other.Dead();
@@ -331,8 +338,7 @@ class Player : MapObjectBase
     public void LevelUp()
     {
         Level += 1;
-        MaxHp += 5;
-        Hp += 5;
+        Hp.IncreaseMaxHp(5);
         Attack += 1;
         Exp = 0;
 
@@ -378,7 +384,7 @@ class Player : MapObjectBase
         switch (trap.CurrentType)
         {
             case Trap.Type.LifeDown:
-                Hp -= trap.Value;
+                Hp.decreaseCurrentValue(trap.Value);
                 MessageWindow.AppendMessage($"{trap.Value}のダメージを受けた！");
                 break;
             case Trap.Type.FoodDown:
@@ -407,7 +413,7 @@ class Player : MapObjectBase
         switch (treasure.CurrentType)
         {
             case Treasure.Type.LifeUp:
-                Hp = Mathf.Min((Hp + treasure.Value), MaxHp);
+                Hp.recover(treasure.Value);
                 MessageWindow.AppendMessage($"  HPが回復した！ +{treasure.Value}");
                 break;
             case Treasure.Type.FoodUp:

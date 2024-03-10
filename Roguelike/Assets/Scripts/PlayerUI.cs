@@ -36,8 +36,8 @@ class PlayerUI : MonoBehaviour
     {
         if (Player == null) return; // プレイヤーオブジェクトがセットされていなければ何もしない
         LevelText.text = Player.Level.ToString(); // レベルを更新
-        HpText.text = Player.Hp.ToString(); // HPを更新
-        MaxHpText.text = Player.MaxHp.ToString(); // MaxHPを更新
+        HpText.text = Player.Hp.GetCurrentValue().ToString(); // HPを更新
+        MaxHpText.text = Player.Hp.GetMaxValue().ToString(); // MaxHPを更新
         AttackText.text = Player.Attack.ToString(); // 攻撃力を更新
         ExpText.text = Player.Exp.ToString(); // 経験値を更新
         FoodText.text = Player.Food.ToString(); // 満腹度を更新

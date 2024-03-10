@@ -9,6 +9,11 @@ using UnityEngine;
 /// </summary>
 class Enemy : MapObjectBase
 {
+    public Enemy()
+    {
+        this.Hp = new Hp(5);
+    }
+
     /// <summary>
     /// 敵の移動を開始します。プレイヤーを追跡するか、ランダムに移動します。
     /// </summary>

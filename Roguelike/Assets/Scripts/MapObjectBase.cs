@@ -22,8 +22,7 @@ class MapObjectBase : MonoBehaviour
         get => _map != null ? _map : (_map = Object.FindObjectOfType<Map>());
     }
 
-    public int Hp = 10; // HP
-    public int MaxHp = 10; // 最大HP
+    public Hp Hp; // HP
     public int Attack = 2; // 攻撃力
 
     /// <summary>
@@ -51,7 +50,6 @@ class MapObjectBase : MonoBehaviour
             }
         }
     }
-
 
     /// <summary>
     /// オブジェクトの位置と向きを設定します。
@@ -153,9 +151,9 @@ class MapObjectBase : MonoBehaviour
     /// <returns>攻撃によって対象を倒した場合はtrue、倒せなかった場合はfalse。</returns>
     public virtual bool AttackTo(MapObjectBase other)
     {
-        other.Hp -= Attack;
+        other.Hp.decreaseCurrentValue(Attack);
         other.Damaged(Attack);
-        if (other.Hp <= 0)
+        if (other.Hp.isZero())
         {
             other.Dead();
             return true;

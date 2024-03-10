@@ -35,6 +35,7 @@ class SaveData
         if (PlayerPrefs.HasKey("save"))
         {
             var json = PlayerPrefs.GetString("save");
+            Debug.Log($"json:{json}");
             return JsonUtility.FromJson<SaveData>(json);
         }
         else
