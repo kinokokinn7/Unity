@@ -72,15 +72,15 @@ class Player : MapObjectBase
     {
         CurrentWeapon = null;
         Level = saveData.Level;
-        Hp.SetCurrentValue(saveData.Hp);
-        Hp.SetMaxValue(saveData.MaxHp);
+        Hp = saveData.Hp;
         Attack = saveData.Attack;
+        Food = saveData.Food;
         Exp = saveData.Exp;
         if (saveData.WeaponName != "")
         {
             var weapon = ScriptableObject.CreateInstance<Weapon>();
             weapon.Name = saveData.WeaponName;
-            weapon.Attack = saveData.WeaponAttack;
+            weapon.Attack.SetCurrentValue(saveData.WeaponAttack);
             CurrentWeapon = weapon;
         }
         Floor = saveData.Floor;
@@ -244,15 +244,15 @@ class Player : MapObjectBase
 
         var saveData = new SaveData();
         saveData.Level = Level;
-        saveData.Hp = Hp.GetCurrentValue();
-        saveData.MaxHp = Hp.GetMaxValue();
+        saveData.Hp = Hp;
         saveData.Attack = Attack;
+        saveData.Food = Food;
         saveData.Exp = Exp;
         if (CurrentWeapon != null)
         {
-            saveData.Attack -= CurrentWeapon.Attack;
+            saveData.Attack.DecreaseCurrentValue(CurrentWeapon.Attack.GetCurrentValue());
             saveData.WeaponName = CurrentWeapon.Name;
-            saveData.WeaponAttack = CurrentWeapon.Attack;
+            saveData.WeaponAttack = CurrentWeapon.Attack.GetCurrentValue();
         }
         else
         {
@@ -307,9 +307,9 @@ class Player : MapObjectBase
     /// <returns></returns>
     public override bool AttackTo(MapObjectBase other)
     {
-        MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack}のダメージ！");
-        other.Hp.decreaseCurrentValue(Attack);
-        other.Damaged(Attack);  // 現段階ではEnemy.csでDamagedをオーバーライドしていないので何もしない
+        MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack.GetCurrentValue()}のダメージ！");
+        other.Hp.decreaseCurrentValue(Attack.GetCurrentValue());
+        other.Damaged(Attack.GetCurrentValue());  // 現段階ではEnemy.csでDamagedをオーバーライドしていないので何もしない
 
         if (other.Hp.isZero())
         {
@@ -339,7 +339,7 @@ class Player : MapObjectBase
     {
         Level += 1;
         Hp.IncreaseMaxHp(5);
-        Attack += 1;
+        Attack.IncreaseAtk(1);
         Exp = 0;
 
         MessageWindow.AppendMessage($"プレイヤーのレベルが{Level}に上がった！");
@@ -422,8 +422,9 @@ class Player : MapObjectBase
                 break;
             case Treasure.Type.Weapon:
                 // 装備中の武器の攻撃力に足し合わせるようにしている
-                MessageWindow.AppendMessage($"  新しい武器を手に入れた！ +{treasure.CurrentWeapon}");
-                var newWeapon = treasure.CurrentWeapon.Merge(CurrentWeapon);
+                MessageWindow.AppendMessage($"  新しい武器を手に入れた！ " +
+                                            $"ATK +{treasure.CurrentWeapon.Attack}");
+                var newWeapon = treasure.CurrentWeapon.Merge(this.CurrentWeapon);
                 CurrentWeapon = newWeapon;
                 break;
             default:

@@ -9,9 +9,10 @@ class SaveData
 {
     public int Floor; // 現在のフロア
     public int Level; // プレイヤーのレベル
-    public int Hp; // プレイヤーのHP
-    public int MaxHp; // プレイヤーの最大HP
-    public int Attack; // プレイヤーの攻撃力
+    public Hp Hp; // プレイヤーのHP
+    public Atk Attack; // プレイヤーの攻撃力
+    public int Food; // プレイヤーの満腹度
+
     public int Exp; // プレイヤーの経験値
     public string WeaponName; // 装備している武器の名前
     public int WeaponAttack; // 装備している武器の攻撃力

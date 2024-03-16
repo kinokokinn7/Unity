@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e9fdd43e4bf64bd8998b88dca830d3c, type: 3}
   m_Name: Weapon1
   m_EditorClassIdentifier: 
-  Name: Sword
-  Attack: 2
+  Attack:
+    currentValue: 2

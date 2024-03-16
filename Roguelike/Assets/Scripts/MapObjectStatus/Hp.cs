@@ -5,16 +5,19 @@ using UnityEngine;
 /// <summary>
 /// HPを表すクラス。
 /// </summary>
+[System.Serializable]
 public class Hp
 {
     /// <summary>
     /// 現在のHP。
     /// </summary>
+    [SerializeField]
     private int currentValue;
 
     /// <summary>
     /// 最大HP。
     /// </summary>
+    [SerializeField]
     private int maxValue;
 
     /// <summary>

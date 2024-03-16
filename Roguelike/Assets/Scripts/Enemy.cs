@@ -12,6 +12,7 @@ class Enemy : MapObjectBase
     public Enemy()
     {
         this.Hp = new Hp(5);
+        this.Attack = new Atk(5);
     }
 
     /// <summary>

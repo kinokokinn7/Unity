@@ -1,15 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
-/// ゲーム内の武器を表すクラスです。マップオブジェクトに装備することができ、武器によって攻撃力が変化します。
+/// ゲーム内の武器を表すクラスです。マップオブジェクトに装備させることができ、武器によって攻撃力が変化します。
 /// </summary>
 [CreateAssetMenu(menuName = "Weapon")]
 class Weapon : ScriptableObject
 {
-    public string Name = ""; // 武器の名前
-    public int Attack = 1; // 武器による攻撃力の増加分
+    public string Name { get; set; }
+    public Atk Attack = new Atk();
 
     /// <summary>
     /// 武器をマップオブジェクトに装備します。攻撃力が増加します。
@@ -17,7 +19,7 @@ class Weapon : ScriptableObject
     /// <param name="obj">装備するマップオブジェクト。</param>
     public void Attach(MapObjectBase obj)
     {
-        obj.Attack += Attack;
+        obj.Attack.IncreaseAtk(Attack.GetCurrentValue());
     }
 
     /// <summary>
@@ -26,7 +28,7 @@ class Weapon : ScriptableObject
     /// <param name="obj">装備を外すマップオブジェクト。</param>
     public void Detach(MapObjectBase obj)
     {
-        obj.Attack -= Attack;
+        obj.Attack.DecreaseCurrentValue(Attack.GetCurrentValue());
     }
 
     /// <summary>
@@ -36,9 +38,13 @@ class Weapon : ScriptableObject
     /// <returns>合成された新しい武器。</returns>
     public Weapon Merge(Weapon other)
     {
+        if (other == null) return other;
+
         var newWeapon = ScriptableObject.CreateInstance<Weapon>();
         newWeapon.Name = Name; // 新しい武器の名前は元の武器の名前を引き継ぎます
-        newWeapon.Attack = Attack + (other != null ? other.Attack : 0); // 両方の武器の攻撃力を合算
+
+        newWeapon.Attack.SetCurrentValue(this.Attack.GetCurrentValue() 
+                                         + (other != null ? other.Attack.GetCurrentValue() : 0)); // 両方の武器の攻撃力を合算
         return newWeapon;
     }
 

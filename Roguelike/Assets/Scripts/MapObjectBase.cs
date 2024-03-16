@@ -23,7 +23,7 @@ class MapObjectBase : MonoBehaviour
     }
 
     public Hp Hp; // HP
-    public int Attack = 2; // 攻撃力
+    public Atk Attack; // 攻撃力
 
     /// <summary>
     /// オブジェクトの所属グループを表します。プレイヤー、敵、その他などがあります。
@@ -151,8 +151,8 @@ class MapObjectBase : MonoBehaviour
     /// <returns>攻撃によって対象を倒した場合はtrue、倒せなかった場合はfalse。</returns>
     public virtual bool AttackTo(MapObjectBase other)
     {
-        other.Hp.decreaseCurrentValue(Attack);
-        other.Damaged(Attack);
+        other.Hp.decreaseCurrentValue(Attack.GetCurrentValue());
+        other.Damaged(Attack.GetCurrentValue());
         if (other.Hp.isZero())
         {
             other.Dead();
