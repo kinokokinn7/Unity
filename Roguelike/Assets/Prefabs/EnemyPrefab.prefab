@@ -143,9 +143,13 @@ MonoBehaviour:
   Exp: 5
   Pos: {x: 0, y: 0}
   Forward: 0
-  Hp: 5
-  Attack: 2
+  Hp:
+    currentValue: 5
+    maxValue: 5
+  Attack:
+    currentValue: 2
   CurrentGroup: 1
+  _weapon: {fileID: 0}
   IsChasing: 0
   VisibleArea:
     Area: '111

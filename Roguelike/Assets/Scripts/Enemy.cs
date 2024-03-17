@@ -9,10 +9,15 @@ using UnityEngine;
 /// </summary>
 class Enemy : MapObjectBase
 {
-    public Enemy()
+    
+    MessageWindow _messageWindow;
+
+    /// <summary>
+    /// メッセージウィンドウインスタンスを取得または生成します。
+    /// </summary>
+    MessageWindow MessageWindow
     {
-        this.Hp = new Hp(5);
-        this.Attack = new Atk(5);
+        get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Find());
     }
 
     /// <summary>
@@ -163,5 +168,16 @@ class Enemy : MapObjectBase
 
         // 移動の前方向を決定したら移動する
         Move(Forward);
+    }
+
+    /// <summary>
+    /// 敵がプレイヤーに攻撃する際の処理を行います。ダメージの計算とプレイヤーの死亡判定を含みます。
+    /// </summary>
+    /// <param name="other">プレイヤー。</param>
+    /// <returns>プレイヤーが死亡した場合はtrue。そうでない場合はfalse。</returns>
+    public override bool AttackTo(MapObjectBase other)
+    {
+        MessageWindow.AppendMessage($"敵のこうげき！　プレイヤーに{Attack.GetCurrentValue()}のダメージ！");
+        return base.AttackTo(other);
     }
 }

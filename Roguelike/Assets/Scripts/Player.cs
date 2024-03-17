@@ -7,7 +7,7 @@ using System;
 class Player : MapObjectBase
 {
     public int Level = 1;   // レベル
-    public int Food = 99;   // 満腹度
+    public Food FoodValue;  // 満腹度
     public int Floor = 1;   // 階層
 
     [Range(1, 10)] public int VisibleRange = 5; // 周りのマスが見える範囲
@@ -20,11 +20,6 @@ class Player : MapObjectBase
     MessageWindow MessageWindow
     {
         get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Find());
-    }
-
-    public Player()
-    {
-        this.Hp = new Hp(10);
     }
 
     /// <summary>
@@ -74,7 +69,7 @@ class Player : MapObjectBase
         Level = saveData.Level;
         Hp = saveData.Hp;
         Attack = saveData.Attack;
-        Food = saveData.Food;
+        FoodValue.CurrentValue = saveData.Food;
         Exp = saveData.Exp;
         if (saveData.WeaponName != "")
         {
@@ -100,7 +95,7 @@ class Player : MapObjectBase
 
     public Action NowAction { get; private set; } = Action.None;
     public bool DoWaitEvent { get; set; } = false;
-
+    
     /// <summary>
     /// プレイヤーのアクションをコルーチンで管理します。入力待ち、アクションの実行、食糧の更新、可視マスの更新、イベントの確認を行います。
     /// </summary>
@@ -136,10 +131,10 @@ class Player : MapObjectBase
     /// </summary>
     void UpdateFood()
     {
-        Food--;
-        if (Food <= 0)
+        FoodValue.CurrentValue--;
+        if (FoodValue.CurrentValue <= 0)
         {
-            Food = 0;
+            FoodValue.CurrentValue = 0;
             Hp.decreaseCurrentValue(1);
             MessageWindow.AppendMessage($"空腹で1ダメージ！");
             if (Hp.isZero())
@@ -230,7 +225,7 @@ class Player : MapObjectBase
         // プレイヤーのデータを引き継ぐ
         var player = UnityEngine.Object.FindObjectOfType<Player>();
         player.Hp = Hp;
-        player.Food = Food;
+        player.FoodValue.CurrentValue = FoodValue.CurrentValue;
         player.Exp = Exp;
         player.Level = Level;
         player.CurrentWeapon = CurrentWeapon;
@@ -246,7 +241,7 @@ class Player : MapObjectBase
         saveData.Level = Level;
         saveData.Hp = Hp;
         saveData.Attack = Attack;
-        saveData.Food = Food;
+        saveData.Food = FoodValue.CurrentValue;
         saveData.Exp = Exp;
         if (CurrentWeapon != null)
         {
@@ -307,7 +302,7 @@ class Player : MapObjectBase
     /// <returns></returns>
     public override bool AttackTo(MapObjectBase other)
     {
-        MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack.GetCurrentValue()}のダメージ！");
+        this.MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack.GetCurrentValue()}のダメージ！");
         other.Hp.decreaseCurrentValue(Attack.GetCurrentValue());
         other.Damaged(Attack.GetCurrentValue());  // 現段階ではEnemy.csでDamagedをオーバーライドしていないので何もしない
 
@@ -388,7 +383,7 @@ class Player : MapObjectBase
                 MessageWindow.AppendMessage($"{trap.Value}のダメージを受けた！");
                 break;
             case Trap.Type.FoodDown:
-                Food -= trap.Value;
+                FoodValue.CurrentValue -= trap.Value;
                 MessageWindow.AppendMessage($"満腹度が{trap.Value}下がった！");
                 break;
             default:
@@ -417,7 +412,7 @@ class Player : MapObjectBase
                 MessageWindow.AppendMessage($"  HPが回復した！ +{treasure.Value}");
                 break;
             case Treasure.Type.FoodUp:
-                Food += treasure.Value;
+                FoodValue.CurrentValue += treasure.Value;
                 MessageWindow.AppendMessage($"  満腹度が回復した！ +{treasure.Value}");
                 break;
             case Treasure.Type.Weapon:

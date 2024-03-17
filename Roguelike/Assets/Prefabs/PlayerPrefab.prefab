@@ -49,12 +49,17 @@ MonoBehaviour:
   Exp: 0
   Pos: {x: 0, y: 0}
   Forward: 0
-  Hp: 10
-  Attack: 2
+  Hp:
+    currentValue: 10
+    maxValue: 10
+  Attack:
+    currentValue: 3
   CurrentGroup: 0
   _weapon: {fileID: 11400000, guid: daaaa716ec8a843b28b9ee42d7f98c4f, type: 2}
   Level: 1
-  Food: 99
+  FoodValue:
+    currentValue: 100
+    maxValue: 100
   Floor: 1
   VisibleRange: 5
   CameraDistance: 5

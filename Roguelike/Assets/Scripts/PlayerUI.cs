@@ -40,7 +40,7 @@ class PlayerUI : MonoBehaviour
         MaxHpText.text = Player.Hp.GetMaxValue().ToString(); // MaxHPを更新
         AttackText.text = Player.Attack.GetCurrentValue().ToString(); // 攻撃力を更新
         ExpText.text = Player.Exp.ToString(); // 経験値を更新
-        FoodText.text = Player.Food.ToString(); // 満腹度を更新
+        FoodText.text = Player.FoodValue.CurrentValue.ToString(); // 満腹度を更新
         WeaponText.text = Player.CurrentWeapon != null ? Player.CurrentWeapon.ToString() : ""; // 装備している武器を更新
         FloorText.text = Player.Floor.ToString(); // 現在のフロアレベルを更新
     }
