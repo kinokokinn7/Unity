@@ -30,6 +30,7 @@ class Player : MapObjectBase
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
         playerUI.Set(this);
 
+        StartCoroutine(FadeController.Instance.FadeIn());
         StartCoroutine(CameraMove());
         StartCoroutine(ActionCoroutine());
 
@@ -222,7 +223,8 @@ class Player : MapObjectBase
     private IEnumerator Goal()
     {
         this.CanMove = false;
-        yield return new WaitForSeconds(1.0f);  // ゴール時にウェイトを入れる
+        yield return StartCoroutine(FadeController.Instance.FadeOut());
+        // yield return new WaitForSeconds(1.0f);  // ゴール時にウェイトを入れる
 
         // マップを新規生成
         var mapSceneManager = UnityEngine.Object.FindObjectOfType<MapSceneManager>();
