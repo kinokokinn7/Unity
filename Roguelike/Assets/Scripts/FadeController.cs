@@ -48,7 +48,6 @@ public class FadeController : MonoBehaviour
 
         while (elapsedTime < this.fadeDuration)
         {
-            Debug.Log($"[FadeIn] elapsedTime: {elapsedTime}, fadeDuration: {fadeDuration}, color.a: {color.a}");
             elapsedTime += Time.deltaTime;
             color.a = 1f - (elapsedTime / this.fadeDuration);
             fadeImage.color = color;
@@ -66,7 +65,6 @@ public class FadeController : MonoBehaviour
 
         while (elapsedTime < this.fadeDuration)
         {
-            Debug.Log($"[FadeOut] elapsedTime: {elapsedTime}, fadeDuration: {fadeDuration}, color.a: {color.a}");
             elapsedTime += Time.deltaTime;
             color.a = elapsedTime / this.fadeDuration;
             fadeImage.color = color;
