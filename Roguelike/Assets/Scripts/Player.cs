@@ -95,7 +95,9 @@ class Player : MapObjectBase
 
     public Action NowAction { get; private set; } = Action.None;
     public bool DoWaitEvent { get; set; } = false;
-    
+
+    public bool CanMove { get; private set; } = true;
+
     /// <summary>
     /// プレイヤーのアクションをコルーチンで管理します。入力待ち、アクションの実行、食糧の更新、可視マスの更新、イベントの確認を行います。
     /// </summary>
@@ -105,6 +107,9 @@ class Player : MapObjectBase
         {
             StartCoroutine(WaitInput());
             yield return new WaitWhile(() => NowAction == Action.None);
+
+            // プレイヤーが移動不可能な場合は移動処理を行わない
+            if (!this.CanMove) continue;
 
             switch (NowAction)
             {
@@ -216,6 +221,7 @@ class Player : MapObjectBase
     /// </summary>
     private IEnumerator Goal()
     {
+        this.CanMove = false;
         yield return new WaitForSeconds(1.0f);  // ゴール時にウェイトを入れる
 
         // マップを新規生成
@@ -257,6 +263,8 @@ class Player : MapObjectBase
         saveData.MapData = Map.MapData;
         saveData.Floor = Floor;
         saveData.Save();
+
+        this.CanMove = true;
     }
 
     [Range(0, 100)] public float CameraDistance;
