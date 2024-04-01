@@ -19,7 +19,7 @@ class Player : MapObjectBase
     /// </summary>
     MessageWindow MessageWindow
     {
-        get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Find());
+        get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Instance);
     }
 
     /// <summary>
@@ -29,6 +29,8 @@ class Player : MapObjectBase
     {
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
         playerUI.Set(this);
+
+        MessageWindow.Hide(0);
 
         StartCoroutine(FadeController.Instance.FadeIn());
         StartCoroutine(CameraMove());
@@ -224,7 +226,6 @@ class Player : MapObjectBase
     {
         this.CanMove = false;
         yield return StartCoroutine(FadeController.Instance.FadeOut());
-        // yield return new WaitForSeconds(1.0f);  // ゴール時にウェイトを入れる
 
         // マップを新規生成
         var mapSceneManager = UnityEngine.Object.FindObjectOfType<MapSceneManager>();

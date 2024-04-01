@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 class Enemy : MapObjectBase
 {
-    
+
     MessageWindow _messageWindow;
 
     /// <summary>
@@ -17,7 +17,7 @@ class Enemy : MapObjectBase
     /// </summary>
     MessageWindow MessageWindow
     {
-        get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Find());
+        get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Instance);
     }
 
     /// <summary>

@@ -411,7 +411,7 @@ MonoBehaviour:
     MapChar: 80
     IsRoad: 0
     IsCharacter: 1
-  - Prefab: {fileID: 6873033752122836788, guid: 7d3a6e3acfb064f428a04b4c077a5dfe, type: 3}
+  - Prefab: {fileID: 1625221395402176, guid: c9951ca0f61167b4593ffe21b0a089c8, type: 3}
     Type: 4
     MapChar: 69
     IsRoad: 0
@@ -2537,7 +2537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1996804590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2634,6 +2634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MessagePrefab: {fileID: 7996937494941433843, guid: 2530be0369d0d48a2b760848fb2d22cd, type: 3}
   MessageLimit: 4
+  WindowDisplayTime: 5
 --- !u!1 &2116869531
 GameObject:
   m_ObjectHideFlags: 0
