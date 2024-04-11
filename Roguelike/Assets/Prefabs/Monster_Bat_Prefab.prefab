@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 4085869397129016}
   - component: {fileID: 111413649560378406}
   - component: {fileID: -4653739450908751657}
+  - component: {fileID: 7336948355369961106}
   m_Layer: 0
   m_Name: Monster_Bat_Prefab
   m_TagString: Untagged
@@ -228,6 +229,20 @@ MonoBehaviour:
       111
 
       111'
+--- !u!114 &7336948355369961106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625221395402176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83be6d6bf51fe43f292f2e30358e939c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamagePopupPrefab: {fileID: 8673427110221622679, guid: cb01ed2bc0290417981262f1ef0cc93b, type: 3}
+  duration: 1
 --- !u!1 &1809875507653856
 GameObject:
   m_ObjectHideFlags: 0

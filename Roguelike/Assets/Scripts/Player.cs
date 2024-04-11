@@ -315,7 +315,7 @@ class Player : MapObjectBase
     {
         this.MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack.GetCurrentValue()}のダメージ！");
         other.Hp.decreaseCurrentValue(Attack.GetCurrentValue());
-        other.Damaged(Attack.GetCurrentValue());  // 現段階ではEnemy.csでDamagedをオーバーライドしていないので何もしない
+        other.Damaged(Attack.GetCurrentValue());
 
         if (other.Hp.isZero())
         {

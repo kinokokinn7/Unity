@@ -151,8 +151,9 @@ class MapObjectBase : MonoBehaviour
     /// <returns>攻撃によって対象を倒した場合はtrue、倒せなかった場合はfalse。</returns>
     public virtual bool AttackTo(MapObjectBase other)
     {
-        other.Hp.decreaseCurrentValue(Attack.GetCurrentValue());
-        other.Damaged(Attack.GetCurrentValue());
+        int damageAmount = Attack.GetCurrentValue();
+        other.Hp.decreaseCurrentValue(damageAmount);
+        other.Damaged(damageAmount);
         if (other.Hp.isZero())
         {
             other.Dead();
@@ -170,6 +171,8 @@ class MapObjectBase : MonoBehaviour
     /// <param name="damage">受けたダメージ量。</param>
     public virtual void Damaged(int damage)
     {
+        DamagePopup damagePopup = GetComponent<DamagePopup>();
+        damagePopup.ShowDamage(damage);
     }
 
     /// <summary>
