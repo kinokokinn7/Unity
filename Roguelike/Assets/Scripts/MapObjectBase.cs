@@ -172,7 +172,7 @@ class MapObjectBase : MonoBehaviour
     public virtual void Damaged(int damage)
     {
         DamagePopup damagePopup = GetComponent<DamagePopup>();
-        damagePopup.ShowDamage(damage);
+        damagePopup.ShowDamage(damage, transform.position);
     }
 
     /// <summary>
