@@ -77,8 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83be6d6bf51fe43f292f2e30358e939c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamagePopupPrefab: {fileID: 8673427110221622679, guid: cb01ed2bc0290417981262f1ef0cc93b, type: 3}
-  duration: 100
+  DamagePopupPrefab: {fileID: 8381832865001718060, guid: 8a0db1edb039f4165a7441e57e4f9b9f, type: 3}
+  duration: 1
 --- !u!1 &4237930585441683923
 GameObject:
   m_ObjectHideFlags: 0

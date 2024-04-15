@@ -216,8 +216,8 @@ MonoBehaviour:
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
-    currentValue: 5
-    maxValue: 5
+    currentValue: 6
+    maxValue: 6
   Attack:
     currentValue: 2
   CurrentGroup: 1
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83be6d6bf51fe43f292f2e30358e939c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamagePopupPrefab: {fileID: 8673427110221622679, guid: cb01ed2bc0290417981262f1ef0cc93b, type: 3}
+  DamagePopupPrefab: {fileID: 8381832865001718060, guid: 8a0db1edb039f4165a7441e57e4f9b9f, type: 3}
   duration: 1
 --- !u!1 &1809875507653856
 GameObject:
