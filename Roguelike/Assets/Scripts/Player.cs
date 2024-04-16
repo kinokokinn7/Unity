@@ -313,6 +313,9 @@ class Player : MapObjectBase
     /// <returns></returns>
     public override bool AttackTo(MapObjectBase other)
     {
+        // 敵がすでに戦闘不能の場合は攻撃を無効にする
+        if (other.IsDead) return true;
+
         this.MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack.GetCurrentValue()}のダメージ！");
         other.Hp.decreaseCurrentValue(Attack.GetCurrentValue());
         other.Damaged(Attack.GetCurrentValue());
@@ -429,7 +432,7 @@ class Player : MapObjectBase
             case Treasure.Type.Weapon:
                 // 装備中の武器の攻撃力に足し合わせるようにしている
                 MessageWindow.AppendMessage($"  新しい武器を手に入れた！ " +
-                                            $"ATK +{treasure.CurrentWeapon.Attack}");
+                                            $"ATK +{treasure.CurrentWeapon.Attack.GetCurrentValue()}");
                 var newWeapon = treasure.CurrentWeapon.Merge(this.CurrentWeapon);
                 CurrentWeapon = newWeapon;
                 break;

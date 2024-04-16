@@ -52,6 +52,11 @@ class MapObjectBase : MonoBehaviour
     }
 
     /// <summary>
+    /// 死亡しているか否かを表すフラグ。
+    /// </summary>
+    public bool IsDead { get; protected set; } = false;
+
+    /// <summary>
     /// オブジェクトの位置と向きを設定します。
     /// </summary>
     /// <param name="pos">新しい位置。</param>
@@ -121,12 +126,7 @@ class MapObjectBase : MonoBehaviour
         var otherObject = mass.ExistObject.GetComponent<MapObjectBase>();
         if (IsAttackableObject(this, otherObject))
         {
-            if (AttackTo(otherObject))
-            {
-                // 攻撃の結果相手を倒したらそのマスに移動する
-                StartCoroutine(MoveCoroutine(movedPos));
-                return;
-            }
+            AttackTo(otherObject);
         }
 
         StartCoroutine(NotMoveCoroutine(movedPos));

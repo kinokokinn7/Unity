@@ -19,6 +19,16 @@ public class DamagePopup : MonoBehaviour
     /// </summary>
     public int duration = 1;
 
+    /// <summary>
+    /// 跳ねる高さ。
+    /// </summary>
+    public float amplitude = 1f;
+
+    /// <summary>
+    /// 跳ねる速さ
+    /// </summary>
+    public float frequency = 2f;
+
     public void ShowDamage(int damageAmount, Vector3 worldPosition)
     {
         Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
@@ -75,9 +85,6 @@ public class DamagePopup : MonoBehaviour
         while (Time.time - startTime < duration)
         {
             // 時間経過とともにポップアップを跳ねさせる
-            const float amplitude = 1f; // 跳ねる高さ
-            const float frequency = 2f; // 跳ねる速さ
-
             // 現在の時間と開始時間の差分
             float timeSinceStart = (Time.time - startTime) / duration;
             // sin関数を使って跳ねる動きを計算

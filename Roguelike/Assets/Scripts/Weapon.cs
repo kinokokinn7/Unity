@@ -43,7 +43,7 @@ class Weapon : ScriptableObject
         var newWeapon = ScriptableObject.CreateInstance<Weapon>();
         newWeapon.Name = Name; // 新しい武器の名前は元の武器の名前を引き継ぎます
 
-        newWeapon.Attack.SetCurrentValue(this.Attack.GetCurrentValue() 
+        newWeapon.Attack.SetCurrentValue(this.Attack.GetCurrentValue()
                                          + (other != null ? other.Attack.GetCurrentValue() : 0)); // 両方の武器の攻撃力を合算
         return newWeapon;
     }
@@ -54,6 +54,6 @@ class Weapon : ScriptableObject
     /// <returns>武器の名前と攻撃力を含む文字列。</returns>
     public override string ToString()
     {
-        return $"{Name} Atk+{Attack}";
+        return $"{Name} Atk+{Attack.GetCurrentValue()}";
     }
 }
