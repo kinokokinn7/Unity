@@ -78,7 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamagePopupPrefab: {fileID: 8381832865001718060, guid: 8a0db1edb039f4165a7441e57e4f9b9f, type: 3}
-  duration: 1
+  duration: 0.8
+  amplitude: 1
+  frequency: 2
 --- !u!1 &4237930585441683923
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class DamagePopup : MonoBehaviour
     /// <summary>
     /// ダメージ値の表示時間。
     /// </summary>
-    public int duration = 1;
+    public float duration = 0.8f;
 
     /// <summary>
     /// 跳ねる高さ。
@@ -29,7 +29,7 @@ public class DamagePopup : MonoBehaviour
     /// </summary>
     public float frequency = 2f;
 
-    public void ShowDamage(int damageAmount, Vector3 worldPosition)
+    public void ShowDamage(int damageAmount, Vector3 worldPosition, Color color)
     {
         Canvas canvas = GameObject.Find("PopupCanvas").GetComponent<Canvas>();
         if (canvas != null)
@@ -67,6 +67,9 @@ public class DamagePopup : MonoBehaviour
             // ポップアップを少し上に移動させる
             textMesh.transform.localPosition += new Vector3(0, 100f, 0);
 
+            // ポップアップの色を設定
+            textMesh.color = color;
+
             // アニメーションやフェードアウトのためのコルーチンを開始
             StartCoroutine(AnimatePopup(popup));
 
@@ -96,12 +99,6 @@ public class DamagePopup : MonoBehaviour
                 textMesh.transform.localPosition.y + sinWave,
                 textMesh.transform.localPosition.z
             );
-
-            // ポップアップを徐々にフェードアウトさせる
-            Color textColor = textMesh.color;
-            textColor.a = Mathf.Lerp(1, 0, (Time.time - startTime) / duration);
-            textMesh.color = textColor;
-
             yield return null;
         }
 

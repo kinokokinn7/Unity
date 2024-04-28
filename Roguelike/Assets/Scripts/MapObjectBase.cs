@@ -171,8 +171,10 @@ class MapObjectBase : MonoBehaviour
     /// <param name="damage">受けたダメージ量。</param>
     public virtual void Damaged(int damage)
     {
+        // ダメージ値をポップアップ表示する
         DamagePopup damagePopup = GetComponent<DamagePopup>();
-        damagePopup.ShowDamage(damage, transform.position);
+        damagePopup.ShowDamage(damage, transform.position, Color.white);
+
     }
 
     /// <summary>
