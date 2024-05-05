@@ -6,24 +6,16 @@ using UnityEngine.UI;
 /// <summary>
 /// ゲーム内のメッセージウィンドウを管理するクラスです。新しいメッセージの追加や、メッセージの表示数を制限する機能を提供します。
 /// </summary>
-public class MessageWindow : MonoBehaviour
+public class MessageWindow : WindowBase
 {
+    [SerializeField] protected int WindowDisplayTime = 5;   // メッセージが追加されてからウィンドウを非表示にするまでの時間(sec)
+
     private static MessageWindow instance;  // シングルトンインスタンス
-
-    public Text MessagePrefab; // メッセージを表示するためのプレハブ
-    [Range(1, 15)]
-    public int MessageLimit = 5; // 一度に表示可能なメッセージの最大数
-    [Range(1, 10)]
-    public int WindowDisplayTime = 5;   // メッセージが追加されてからウィンドウを非表示にするまでの時間(sec)
-
-    Transform Root; // メッセージを格納する親トランスフォーム
-
-    private Coroutine hideCoroutine;    // 進行中の非表示コルーチン
 
     /// <summary>
     /// シングルトンインスタンスにアクセスするためのプロパティ。
     /// </summary>
-    public static MessageWindow Instance
+    public static new MessageWindow Instance
     {
         get { return instance; }
     }
@@ -51,7 +43,7 @@ public class MessageWindow : MonoBehaviour
     /// 新しいメッセージをウィンドウに追加します。表示可能行数を超えたメッセージは古い順に削除されます。
     /// </summary>
     /// <param name="message">ウィンドウに表示する新しいメッセージ。</param>
-    public void AppendMessage(string message)
+    public override void AppendMessage(string message)
     {
         // ウィンドウを表示する
         this.gameObject.SetActive(true);
@@ -74,7 +66,7 @@ public class MessageWindow : MonoBehaviour
 
     }
 
-    public void Hide(int delayTime)
+    public override void Hide(int delayTime)
     {
         // ウィンドウがすでに非アクティブの場合は何もしないで処理終了
         if (!this.isActiveAndEnabled) return;
@@ -105,17 +97,5 @@ public class MessageWindow : MonoBehaviour
 
         // ウィンドウの全テキストをクリアする
         Clear();
-    }
-
-    /// <summary>
-    /// 既存のメッセージを全てクリアします。
-    /// </summary>
-    public void Clear()
-    {
-        Root = transform.Find("Root");
-        foreach (Transform child in Root)
-        {
-            Object.Destroy(child.gameObject);
-        }
     }
 }
