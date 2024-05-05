@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using Roguelike.Window;
 
 class Player : MapObjectBase
 {
@@ -12,25 +13,26 @@ class Player : MapObjectBase
 
     [Range(1, 10)] public int VisibleRange = 5; // 周りのマスが見える範囲
 
-    MessageWindow _messageWindow;
+    Window_Message _messageWindow;
 
     /// <summary>
     /// メッセージウィンドウインスタンスを取得または生成します。
     /// </summary>
-    MessageWindow MessageWindow
+    Window_Message MessageWindow
     {
-        get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Instance);
+        get => _messageWindow != null ? _messageWindow : (_messageWindow = Window_Message.Instance);
     }
 
     /// <summary>
     /// オブジェクトの初期化時に一度だけ呼ばれます。プレイヤーUIの設定、カメラの移動、アクションの開始、マスの可視性更新を行います。
     /// </summary>
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
         playerUI.Set(this);
 
-        MessageWindow.Hide(0);
+        MessageWindow.Hide();
 
         StartCoroutine(FadeController.Instance.FadeIn());
         StartCoroutine(CameraMove());
@@ -294,12 +296,12 @@ class Player : MapObjectBase
     /// </summary>
     public override void Dead()
     {
+        base.Dead();
+
         this.CanMove = false;
 
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
         playerUI.HpText.text = "0";
-
-        base.Dead();
 
         var mapManager = UnityEngine.Object.FindObjectOfType<MapSceneManager>();
         mapManager.GameOver.SetActive(true);

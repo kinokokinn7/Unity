@@ -75,7 +75,7 @@ class MapObjectBase : MonoBehaviour
         get => this.Hp.isZero();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         this.skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         if (skinnedMeshRenderer == null) return;
@@ -214,8 +214,8 @@ class MapObjectBase : MonoBehaviour
     }
 
     /// <summary>
-    /// 敵が死亡した際の処理を行います。オブジェクトの破棄などの処理を実装します。
-    /// NOTE: 敵のダメージ値表示が完了するまで一定時間ウェイトを行い、その後Destroyします。
+    /// 死亡した際の処理を行います。オブジェクトの破棄などの処理を実装します。
+    /// NOTE: ダメージ値表示が完了するまで一定時間ウェイトを行い、その後Destroyします。
     /// </summary>
     public virtual void Dead()
     {

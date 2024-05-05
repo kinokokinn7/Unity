@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Roguelike.Window;
 using UnityEngine;
 
 /// <summary>
@@ -10,14 +11,14 @@ using UnityEngine;
 class Enemy : MapObjectBase
 {
 
-    MessageWindow _messageWindow;
+    Window_Message _messageWindow;
 
     /// <summary>
     /// メッセージウィンドウインスタンスを取得または生成します。
     /// </summary>
-    MessageWindow MessageWindow
+    Window_Message MessageWindow
     {
-        get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Instance);
+        get => _messageWindow != null ? _messageWindow : (_messageWindow = Window_Message.Instance);
     }
 
     /// <summary>
