@@ -20,7 +20,7 @@ public class Atk
     public Atk()
     {
     }
-    
+
     /// <summary>
     /// コンストラクタ。
     /// </summary>
@@ -52,7 +52,7 @@ public class Atk
     /// 攻撃力の値を指定分だけ増加します。
     /// </summary>
     /// <param name="increasedValue">攻撃力の増加量。</param>/
-    public void IncreaseAtk(int increasedValue)
+    public void IncreaseCurrentValue(int increasedValue)
     {
         this.currentValue += increasedValue;
     }

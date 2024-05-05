@@ -121,14 +121,13 @@ class Player : MapObjectBase
                 case Action.MoveRight:
                 case Action.MoveLeft:
                     Move(ToDirection(NowAction));
-                    yield return new WaitWhile(() => IsNowMoving);
+                    yield return new WaitWhile(() => IsNowMoving || IsNowAttacking);
                     break;
             }
             UpdateFood();
             NowAction = Action.None;
 
             UpdateVisibleMass();
-
             CheckEvent();
             yield return new WaitWhile(() => DoWaitEvent);
         }
@@ -295,6 +294,8 @@ class Player : MapObjectBase
     /// </summary>
     public override void Dead()
     {
+        this.CanMove = false;
+
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
         playerUI.HpText.text = "0";
 
@@ -311,34 +312,32 @@ class Player : MapObjectBase
     /// プレイヤーが攻撃する際の処理を行います。ダメージの計算と敵の死亡判定を含みます。
     /// </summary>
     /// <param name="other">敵キャラ</param>
-    /// <returns></returns>
-    public override bool AttackTo(MapObjectBase other)
+    public override IEnumerator AttackTo(MapObjectBase other)
     {
-        // 敵がすでに戦闘不能の場合は攻撃を無効にする
-        if (other.IsDead) return true;
+        // 相手がすでに戦闘不能の場合は攻撃を無効にする
+        if (other.IsDead) yield break;
 
         this.MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack.GetCurrentValue()}のダメージ！");
         other.Hp.decreaseCurrentValue(Attack.GetCurrentValue());
         other.Damaged(Attack.GetCurrentValue());
 
-        if (other.Hp.isZero())
+        // 一定時間待機
+        yield return new WaitForSeconds(0.5f);
+
+        if (other.IsDead)
         {
-            MessageWindow.AppendMessage($"敵を倒した！ {other.Exp}ポイントの経験値を手に入れた！");
-            other.Dead();
+            MessageWindow.AppendMessage($"敵を倒した！ {other.Exp.GetCurrentValue()}ポイントの経験値を手に入れた！");
             // 攻撃の結果、敵を倒したら、その敵のExp分自身のExpを上げる
-            Exp += other.Exp;
+            Exp.IncreaseCurrentValue(other.Exp.GetCurrentValue());
 
             // レベルアップ処理
-            if (Exp >= 10)
+            if (Exp.GetCurrentValue() >= 10)
             {
                 LevelUp();
             }
-            return true;
         }
-        else
-        {
-            return false;
-        }
+
+        this.attackCoroutine = null;
     }
 
     /// <summary>
@@ -392,8 +391,8 @@ class Player : MapObjectBase
     {
         Level += 1;
         Hp.IncreaseMaxHp(5);
-        Attack.IncreaseAtk(1);
-        Exp = 0;
+        Attack.IncreaseCurrentValue(1);
+        Exp.Reset();
 
         MessageWindow.AppendMessage($"プレイヤーのレベルが{Level}に上がった！");
         MessageWindow.AppendMessage($"  HP +5  Atk + 1");

@@ -19,7 +19,7 @@ class Weapon : ScriptableObject
     /// <param name="obj">装備するマップオブジェクト。</param>
     public void Attach(MapObjectBase obj)
     {
-        obj.Attack.IncreaseAtk(Attack.GetCurrentValue());
+        obj.Attack.IncreaseCurrentValue(Attack.GetCurrentValue());
     }
 
     /// <summary>

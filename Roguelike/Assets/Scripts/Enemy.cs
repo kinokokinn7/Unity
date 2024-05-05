@@ -20,19 +20,6 @@ class Enemy : MapObjectBase
         get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Instance);
     }
 
-    private SkinnedMeshRenderer skinnedMeshRenderer;
-    private Material material;
-
-    private float fadeDuration = 1f;
-
-    private void Start()
-    {
-        this.skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        if (skinnedMeshRenderer == null) return;
-
-        this.material = skinnedMeshRenderer.material;
-    }
-
     /// <summary>
     /// 敵の移動を開始します。プレイヤーを追跡するか、ランダムに移動します。
     /// </summary>
@@ -189,42 +176,9 @@ class Enemy : MapObjectBase
     /// 敵がプレイヤーに攻撃する際の処理を行います。ダメージの計算とプレイヤーの死亡判定を含みます。
     /// </summary>
     /// <param name="other">プレイヤー。</param>
-    /// <returns>プレイヤーが死亡した場合はtrue。そうでない場合はfalse。</returns>
-    public override bool AttackTo(MapObjectBase other)
+    public override IEnumerator AttackTo(MapObjectBase other)
     {
         MessageWindow.AppendMessage($"敵のこうげき！　プレイヤーに{Attack.GetCurrentValue()}のダメージ！");
-        return base.AttackTo(other);
-    }
-
-    /// <summary>
-    /// 敵が死亡した際の処理を行います。オブジェクトの破棄などの処理を実装します。
-    /// NOTE: 敵のダメージ値表示が完了するまで一定時間ウェイトを行い、その後Destroyします。
-    /// </summary>
-    public override void Dead()
-    {
-        this.IsDead = true;
-        StartCoroutine(AnimateDefeated());
-    }
-
-    /// <summary>
-    /// 死亡時にフェードアウトの演出を行います。
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator AnimateDefeated()
-    {
-        float elapsedTime = 0;
-        Color originalColor = material.color;
-
-        while (elapsedTime < this.fadeDuration)
-        {
-            float rate = Mathf.Lerp(1f, 0f, elapsedTime / this.fadeDuration);
-            Color newColor = new Color(originalColor.r * rate, originalColor.g * rate, originalColor.b * rate, 1f);
-            material.SetColor("_Color", newColor);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        material.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
-        UnityEngine.Object.Destroy(gameObject);
+        yield return base.AttackTo(other);
     }
 }

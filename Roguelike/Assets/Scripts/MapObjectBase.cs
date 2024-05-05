@@ -9,7 +9,7 @@ using System.Linq;
 class MapObjectBase : MonoBehaviour
 {
     [Range(0, 100)] public float MoveSecond = 0.1f; // 移動にかかる時間
-    public int Exp = 0; // 経験値
+    public Exp Exp; // 経験値
 
     public bool IsNowMoving { get; private set; } = false; // 現在移動中かどうか
     public Vector2Int Pos; // 現在の位置
@@ -51,10 +51,37 @@ class MapObjectBase : MonoBehaviour
         }
     }
 
+
+    protected SkinnedMeshRenderer skinnedMeshRenderer;
+    protected Material material;
+
+    protected float fadeDuration = 1f;
+
+    /// <summary>
+    /// 攻撃処理のコルーチン。
+    /// </summary>
+    protected Coroutine attackCoroutine;
+
+    /// <summary>
+    /// 攻撃中の場合は `true` を返すフラグ。
+    /// </summary>
+    public bool IsNowAttacking { get => this.attackCoroutine != null; }
+
     /// <summary>
     /// 死亡しているか否かを表すフラグ。
     /// </summary>
-    public bool IsDead { get; protected set; } = false;
+    public bool IsDead
+    {
+        get => this.Hp.isZero();
+    }
+
+    private void Start()
+    {
+        this.skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        if (skinnedMeshRenderer == null) return;
+
+        this.material = skinnedMeshRenderer.material;
+    }
 
     /// <summary>
     /// オブジェクトの位置と向きを設定します。
@@ -116,7 +143,8 @@ class MapObjectBase : MonoBehaviour
     }
 
     /// <summary>
-    /// マスに既に存在するオブジェクトに対してアクションを実行します。攻撃可能なオブジェクトが存在する場合は攻撃し、移動します。
+    /// マスに既に存在するオブジェクトに対してアクションを実行します。
+    /// 攻撃可能なオブジェクトが存在する場合は攻撃し、移動します。
     /// 攻撃が不可能な場合、または攻撃しても相手を倒せなかった場合は、移動せずに現在位置に留まります。
     /// </summary>
     /// <param name="mass">対象のマス。</param>
@@ -126,7 +154,7 @@ class MapObjectBase : MonoBehaviour
         var otherObject = mass.ExistObject.GetComponent<MapObjectBase>();
         if (IsAttackableObject(this, otherObject))
         {
-            AttackTo(otherObject);
+            this.attackCoroutine = StartCoroutine(AttackTo(otherObject));
         }
 
         StartCoroutine(NotMoveCoroutine(movedPos));
@@ -148,21 +176,23 @@ class MapObjectBase : MonoBehaviour
     /// 他のマップオブジェクトに対して攻撃を行います。
     /// </summary>
     /// <param name="other">攻撃対象のオブジェクト。</param>
-    /// <returns>攻撃によって対象を倒した場合はtrue、倒せなかった場合はfalse。</returns>
-    public virtual bool AttackTo(MapObjectBase other)
+    public virtual IEnumerator AttackTo(MapObjectBase other)
     {
+        // 相手がすでに戦闘不能の場合は攻撃を無効にする
+        if (other.IsDead) yield break;
+
         int damageAmount = Attack.GetCurrentValue();
         other.Hp.decreaseCurrentValue(damageAmount);
         other.Damaged(damageAmount);
         if (other.Hp.isZero())
         {
             other.Dead();
-            return true;
         }
-        else
-        {
-            return false;
-        }
+
+        // 一定時間待機
+        yield return new WaitForSeconds(0.5f);
+
+        this.attackCoroutine = null;
     }
 
     /// <summary>
@@ -175,14 +205,21 @@ class MapObjectBase : MonoBehaviour
         DamagePopup damagePopup = GetComponent<DamagePopup>();
         damagePopup.ShowDamage(damage, transform.position, Color.white);
 
+        // HPが0になったら死亡処理を行う
+        if (this.Hp.isZero())
+        {
+            Dead();
+        }
+
     }
 
     /// <summary>
-    /// オブジェクトが死亡した際の処理を行います。オブジェクトの破棄などの処理を実装します。
+    /// 敵が死亡した際の処理を行います。オブジェクトの破棄などの処理を実装します。
+    /// NOTE: 敵のダメージ値表示が完了するまで一定時間ウェイトを行い、その後Destroyします。
     /// </summary>
     public virtual void Dead()
     {
-        Object.Destroy(gameObject);
+        StartCoroutine(AnimateDefeated());
     }
 
     /// <summary>
@@ -314,6 +351,26 @@ class MapObjectBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 死亡時にフェードアウトの演出を行います。
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator AnimateDefeated()
+    {
+        float elapsedTime = 0;
+        Color originalColor = material.color;
 
+        while (elapsedTime < this.fadeDuration)
+        {
+            float rate = Mathf.Lerp(1f, 0f, elapsedTime / this.fadeDuration);
+            Color newColor = new Color(originalColor.r * rate, originalColor.g * rate, originalColor.b * rate, 1f);
+            material.SetColor("_Color", newColor);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        material.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
+        UnityEngine.Object.Destroy(gameObject);
+    }
 
 }

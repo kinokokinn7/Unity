@@ -212,7 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSecond: 0.1
-  Exp: 0
+  Exp:
+    currentValue: 3
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
