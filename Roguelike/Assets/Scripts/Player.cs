@@ -13,14 +13,14 @@ class Player : MapObjectBase
 
     [Range(1, 10)] public int VisibleRange = 5; // 周りのマスが見える範囲
 
-    Window_Message _messageWindow;
+    MessageWindow _messageWindow;
 
     /// <summary>
     /// メッセージウィンドウインスタンスを取得または生成します。
     /// </summary>
-    Window_Message MessageWindow
+    MessageWindow MessageWindow
     {
-        get => _messageWindow != null ? _messageWindow : (_messageWindow = Window_Message.Instance);
+        get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Instance);
     }
 
     /// <summary>

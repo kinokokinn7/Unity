@@ -8,9 +8,10 @@ namespace Roguelike.Window
 {
 
     /// <summary>
-    /// ゲーム内のメッセージウィンドウを管理するクラスです。新しいメッセージの追加や、メッセージの表示数を制限する機能を提供します。
+    /// ゲーム内のメッセージウィンドウを管理するクラスです。
+    /// 新しいメッセージの追加や、メッセージの表示数を制限する機能を提供します。
     /// </summary>
-    public class Window_Message : Window_Base
+    public class MessageWindow : WindowBase
     {
         [Range(1, 15)]
         [SerializeField] protected int MessageLimit = 5; // 一度に表示可能なメッセージの最大数
@@ -27,12 +28,12 @@ namespace Roguelike.Window
         /// </summary>
         protected Coroutine hideCoroutine;
 
-        private static Window_Message instance;  // シングルトンインスタンス
+        private static MessageWindow instance;  // シングルトンインスタンス
 
         /// <summary>
         /// シングルトンインスタンスにアクセスするためのプロパティ。
         /// </summary>
-        public static Window_Message Instance
+        public static MessageWindow Instance
         {
             get { return instance; }
         }
@@ -41,11 +42,6 @@ namespace Roguelike.Window
         /// オブジェクトが生成された際に呼び出されるメソッドです。既存のメッセージをクリアします。
         /// </summary>
         private void Awake()
-        {
-            Initialize();
-        }
-
-        protected override void Initialize()
         {
             if (instance != null && instance != this)
             {
@@ -57,7 +53,6 @@ namespace Roguelike.Window
                 // このインスタンスをシングルトンインスタンスとして設定
                 instance = this;
             }
-
             Clear();
         }
 
@@ -90,8 +85,6 @@ namespace Roguelike.Window
 
         public override void Hide()
         {
-            base.Hide();
-
             // ウィンドウがすでに非アクティブの場合は何もしないで処理終了
             if (!this.isActiveAndEnabled) return;
 
