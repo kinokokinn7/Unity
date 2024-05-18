@@ -101,7 +101,7 @@ class Player : MapObjectBase
     public Action NowAction { get; private set; } = Action.None;
     public bool DoWaitEvent { get; set; } = false;
 
-    public bool CanMove { get; private set; } = true;
+    public bool CanMove { get; set; } = true;
 
     /// <summary>
     /// プレイヤーのアクションをコルーチンで管理します。入力待ち、アクションの実行、食糧の更新、可視マスの更新、イベントの確認を行います。
