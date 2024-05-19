@@ -4,38 +4,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class MainMenuController : MonoBehaviour, IMenuController
+public class GameItemMenuController : MonoBehaviour, IMenuController
 {
     public UIDocument _document;
-    private VisualElement _mainMenu;
+    private VisualElement _itemMenu;
     private ListView _listView;
     private int _selectedIndex = 0;
 
     /// <summary>
     /// リストアイテム。
     /// </summary>
-    private readonly string[] _items = new string[] { "アイテム", "設定" };
-    private readonly Dictionary<string, ISelectedItem> _selectedItems = new Dictionary<string, ISelectedItem>();
-
-
-    void Start()
-    {
-        _selectedItems.Add("アイテム", new MainMenuSelectedItem_GameItem());
-        _selectedItems.Add("設定", new MainMenuSelectedItem_Settings());
-    }
+    private string[] _items = new string[] { "アイテム1", "アイテム2", "アイテム3", "アイテム4", "アイテム5", "アイテム6" };
 
     void OnEnable()
     {
         var root = _document.rootVisualElement;
 
         // メインメニューとリストビューの取得
-        _mainMenu = root.Q<VisualElement>("MainMenuWindow");
-        _listView = root.Q<ListView>("MainMenuList");
+        _itemMenu = root.Q<VisualElement>("GameItemMenuWindow");
+        _listView = root.Q<ListView>("GameItemMenuList");
 
-        if (_mainMenu != null)
+        if (_itemMenu != null)
         {
             // 初期状態で非表示
-            _mainMenu.style.display = DisplayStyle.None;
+            _itemMenu.style.display = DisplayStyle.None;
         }
 
         if (_listView != null)
@@ -59,18 +51,12 @@ public class MainMenuController : MonoBehaviour, IMenuController
 
     void Update()
     {
-        // メニューウィンドウがフォーカスされていない場合は何も処理をしない
-        if (_listView.) ;
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            ToggleMenu();
-        }
-        if (Input.GetKeyDown(KeyCode.Escape) && _mainMenu.style.display == DisplayStyle.Flex)
+        if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape)) && _itemMenu.style.display == DisplayStyle.Flex)
         {
             HideMenu();
         }
-        if (Input.GetKeyDown(KeyCode.Z) && _mainMenu.style.display == DisplayStyle.Flex)
+        if (Input.GetKeyDown(KeyCode.Z) && _itemMenu.style.display == DisplayStyle.Flex)
         {
             ExecuteSelection();
         }
@@ -84,50 +70,27 @@ public class MainMenuController : MonoBehaviour, IMenuController
         }
     }
 
-    public void ToggleMenu()
-    {
-        if (_mainMenu.style.display == DisplayStyle.None)
-        {
-            ShowMenu();
-        }
-        else
-        {
-            HideMenu();
-        }
-    }
-
     public void ShowMenu()
     {
-        _mainMenu.style.display = DisplayStyle.Flex;
+        _itemMenu.style.display = DisplayStyle.Flex;
         // 最初のアイテムを選択
         _listView.selectedIndex = 0;
         // リストビューにフォーカスを当てる
         _listView.Focus();
-
-        // メニュー表示時はプレイヤーの歩行を不可にする
-        var player = UnityEngine.Object.FindObjectOfType<Player>();
-        player.CanMove = false;
     }
 
     public void HideMenu()
     {
-        _mainMenu.style.display = DisplayStyle.None;
-
-        // メニュー非表示後プレイヤーの歩行を可能にする
-        var player = UnityEngine.Object.FindObjectOfType<Player>();
-        player.CanMove = true;
+        _itemMenu.style.display = DisplayStyle.None;
     }
 
-    /// <summary>
-    /// 選択した項目を実行します。
-    /// </summary>
     public void ExecuteSelection()
     {
         var selectedItem = _listView.selectedItem;
         if (selectedItem != null)
         {
-            Debug.Log($"{selectedItem}が実行されました。");
-            _selectedItems[selectedItem as string].OnItemSelected();
+            Debug.Log($"{selectedItem}が選択されました。");
+            // Todo: 選択されたアイテムに対する処理をここに追加
         }
     }
 
