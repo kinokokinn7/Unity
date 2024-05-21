@@ -10,11 +10,17 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     private VisualElement _itemMenu;
     private ListView _listView;
     private int _selectedIndex = 0;
+    private MainMenuController _mainMenuController;
 
     /// <summary>
     /// リストアイテム。
     /// </summary>
     private string[] _items = new string[] { "アイテム1", "アイテム2", "アイテム3", "アイテム4", "アイテム5", "アイテム6" };
+
+    void Start()
+    {
+        _mainMenuController = UnityEngine.Object.FindObjectOfType<MainMenuController>();
+    }
 
     void OnEnable()
     {
@@ -55,6 +61,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape)) && _itemMenu.style.display == DisplayStyle.Flex)
         {
             HideMenu();
+            _mainMenuController.Focus();
         }
         if (Input.GetKeyDown(KeyCode.Z) && _itemMenu.style.display == DisplayStyle.Flex)
         {

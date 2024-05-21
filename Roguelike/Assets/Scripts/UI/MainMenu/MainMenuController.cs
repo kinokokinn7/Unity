@@ -10,13 +10,13 @@ public class MainMenuController : MonoBehaviour, IMenuController
     private VisualElement _mainMenu;
     private ListView _listView;
     private int _selectedIndex = 0;
+    public bool Focused { get; private set; } = false;
 
     /// <summary>
     /// リストアイテム。
     /// </summary>
     private readonly string[] _items = new string[] { "アイテム", "設定" };
     private readonly Dictionary<string, ISelectedItem> _selectedItems = new Dictionary<string, ISelectedItem>();
-
 
     void Start()
     {
@@ -59,8 +59,9 @@ public class MainMenuController : MonoBehaviour, IMenuController
 
     void Update()
     {
-        // メニューウィンドウがフォーカスされていない場合は何も処理をしない
-        if (_listView.) ;
+        // メニューウィンドウが表示されていてかつフォーカスされていない場合は何も処理をしない
+        if (_mainMenu.style.display == DisplayStyle.Flex && !Focused)
+            return;
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -103,6 +104,7 @@ public class MainMenuController : MonoBehaviour, IMenuController
         _listView.selectedIndex = 0;
         // リストビューにフォーカスを当てる
         _listView.Focus();
+        Focused = true;
 
         // メニュー表示時はプレイヤーの歩行を不可にする
         var player = UnityEngine.Object.FindObjectOfType<Player>();
@@ -157,5 +159,17 @@ public class MainMenuController : MonoBehaviour, IMenuController
         }
     }
 
+    public void Focus()
+    {
+        // リストビューにフォーカスを当てる
+        _listView.Focus();
+        Focused = true;
+    }
 
+    public void Blur()
+    {
+        // リストビューにのフォーカスを外す
+        _listView.Blur();
+        Focused = false;
+    }
 }
