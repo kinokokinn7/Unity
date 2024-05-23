@@ -11,6 +11,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     private ListView _listView;
     private int _selectedIndex = 0;
     private MainMenuController _mainMenuController;
+    public bool Focused { get; private set; } = false;
+
 
     /// <summary>
     /// リストアイテム。
@@ -57,12 +59,17 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
 
     void Update()
     {
-
         if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape)) && _itemMenu.style.display == DisplayStyle.Flex)
         {
             HideMenu();
             _mainMenuController.Focus();
         }
+
+        if (_itemMenu.style.display == DisplayStyle.None)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Z) && _itemMenu.style.display == DisplayStyle.Flex)
         {
             ExecuteSelection();
@@ -81,14 +88,16 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     {
         _itemMenu.style.display = DisplayStyle.Flex;
         // 最初のアイテムを選択
-        _listView.selectedIndex = 0;
+        ResetIndex();
         // リストビューにフォーカスを当てる
         _listView.Focus();
+        Focused = true;
     }
 
     public void HideMenu()
     {
         _itemMenu.style.display = DisplayStyle.None;
+        Focused = false;
     }
 
     public void ExecuteSelection()
@@ -127,5 +136,25 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         }
     }
 
+    public void Focus()
+    {
+        // リストビューにフォーカスを当てる
+        _listView.Focus();
+        Focused = true;
+    }
+
+    public void Blur()
+    {
+        // リストビューにのフォーカスを外す
+        _listView.Blur();
+        Focused = false;
+    }
+
+    public void ResetIndex()
+    {
+        // 最初のアイテムを選択
+        _selectedIndex = 0;
+        _listView.selectedIndex = _selectedIndex;
+    }
 
 }

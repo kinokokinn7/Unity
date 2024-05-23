@@ -61,7 +61,9 @@ public class MainMenuController : MonoBehaviour, IMenuController
     {
         // メニューウィンドウが表示されていてかつフォーカスされていない場合は何も処理をしない
         if (_mainMenu.style.display == DisplayStyle.Flex && !Focused)
+        {
             return;
+        }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -71,6 +73,12 @@ public class MainMenuController : MonoBehaviour, IMenuController
         {
             HideMenu();
         }
+
+        if (_mainMenu.style.display == DisplayStyle.None)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Z) && _mainMenu.style.display == DisplayStyle.Flex)
         {
             ExecuteSelection();
@@ -114,6 +122,7 @@ public class MainMenuController : MonoBehaviour, IMenuController
     public void HideMenu()
     {
         _mainMenu.style.display = DisplayStyle.None;
+        Focused = false;
 
         // メニュー非表示後プレイヤーの歩行を可能にする
         var player = UnityEngine.Object.FindObjectOfType<Player>();
