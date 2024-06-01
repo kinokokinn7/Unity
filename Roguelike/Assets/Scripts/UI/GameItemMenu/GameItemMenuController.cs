@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Roguelike.Window;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,19 +14,31 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     private MainMenuController _mainMenuController;
     public bool Focused { get; private set; } = false;
 
+    /// <summary>
+    /// メニューが初めて表示されたことを示すフラグ。
+    /// </summary>
+    public ItemInventory ItemInventory;
+
+
+    private bool _isMenuJustShown = false;
 
     /// <summary>
     /// リストアイテム。
     /// </summary>
-    private string[] _items = new string[] { "アイテム1", "アイテム2", "アイテム3", "アイテム4", "アイテム5", "アイテム6" };
+    private List<Item> _items = new List<Item>();
 
     void Start()
     {
         _mainMenuController = UnityEngine.Object.FindObjectOfType<MainMenuController>();
+        ItemInventory = GetComponent<ItemInventory>();
     }
 
     void OnEnable()
     {
+        // 所持アイテム一覧を取得
+        _items = ItemInventory.Items;
+
+        // アイテムメニューウィンドウのUI Root を取得
         var root = _document.rootVisualElement;
 
         // メインメニューとリストビューの取得
@@ -42,7 +55,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         {
             // リストビューの設定
             _listView.makeItem = () => new Label();
-            _listView.bindItem = (element, i) => (element as Label).text = _items[i];
+            _listView.bindItem = (element, i) => (element as Label).text = _items[i].Name;
             _listView.itemsSource = _items;
             _listView.selectionType = SelectionType.Single;
 
@@ -70,6 +83,13 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             return;
         }
 
+        if (_isMenuJustShown == true)
+        {
+            // 初めて表示されたタイミングを過ぎたためフラグをリセット
+            _isMenuJustShown = false;
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Z) && _itemMenu.style.display == DisplayStyle.Flex)
         {
             ExecuteSelection();
@@ -92,12 +112,17 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         // リストビューにフォーカスを当てる
         _listView.Focus();
         Focused = true;
+        // メニューが初めて表示されたことを表すフラグをONにする
+        _isMenuJustShown = true;
     }
 
     public void HideMenu()
     {
         _itemMenu.style.display = DisplayStyle.None;
         Focused = false;
+
+        // メニューが隠されたので初回表示フラグをリセット
+        _isMenuJustShown = true;
     }
 
     public void ExecuteSelection()
@@ -107,6 +132,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         {
             Debug.Log($"{selectedItem}が選択されました。");
             // Todo: 選択されたアイテムに対する処理をここに追加
+            MessageWindow.Instance.AppendMessage($"{selectedItem}が選択されました。");
         }
     }
 
@@ -154,7 +180,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     {
         // 最初のアイテムを選択
         _selectedIndex = 0;
-        _listView.selectedIndex = _selectedIndex;
+        _listView.ClearSelection();
+        _listView.selectedIndex = 0;
     }
 
 }

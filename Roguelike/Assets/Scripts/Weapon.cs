@@ -8,9 +8,8 @@ using UnityEngine.Serialization;
 /// ゲーム内の武器を表すクラスです。マップオブジェクトに装備させることができ、武器によって攻撃力が変化します。
 /// </summary>
 [CreateAssetMenu(menuName = "Weapon")]
-class Weapon : ScriptableObject
+public class Weapon : Item
 {
-    public string Name { get; set; }
     public Atk Attack = new Atk();
 
     /// <summary>

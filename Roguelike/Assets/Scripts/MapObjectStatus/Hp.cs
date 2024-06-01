@@ -70,7 +70,7 @@ public class Hp
     /// HPを回復します。
     /// </summary>
     /// <param name="recoveryAmount">回復量。</param>
-    public void recover(int recoveryAmount)
+    public void Recover(int recoveryAmount)
     {
         this.currentValue = Mathf.Min(this.currentValue + recoveryAmount, this.maxValue);
     }
@@ -89,7 +89,7 @@ public class Hp
     /// HPの値を指定分だけ減らします。
     /// </summary>
     /// <param name="decreasedValue">HPの減少量。</param>/
-    public void decreaseCurrentValue(int decreasedValue)
+    public void DecreaseCurrentValue(int decreasedValue)
     {
         this.currentValue = Mathf.Max(this.currentValue - decreasedValue, 0);
     }
@@ -97,7 +97,7 @@ public class Hp
     /// <summary>
     /// HPが0か判定します。
     /// </summary>
-    public bool isZero()
+    public bool IsZero()
     {
         return this.currentValue == 0;
     }

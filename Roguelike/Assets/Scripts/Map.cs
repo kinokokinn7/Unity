@@ -6,7 +6,7 @@ using System.Linq;
 /// <summary>
 /// マップ上のマスの種類を表す列挙型です。
 /// </summary>
-enum MassType
+public enum MassType
 {
     Road,   // 通路
     Wall,   // 壁
@@ -24,7 +24,7 @@ enum MassType
 /// マップ上のマスのデータを保持するクラスです。
 /// </summary>
 [System.Serializable]
-class MassData
+public class MassData
 {
     public GameObject Prefab;
     public MassType Type;   // マスの種別
@@ -33,7 +33,7 @@ class MassData
     public bool IsCharacter;// プレイヤーかどうか？
 }
 
-enum Direction
+public enum Direction
 {
     North,  // 北
     South,  // 南
@@ -44,7 +44,7 @@ enum Direction
 /// <summary>
 /// マップを生成し、管理するクラスです。
 /// </summary>
-class Map : MonoBehaviour
+public class Map : MonoBehaviour
 {
     /// <summary>
     /// マップを構成するマスを表すクラスです。

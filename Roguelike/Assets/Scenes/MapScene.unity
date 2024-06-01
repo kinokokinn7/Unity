@@ -802,6 +802,7 @@ GameObject:
   - component: {fileID: 615601352}
   - component: {fileID: 615601354}
   - component: {fileID: 615601355}
+  - component: {fileID: 615601356}
   m_Layer: 5
   m_Name: ItemMenuRoot
   m_TagString: Untagged
@@ -858,6 +859,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _document: {fileID: 615601354}
+  ItemInventory: {fileID: 615601356}
+--- !u!114 &615601356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615601351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521250104a27a4aa993970e08a4dc0ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 11400000, guid: 526e8054ebe3f4a35b1956f0deadd076, type: 2}
+  - {fileID: 11400000, guid: daaaa716ec8a843b28b9ee42d7f98c4f, type: 2}
 --- !u!1 &649160156
 GameObject:
   m_ObjectHideFlags: 0

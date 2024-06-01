@@ -6,7 +6,7 @@ using System.Linq;
 /// <summary>
 /// マップ上のオブジェクトの基本クラスです。プレイヤーや敵など、マップ上に存在する全てのオブジェクトの共通機能を提供します。
 /// </summary>
-class MapObjectBase : MonoBehaviour
+public class MapObjectBase : MonoBehaviour
 {
     [Range(0, 100)] public float MoveSecond = 0.1f; // 移動にかかる時間
     public Exp Exp; // 経験値
@@ -72,7 +72,7 @@ class MapObjectBase : MonoBehaviour
     /// </summary>
     public bool IsDead
     {
-        get => this.Hp.isZero();
+        get => this.Hp.IsZero();
     }
 
     protected virtual void Start()
@@ -182,9 +182,9 @@ class MapObjectBase : MonoBehaviour
         if (other.IsDead) yield break;
 
         int damageAmount = Attack.GetCurrentValue();
-        other.Hp.decreaseCurrentValue(damageAmount);
+        other.Hp.DecreaseCurrentValue(damageAmount);
         other.Damaged(damageAmount);
-        if (other.Hp.isZero())
+        if (other.Hp.IsZero())
         {
             other.Dead();
         }
@@ -206,7 +206,7 @@ class MapObjectBase : MonoBehaviour
         damagePopup.ShowDamage(damage, transform.position, Color.white);
 
         // HPが0になったら死亡処理を行う
-        if (this.Hp.isZero())
+        if (this.Hp.IsZero())
         {
             Dead();
         }

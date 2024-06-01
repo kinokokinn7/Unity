@@ -144,10 +144,10 @@ class Player : MapObjectBase
         if (FoodValue.CurrentValue <= 0)
         {
             FoodValue.CurrentValue = 0;
-            Hp.decreaseCurrentValue(1);
+            Hp.DecreaseCurrentValue(1);
             MessageWindow.AppendMessage($"空腹で1ダメージ！");
             Damaged(1);
-            if (Hp.isZero())
+            if (Hp.IsZero())
             {
                 Dead();
             }
@@ -320,7 +320,7 @@ class Player : MapObjectBase
         if (other.IsDead) yield break;
 
         this.MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack.GetCurrentValue()}のダメージ！");
-        other.Hp.decreaseCurrentValue(Attack.GetCurrentValue());
+        other.Hp.DecreaseCurrentValue(Attack.GetCurrentValue());
         other.Damaged(Attack.GetCurrentValue());
 
         // 一定時間待機
@@ -438,10 +438,10 @@ class Player : MapObjectBase
         switch (trap.CurrentType)
         {
             case Trap.Type.LifeDown:
-                Hp.decreaseCurrentValue(trap.Value);
+                Hp.DecreaseCurrentValue(trap.Value);
                 MessageWindow.AppendMessage($"{trap.Value}のダメージを受けた！");
                 Damaged(trap.Value);
-                if (Hp.isZero())
+                if (Hp.IsZero())
                 {
                     Dead();
                 }
@@ -473,7 +473,7 @@ class Player : MapObjectBase
         switch (treasure.CurrentType)
         {
             case Treasure.Type.LifeUp:
-                Hp.recover(treasure.Value);
+                Hp.Recover(treasure.Value);
                 MessageWindow.AppendMessage($"  HPが回復した！ +{treasure.Value}");
                 HpRecovered(treasure.Value);
                 break;
