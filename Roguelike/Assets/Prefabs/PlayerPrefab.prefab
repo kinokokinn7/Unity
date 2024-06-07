@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62bb9d080c3904e36805d02307898a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: "\u30CB\u30FC\u30DE\u30ED"
   MoveSecond: 0.2
   Exp:
     currentValue: 0
@@ -64,7 +65,6 @@ MonoBehaviour:
     currentValue: 100
     maxValue: 100
   Floor: 1
-  ItemInventory: {fileID: 0}
   VisibleRange: 5
   CameraDistance: 5
   CameraDirection: {x: 0, y: 7, z: -5}

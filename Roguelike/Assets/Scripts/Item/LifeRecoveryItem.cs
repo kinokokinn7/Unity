@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Roguelike.Window;
 
 /// <summary>
 /// 回復用のアイテムクラス
@@ -19,6 +20,8 @@ public class LifeRecoveryItem : Item
     /// <param name="target">回復対象のバトルパラメータ</param>
     public override void Use(MapObjectBase target)
     {
+        MessageWindow.Instance.AppendMessage($"{this.Name}を使った！");
+        MessageWindow.Instance.AppendMessage($"{target.Name}のHPが{RecoveryPower}回復した！");
         target.Hp.Recover(RecoveryPower);
     }
 }

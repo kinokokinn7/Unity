@@ -8,6 +8,7 @@ using System.Linq;
 /// </summary>
 public class MapObjectBase : MonoBehaviour
 {
+    public string Name; // キャラの名前
     [Range(0, 100)] public float MoveSecond = 0.1f; // 移動にかかる時間
     public Exp Exp; // 経験値
 

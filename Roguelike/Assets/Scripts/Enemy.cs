@@ -179,7 +179,7 @@ class Enemy : MapObjectBase
     /// <param name="other">プレイヤー。</param>
     public override IEnumerator AttackTo(MapObjectBase other)
     {
-        MessageWindow.AppendMessage($"敵のこうげき！　プレイヤーに{Attack.GetCurrentValue()}のダメージ！");
+        MessageWindow.AppendMessage($"{this.Name}のこうげき！　プレイヤーに{Attack.GetCurrentValue()}のダメージ！");
         yield return base.AttackTo(other);
     }
 }

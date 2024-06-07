@@ -7,11 +7,34 @@ using UnityEngine.UIElements;
 
 public class GameItemMenuController : MonoBehaviour, IMenuController
 {
+    /// <summary>
+    /// UIドキュメント。
+    /// </summary>
     public UIDocument _document;
+
+    /// <summary>
+    /// アイテムメニューのVisualElement。
+    /// </summary>
     private VisualElement _itemMenu;
+
+    /// <summary>
+    /// アイテムのリストビュー。
+    /// </summary>
     private ListView _listView;
+
+    /// <summary>
+    /// アイテムメニューの選択中の行番号。
+    /// </summary>
     private int _selectedIndex = 0;
+
+    /// <summary>
+    /// メインメニューのコントローラ。
+    /// </summary>
     private MainMenuController _mainMenuController;
+
+    /// <summary>
+    /// アイテムメニューウィンドウがフォーカスされているかを表すフラグ。
+    /// </summary>
     public bool Focused { get; private set; } = false;
 
     /// <summary>
@@ -20,19 +43,28 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     public ItemInventory ItemInventory;
 
 
+    /// <summary>
+    /// アイテムメニューウィンドウが初めて表示された時のみTrueになるフラグ。
+    /// </summary>
     private bool _isMenuJustShown = false;
 
     /// <summary>
-    /// リストアイテム。
+    /// リスト項目。
     /// </summary>
     private List<Item> _items = new List<Item>();
 
+    /// <summary>
+    /// クラスインスタンス変数の初期化を行います。
+    /// </summary>
     void Start()
     {
         _mainMenuController = UnityEngine.Object.FindObjectOfType<MainMenuController>();
         ItemInventory = GetComponent<ItemInventory>();
     }
 
+    /// <summary>
+    /// アイテムメニューウィンドウの初期設定を行います。
+    /// </summary>
     void OnEnable()
     {
         // 所持アイテム一覧を取得
@@ -70,6 +102,15 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         }
     }
 
+    /// <summary>
+    ///  キー入力に応じてウィンドウ操作を行います。
+    ///  
+    ///  Xキー: メニューを表示する
+    ///  Xキー or Escapeキー: メニューを閉じる
+    ///  Zキー: 決定
+    ///  上矢印キー: カーソルを上に移動
+    ///  下矢印キー: カーソルを下に移動
+    /// </summary>
     void Update()
     {
         if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape)) && _itemMenu.style.display == DisplayStyle.Flex)
@@ -83,6 +124,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             return;
         }
 
+        // NOTE: ウィンドウを開いた時に自動的に先頭行の項目の選択が決定されるのを防ぐため、
+        //        _isMenuJustShownフラグがtrueの場合はフラグをfalseにして以降の処理を中断する
         if (_isMenuJustShown == true)
         {
             // 初めて表示されたタイミングを過ぎたためフラグをリセット
@@ -104,6 +147,9 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         }
     }
 
+    /// <summary>
+    /// メニューを表示します。
+    /// </summary>
     public void ShowMenu()
     {
         _itemMenu.style.display = DisplayStyle.Flex;
@@ -116,6 +162,9 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         _isMenuJustShown = true;
     }
 
+    /// <summary>
+    /// メニューを非表示にします。
+    /// </summary>
     public void HideMenu()
     {
         _itemMenu.style.display = DisplayStyle.None;
@@ -125,17 +174,37 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         _isMenuJustShown = true;
     }
 
+    /// <summary>
+    /// 選択されたアイテムを使用します。
+    /// 選択されたアイテムが使用不可の場合は何もせず処理を終了します。
+    /// </summary>
     public void ExecuteSelection()
     {
-        var selectedItem = _listView.selectedItem;
+        var selectedItem = _listView.selectedItem as Item;
         if (selectedItem != null)
         {
             Debug.Log($"{selectedItem}が選択されました。");
-            // Todo: 選択されたアイテムに対する処理をここに追加
-            MessageWindow.Instance.AppendMessage($"{selectedItem}が選択されました。");
+
+            // アイテムが使用不可の場合は処理終了
+            if (!selectedItem.Usable)
+            {
+                return;
+            }
+            var player = UnityEngine.Object.FindObjectOfType<Player>();
+            selectedItem.Use(player);
+
+            // アイテム使用後、一覧から除去する
+            _items.Remove(selectedItem);
+            _listView.itemsSource = _items;
+            _listView.RefreshItems();
         }
     }
 
+    /// <summary>
+    /// アイテム選択時に行われる処理です。
+    /// デバッグログを出力します。
+    /// </summary>
+    /// <param name="selectedItems"></param>
     private void OnItemSelected(IEnumerable<object> selectedItems)
     {
         foreach (var item in selectedItems)
@@ -144,6 +213,10 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         }
     }
 
+    /// <summary>
+    /// カーソルを1つ上に移動します。
+    /// 一番上に位置する場合は、一番下に移動します。
+    /// </summary>
     private void MoveSelectionUp()
     {
         if (_listView.itemsSource != null && _listView.itemsSource.Count > 0)
@@ -153,6 +226,10 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         }
     }
 
+    /// <summary>
+    /// カーソルを1つ下に移動します。
+    /// 一番下に位置する場合は、一番上に移動します。
+    /// </summary>
     private void MoveSelectionDown()
     {
         if (_listView.itemsSource != null && _listView.itemsSource.Count > 0)
@@ -162,20 +239,28 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         }
     }
 
+    /// <summary>
+    /// アイテムメニューウィンドウにフォーカスを当てます。
+    /// </summary>
     public void Focus()
     {
-        // リストビューにフォーカスを当てる
         _listView.Focus();
         Focused = true;
     }
 
+
+    /// <summary>
+    /// アイテムメニューウィンドウのフォーカスを解除します。
+    /// </summary>
     public void Blur()
     {
-        // リストビューにのフォーカスを外す
         _listView.Blur();
         Focused = false;
     }
 
+    /// <summary>
+    /// カーソル位置を1番目の位置に戻します。
+    /// </summary>
     public void ResetIndex()
     {
         // 最初のアイテムを選択

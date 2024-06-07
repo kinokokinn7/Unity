@@ -319,7 +319,7 @@ class Player : MapObjectBase
         // 相手がすでに戦闘不能の場合は攻撃を無効にする
         if (other.IsDead) yield break;
 
-        this.MessageWindow.AppendMessage($"プレイヤーのこうげき！　敵に{Attack.GetCurrentValue()}のダメージ！");
+        this.MessageWindow.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{Attack.GetCurrentValue()}のダメージ！");
         other.Hp.DecreaseCurrentValue(Attack.GetCurrentValue());
         other.Damaged(Attack.GetCurrentValue());
 
@@ -328,7 +328,7 @@ class Player : MapObjectBase
 
         if (other.IsDead)
         {
-            MessageWindow.AppendMessage($"敵を倒した！ {other.Exp.GetCurrentValue()}ポイントの経験値を手に入れた！");
+            MessageWindow.AppendMessage($"{other.Name}を倒した！ {other.Exp.GetCurrentValue()}ポイントの経験値を手に入れた！");
             // 攻撃の結果、敵を倒したら、その敵のExp分自身のExpを上げる
             Exp.IncreaseCurrentValue(other.Exp.GetCurrentValue());
 
@@ -396,7 +396,7 @@ class Player : MapObjectBase
         Attack.IncreaseCurrentValue(1);
         Exp.Reset();
 
-        MessageWindow.AppendMessage($"プレイヤーのレベルが{Level}に上がった！");
+        MessageWindow.AppendMessage($"{this.Name}のレベルが{Level}に上がった！");
         MessageWindow.AppendMessage($"  HP +5  Atk + 1");
     }
 
