@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 320, y: 240, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3892502269948844232}
   m_Father: {fileID: 0}
@@ -44,16 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d7c54a31d864b7191b91174b79f8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 
   MoveSecond: 0.1
-  Exp: 0
+  Exp:
+    currentValue: 0
   Pos: {x: 0, y: 0}
   Forward: 0
-  Hp: 5
-  Attack: 2
+  Hp:
+    currentValue: 0
+    maxValue: 0
+  Attack:
+    currentValue: 0
   CurrentGroup: 2
   _weapon: {fileID: 0}
-  CurrentType: 1
-  Value: 50
+  _item: {fileID: 11400000, guid: a8524a21a5e14447d85fcacfd8327cce, type: 2}
 --- !u!1 &3892502269948844239
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +88,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3892502269050869976}
   m_RootOrder: 0
@@ -106,6 +112,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

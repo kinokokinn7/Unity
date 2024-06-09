@@ -31,14 +31,18 @@ public class ItemInventory : MonoBehaviour
     /// アイテムを所持アイテム一覧に追加します。
     /// </summary>
     /// <param name="item">追加対象のアイテム</param>
-    public void AddItem(Item item)
+    /// <returns>アイテムを追加できた場合は `true` 。</returns>
+    public bool AddItem(Item item)
     {
-        if (Items.Count >= MaxItems)
-        {
-            MessageWindow.Instance.AppendMessage("これ以上アイテムを持てない！");
-            return;
-        }
+        // Todo: アイテム数上限を設けるか、上限に達した時の処理を検討
+        // if (Items.Count >= MaxItems)
+        // {
+        //     MessageWindow.Instance.AppendMessage("これ以上アイテムを持てない！");
+        //     return false;
+        // }
         Items.Add(item);
+        MessageWindow.Instance.AppendMessage($"{item.Name}を手に入れた！");
+        return true;
     }
 
 }

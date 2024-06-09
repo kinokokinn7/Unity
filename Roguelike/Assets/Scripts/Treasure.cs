@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Roguelike.Window;
 using UnityEngine;
 
 /// <summary>
@@ -7,17 +8,27 @@ using UnityEngine;
 /// </summary>
 class Treasure : MapObjectBase
 {
-    /// <summary>
-    /// 宝箱から得られるアイテムの種類を定義します。
-    /// LifeUpはプレイヤーのHPを増加させ、FoodUpは満腹度を増加させ、Weaponは新しい武器を提供します。
-    /// </summary>
-    public enum Type
-    {
-        LifeUp,   // プレイヤーのHPを増加させる
-        FoodUp,   // プレイヤーの満腹度を増加させる
-        Weapon,   // 新しい武器を提供する
-    }
+    [SerializeField]
+    Item _item;
 
-    public Type CurrentType = Type.LifeUp; // 現在の宝箱が提供するアイテムの種類
-    public int Value = 5; // アイテムの効果の強さまたは武器の攻撃力
+    /// <summary>
+    /// 宝箱を開けたときの処理です。
+    /// </summary>
+    /// <param name="treasure">宝箱</param>
+    /// <param name="mass">マス</param>
+    /// <param name="movedPos">移動後の座標</param>
+    /// <exception cref="System.NotImplementedException"></exception>
+    public void OpenTreasure(Player player, Map.Mass mass, Vector2Int movedPos)
+    {
+        // 持ち物リストに宝箱の中のアイテムを追加する
+        var itemInventory = UnityEngine.Object.FindObjectOfType<ItemInventory>();
+        var added = itemInventory.AddItem(_item);
+
+        if (!added) return;
+
+        // 宝箱を開けたらマップから削除する
+        mass.ExistObject = null;
+        mass.Type = MassType.Road;
+        UnityEngine.Object.Destroy(gameObject);
+    }
 }

@@ -38,9 +38,9 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     public bool Focused { get; private set; } = false;
 
     /// <summary>
-    /// メニューが初めて表示されたことを示すフラグ。
+    /// アイテム管理クラス。
     /// </summary>
-    public ItemInventory ItemInventory;
+    public ItemInventory _itemInventory;
 
 
     /// <summary>
@@ -51,7 +51,17 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// <summary>
     /// リスト項目。
     /// </summary>
-    private List<Item> _items = new List<Item>();
+    private List<Item> _itemList = new List<Item>();
+
+    /// <summary>
+    /// 現在のページ数。0始まりの値。
+    /// </summary>
+    private int _currentPage = 0;
+
+    /// <summary>
+    /// 1ページあたりのアイテムの最大数。
+    /// </summary>
+    private int _itemsPerPage = 6;
 
     /// <summary>
     /// クラスインスタンス変数の初期化を行います。
@@ -59,7 +69,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     void Start()
     {
         _mainMenuController = UnityEngine.Object.FindObjectOfType<MainMenuController>();
-        ItemInventory = GetComponent<ItemInventory>();
+        _itemInventory = UnityEngine.Object.FindObjectOfType<ItemInventory>();
     }
 
     /// <summary>
@@ -68,7 +78,9 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     void OnEnable()
     {
         // 所持アイテム一覧を取得
-        _items = ItemInventory.Items;
+        int startIndex = _currentPage * _itemsPerPage;
+        int endIndex = Mathf.Min(startIndex + _itemsPerPage, _itemInventory.Items.Count);
+        _itemList.AddRange(_itemInventory.Items.GetRange(startIndex, endIndex));
 
         // アイテムメニューウィンドウのUI Root を取得
         var root = _document.rootVisualElement;
@@ -87,8 +99,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         {
             // リストビューの設定
             _listView.makeItem = () => new Label();
-            _listView.bindItem = (element, i) => (element as Label).text = _items[i].Name;
-            _listView.itemsSource = _items;
+            _listView.bindItem = (element, i) => (element as Label).text = _itemList[i].Name;
+            _listView.itemsSource = _itemList;
             _listView.selectionType = SelectionType.Single;
 
             // 選択イベントの処理
@@ -145,6 +157,14 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         {
             MoveSelectionDown();
         }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ShowNextPage();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            ShowPreviousPage();
+        }
     }
 
     /// <summary>
@@ -153,6 +173,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     public void ShowMenu()
     {
         _itemMenu.style.display = DisplayStyle.Flex;
+        _currentPage = 0;
+        UpdateItemList();
         // 最初のアイテムを選択
         ResetIndex();
         // リストビューにフォーカスを当てる
@@ -194,8 +216,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             selectedItem.Use(player);
 
             // アイテム使用後、一覧から除去する
-            _items.Remove(selectedItem);
-            _listView.itemsSource = _items;
+            _itemList.Remove(selectedItem);
+            _listView.itemsSource = _itemList;
             _listView.RefreshItems();
         }
     }
@@ -267,6 +289,35 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         _selectedIndex = 0;
         _listView.ClearSelection();
         _listView.selectedIndex = 0;
+    }
+
+    void ShowPreviousPage()
+    {
+        if (_currentPage > 0)
+        {
+            _currentPage--;
+            UpdateItemList();
+        }
+    }
+
+    void ShowNextPage()
+    {
+        if ((_currentPage + 1) * _itemsPerPage < _itemInventory.Items.Count)
+        {
+            _currentPage++;
+            UpdateItemList();
+        }
+    }
+
+    void UpdateItemList()
+    {
+        _itemList.Clear();
+
+        int startIndex = _currentPage * _itemsPerPage;
+        int endIndex = Mathf.Min(startIndex + _itemsPerPage, _itemInventory.Items.Count - 1);
+        _itemList.AddRange(_itemInventory.Items.GetRange(startIndex, endIndex - startIndex));
+        _listView.itemsSource = _itemList;
+        _listView.RefreshItems();
     }
 
 }

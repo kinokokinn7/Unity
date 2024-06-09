@@ -5,18 +5,13 @@ using Roguelike.Window;
 /// <summary>
 /// 回復用のアイテムクラス
 /// </summary>
-[CreateAssetMenu(menuName = "Item/Life Recovery Item")]
-public class LifeRecoveryItem : Item
+[CreateAssetMenu(menuName = "Item/Food Recovery Item")]
+public class FoodRecoveryItem : Item
 {
     /// <summary>
     /// 回復量。
     /// </summary>
     public int RecoveryPower;
-
-    /// <summary>
-    /// 回復エフェクトのプレハブの参照。
-    /// </summary>
-    public GameObject _healingEffectPrefab;
 
     /// <summary>
     /// アイテムを使用してHPを回復します。
@@ -25,10 +20,16 @@ public class LifeRecoveryItem : Item
     /// <param name="target">回復対象のバトルパラメータ</param>
     public override void Use(MapObjectBase target)
     {
+        if (target is not Player)
+        {
+            Debug.LogWarning("プレイヤー以外のキャラはこのアイテムを使用できません。");
+            return;
+        }
+        var player = target as Player;
         MessageWindow.Instance.AppendMessage($"{this.Name}を使った！");
-        MessageWindow.Instance.AppendMessage($"{target.Name}のHPが{RecoveryPower}回復した！");
+        MessageWindow.Instance.AppendMessage($"{target.Name}の満腹度が{RecoveryPower}回復した！");
         SpawnHealingEffect(target.transform.position);
-        target.Hp.Recover(RecoveryPower);
+        player.FoodValue.Recover(RecoveryPower);
     }
 
     /// <summary>
@@ -37,7 +38,5 @@ public class LifeRecoveryItem : Item
     /// <param name="position">エフェクトの生成位置。</param>
     private void SpawnHealingEffect(Vector3 position)
     {
-        //プレハブを指定した位置に生成
-        Instantiate(_healingEffectPrefab, position, Quaternion.identity);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -43,5 +44,10 @@ public class Food
     public void IncreaseMaxValue(int value)
     {
         this.MaxValue += value;
+    }
+
+    internal void Recover(int recoveryPower)
+    {
+        this.CurrentValue += recoveryPower;
     }
 }

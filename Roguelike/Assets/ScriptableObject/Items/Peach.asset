@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e9fdd43e4bf64bd8998b88dca830d3c, type: 3}
-  m_Name: Weapon1
+  m_Script: {fileID: 11500000, guid: 35fd5ee086cd64a41ad4bf20803b7407, type: 3}
+  m_Name: Peach
   m_EditorClassIdentifier: 
-  Name: "\u6728\u306E\u68D2"
-  Description: "\u6728\u88FD\u306E\u68D2\u3002"
-  Money: 5
-  Attack:
-    currentValue: 2
+  Name: "\u30E2\u30E2\u306E\u5B9F"
+  Description: "\u6E80\u8179\u5EA6\u304C50\u56DE\u5FA9\u3059\u308B\u3002"
+  Money: 0
+  Usable: 1
+  RecoveryPower: 50
+  _healingEffectPrefab: {fileID: 0}

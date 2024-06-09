@@ -136,7 +136,7 @@ class Player : MapObjectBase
     }
 
     /// <summary>
-    /// プレイヤーの食糧を更新します。食糧が0になるとHPが減少します。
+    /// プレイヤーの満腹度を更新します。満腹度が0になるとHPが減少します。
     /// </summary>
     void UpdateFood()
     {
@@ -411,8 +411,7 @@ class Player : MapObjectBase
         if (otherObject is Treasure)
         {
             var treasure = (otherObject as Treasure);
-            OpenTreasure(treasure, mass, movedPos);
-            StartCoroutine(NotMoveCoroutine(movedPos));
+            treasure.OpenTreasure(this, mass, movedPos);
             return;
         }
         else if (otherObject is Trap)
@@ -459,43 +458,5 @@ class Player : MapObjectBase
         mass.ExistObject = null;
         mass.Type = MassType.Road;
         UnityEngine.Object.Destroy(trap.gameObject);
-    }
-
-    /// <summary>
-    /// 宝箱を開けたときの処理です。
-    /// </summary>
-    /// <param name="treasure">宝箱</param>
-    /// <param name="mass">マス</param>
-    /// <param name="movedPos">移動後の座標</param>
-    /// <exception cref="System.NotImplementedException"></exception>
-    protected void OpenTreasure(Treasure treasure, Map.Mass mass, Vector2Int movedPos)
-    {
-        switch (treasure.CurrentType)
-        {
-            case Treasure.Type.LifeUp:
-                Hp.Recover(treasure.Value);
-                MessageWindow.AppendMessage($"  HPが回復した！ +{treasure.Value}");
-                HpRecovered(treasure.Value);
-                break;
-            case Treasure.Type.FoodUp:
-                FoodValue.CurrentValue += treasure.Value;
-                MessageWindow.AppendMessage($"  満腹度が回復した！ +{treasure.Value}");
-                FoodValueRecovered(treasure.Value);
-                break;
-            case Treasure.Type.Weapon:
-                // 装備中の武器の攻撃力に足し合わせるようにしている
-                MessageWindow.AppendMessage($"  新しい武器を手に入れた！ " +
-                                            $"ATK +{treasure.CurrentWeapon.Attack.GetCurrentValue()}");
-                var newWeapon = treasure.CurrentWeapon.Merge(this.CurrentWeapon);
-                CurrentWeapon = newWeapon;
-                break;
-            default:
-                throw new System.NotImplementedException();
-        }
-
-        // 宝箱を開けたらマップから削除する
-        mass.ExistObject = null;
-        mass.Type = MassType.Road;
-        UnityEngine.Object.Destroy(treasure.gameObject);
     }
 }

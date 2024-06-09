@@ -17,3 +17,4 @@ MonoBehaviour:
   Money: 10
   Usable: 1
   RecoveryPower: 30
+  _healingEffectPrefab: {fileID: 7333403968637262863, guid: 670ed38d20d374d61aea0661b53a66b9, type: 3}
