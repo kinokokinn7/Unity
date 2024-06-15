@@ -11,6 +11,9 @@ class Player : MapObjectBase
     public Food FoodValue;  // 満腹度
     public int Floor = 1;   // 階層
 
+    public readonly int NumberOfStepsToReduceFoodValue = 5;
+    private int _numberOfSteps = 0;
+
     [Range(1, 10)] public int VisibleRange = 5; // 周りのマスが見える範囲
 
     MessageWindow _messageWindow;
@@ -131,6 +134,7 @@ class Player : MapObjectBase
 
             UpdateVisibleMass();
             CheckEvent();
+            _numberOfSteps++;
             yield return new WaitWhile(() => DoWaitEvent);
         }
     }
@@ -140,17 +144,15 @@ class Player : MapObjectBase
     /// </summary>
     void UpdateFood()
     {
+        // 満腹度が1減る歩数を満たしていない場合は処理をスキップする
+        if (_numberOfSteps % NumberOfStepsToReduceFoodValue != 0) return;
+
         FoodValue.CurrentValue--;
         if (FoodValue.CurrentValue <= 0)
         {
             FoodValue.CurrentValue = 0;
-            Hp.DecreaseCurrentValue(1);
             MessageWindow.AppendMessage($"空腹で1ダメージ！");
             Damaged(1);
-            if (Hp.IsZero())
-            {
-                Dead();
-            }
         }
     }
 
@@ -316,14 +318,7 @@ class Player : MapObjectBase
     /// <param name="other">敵キャラ</param>
     public override IEnumerator AttackTo(MapObjectBase other)
     {
-        // 相手がすでに戦闘不能の場合は攻撃を無効にする
-        if (other.IsDead) yield break;
-
-        this.MessageWindow.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{Attack.GetCurrentValue()}のダメージ！");
-        other.Damaged(Attack.GetCurrentValue());
-
-        // 一定時間待機
-        yield return new WaitForSeconds(0.5f);
+        yield return base.AttackTo(other);
 
         if (other.IsDead)
         {
@@ -337,8 +332,6 @@ class Player : MapObjectBase
                 LevelUp();
             }
         }
-
-        this.attackCoroutine = null;
     }
 
     /// <summary>

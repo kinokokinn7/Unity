@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Roguelike.Window;
 
 /// <summary>
 /// マップ上のオブジェクトの基本クラスです。プレイヤーや敵など、マップ上に存在する全てのオブジェクトの共通機能を提供します。
@@ -61,14 +62,9 @@ public class MapObjectBase : MonoBehaviour
     protected readonly float hpRecoveredEffectDuration = 0.5f;
 
     /// <summary>
-    /// 攻撃処理のコルーチン。
-    /// </summary>
-    protected Coroutine attackCoroutine;
-
-    /// <summary>
     /// 攻撃中の場合は `true` を返すフラグ。
     /// </summary>
-    public bool IsNowAttacking { get => this.attackCoroutine != null; }
+    protected bool IsNowAttacking { get; set; }
 
     /// <summary>
     /// 死亡しているか否かを表すフラグ。
@@ -109,24 +105,30 @@ public class MapObjectBase : MonoBehaviour
     {
         IsNowMoving = false;
         var (movedMass, movedPos) = Map.GetMovePos(Pos, dir);
-        if (movedMass == null) return;
-
-        var massData = Map[movedMass.Type];
-        if (movedMass.ExistCharacter != null)
+        if (movedMass == null)
         {
-            MoveToExistObject(movedMass, movedPos, true);
-        }
-        else if (movedMass.ExistTreasureOrTrap != null)
-        {
-            MoveToExistObject(movedMass, movedPos, false);
-        }
-        else if (massData.IsRoad)
-        {
-            MoveToRoad(movedMass, movedPos);
+            MoveToNotMoving(movedMass, movedPos);
         }
         else
         {
-            MoveToNotMoving(movedMass, movedPos);
+            var massData = Map[movedMass.Type];
+            if (movedMass.ExistCharacter != null)
+            {
+                MoveToExistObject(movedMass, movedPos, true);
+            }
+            else if (movedMass.ExistTreasureOrTrap != null)
+            {
+                MoveToExistObject(movedMass, movedPos, false);
+            }
+            else if (massData.IsRoad)
+            {
+                MoveToRoad(movedMass, movedPos);
+            }
+            else
+            {
+                MoveToNotMoving(movedMass, movedPos);
+            }
+
         }
 
         // 向き修正
@@ -145,8 +147,6 @@ public class MapObjectBase : MonoBehaviour
                 this.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
                 break;
         }
-
-
     }
 
     /// <summary>
@@ -163,7 +163,7 @@ public class MapObjectBase : MonoBehaviour
             mass.ExistTreasureOrTrap.GetComponent<MapObjectBase>();
         if (IsAttackableObject(this, otherObject))
         {
-            this.attackCoroutine = StartCoroutine(AttackTo(otherObject));
+            StartCoroutine(AttackTo(otherObject));
         }
 
         StartCoroutine(NotMoveCoroutine(movedPos));
@@ -187,8 +187,16 @@ public class MapObjectBase : MonoBehaviour
     /// <param name="other">攻撃対象のオブジェクト。</param>
     public virtual IEnumerator AttackTo(MapObjectBase other)
     {
+        this.IsNowAttacking = true;
+
         // 相手がすでに戦闘不能の場合は攻撃を無効にする
-        if (other.IsDead) yield break;
+        if (other.IsDead)
+        {
+            this.IsNowAttacking = false;
+            yield break;
+        }
+
+        MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{Attack.GetCurrentValue()}のダメージ！");
 
         int damageAmount = Attack.GetCurrentValue();
         other.Damaged(damageAmount);
@@ -196,7 +204,7 @@ public class MapObjectBase : MonoBehaviour
         // 一定時間待機
         yield return new WaitForSeconds(0.5f);
 
-        this.attackCoroutine = null;
+        this.IsNowAttacking = false;
     }
 
     /// <summary>
@@ -389,11 +397,11 @@ public class MapObjectBase : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        material.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
+        material.SetColor("_Color", originalColor);
     }
 
     /// <summary>
-    /// HP回復時にオブジェクトの色を一時的に赤色にします。
+    /// HP回復時にオブジェクトの色を一時的に緑色にします。
     /// </summary>
     /// <returns></returns>
     private IEnumerator AnimateHpRecovered()
@@ -407,7 +415,7 @@ public class MapObjectBase : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        material.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
+        material.SetColor("_Color", originalColor);
     }
 
     /// <summary>

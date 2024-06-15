@@ -176,14 +176,4 @@ class Enemy : MapObjectBase
         // 移動の前方向を決定したら移動する
         Move(Forward);
     }
-
-    /// <summary>
-    /// 敵がプレイヤーに攻撃する際の処理を行います。ダメージの計算とプレイヤーの死亡判定を含みます。
-    /// </summary>
-    /// <param name="other">プレイヤー。</param>
-    public override IEnumerator AttackTo(MapObjectBase other)
-    {
-        MessageWindow.AppendMessage($"{this.Name}のこうげき！　プレイヤーに{Attack.GetCurrentValue()}のダメージ！");
-        yield return base.AttackTo(other);
-    }
 }
