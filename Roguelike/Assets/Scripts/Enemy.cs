@@ -157,7 +157,11 @@ class Enemy : MapObjectBase
             //- 既に他のマップオブジェクトが存在している場合は移動できない
             var (movedMass, movedPos) = Map.GetMovePos(Pos, Forward);
             var massData = movedMass == null ? null : Map[movedMass.Type];
-            if (movedMass == null || movedMass.ExistObject != null || !massData.IsRoad)
+            if (movedMass == null ||
+                movedMass.ExistCharacter != null ||
+                movedMass.ExistTreasureOrTrap != null ||
+                !massData.IsRoad
+            )
             {
                 // 移動できなければ向きを変え、移動確認を行う
                 Forward = Map.TurnRightDirection(Forward);

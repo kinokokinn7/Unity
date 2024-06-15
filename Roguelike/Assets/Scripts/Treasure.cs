@@ -27,7 +27,7 @@ class Treasure : MapObjectBase
         if (!added) return;
 
         // 宝箱を開けたらマップから削除する
-        mass.ExistObject = null;
+        mass.ExistTreasureOrTrap = null;
         mass.Type = MassType.Road;
         UnityEngine.Object.Destroy(gameObject);
     }

@@ -9,7 +9,7 @@ using System.Linq;
 public enum MassType
 {
     Road,   // 通路
-    Wall,   // 壁
+    Wall,   // 壁 
     Player, // プレイヤー
     Goal,   // ゴール
     Enemy,  // 敵
@@ -30,7 +30,7 @@ public class MassData
     public MassType Type;   // マスの種別
     public char MapChar;    // マスの文字
     public bool IsRoad;     // 通路かどうか
-    public bool IsCharacter;// プレイヤーかどうか？
+    public bool IsCharacter;// キャラクター（プレイヤー or 敵）かどうか？
 }
 
 public enum Direction
@@ -53,7 +53,8 @@ public class Map : MonoBehaviour
     {
         public MassType Type;
         public GameObject MassGameObject;
-        public GameObject ExistObject;
+        public GameObject ExistCharacter;  // キャラクター（プレイヤー or 敵）
+        public GameObject ExistTreasureOrTrap;  // アイテム/罠
 
         /// <summary>
         /// マスの可視状態を取得または設定します。
@@ -67,11 +68,14 @@ public class Map : MonoBehaviour
                 if (MassGameObject.activeSelf == value) return;
 
                 MassGameObject.SetActive(value);
-                if (ExistObject != null && ExistObject.TryGetComponent<MapObjectBase>(out var obj))
+                if (ExistCharacter != null && ExistCharacter.TryGetComponent<MapObjectBase>(out var character))
                 {
-                    obj.Visible = value;
+                    character.Visible = value;
                 }
-
+                if (ExistTreasureOrTrap != null && ExistTreasureOrTrap.TryGetComponent<MapObjectBase>(out var treasureOrTrap))
+                {
+                    treasureOrTrap.Visible = value;
+                }
             }
         }
     }
@@ -143,13 +147,26 @@ public class Map : MonoBehaviour
                 var pos = CalcMapPos(i, Data.Count);    // Count:Lengthと同じ
                 if (massData.IsCharacter)
                 {
-                    mass.ExistObject = Object.Instantiate(massData.Prefab, transform);
-                    var mapObject = mass.ExistObject.GetComponent<MapObjectBase>();
+                    mass.ExistCharacter = Object.Instantiate(massData.Prefab, transform);
+                    var mapObject = mass.ExistCharacter.GetComponent<MapObjectBase>();
                     mapObject.SetPosAndForward(new Vector2Int(i, Data.Count), Direction.South);
 
                     // キャラクターの時は道も一緒に作成する
                     massData = this[MassType.Road];
+                }
+                else if (
+                    massData.Type == MassType.Treasure ||
+                    massData.Type == MassType.FoodTreasure ||
+                    massData.Type == MassType.WeaponTreasure ||
+                    massData.Type == MassType.Trap ||
+                    massData.Type == MassType.FoodTrap)
+                {
+                    mass.ExistTreasureOrTrap = Object.Instantiate(massData.Prefab, transform);
+                    var mapObject = mass.ExistTreasureOrTrap.GetComponent<MapObjectBase>();
+                    mapObject.SetPosAndForward(new Vector2Int(i, Data.Count), Direction.South);
 
+                    // 道も一緒に作成する
+                    massData = this[MassType.Road];
                 }
 
                 if (massData.Type == MassType.Road)

@@ -57,6 +57,7 @@ public class MapObjectBase : MonoBehaviour
     protected Material material;
 
     protected float fadeDuration = 1f;
+    protected float damageDuration = 0.5f;
 
     /// <summary>
     /// 攻撃処理のコルーチン。
@@ -110,9 +111,13 @@ public class MapObjectBase : MonoBehaviour
         if (movedMass == null) return;
 
         var massData = Map[movedMass.Type];
-        if (movedMass.ExistObject)
+        if (movedMass.ExistCharacter != null)
         {
-            MoveToExistObject(movedMass, movedPos);
+            MoveToExistObject(movedMass, movedPos, true);
+        }
+        else if (movedMass.ExistTreasureOrTrap != null)
+        {
+            MoveToExistObject(movedMass, movedPos, false);
         }
         else if (massData.IsRoad)
         {
@@ -150,9 +155,11 @@ public class MapObjectBase : MonoBehaviour
     /// </summary>
     /// <param name="mass">対象のマス。</param>
     /// <param name="movedPos">移動を試みる位置。</param>
-    protected virtual void MoveToExistObject(Map.Mass mass, Vector2Int movedPos)
+    protected virtual void MoveToExistObject(Map.Mass mass, Vector2Int movedPos, bool isCharacter)
     {
-        var otherObject = mass.ExistObject.GetComponent<MapObjectBase>();
+        var otherObject = isCharacter ?
+            mass.ExistCharacter.GetComponent<MapObjectBase>() :
+            mass.ExistTreasureOrTrap.GetComponent<MapObjectBase>();
         if (IsAttackableObject(this, otherObject))
         {
             this.attackCoroutine = StartCoroutine(AttackTo(otherObject));
@@ -202,6 +209,9 @@ public class MapObjectBase : MonoBehaviour
     /// <param name="damage">受けたダメージ量。</param>
     public virtual void Damaged(int damage)
     {
+        // ダメージを受けた時に一時的にオブジェクトを赤色にする
+        StartCoroutine(AnimateDamaged());
+
         // ダメージ値をポップアップ表示する
         DamagePopup damagePopup = GetComponent<DamagePopup>();
         damagePopup.ShowDamage(damage, transform.position, Color.white);
@@ -252,7 +262,7 @@ public class MapObjectBase : MonoBehaviour
     {
         // マップ上の現在位置のマスの情報を更新
         var startMass = Map[Pos.x, Pos.y];
-        startMass.ExistObject = null;
+        startMass.ExistCharacter = null;
 
         // 移動先のマップ上の位置を計算
         var movedPos = Map.CalcMapPos(target);
@@ -263,7 +273,7 @@ public class MapObjectBase : MonoBehaviour
 
         // 移動先のマスの情報を更新
         var movedMass = Map[Pos.x, Pos.y];
-        movedMass.ExistObject = gameObject;
+        movedMass.ExistCharacter = gameObject;
 
         // 移動先のマスが可視状態になっているかを設定
         Visible = movedMass.Visible;
@@ -350,6 +360,26 @@ public class MapObjectBase : MonoBehaviour
             // 起動時に装備している武器の設定処理を行う
             CurrentWeapon.Attach(this);
         }
+    }
+
+    /// <summary>
+    /// ダメージ時にオブジェクトの色を一時的に赤色にします。
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator AnimateDamaged()
+    {
+        float elapsedTime = 0;
+        Color originalColor = material.color;
+
+        while (elapsedTime < this.damageDuration)
+        {
+            float rate = Mathf.Lerp(1f, 0f, elapsedTime / this.damageDuration);
+            Color newColor = new Color(rate, 0, 0, 1f);
+            material.SetColor("_Color", newColor);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        material.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
     }
 
     /// <summary>

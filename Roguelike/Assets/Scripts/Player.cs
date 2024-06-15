@@ -343,17 +343,6 @@ class Player : MapObjectBase
     }
 
     /// <summary>
-    /// プレイヤーがダメージを受けた際の処理を行います。
-    /// </summary>
-    /// <param name="damage">受けたダメージ量。</param>
-    public override void Damaged(int damage)
-    {
-        // ダメージ値を赤文字でポップアップ表示する
-        DamagePopup damagePopup = GetComponent<DamagePopup>();
-        damagePopup.ShowDamage(damage, transform.position, Color.red);
-    }
-
-    /// <summary>
     /// プレイヤーがHPを回復した時の処理を行います。
     /// </summary>
     /// <param name="value">HP回復量。</param>
@@ -405,23 +394,26 @@ class Player : MapObjectBase
     /// </summary>
     /// <param name="mass">移動先のマス</param>
     /// <param name="movedPos">移動後の位置</param>
-    protected override void MoveToExistObject(Map.Mass mass, Vector2Int movedPos)
+    protected override void MoveToExistObject(Map.Mass mass, Vector2Int movedPos, bool isPlayer)
     {
-        var otherObject = mass.ExistObject.GetComponent<MapObjectBase>();
-        if (otherObject is Treasure)
+        var otherTreasureOrTrap = mass.ExistTreasureOrTrap?.GetComponent<MapObjectBase>();
+        if (otherTreasureOrTrap != null)
         {
-            var treasure = (otherObject as Treasure);
-            treasure.OpenTreasure(this, mass, movedPos);
-            return;
+            if (otherTreasureOrTrap is Treasure)
+            {
+                var treasure = (otherTreasureOrTrap as Treasure);
+                treasure.OpenTreasure(this, mass, movedPos);
+                return;
+            }
+            else if (otherTreasureOrTrap is Trap)
+            {
+                var trap = (otherTreasureOrTrap as Trap);
+                StampTrap(trap, mass, movedPos);
+                StartCoroutine(NotMoveCoroutine(movedPos));
+                return;
+            }
         }
-        else if (otherObject is Trap)
-        {
-            var trap = (otherObject as Trap);
-            StampTrap(trap, mass, movedPos);
-            StartCoroutine(NotMoveCoroutine(movedPos));
-            return;
-        }
-        base.MoveToExistObject(mass, movedPos);
+        base.MoveToExistObject(mass, movedPos, true);
     }
 
     /// <summary>
@@ -455,7 +447,7 @@ class Player : MapObjectBase
         }
 
         // 罠はマップから削除する
-        mass.ExistObject = null;
+        mass.ExistTreasureOrTrap = null;
         mass.Type = MassType.Road;
         UnityEngine.Object.Destroy(trap.gameObject);
     }
