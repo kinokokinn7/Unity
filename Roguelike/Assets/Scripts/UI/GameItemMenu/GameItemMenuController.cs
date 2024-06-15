@@ -197,11 +197,21 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     }
 
     /// <summary>
+    /// 全てのメニューウィンドウを非表示にします。
+    /// </summary>
+    public void HideAllMenu()
+    {
+        HideMenu();
+        _mainMenuController.HideMenu();
+    }
+
+    /// <summary>
     /// 選択されたアイテムを使用します。
     /// 選択されたアイテムが使用不可の場合は何もせず処理を終了します。
     /// </summary>
     public void ExecuteSelection()
     {
+        // 選択されたアイテムを使用する
         var selectedItem = _listView.selectedItem as Item;
         if (selectedItem != null)
         {
@@ -219,7 +229,13 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             _itemList.Remove(selectedItem);
             _listView.itemsSource = _itemList;
             _listView.RefreshItems();
+
+            // アイテム管理クラスのリストから削除する
+            _itemInventory.RemoveItem(selectedItem);
         }
+
+        // 全てのメニューウィンドウを閉じる
+        HideAllMenu();
     }
 
     /// <summary>

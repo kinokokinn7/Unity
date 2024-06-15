@@ -1,12 +1,19 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class Item : ScriptableObject
 {
+    public readonly Guid id;
     public string Name;
     public string Description;
     public int Money;
     public bool Usable;
+
+    public Item()
+    {
+        id = Guid.NewGuid();
+    }
 
     /// <summary>
     /// アイテムを使用します。

@@ -320,7 +320,6 @@ class Player : MapObjectBase
         if (other.IsDead) yield break;
 
         this.MessageWindow.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{Attack.GetCurrentValue()}のダメージ！");
-        other.Hp.DecreaseCurrentValue(Attack.GetCurrentValue());
         other.Damaged(Attack.GetCurrentValue());
 
         // 一定時間待機
@@ -343,22 +342,14 @@ class Player : MapObjectBase
     }
 
     /// <summary>
-    /// プレイヤーがHPを回復した時の処理を行います。
-    /// </summary>
-    /// <param name="value">HP回復量。</param>
-    public void HpRecovered(int value)
-    {
-        // 回復値を緑文字でポップアップ表示する
-        DamagePopup damagePopup = GetComponent<DamagePopup>();
-        damagePopup.ShowDamage(value, transform.position, Color.green);
-    }
-
-    /// <summary>
     /// プレイヤーが満腹度のダメージを受けた際の処理を行います。
     /// </summary>
     /// <param name="damage">受けたダメージ量。</param>
     public void FoodValueDamaged(int damage)
     {
+        // 空腹度を減らす
+        FoodValue.CurrentValue -= damage;
+
         // ダメージ値を黄色文字でポップアップ表示する
         DamagePopup damagePopup = GetComponent<DamagePopup>();
         damagePopup.ShowDamage(damage, transform.position, Color.yellow);
@@ -429,16 +420,10 @@ class Player : MapObjectBase
         switch (trap.CurrentType)
         {
             case Trap.Type.LifeDown:
-                Hp.DecreaseCurrentValue(trap.Value);
                 MessageWindow.AppendMessage($"{trap.Value}のダメージを受けた！");
                 Damaged(trap.Value);
-                if (Hp.IsZero())
-                {
-                    Dead();
-                }
                 break;
             case Trap.Type.FoodDown:
-                FoodValue.CurrentValue -= trap.Value;
                 MessageWindow.AppendMessage($"満腹度が{trap.Value}下がった！");
                 FoodValueDamaged(trap.Value);
                 break;

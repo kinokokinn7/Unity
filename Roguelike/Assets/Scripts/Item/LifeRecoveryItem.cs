@@ -28,6 +28,7 @@ public class LifeRecoveryItem : Item
         MessageWindow.Instance.AppendMessage($"{this.Name}を使った！");
         MessageWindow.Instance.AppendMessage($"{target.Name}のHPが{RecoveryPower}回復した！");
         SpawnHealingEffect(target.transform.position);
+        target.HpRecovered(RecoveryPower);
         target.Hp.Recover(RecoveryPower);
     }
 

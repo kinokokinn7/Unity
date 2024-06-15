@@ -56,8 +56,9 @@ public class MapObjectBase : MonoBehaviour
     protected SkinnedMeshRenderer skinnedMeshRenderer;
     protected Material material;
 
-    protected float fadeDuration = 1f;
-    protected float damageDuration = 0.5f;
+    protected readonly float fadeDuration = 1f;
+    protected readonly float damagedEffectDuration = 0.5f;
+    protected readonly float hpRecoveredEffectDuration = 0.5f;
 
     /// <summary>
     /// 攻撃処理のコルーチン。
@@ -190,12 +191,7 @@ public class MapObjectBase : MonoBehaviour
         if (other.IsDead) yield break;
 
         int damageAmount = Attack.GetCurrentValue();
-        other.Hp.DecreaseCurrentValue(damageAmount);
         other.Damaged(damageAmount);
-        if (other.Hp.IsZero())
-        {
-            other.Dead();
-        }
 
         // 一定時間待機
         yield return new WaitForSeconds(0.5f);
@@ -204,12 +200,15 @@ public class MapObjectBase : MonoBehaviour
     }
 
     /// <summary>
-    /// オブジェクトがダメージを受けた際の処理を行います。オーバーライドして具体的なダメージ処理を実装します。
+    /// オブジェクトがダメージを受けた際の処理を行います。
     /// </summary>
     /// <param name="damage">受けたダメージ量。</param>
     public virtual void Damaged(int damage)
     {
-        // ダメージを受けた時に一時的にオブジェクトを赤色にする
+        // HPを減らす
+        Hp.DecreaseCurrentValue(damage);
+
+        // 一時的にキャラを赤色にする
         StartCoroutine(AnimateDamaged());
 
         // ダメージ値をポップアップ表示する
@@ -221,7 +220,20 @@ public class MapObjectBase : MonoBehaviour
         {
             Dead();
         }
+    }
 
+    /// <summary>
+    /// HPを回復した時の処理を行います。
+    /// </summary>
+    /// <param name="value">HP回復量。</param>
+    public virtual void HpRecovered(int value)
+    {
+        // 一時的にキャラを緑色にする
+        StartCoroutine(AnimateHpRecovered());
+
+        // 回復値を緑文字でポップアップ表示する
+        DamagePopup damagePopup = GetComponent<DamagePopup>();
+        damagePopup.ShowDamage(value, transform.position, Color.green);
     }
 
     /// <summary>
@@ -371,11 +383,27 @@ public class MapObjectBase : MonoBehaviour
         float elapsedTime = 0;
         Color originalColor = material.color;
 
-        while (elapsedTime < this.damageDuration)
+        while (elapsedTime < this.damagedEffectDuration)
         {
-            float rate = Mathf.Lerp(1f, 0f, elapsedTime / this.damageDuration);
-            Color newColor = new Color(rate, 0, 0, 1f);
-            material.SetColor("_Color", newColor);
+            material.SetColor("_Color", Color.red);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        material.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
+    }
+
+    /// <summary>
+    /// HP回復時にオブジェクトの色を一時的に赤色にします。
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator AnimateHpRecovered()
+    {
+        float elapsedTime = 0;
+        Color originalColor = material.color;
+
+        while (elapsedTime < this.hpRecoveredEffectDuration)
+        {
+            material.SetColor("_Color", Color.green);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
