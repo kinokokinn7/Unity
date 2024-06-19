@@ -28,6 +28,11 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     private int _selectedIndex = 0;
 
     /// <summary>
+    /// 現在のページ番号/最大ページ番号。
+    /// </summary>
+    private Label _pageNumber;
+
+    /// <summary>
     /// メインメニューのコントローラ。
     /// </summary>
     private MainMenuController _mainMenuController;
@@ -54,14 +59,20 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     private List<Item> _itemList = new List<Item>();
 
     /// <summary>
-    /// 現在のページ数。0始まりの値。
+    /// 現在のページ数。1始まりの値。
     /// </summary>
-    private int _currentPage = 0;
+    private int _currentPage = 1;
 
     /// <summary>
-    /// 1ページあたりのアイテムの最大数。
+    /// 1ページあたりのアイテム表示数。
     /// </summary>
     private int _itemsPerPage = 6;
+
+    /// <summary>
+    /// 現在表示できる最大ページ数。
+    /// アイテム所持数 / 1ページあたりのアイテム表示数 で算出される。
+    /// </summary>
+    private int _currentMaxPage = 1;
 
     /// <summary>
     /// クラスインスタンス変数の初期化を行います。
@@ -77,10 +88,16 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     void OnEnable()
     {
+        // 所持アイテム数が0の場合は処理終了
+        if (_itemInventory.Items.Count == 0) return;
+
         // 所持アイテム一覧を取得
-        int startIndex = _currentPage * _itemsPerPage;
+        int startIndex = (_currentPage - 1) * _itemsPerPage;
         int endIndex = Mathf.Min(startIndex + _itemsPerPage, _itemInventory.Items.Count);
         _itemList.AddRange(_itemInventory.Items.GetRange(startIndex, endIndex));
+
+        // 現在表示できる最大ページ数を設定
+        _currentMaxPage = ((_itemInventory.Items.Count - 1) / _itemsPerPage) + 1;
 
         // アイテムメニューウィンドウのUI Root を取得
         var root = _document.rootVisualElement;
@@ -88,6 +105,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         // メインメニューとリストビューの取得
         _itemMenu = root.Q<VisualElement>("GameItemMenuWindow");
         _listView = root.Q<ListView>("GameItemMenuList");
+        _pageNumber = root.Q<Label>("PageNumber");
 
         if (_itemMenu != null)
         {
@@ -111,6 +129,11 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
                     Debug.Log($"{item}が選択されました。");
                 }
             };
+        }
+
+        if (_pageNumber != null)
+        {
+            _pageNumber.text = $"{_currentPage}/{_currentMaxPage}";
         }
     }
 
@@ -173,13 +196,17 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     public void ShowMenu()
     {
         _itemMenu.style.display = DisplayStyle.Flex;
-        _currentPage = 0;
+        _currentPage = 1;
         UpdateItemList();
+        UpdatePageNumber();
+
         // 最初のアイテムを選択
         ResetIndex();
+
         // リストビューにフォーカスを当てる
         _listView.Focus();
         Focused = true;
+
         // メニューが初めて表示されたことを表すフラグをONにする
         _isMenuJustShown = true;
     }
@@ -309,19 +336,25 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
 
     void ShowPreviousPage()
     {
-        if (_currentPage > 0)
+        if (_currentPage > 1)
         {
             _currentPage--;
             UpdateItemList();
+            UpdatePageNumber();
+            _selectedIndex = 0;
+            _listView.selectedIndex = _selectedIndex;
         }
     }
 
     void ShowNextPage()
     {
-        if ((_currentPage + 1) * _itemsPerPage < _itemInventory.Items.Count)
+        if (_currentPage * _itemsPerPage < _itemInventory.Items.Count)
         {
             _currentPage++;
             UpdateItemList();
+            UpdatePageNumber();
+            _selectedIndex = 0;
+            _listView.selectedIndex = _selectedIndex;
         }
     }
 
@@ -329,11 +362,18 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     {
         _itemList.Clear();
 
-        int startIndex = _currentPage * _itemsPerPage;
-        int endIndex = Mathf.Min(startIndex + _itemsPerPage, _itemInventory.Items.Count - 1);
+        int startIndex = (_currentPage - 1) * _itemsPerPage;
+        int endIndex = Mathf.Min(startIndex + _itemsPerPage, _itemInventory.Items.Count);
         _itemList.AddRange(_itemInventory.Items.GetRange(startIndex, endIndex - startIndex));
         _listView.itemsSource = _itemList;
         _listView.RefreshItems();
     }
+
+    void UpdatePageNumber()
+    {
+        _currentMaxPage = (_itemInventory.Items.Count - 1) / _itemsPerPage + 1;
+        _pageNumber.text = $"{_currentPage}/{_currentMaxPage}";
+    }
+
 
 }
