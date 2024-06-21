@@ -411,7 +411,9 @@ public class MapObjectBase : MonoBehaviour
 
         while (elapsedTime < this.hpRecoveredEffectDuration)
         {
-            material.SetColor("_Color", Color.green);
+            float rate = Mathf.Lerp(1f, 0f, elapsedTime / this.hpRecoveredEffectDuration);
+            Color newColor = new Color(0, 1 - originalColor.g * rate, 0);
+            material.SetColor("_Color", newColor);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
