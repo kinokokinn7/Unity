@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,14 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public AudioClip SE_OpenWindow; // ウィンドウを開く
     public AudioClip SE_UseItem; // アイテムを使用する
+    public AudioClip SE_Attack; // 攻撃
+    public AudioClip SE_Damaged; // ダメージ
+    public AudioClip SE_Recovered; // 回復
 
+    public AudioClip SE_FoodDamaged; // 満腹度ダメージ
+
+    public AudioClip SE_ItemGet; // アイテム入手
+    public AudioClip SE_Stair; // 階段
 
     void Awake()
     {
@@ -51,16 +59,29 @@ public class SoundEffectManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 一定時間だけSEを再生します。
+    /// </summary>
+    /// <param name="clip">再生するSE。</param>
+    /// <param name="duration">再生時間。</param>
+    public void PlaySoundForDuration(AudioClip clip, float duration)
+    {
+        StartCoroutine(PlaySoundForDurationCoroutine(clip, duration));
+    }
+
+    private IEnumerator PlaySoundForDurationCoroutine(AudioClip clip, float duration)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+        yield return new WaitForSeconds(duration);
+        audioSource.Stop();
+    }
+
+    /// <summary>
     /// [ウィンドウを開く]SEを指定して再生します。
     /// </summary>
     public void PlayOpenWindowSound()
     {
-        if (SE_OpenWindow == null)
-        {
-            Debug.LogWarning("This SoundClip is not assigned.");
-            return;
-        }
-        audioSource.PlayOneShot(SE_OpenWindow);
+        audioSource?.PlayOneShot(SE_OpenWindow);
     }
 
     /// <summary>
@@ -68,12 +89,57 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayUseItemSound()
     {
-        if (SE_UseItem == null)
-        {
-            Debug.LogWarning("This SoundClip is not assigned.");
-            return;
-        }
-        audioSource.PlayOneShot(SE_UseItem);
+        audioSource?.PlayOneShot(SE_UseItem);
     }
 
+    /// <summary>
+    /// [攻撃]SEを指定して再生します。
+    /// </summary>
+    public void PlayAttackSound()
+    {
+
+        audioSource?.PlayOneShot(SE_Attack);
+    }
+
+    /// <summary>
+    /// [ダメージ]SEを指定して再生します。
+    /// </summary>
+    public void PlayDamagedSound()
+    {
+        audioSource?.PlayOneShot(SE_Damaged);
+    }
+
+    /// <summary>
+    /// [回復]SEを指定して再生します。
+    /// </summary>
+    public void PlayRecoveredSound()
+    {
+        audioSource?.PlayOneShot(SE_Recovered);
+    }
+
+    /// <summary>
+    /// [満腹度ダメージ]SEを指定して再生します。
+    /// </summary>
+    public void PlayFoodDamagedSound()
+    {
+        audioSource?.PlayOneShot(SE_FoodDamaged);
+    }
+
+    /// <summary>
+    /// [アイテム入手]SEを指定して再生します。
+    /// </summary>
+    public void PlayItemGetSound()
+    {
+        audioSource?.PlayOneShot(SE_ItemGet);
+    }
+
+    /// <summary>
+    /// [階段]SEを指定して再生します。
+    /// </summary>
+    public void PlayStairSound()
+    {
+        audioSource.pitch = 1.5f;
+        PlaySoundForDuration(SE_Stair, 2f);
+        audioSource.pitch = 1f;
+    }
 }

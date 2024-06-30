@@ -1255,6 +1255,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
   SE_OpenWindow: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
   SE_UseItem: {fileID: 8300000, guid: ba39bf8baf6d13046889b2d64822381a, type: 3}
+  SE_Attack: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+  SE_Damaged: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
+  SE_Recovered: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
+  SE_FoodDamaged: {fileID: 8300000, guid: acbcb75601b0082458fda8807f67c813, type: 3}
+  SE_ItemGet: {fileID: 8300000, guid: 7cc057bed53baf34799f52aab3c84800, type: 3}
+  SE_Stair: {fileID: 8300000, guid: 9b713c76b05f8b04882a23a60605b0d2, type: 3}
 --- !u!4 &777576458
 Transform:
   m_ObjectHideFlags: 0

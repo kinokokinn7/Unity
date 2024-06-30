@@ -23,8 +23,9 @@ class Treasure : MapObjectBase
         // 持ち物リストに宝箱の中のアイテムを追加する
         var itemInventory = UnityEngine.Object.FindObjectOfType<ItemInventory>();
         var added = itemInventory.AddItem(_item);
-
         if (!added) return;
+
+        SoundEffectManager.Instance.PlayItemGetSound();
 
         // 宝箱を開けたらマップから削除する
         mass.ExistTreasureOrTrap = null;

@@ -229,6 +229,8 @@ class Player : MapObjectBase
     private IEnumerator Goal()
     {
         this.CanMove = false;
+
+        SoundEffectManager.Instance.PlayStairSound();
         yield return StartCoroutine(FadeController.Instance.FadeOut());
 
         // マップを新規生成
@@ -342,6 +344,8 @@ class Player : MapObjectBase
     {
         // 空腹度を減らす
         FoodValue.CurrentValue -= damage;
+
+        SoundEffectManager.Instance.PlayFoodDamagedSound();
 
         // ダメージ値を黄色文字でポップアップ表示する
         DamagePopup damagePopup = GetComponent<DamagePopup>();

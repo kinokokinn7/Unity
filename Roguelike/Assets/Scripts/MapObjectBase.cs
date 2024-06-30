@@ -198,8 +198,14 @@ public class MapObjectBase : MonoBehaviour
 
         MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{Attack.GetCurrentValue()}のダメージ！");
 
+        // 効果音を鳴らす
+        SoundEffectManager.Instance.PlayAttackSound();
+
         int damageAmount = Attack.GetCurrentValue();
         other.Damaged(damageAmount);
+
+        // 効果音を鳴らす
+        SoundEffectManager.Instance.PlayAttackSound();
 
         // 一定時間待機
         yield return new WaitForSeconds(0.5f);
@@ -215,6 +221,9 @@ public class MapObjectBase : MonoBehaviour
     {
         // HPを減らす
         Hp.DecreaseCurrentValue(damage);
+
+        // 効果音を鳴らす
+        SoundEffectManager.Instance.PlayDamagedSound();
 
         // 一時的にキャラを赤色にする
         StartCoroutine(AnimateDamaged());
@@ -236,6 +245,9 @@ public class MapObjectBase : MonoBehaviour
     /// <param name="value">HP回復量。</param>
     public virtual void HpRecovered(int value)
     {
+        // 効果音を鳴らす
+        SoundEffectManager.Instance.PlayRecoveredSound();
+
         // 一時的にキャラを緑色にする
         StartCoroutine(AnimateHpRecovered());
 
