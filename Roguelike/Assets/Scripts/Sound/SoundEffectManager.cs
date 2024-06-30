@@ -63,17 +63,20 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     /// <param name="clip">再生するSE。</param>
     /// <param name="duration">再生時間。</param>
-    public void PlaySoundForDuration(AudioClip clip, float duration)
+    /// <param name="pitch">ピッチ。</param>
+    public void PlaySound(AudioClip clip, float duration, float pitch)
     {
-        StartCoroutine(PlaySoundForDurationCoroutine(clip, duration));
+        StartCoroutine(PlaySoundForDurationCoroutine(clip, duration, pitch));
     }
 
-    private IEnumerator PlaySoundForDurationCoroutine(AudioClip clip, float duration)
+    private IEnumerator PlaySoundForDurationCoroutine(AudioClip clip, float duration, float pitch)
     {
+        audioSource.pitch = pitch;
         audioSource.clip = clip;
         audioSource.Play();
         yield return new WaitForSeconds(duration);
         audioSource.Stop();
+        audioSource.pitch = 1f;
     }
 
     /// <summary>
@@ -138,8 +141,8 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayStairSound()
     {
-        audioSource.pitch = 1.5f;
-        PlaySoundForDuration(SE_Stair, 2f);
-        audioSource.pitch = 1f;
+        if (audioSource == null) return;
+
+        PlaySound(SE_Stair, 0.8f, 3f);
     }
 }
