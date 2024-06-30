@@ -80,9 +80,20 @@ public class Map : MonoBehaviour
         }
     }
 
-    public MassData[] massDataList;                  // 利用可能な全マスデータ
-    public Vector2 MassOffset = new Vector2(1, 1);   // マスのオフセット
+    /// <summary>
+    /// 利用可能な全マスデータ。
+    /// </summary>
+    public MassData[] massDataList;
 
+    /// <summary>
+    /// マスのオフセット。
+    /// </summary>
+    public Vector2 MassOffset = new Vector2(1, 1);
+
+    /// <summary>
+    /// マップのBGM。
+    /// </summary>
+    public AudioSource bgmSource;
 
     /// <summary>
     /// マップの生成中かどうかを示す値を取得します。
@@ -441,7 +452,18 @@ public class Map : MonoBehaviour
             placeMassCount--;
 
         }
+    }
 
+    /// <summary>
+    /// マップのBGMを再生します。
+    /// 再生中の場合は何も行いません。
+    /// </summary>
+    public void PlayBGM()
+    {
+        if (bgmSource == null) return;
+        if (bgmSource.isPlaying) return;
+
+        bgmSource.Play();
     }
 }
 

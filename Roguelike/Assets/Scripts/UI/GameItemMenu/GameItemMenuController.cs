@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class GameItemMenuController : MonoBehaviour, IMenuController
 {
+    private MenuControllerCommon _menuControllerCommon;
+
     /// <summary>
     /// UIドキュメント。
     /// </summary>
@@ -79,6 +81,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     void Start()
     {
+        _menuControllerCommon = UnityEngine.Object.FindObjectOfType<MenuControllerCommon>();
         _mainMenuController = UnityEngine.Object.FindObjectOfType<MainMenuController>();
         _itemInventory = UnityEngine.Object.FindObjectOfType<ItemInventory>();
     }
@@ -195,6 +198,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     public void ShowMenu()
     {
+        _menuControllerCommon?.ShowMenu();
+
         _itemMenu.style.display = DisplayStyle.Flex;
         _currentPage = 1;
         UpdateItemList();
@@ -216,6 +221,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     public void HideMenu()
     {
+        _menuControllerCommon?.HideMenu();
+
         _itemMenu.style.display = DisplayStyle.None;
         Focused = false;
 
@@ -238,6 +245,11 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     public void ExecuteSelection()
     {
+        _menuControllerCommon?.ExecuteSelection();
+
+        // 効果音を鳴らす
+        SoundEffectManager.Instance.PlayUseItemSound();
+
         // 選択されたアイテムを使用する
         var selectedItem = _listView.selectedItem as Item;
         if (selectedItem != null)
@@ -252,13 +264,17 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             var player = UnityEngine.Object.FindObjectOfType<Player>();
             selectedItem.Use(player);
 
-            // アイテム使用後、一覧から除去する
-            _itemList.Remove(selectedItem);
-            _listView.itemsSource = _itemList;
-            _listView.RefreshItems();
+            // アイテムが消耗品の場合はアイテムを一覧から削除する
+            if (selectedItem.Consumable)
+            {
+                // アイテム使用後、一覧から除去する
+                _itemList.Remove(selectedItem);
+                _listView.itemsSource = _itemList;
+                _listView.RefreshItems();
 
-            // アイテム管理クラスのリストから削除する
-            _itemInventory.RemoveItem(selectedItem);
+                // アイテム管理クラスのリストから削除する
+                _itemInventory.RemoveItem(selectedItem);
+            }
         }
 
         // 全てのメニューウィンドウを閉じる
@@ -282,8 +298,10 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// カーソルを1つ上に移動します。
     /// 一番上に位置する場合は、一番下に移動します。
     /// </summary>
-    private void MoveSelectionUp()
+    public void MoveSelectionUp()
     {
+        _menuControllerCommon?.MoveSelectionUp();
+
         if (_listView.itemsSource != null && _listView.itemsSource.Count > 0)
         {
             _selectedIndex = (_selectedIndex - 1 + _listView.itemsSource.Count) % _listView.itemsSource.Count;
@@ -295,8 +313,10 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// カーソルを1つ下に移動します。
     /// 一番下に位置する場合は、一番上に移動します。
     /// </summary>
-    private void MoveSelectionDown()
+    public void MoveSelectionDown()
     {
+        _menuControllerCommon?.MoveSelectionDown();
+
         if (_listView.itemsSource != null && _listView.itemsSource.Count > 0)
         {
             _selectedIndex = (_selectedIndex + 1) % _listView.itemsSource.Count;
@@ -334,6 +354,9 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         _listView.selectedIndex = 0;
     }
 
+    /// <summary>
+    /// 前のページを表示します。
+    /// </summary>
     void ShowPreviousPage()
     {
         if (_currentPage > 1)
@@ -346,6 +369,9 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         }
     }
 
+    /// <summary>
+    /// 次のページを表示します。
+    /// </summary>
     void ShowNextPage()
     {
         if (_currentPage * _itemsPerPage < _itemInventory.Items.Count)
@@ -358,6 +384,9 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         }
     }
 
+    /// <summary>
+    /// アイテムリストを更新します。
+    /// </summary>
     void UpdateItemList()
     {
         _itemList.Clear();
@@ -369,6 +398,9 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         _listView.RefreshItems();
     }
 
+    /// <summary>
+    /// ページ番号の表示を更新します。
+    /// </summary>
     void UpdatePageNumber()
     {
         _currentMaxPage = (_itemInventory.Items.Count - 1) / _itemsPerPage + 1;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Roguelike.Window;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,6 +12,24 @@ using UnityEngine.Serialization;
 public class Weapon : Item
 {
     public Atk Attack = new Atk();
+
+    /// <summary>
+    /// 武器を装備します。
+    /// </summary>
+    /// <param name="target">装備する対象のキャラ。</param>
+    public override void Use(MapObjectBase target)
+    {
+        if (target.CurrentWeapon != this)
+        {
+            MessageWindow.Instance?.AppendMessage($"{this.Name}を装備した！");
+            target.CurrentWeapon = this;
+        }
+        else
+        {
+            MessageWindow.Instance?.AppendMessage($"武器を取り外した！");
+            target.CurrentWeapon = null;
+        }
+    }
 
     /// <summary>
     /// 武器をマップオブジェクトに装備します。攻撃力が増加します。

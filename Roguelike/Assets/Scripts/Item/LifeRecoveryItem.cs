@@ -33,7 +33,7 @@ public class LifeRecoveryItem : Item
     }
 
     /// <summary>
-    /// エフェクトを生成する。
+    /// エフェクトを生成します。
     /// </summary>
     /// <param name="position">エフェクトの生成位置。</param>
     private void SpawnHealingEffect(Vector3 position)

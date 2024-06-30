@@ -402,7 +402,7 @@ public class MapObjectBase : MonoBehaviour
 
     /// <summary>
     /// HP回復時にオブジェクトの色を一時的に緑色にします。
-    /// </summary>
+    /// </summarxzy>
     /// <returns></returns>
     private IEnumerator AnimateHpRecovered()
     {

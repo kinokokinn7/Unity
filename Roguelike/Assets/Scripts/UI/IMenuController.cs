@@ -7,4 +7,6 @@ public interface IMenuController
     void ShowMenu();
     void HideMenu();
     void ExecuteSelection();
+    void MoveSelectionUp();
+    void MoveSelectionDown();
 }

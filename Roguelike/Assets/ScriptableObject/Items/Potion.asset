@@ -16,5 +16,6 @@ MonoBehaviour:
   Description: "HP\u309230\u56DE\u5FA9\u3059\u308B\u3002"
   Money: 10
   Usable: 1
+  Consumable: 1
   RecoveryPower: 30
   _healingEffectPrefab: {fileID: 7333403968637262863, guid: 670ed38d20d374d61aea0661b53a66b9, type: 3}

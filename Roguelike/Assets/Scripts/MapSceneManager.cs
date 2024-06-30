@@ -71,6 +71,10 @@ public class MapSceneManager : MonoBehaviour
             var lines = mapData.Split('\n').ToList();
             map.BuildMap(lines);
         }
+
+        // BGMを再生する
+        map.PlayBGM();
+
     }
 
     // デバッグ用: スペースキーを押すとマップを再生成します。

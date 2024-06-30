@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class MainMenuController : MonoBehaviour, IMenuController
 {
+    private MenuControllerCommon _menuControllerCommon;
     public UIDocument _document;
     private VisualElement _mainMenu;
     private ListView _listView;
@@ -20,6 +21,8 @@ public class MainMenuController : MonoBehaviour, IMenuController
 
     void Start()
     {
+        _menuControllerCommon = UnityEngine.Object.FindObjectOfType<MenuControllerCommon>();
+
         _selectedItems.Add("アイテム", new MainMenuSelectedItem_GameItem());
         _selectedItems.Add("設定", new MainMenuSelectedItem_Settings());
     }
@@ -107,6 +110,8 @@ public class MainMenuController : MonoBehaviour, IMenuController
 
     public void ShowMenu()
     {
+        _menuControllerCommon?.ShowMenu();
+
         _mainMenu.style.display = DisplayStyle.Flex;
         // 最初のアイテムを選択
         _listView.selectedIndex = 0;
@@ -121,6 +126,8 @@ public class MainMenuController : MonoBehaviour, IMenuController
 
     public void HideMenu()
     {
+        _menuControllerCommon?.HideMenu();
+
         _mainMenu.style.display = DisplayStyle.None;
         Focused = false;
 
@@ -134,6 +141,8 @@ public class MainMenuController : MonoBehaviour, IMenuController
     /// </summary>
     public void ExecuteSelection()
     {
+        _menuControllerCommon?.ExecuteSelection();
+
         var selectedItem = _listView.selectedItem;
         if (selectedItem != null)
         {
@@ -150,8 +159,10 @@ public class MainMenuController : MonoBehaviour, IMenuController
         }
     }
 
-    private void MoveSelectionUp()
+    public void MoveSelectionUp()
     {
+        _menuControllerCommon?.MoveSelectionUp();
+
         if (_listView.itemsSource != null && _listView.itemsSource.Count > 0)
         {
             _selectedIndex = (_selectedIndex - 1 + _listView.itemsSource.Count) % _listView.itemsSource.Count;
@@ -159,8 +170,10 @@ public class MainMenuController : MonoBehaviour, IMenuController
         }
     }
 
-    private void MoveSelectionDown()
+    public void MoveSelectionDown()
     {
+        _menuControllerCommon?.MoveSelectionDown();
+
         if (_listView.itemsSource != null && _listView.itemsSource.Count > 0)
         {
             _selectedIndex = (_selectedIndex + 1) % _listView.itemsSource.Count;
@@ -181,4 +194,5 @@ public class MainMenuController : MonoBehaviour, IMenuController
         _listView.Blur();
         Focused = false;
     }
+
 }

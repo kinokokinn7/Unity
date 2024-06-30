@@ -9,6 +9,8 @@ public class Item : ScriptableObject
     public string Description;
     public int Money;
     public bool Usable;
+    public bool Consumable;
+
 
     public Item()
     {
