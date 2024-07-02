@@ -1259,8 +1259,12 @@ MonoBehaviour:
   SE_Damaged: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
   SE_Recovered: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   SE_FoodDamaged: {fileID: 8300000, guid: acbcb75601b0082458fda8807f67c813, type: 3}
+  SE_FoodRecovered: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   SE_ItemGet: {fileID: 8300000, guid: 7cc057bed53baf34799f52aab3c84800, type: 3}
   SE_Stair: {fileID: 8300000, guid: 9b713c76b05f8b04882a23a60605b0d2, type: 3}
+  SE_LevelUp: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
+  SE_AttachWeapon: {fileID: 8300000, guid: 490bfbc72255342408984f60044487de, type: 3}
+  SE_DetachWeapon: {fileID: 8300000, guid: 78ad99fd0a0a5144280b07bbdba84815, type: 3}
 --- !u!4 &777576458
 Transform:
   m_ObjectHideFlags: 0

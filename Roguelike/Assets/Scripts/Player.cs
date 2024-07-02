@@ -194,7 +194,7 @@ class Player : MapObjectBase
     /// </summary>
     void CheckEvent()
     {
-        DoWaitEvent = false;
+        DoWaitEvent = true;
         StartCoroutine(RunEvents());
     }
 
@@ -209,7 +209,7 @@ class Player : MapObjectBase
             enemy.MoveStart();
         }
         yield return new WaitWhile(() =>
-            UnityEngine.Object.FindObjectsOfType<Enemy>().All(_e => !_e.IsNowMoving));
+            UnityEngine.Object.FindObjectsOfType<Enemy>().Any(_e => _e.IsNowMoving || _e.IsNowAttacking));
 
         var mass = Map[Pos.x, Pos.y];
         if (mass.Type == MassType.Goal)
@@ -218,7 +218,7 @@ class Player : MapObjectBase
         }
         else
         {
-            DoWaitEvent = true;
+            DoWaitEvent = false;
         }
     }
 
@@ -358,6 +358,8 @@ class Player : MapObjectBase
     /// <param name="value">満腹度の回復量。</param>
     public void FoodValueRecovered(int value)
     {
+        SoundEffectManager.Instance.PlayFoodRecoveredSound();
+
         // 回復値をシアン色文字でポップアップ表示する
         DamagePopup damagePopup = GetComponent<DamagePopup>();
         damagePopup.ShowDamage(value, transform.position, Color.cyan);
@@ -373,6 +375,7 @@ class Player : MapObjectBase
         Attack.IncreaseCurrentValue(1);
         Exp.Reset();
 
+        SoundEffectManager.Instance.PlayLevelUpSound();
         MessageWindow.AppendMessage($"{this.Name}のレベルが{Level}に上がった！");
         MessageWindow.AppendMessage($"  HP +5  Atk + 1");
     }

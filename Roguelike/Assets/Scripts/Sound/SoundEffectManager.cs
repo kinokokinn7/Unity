@@ -27,10 +27,12 @@ public class SoundEffectManager : MonoBehaviour
     public AudioClip SE_Recovered; // 回復
 
     public AudioClip SE_FoodDamaged; // 満腹度ダメージ
+    public AudioClip SE_FoodRecovered; // 満腹度回復
 
     public AudioClip SE_ItemGet; // アイテム入手
     public AudioClip SE_Stair; // 階段
-
+    public AudioClip SE_LevelUp; // レベルアップ
+    public AudioClip SE_AttachWeapon; // 武器装備
     void Awake()
     {
         // シングルトンのインスタンスを設定
@@ -129,6 +131,14 @@ public class SoundEffectManager : MonoBehaviour
     }
 
     /// <summary>
+    /// [満腹度回復]SEを指定して再生します。
+    /// </summary>
+    public void PlayFoodRecoveredSound()
+    {
+        audioSource?.PlayOneShot(SE_FoodRecovered);
+    }
+
+    /// <summary>
     /// [アイテム入手]SEを指定して再生します。
     /// </summary>
     public void PlayItemGetSound()
@@ -144,5 +154,23 @@ public class SoundEffectManager : MonoBehaviour
         if (audioSource == null) return;
 
         PlaySound(SE_Stair, 0.8f, 3f);
+    }
+
+    /// <summary>
+    /// [レベルアップ]SEを指定して再生します。
+    /// </summary>
+    public void PlayLevelUpSound()
+    {
+        if (audioSource == null) return;
+
+        PlaySound(SE_LevelUp, 0.5f, 3f);
+    }
+
+    /// <summary>
+    /// [武器装備]SEを指定して再生します。
+    /// </summary>
+    public void PlayAttachWeaponSound()
+    {
+        audioSource?.PlayOneShot(SE_AttachWeapon);
     }
 }

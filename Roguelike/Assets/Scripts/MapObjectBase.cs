@@ -64,7 +64,7 @@ public class MapObjectBase : MonoBehaviour
     /// <summary>
     /// 攻撃中の場合は `true` を返すフラグ。
     /// </summary>
-    protected bool IsNowAttacking { get; set; }
+    public bool IsNowAttacking { get; set; }
 
     /// <summary>
     /// 死亡しているか否かを表すフラグ。
@@ -178,7 +178,8 @@ public class MapObjectBase : MonoBehaviour
     public static bool IsAttackableObject(MapObjectBase self, MapObjectBase other)
     {
         return self.CurrentGroup != other.CurrentGroup
-            && (self.CurrentGroup != Group.Other && other.CurrentGroup != Group.Other);
+            && (self.CurrentGroup != Group.Other && other.CurrentGroup != Group.Other)
+            && !other.IsDead;
     }
 
     /// <summary>
@@ -390,7 +391,7 @@ public class MapObjectBase : MonoBehaviour
         if (CurrentWeapon != null)
         {
             // 起動時に装備している武器の設定処理を行う
-            CurrentWeapon.Attach(this);
+            CurrentWeapon.Attach(this, true);
         }
     }
 

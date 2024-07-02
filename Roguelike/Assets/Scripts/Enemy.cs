@@ -176,4 +176,13 @@ class Enemy : MapObjectBase
         // 移動の前方向を決定したら移動する
         Move(Forward);
     }
+
+    /// <summary>
+    /// 敵キャラが攻撃する際の処理を行います。ダメージの計算と敵の死亡判定を含みます。
+    /// </summary>
+    /// <param name="other">攻撃相手。</param>
+    public override IEnumerator AttackTo(MapObjectBase other)
+    {
+        yield return base.AttackTo(other);
+    }
 }

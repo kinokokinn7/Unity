@@ -35,8 +35,13 @@ public class Weapon : Item
     /// 武器をマップオブジェクトに装備します。攻撃力が増加します。
     /// </summary>
     /// <param name="obj">装備するマップオブジェクト。</param>
-    public void Attach(MapObjectBase obj)
+    /// <param name="soundOff">効果音をオフにするか否か。</param>
+    public void Attach(MapObjectBase obj, bool soundOff = false)
     {
+        if (!soundOff)
+        {
+            SoundEffectManager.Instance.PlayAttachWeaponSound();
+        }
         obj.Attack.IncreaseCurrentValue(Attack.GetCurrentValue());
     }
 
@@ -44,6 +49,7 @@ public class Weapon : Item
     /// 武器をマップオブジェクトから外します。攻撃力が減少します。
     /// </summary>
     /// <param name="obj">装備を外すマップオブジェクト。</param>
+    /// <param name="soundOff">効果音をオフにするか否か。</param>
     public void Detach(MapObjectBase obj)
     {
         obj.Attack.DecreaseCurrentValue(Attack.GetCurrentValue());
