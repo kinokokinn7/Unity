@@ -209,7 +209,7 @@ class Player : MapObjectBase
             enemy.MoveStart();
         }
         yield return new WaitWhile(() =>
-            UnityEngine.Object.FindObjectsOfType<Enemy>().Any(_e => _e.IsNowMoving || _e.IsNowAttacking));
+            UnityEngine.Object.FindObjectsOfType<Enemy>().Any(_e => _e.IsNowAttacking));
 
         var mass = Map[Pos.x, Pos.y];
         if (mass.Type == MassType.Goal)
