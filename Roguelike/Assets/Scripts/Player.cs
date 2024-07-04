@@ -394,6 +394,7 @@ class Player : MapObjectBase
             {
                 var treasure = (otherTreasureOrTrap as Treasure);
                 treasure.OpenTreasure(this, mass, movedPos);
+                StartCoroutine(MoveCoroutine(movedPos));
                 return;
             }
             else if (otherTreasureOrTrap is Trap)

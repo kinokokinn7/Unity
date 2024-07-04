@@ -291,7 +291,7 @@ public class MapObjectBase : MonoBehaviour
     /// </summary>
     /// <param name="target">移動先のターゲット位置。</param>
     /// <returns>IEnumeratorを返し、コルーチンの実行を可能にします。</returns>
-    private IEnumerator MoveCoroutine(Vector2Int target)
+    protected IEnumerator MoveCoroutine(Vector2Int target)
     {
         // マップ上の現在位置のマスの情報を更新
         var startMass = Map[Pos.x, Pos.y];
