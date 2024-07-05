@@ -25,7 +25,7 @@ public class ItemInventory : MonoBehaviour
     /// <summary>
     /// 最大所持可能アイテム数。
     /// </summary>
-    public readonly int MaxItems = 12;
+    public readonly int MaxItems = 30;
 
     /// <summary>
     /// アイテムを所持アイテム一覧に追加します。

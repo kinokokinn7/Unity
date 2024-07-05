@@ -1,3 +1,20 @@
 .game-item-menu-list {
     font-size: 60px;
 }
+
+.item-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.equipped-indicator {
+    font-size: 30px;
+    font-weight: bold;
+    vertical-align: super;
+    margin-right: 2px;
+}
+
+.item-name {
+    font-size: 60px;
+}

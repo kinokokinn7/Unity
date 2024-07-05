@@ -120,7 +120,33 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         {
             // リストビューの設定
             _listView.makeItem = () => new Label();
-            _listView.bindItem = (element, i) => (element as Label).text = _itemList[i].Name;
+            _listView.bindItem = (element, i) =>
+            {
+                var item = _itemList[i];
+                element.Clear();
+                element.AddToClassList("item-container");
+
+                if (item is Weapon)
+                {
+                    var weapon = item as Weapon;
+                    if (weapon.IsEquipped)
+                    {
+                        var equippedLabel = new Label("E");
+                        equippedLabel.AddToClassList("equipped-indicator");
+                        element.Add(equippedLabel);
+                    }
+
+                    var itemNameLabel = new Label(item.Name);
+                    itemNameLabel.AddToClassList("item-name");
+                    element.Add(itemNameLabel);
+                }
+                else
+                {
+                    var itemNameLabel = new Label(item.Name);
+                    itemNameLabel.AddToClassList("item-name");
+                    element.Add(itemNameLabel);
+                }
+            };
             _listView.itemsSource = _itemList;
             _listView.selectionType = SelectionType.Single;
 
