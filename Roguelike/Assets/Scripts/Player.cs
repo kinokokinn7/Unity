@@ -182,10 +182,10 @@ class Player : MapObjectBase
         while (NowAction == Action.None)
         {
             yield return null;
-            if (Input.GetKey(KeyCode.UpArrow)) NowAction = Action.MoveUp;
-            if (Input.GetKey(KeyCode.DownArrow)) NowAction = Action.MoveDown;
-            if (Input.GetKey(KeyCode.RightArrow)) NowAction = Action.MoveRight;
-            if (Input.GetKey(KeyCode.LeftArrow)) NowAction = Action.MoveLeft;
+            if (Input.GetKey(KeyCode.UpArrow) || VirtualGamePad.Instance.IsUpPressed()) NowAction = Action.MoveUp;
+            if (Input.GetKey(KeyCode.DownArrow) || VirtualGamePad.Instance.IsDownPressed()) NowAction = Action.MoveDown;
+            if (Input.GetKey(KeyCode.RightArrow) || VirtualGamePad.Instance.IsRightPressed()) NowAction = Action.MoveRight;
+            if (Input.GetKey(KeyCode.LeftArrow) || VirtualGamePad.Instance.IsLeftPressed()) NowAction = Action.MoveLeft;
         }
     }
 

@@ -60,6 +60,7 @@ MonoBehaviour:
     currentValue: 3
   CurrentGroup: 0
   _weapon: {fileID: 11400000, guid: daaaa716ec8a843b28b9ee42d7f98c4f, type: 2}
+  virtualGamePad: {fileID: 0}
   Level: 1
   FoodValue:
     currentValue: 100
