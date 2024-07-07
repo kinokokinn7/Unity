@@ -1,0 +1,36 @@
+#DPad {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+#DPad Button {
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+}
+
+#ABXY {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+#ABXY Button {
+    color: white;
+    border-radius: 5px;
+}
+
+.A_Button {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.B_Button {
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
+.X_Button {
+    background-color: rgba(0, 0, 255, 0.5);
+}
+
+.Y_Button {
+    background-color: rgba(0, 255, 0, 0.5);
+}

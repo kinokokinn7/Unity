@@ -696,6 +696,7 @@ RectTransform:
   - {fileID: 363239766}
   - {fileID: 615601352}
   - {fileID: 1262209063}
+  - {fileID: 1244771643}
   m_Father: {fileID: 1727713475}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1264,7 +1265,6 @@ MonoBehaviour:
   SE_Stair: {fileID: 8300000, guid: 9b713c76b05f8b04882a23a60605b0d2, type: 3}
   SE_LevelUp: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
   SE_AttachWeapon: {fileID: 8300000, guid: 490bfbc72255342408984f60044487de, type: 3}
-  SE_DetachWeapon: {fileID: 8300000, guid: 78ad99fd0a0a5144280b07bbdba84815, type: 3}
 --- !u!4 &777576458
 Transform:
   m_ObjectHideFlags: 0
@@ -2306,6 +2306,54 @@ RectTransform:
   m_AnchoredPosition: {x: -94.2, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1244771642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244771643}
+  - component: {fileID: 1244771644}
+  m_Layer: 5
+  m_Name: VirtualGamePad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1244771643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244771642}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 366028667}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1244771644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244771642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 734c9498699b941e18a50c5f1b56228f, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: e79846c225db24ed387ab8dca01d2209, type: 3}
+  m_SortingOrder: 0
 --- !u!1 &1262209062
 GameObject:
   m_ObjectHideFlags: 0
