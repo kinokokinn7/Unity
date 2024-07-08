@@ -7,64 +7,80 @@ public class VirtualGamePad : MonoBehaviour
 {
     public static VirtualGamePad Instance { get; private set; }
 
+    public UIDocument uiDocument;
+
     private VisualElement root;
+    private VisualElement DPad;
+    private VisualElement ABXY;
     private Button upButton, downButton, leftButton, rightButton;
     private Button aButton, bButton, xButton, yButton;
     private Vector2 moveInput;
     private bool upPressed, downPressed, leftPressed, rightPressed;
     private bool aPressed, bPressed, xPressed, yPressed;
 
-    private void Awake()
-    {
-        // シングルトンインスタンスを設定
-        if (Instance == null)
-        {
-            Instance = this;
-            // シーンを切り替えてもこのオブジェクトを保持する
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            // すでにインスタンスが存在する場合、このオブジェクトを破棄する
-            Destroy(gameObject);
-        }
-    }
-
     void OnEnable()
     {
-        var uiDocument = GetComponent<UIDocument>();
+        
+        if (uiDocument == null)
+        {
+            Debug.LogError("UIDocument is not assigned.");
+            return;
+        }
+
         root = uiDocument.rootVisualElement;
+        if (root == null)
+        {
+            Debug.LogError("rootVisualElement is null.");
+            return;
+        }
 
-        // 十字キーのボタンを取得
-        upButton = root.Q<Button>("Up");
-        downButton = root.Q<Button>("Down");
-        leftButton = root.Q<Button>("Left");
-        rightButton = root.Q<Button>("Right");
+        DPad = root.Q<VisualElement>("DPad");
+        ABXY = root.Q<VisualElement>("ABXY");
 
-        // ABXYボタンを取得
-        aButton = root.Q<Button>("A");
-        bButton = root.Q<Button>("B");
-        xButton = root.Q<Button>("X");
-        yButton = root.Q<Button>("Y");
+        if (DPad == null || ABXY == null)
+        {
+            Debug.LogError("DPad or ABXY VisualElement is null.");
+            return;
+        }
 
-        // コールバックの設定
-        upButton.RegisterCallback<PointerDownEvent>(evt => { moveInput.y = 1; upPressed = true; });
-        upButton.RegisterCallback<PointerUpEvent>(evt => { moveInput.y = 0; upPressed = false; });
-        downButton.RegisterCallback<PointerDownEvent>(evt => { moveInput.y = -1; downPressed = true; });
-        downButton.RegisterCallback<PointerUpEvent>(evt => { moveInput.y = 0; downPressed = false; });
-        leftButton.RegisterCallback<PointerDownEvent>(evt => { moveInput.x = -1; leftPressed = true; });
-        leftButton.RegisterCallback<PointerUpEvent>(evt => { moveInput.x = 0; leftPressed = false; });
-        rightButton.RegisterCallback<PointerDownEvent>(evt => { moveInput.x = 1; rightPressed = true; });
-        rightButton.RegisterCallback<PointerUpEvent>(evt => { moveInput.x = 0; rightPressed = false; });
+        upButton = DPad.Q<Button>("Up");
+        downButton = DPad.Q<Button>("Down");
+        leftButton = DPad.Q<Button>("Left");
+        rightButton = DPad.Q<Button>("Right");
 
-        aButton.RegisterCallback<PointerDownEvent>(evt => aPressed = true);
-        aButton.RegisterCallback<PointerDownEvent>(evt => aPressed = false);
-        bButton.RegisterCallback<PointerDownEvent>(evt => bPressed = true);
-        bButton.RegisterCallback<PointerDownEvent>(evt => bPressed = false);
-        xButton.RegisterCallback<PointerDownEvent>(evt => xPressed = true);
-        xButton.RegisterCallback<PointerDownEvent>(evt => xPressed = false);
-        yButton.RegisterCallback<PointerDownEvent>(evt => yPressed = true);
-        yButton.RegisterCallback<PointerDownEvent>(evt => yPressed = false);
+        aButton = ABXY.Q<Button>("A");
+        bButton = ABXY.Q<Button>("B");
+        xButton = ABXY.Q<Button>("X");
+        yButton = ABXY.Q<Button>("Y");
+
+        if (upButton == null || downButton == null || leftButton == null || rightButton == null || aButton == null || bButton == null || xButton == null || yButton == null)
+        {
+            Debug.LogError("One or more buttons are null.");
+            return;
+        }
+
+        RegisterButtonCallbacks();
+    }
+
+    void RegisterButtonCallbacks()
+    {
+        upButton.RegisterCallback<MouseDownEvent>(evt => { moveInput.y = 1; upPressed = true; Debug.Log("Up Button Pressed"); });
+        upButton.RegisterCallback<MouseUpEvent>(evt => { moveInput.y = 0; upPressed = false; Debug.Log("Up Button Released"); });
+        downButton.RegisterCallback<MouseDownEvent>(evt => { moveInput.y = -1; downPressed = true; Debug.Log("Down Button Pressed"); });
+        downButton.RegisterCallback<MouseUpEvent>(evt => { moveInput.y = 0; downPressed = false; Debug.Log("Down Button Released"); });
+        leftButton.RegisterCallback<MouseDownEvent>(evt => { moveInput.x = -1; leftPressed = true; Debug.Log("Left Button Pressed"); });
+        leftButton.RegisterCallback<MouseUpEvent>(evt => { moveInput.x = 0; leftPressed = false; Debug.Log("Left Button Released"); });
+        rightButton.RegisterCallback<MouseDownEvent>(evt => { moveInput.x = 1; rightPressed = true; Debug.Log("Right Button Pressed"); });
+        rightButton.RegisterCallback<MouseUpEvent>(evt => { moveInput.x = 0; rightPressed = false; Debug.Log("Right Button Released"); });
+
+        aButton.RegisterCallback<MouseDownEvent>(evt => { aPressed = true; Debug.Log("A Button Pressed"); });
+        aButton.RegisterCallback<MouseUpEvent>(evt => { aPressed = false; Debug.Log("A Button Released"); });
+        bButton.RegisterCallback<MouseDownEvent>(evt => { bPressed = true; Debug.Log("B Button Pressed"); });
+        bButton.RegisterCallback<MouseUpEvent>(evt => { bPressed = false; Debug.Log("B Button Released"); });
+        xButton.RegisterCallback<MouseDownEvent>(evt => { xPressed = true; Debug.Log("X Button Pressed"); });
+        xButton.RegisterCallback<MouseUpEvent>(evt => { xPressed = false; Debug.Log("X Button Released"); });
+        yButton.RegisterCallback<MouseDownEvent>(evt => { yPressed = true; Debug.Log("Y Button Pressed"); });
+        yButton.RegisterCallback<MouseUpEvent>(evt => { yPressed = false; Debug.Log("Y Button Released"); });
     }
 
     public Vector2 GetMoveInput()
@@ -111,5 +127,4 @@ public class VirtualGamePad : MonoBehaviour
     {
         return rightPressed;
     }
-
 }

@@ -60,13 +60,13 @@ MonoBehaviour:
     currentValue: 3
   CurrentGroup: 0
   _weapon: {fileID: 11400000, guid: daaaa716ec8a843b28b9ee42d7f98c4f, type: 2}
-  virtualGamePad: {fileID: 0}
   Level: 1
   FoodValue:
     currentValue: 100
     maxValue: 100
   Floor: 1
   VisibleRange: 5
+  virtualGamePadPrefab: {fileID: 5225560522620194386, guid: 0c50ac022ceb0487f9cf66d1fa16e9c7, type: 3}
   CameraDistance: 5
   CameraDirection: {x: 0, y: 7, z: -5}
 --- !u!114 &-5477741973771178318
