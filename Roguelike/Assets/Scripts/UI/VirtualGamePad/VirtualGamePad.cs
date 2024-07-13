@@ -45,6 +45,8 @@ public class VirtualGamepad : MonoBehaviour
     [HideInInspector]
     public bool isPressingY;
 
+    private bool isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
+
     /// <summary>
     /// シングルトンインスタンスの設定とオブジェクトの永続化を行う
     /// </summary>
@@ -64,34 +66,59 @@ public class VirtualGamepad : MonoBehaviour
 
     public void OnUpButtonDown()
     {
-        directionInput = Vector2.up;
-        Debug.Log("OnUpButtonDown");
+        if (!isUpPressed)
+        {
+            isUpPressed = true;
+            directionInput = Vector2.up;
+            Debug.Log("OnUpButtonDown");
+        }
+    }
+    public void OnUpButtonUp()
+    {
+        isUpPressed = false;
+        if (directionInput == Vector2.up) directionInput = Vector2.zero;
+        Debug.Log("OnUpButtonUp");
     }
     public void OnDownButtonDown()
     {
         directionInput = Vector2.down;
         Debug.Log("OnDownButtonDown");
     }
+    public void OnDownButtonUp()
+    {
+        isDownPressed = false;
+        if (directionInput == Vector2.down) directionInput = Vector2.zero;
+        Debug.Log("OnDownButtonUp");
+    }
     public void OnLeftButtonDown()
     {
         directionInput = Vector2.left;
         Debug.Log("OnLeftButtonDown");
+    }
+    public void OnLeftButtonUp()
+    {
+        isLeftPressed = false;
+        if (directionInput == Vector2.left) directionInput = Vector2.zero;
+        Debug.Log("OnLeftButtonUp");
     }
     public void OnRightButtonDown()
     {
         directionInput = Vector2.right;
         Debug.Log("OnRightButtonDown");
     }
-    public void OnDirectionButtonUp()
+    public void OnRightButtonUp()
     {
-        directionInput = Vector2.zero;
-        Debug.Log("OnDirectionButtonUp");
+        isRightPressed = false;
+        if (directionInput == Vector2.right) directionInput = Vector2.zero;
+        Debug.Log("OnRightButtonUp");
     }
-
     public void OnAButtonDown()
     {
-        isPressingA = true;
-        Debug.Log("OnAButtonDown");
+        if (!isPressingA)
+        {
+            isPressingA = true;
+            Debug.Log("OnAButtonDown");
+        }
     }
     public void OnAButtonUp()
     {
@@ -100,8 +127,12 @@ public class VirtualGamepad : MonoBehaviour
     }
     public void OnBButtonDown()
     {
-        isPressingB = true;
-        Debug.Log("OnBButtonDown");
+        if (!isPressingB)
+        {
+
+            isPressingB = true;
+            Debug.Log("OnBButtonDown");
+        }
     }
     public void OnBButtonUp()
     {
@@ -110,8 +141,11 @@ public class VirtualGamepad : MonoBehaviour
     }
     public void OnXButtonDown()
     {
-        isPressingX = true;
-        Debug.Log("OnXButtonDown");
+        if (!isPressingX)
+        {
+            isPressingX = true;
+            Debug.Log("OnXButtonDown");
+        }
     }
     public void OnXButtonUp()
     {
@@ -120,8 +154,11 @@ public class VirtualGamepad : MonoBehaviour
     }
     public void OnYButtonDown()
     {
-        isPressingY = true;
-        Debug.Log("OnYButtonDown");
+        if (!isPressingY)
+        {
+            isPressingY = true;
+            Debug.Log("OnYButtonDown");
+        }
     }
     public void OnYButtonUp()
     {

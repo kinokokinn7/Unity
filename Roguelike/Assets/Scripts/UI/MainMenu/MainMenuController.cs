@@ -68,11 +68,11 @@ public class MainMenuController : MonoBehaviour, IMenuController
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) || VirtualGamepad.Instance.isPressingX)
         {
             ToggleMenu();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && _mainMenu.style.display == DisplayStyle.Flex)
+        if ((Input.GetKeyDown(KeyCode.Escape) || VirtualGamepad.Instance.isPressingB) && _mainMenu.style.display == DisplayStyle.Flex)
         {
             HideMenu();
         }
@@ -82,15 +82,15 @@ public class MainMenuController : MonoBehaviour, IMenuController
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && _mainMenu.style.display == DisplayStyle.Flex)
+        if ((Input.GetKeyDown(KeyCode.Z) || VirtualGamepad.Instance.isPressingA) && _mainMenu.style.display == DisplayStyle.Flex)
         {
             ExecuteSelection();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || VirtualGamepad.Instance.directionInput == Vector2.up)
         {
             MoveSelectionUp();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || VirtualGamepad.Instance.directionInput == Vector2.down)
         {
             MoveSelectionDown();
         }

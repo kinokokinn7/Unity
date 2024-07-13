@@ -2073,7 +2073,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2030074309}
           m_TargetAssemblyTypeName: VirtualGamepad, Assembly-CSharp
-          m_MethodName: OnDirectionButtonUp
+          m_MethodName: OnUpButtonUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4680,7 +4680,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2030074309}
           m_TargetAssemblyTypeName: VirtualGamepad, Assembly-CSharp
-          m_MethodName: OnDirectionButtonUp
+          m_MethodName: OnLeftButtonUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -5472,7 +5472,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2030074309}
           m_TargetAssemblyTypeName: VirtualGamepad, Assembly-CSharp
-          m_MethodName: OnDirectionButtonUp
+          m_MethodName: OnDownButtonUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6001,7 +6001,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2030074309}
           m_TargetAssemblyTypeName: VirtualGamepad, Assembly-CSharp
-          m_MethodName: OnDirectionButtonUp
+          m_MethodName: OnRightButtonUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

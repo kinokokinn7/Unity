@@ -177,7 +177,10 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape)) && _itemMenu.style.display == DisplayStyle.Flex)
+        if ((Input.GetKeyDown(KeyCode.X)
+            || Input.GetKeyDown(KeyCode.Escape)
+            || VirtualGamepad.Instance.isPressingB)
+            && _itemMenu.style.display == DisplayStyle.Flex)
         {
             HideMenu();
             _mainMenuController.Focus();
@@ -197,23 +200,23 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && _itemMenu.style.display == DisplayStyle.Flex)
+        if ((Input.GetKeyDown(KeyCode.Z) || VirtualGamepad.Instance.isPressingA) && _itemMenu.style.display == DisplayStyle.Flex)
         {
             ExecuteSelection();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || VirtualGamepad.Instance.directionInput == Vector2.up)
         {
             MoveSelectionUp();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || VirtualGamepad.Instance.directionInput == Vector2.down)
         {
             MoveSelectionDown();
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || VirtualGamepad.Instance.directionInput == Vector2.right)
         {
             ShowNextPage();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || VirtualGamepad.Instance.directionInput == Vector2.left)
         {
             ShowPreviousPage();
         }
