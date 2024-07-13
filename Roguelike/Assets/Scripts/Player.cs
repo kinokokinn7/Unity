@@ -16,9 +16,6 @@ class Player : MapObjectBase
 
     [Range(1, 10)] public int VisibleRange = 5; // 周りのマスが見える範囲
 
-    public GameObject virtualGamePadPrefab;
-    private VirtualGamePad virtualGamePadInstance;
-
     MessageWindow _messageWindow;
 
     /// <summary>
@@ -45,13 +42,6 @@ class Player : MapObjectBase
         StartCoroutine(ActionCoroutine());
 
         UpdateVisibleMass();
-
-        // VirtualGamePadプレハブをインスタンス化
-        if (virtualGamePadPrefab != null)
-        {
-            GameObject instance = Instantiate(virtualGamePadPrefab);
-            virtualGamePadInstance = instance.GetComponent<VirtualGamePad>();
-        }
     }
 
     /// <summary>
@@ -192,10 +182,22 @@ class Player : MapObjectBase
         while (NowAction == Action.None)
         {
             yield return null;
-            if (Input.GetKey(KeyCode.UpArrow) || virtualGamePadInstance.IsUpPressed()) NowAction = Action.MoveUp;
-            if (Input.GetKey(KeyCode.DownArrow) || virtualGamePadInstance.IsDownPressed()) NowAction = Action.MoveDown;
-            if (Input.GetKey(KeyCode.RightArrow) || virtualGamePadInstance.IsRightPressed()) NowAction = Action.MoveRight;
-            if (Input.GetKey(KeyCode.LeftArrow) || virtualGamePadInstance.IsLeftPressed()) NowAction = Action.MoveLeft;
+
+            // キーボード入力のチェック
+            if (Input.GetKey(KeyCode.UpArrow)) NowAction = Action.MoveUp;
+            if (Input.GetKey(KeyCode.DownArrow)) NowAction = Action.MoveDown;
+            if (Input.GetKey(KeyCode.RightArrow)) NowAction = Action.MoveRight;
+            if (Input.GetKey(KeyCode.LeftArrow)) NowAction = Action.MoveLeft;
+
+            // 仮想ゲームパッド入力のチェック
+            if (VirtualGamepad.Instance.directionInput == Vector2.up)
+                NowAction = Action.MoveUp;
+            if (VirtualGamepad.Instance.directionInput == Vector2.down)
+                NowAction = Action.MoveDown;
+            if (VirtualGamepad.Instance.directionInput == Vector2.right)
+                NowAction = Action.MoveRight;
+            if (VirtualGamepad.Instance.directionInput == Vector2.left)
+                NowAction = Action.MoveLeft;
         }
     }
 

@@ -1,130 +1,133 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class VirtualGamePad : MonoBehaviour
+/// <summary>
+/// 仮想ゲームパッドを制御するクラス
+/// </summary>
+public class VirtualGamepad : MonoBehaviour
 {
-    public static VirtualGamePad Instance { get; private set; }
+    /// <summary>VIrtualGamepadのシングルトンインスタンス</summary>
+    public static VirtualGamepad Instance { get; private set; }
 
-    public UIDocument uiDocument;
+    /// <summary>十字キーの上ボタン</summary>
+    public Button upButton;
+    /// <summary>十字キーの下ボタン</summary>
+    public Button downButton;
+    /// <summary>十字キーの左ボタン</summary>
+    public Button leftButton;
+    /// <summary>十字キーの右ボタン</summary>
+    public Button rightButton;
 
-    private VisualElement root;
-    private VisualElement DPad;
-    private VisualElement ABXY;
-    private Button upButton, downButton, leftButton, rightButton;
-    private Button aButton, bButton, xButton, yButton;
-    private Vector2 moveInput;
-    private bool upPressed, downPressed, leftPressed, rightPressed;
-    private bool aPressed, bPressed, xPressed, yPressed;
+    /// <summary>Aボタン</summary>
+    public Button aButton;
+    /// <summary>Bボタン</summary>
+    public Button bButton;
+    /// <summary>Xボタン</summary>
+    public Button xButton;
+    /// <summary>Yボタン</summary>
+    public Button yButton;
 
-    void OnEnable()
+    /// <summary>十字キーの入力方向</summary>
+    [HideInInspector]
+    public Vector2 directionInput;
+
+    /// <summary>Aボタンが押されているかどうか</summary>
+    [HideInInspector]
+    public bool isPressingA;
+    /// <summary>Bボタンが押されているかどうか</summary>
+    [HideInInspector]
+    public bool isPressingB;
+    /// <summary>Xボタンが押されているかどうか</summary>
+    [HideInInspector]
+    public bool isPressingX;
+    /// <summary>Yボタンが押されているかどうか</summary>
+    [HideInInspector]
+    public bool isPressingY;
+
+    /// <summary>
+    /// シングルトンインスタンスの設定とオブジェクトの永続化を行う
+    /// </summary>
+    private void Awake()
     {
-        
-        if (uiDocument == null)
+        // シングルトンの設定
+        if (Instance == null)
         {
-            Debug.LogError("UIDocument is not assigned.");
-            return;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        root = uiDocument.rootVisualElement;
-        if (root == null)
+        else
         {
-            Debug.LogError("rootVisualElement is null.");
-            return;
+            Destroy(gameObject);
         }
-
-        DPad = root.Q<VisualElement>("DPad");
-        ABXY = root.Q<VisualElement>("ABXY");
-
-        if (DPad == null || ABXY == null)
-        {
-            Debug.LogError("DPad or ABXY VisualElement is null.");
-            return;
-        }
-
-        upButton = DPad.Q<Button>("Up");
-        downButton = DPad.Q<Button>("Down");
-        leftButton = DPad.Q<Button>("Left");
-        rightButton = DPad.Q<Button>("Right");
-
-        aButton = ABXY.Q<Button>("A");
-        bButton = ABXY.Q<Button>("B");
-        xButton = ABXY.Q<Button>("X");
-        yButton = ABXY.Q<Button>("Y");
-
-        if (upButton == null || downButton == null || leftButton == null || rightButton == null || aButton == null || bButton == null || xButton == null || yButton == null)
-        {
-            Debug.LogError("One or more buttons are null.");
-            return;
-        }
-
-        RegisterButtonCallbacks();
     }
 
-    void RegisterButtonCallbacks()
+    public void OnUpButtonDown()
     {
-        upButton.RegisterCallback<MouseDownEvent>(evt => { moveInput.y = 1; upPressed = true; Debug.Log("Up Button Pressed"); });
-        upButton.RegisterCallback<MouseUpEvent>(evt => { moveInput.y = 0; upPressed = false; Debug.Log("Up Button Released"); });
-        downButton.RegisterCallback<MouseDownEvent>(evt => { moveInput.y = -1; downPressed = true; Debug.Log("Down Button Pressed"); });
-        downButton.RegisterCallback<MouseUpEvent>(evt => { moveInput.y = 0; downPressed = false; Debug.Log("Down Button Released"); });
-        leftButton.RegisterCallback<MouseDownEvent>(evt => { moveInput.x = -1; leftPressed = true; Debug.Log("Left Button Pressed"); });
-        leftButton.RegisterCallback<MouseUpEvent>(evt => { moveInput.x = 0; leftPressed = false; Debug.Log("Left Button Released"); });
-        rightButton.RegisterCallback<MouseDownEvent>(evt => { moveInput.x = 1; rightPressed = true; Debug.Log("Right Button Pressed"); });
-        rightButton.RegisterCallback<MouseUpEvent>(evt => { moveInput.x = 0; rightPressed = false; Debug.Log("Right Button Released"); });
-
-        aButton.RegisterCallback<MouseDownEvent>(evt => { aPressed = true; Debug.Log("A Button Pressed"); });
-        aButton.RegisterCallback<MouseUpEvent>(evt => { aPressed = false; Debug.Log("A Button Released"); });
-        bButton.RegisterCallback<MouseDownEvent>(evt => { bPressed = true; Debug.Log("B Button Pressed"); });
-        bButton.RegisterCallback<MouseUpEvent>(evt => { bPressed = false; Debug.Log("B Button Released"); });
-        xButton.RegisterCallback<MouseDownEvent>(evt => { xPressed = true; Debug.Log("X Button Pressed"); });
-        xButton.RegisterCallback<MouseUpEvent>(evt => { xPressed = false; Debug.Log("X Button Released"); });
-        yButton.RegisterCallback<MouseDownEvent>(evt => { yPressed = true; Debug.Log("Y Button Pressed"); });
-        yButton.RegisterCallback<MouseUpEvent>(evt => { yPressed = false; Debug.Log("Y Button Released"); });
+        directionInput = Vector2.up;
+        Debug.Log("OnUpButtonDown");
     }
-
-    public Vector2 GetMoveInput()
+    public void OnDownButtonDown()
     {
-        return moveInput;
+        directionInput = Vector2.down;
+        Debug.Log("OnDownButtonDown");
+    }
+    public void OnLeftButtonDown()
+    {
+        directionInput = Vector2.left;
+        Debug.Log("OnLeftButtonDown");
+    }
+    public void OnRightButtonDown()
+    {
+        directionInput = Vector2.right;
+        Debug.Log("OnRightButtonDown");
+    }
+    public void OnDirectionButtonUp()
+    {
+        directionInput = Vector2.zero;
+        Debug.Log("OnDirectionButtonUp");
     }
 
-    public bool IsAPressed()
+    public void OnAButtonDown()
     {
-        return aPressed;
+        isPressingA = true;
+        Debug.Log("OnAButtonDown");
+    }
+    public void OnAButtonUp()
+    {
+        isPressingA = false;
+        Debug.Log("OnAButtonDown");
+    }
+    public void OnBButtonDown()
+    {
+        isPressingB = true;
+        Debug.Log("OnBButtonDown");
+    }
+    public void OnBButtonUp()
+    {
+        isPressingB = false;
+        Debug.Log("OnBButtonUp");
+    }
+    public void OnXButtonDown()
+    {
+        isPressingX = true;
+        Debug.Log("OnXButtonDown");
+    }
+    public void OnXButtonUp()
+    {
+        isPressingX = false;
+        Debug.Log("OnXButtonUp");
+    }
+    public void OnYButtonDown()
+    {
+        isPressingY = true;
+        Debug.Log("OnYButtonDown");
+    }
+    public void OnYButtonUp()
+    {
+        isPressingY = false;
+        Debug.Log("OnYButtonUp");
     }
 
-    public bool IsBPressed()
-    {
-        return bPressed;
-    }
 
-    public bool IsXPressed()
-    {
-        return xPressed;
-    }
-
-    public bool IsYPressed()
-    {
-        return yPressed;
-    }
-
-    public bool IsUpPressed()
-    {
-        return upPressed;
-    }
-
-    public bool IsDownPressed()
-    {
-        return downPressed;
-    }
-
-    public bool IsLeftPressed()
-    {
-        return leftPressed;
-    }
-
-    public bool IsRightPressed()
-    {
-        return rightPressed;
-    }
 }
