@@ -45,7 +45,12 @@ public class VirtualGamepad : MonoBehaviour
     [HideInInspector]
     public bool isPressingY;
 
-    private bool isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
+    private bool isUpPressing, isDownPressing, isLeftPressing, isRightPressing;
+
+    /// <summary>Xボタンが押されたかどうか</summary>
+    [HideInInspector]
+    public bool isPressedX;
+
 
     /// <summary>
     /// シングルトンインスタンスの設定とオブジェクトの永続化を行う
@@ -66,16 +71,16 @@ public class VirtualGamepad : MonoBehaviour
 
     public void OnUpButtonDown()
     {
-        if (!isUpPressed)
+        if (!isUpPressing)
         {
-            isUpPressed = true;
+            isUpPressing = true;
             directionInput = Vector2.up;
             Debug.Log("OnUpButtonDown");
         }
     }
     public void OnUpButtonUp()
     {
-        isUpPressed = false;
+        isUpPressing = false;
         if (directionInput == Vector2.up) directionInput = Vector2.zero;
         Debug.Log("OnUpButtonUp");
     }
@@ -86,7 +91,7 @@ public class VirtualGamepad : MonoBehaviour
     }
     public void OnDownButtonUp()
     {
-        isDownPressed = false;
+        isDownPressing = false;
         if (directionInput == Vector2.down) directionInput = Vector2.zero;
         Debug.Log("OnDownButtonUp");
     }
@@ -97,7 +102,7 @@ public class VirtualGamepad : MonoBehaviour
     }
     public void OnLeftButtonUp()
     {
-        isLeftPressed = false;
+        isLeftPressing = false;
         if (directionInput == Vector2.left) directionInput = Vector2.zero;
         Debug.Log("OnLeftButtonUp");
     }
@@ -108,7 +113,7 @@ public class VirtualGamepad : MonoBehaviour
     }
     public void OnRightButtonUp()
     {
-        isRightPressed = false;
+        isRightPressing = false;
         if (directionInput == Vector2.right) directionInput = Vector2.zero;
         Debug.Log("OnRightButtonUp");
     }
