@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class MainMenuController : MonoBehaviour, IMenuController
 {
@@ -68,11 +69,20 @@ public class MainMenuController : MonoBehaviour, IMenuController
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.X) || VirtualGamepad.Instance.isPressingX)
+        // 現在のキーボード情報
+        var current = Keyboard.current;
+        // キーボード接続チェック
+        if (current == null)
+        {
+            Debug.LogWarning("キーボードが接続されていません。");
+            return;
+        }
+
+        if (current.cKey.wasPressedThisFrame)
         {
             ToggleMenu();
         }
-        if ((Input.GetKeyDown(KeyCode.Escape) || VirtualGamepad.Instance.isPressingB) && _mainMenu.style.display == DisplayStyle.Flex)
+        if (current.xKey.wasPressedThisFrame && _mainMenu.style.display == DisplayStyle.Flex)
         {
             HideMenu();
         }
@@ -82,15 +92,15 @@ public class MainMenuController : MonoBehaviour, IMenuController
             return;
         }
 
-        if ((Input.GetKeyDown(KeyCode.Z) || VirtualGamepad.Instance.isPressingA) && _mainMenu.style.display == DisplayStyle.Flex)
+        if (current.zKey.wasPressedThisFrame && _mainMenu.style.display == DisplayStyle.Flex)
         {
             ExecuteSelection();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || VirtualGamepad.Instance.directionInput == Vector2.up)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             MoveSelectionUp();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) || VirtualGamepad.Instance.directionInput == Vector2.down)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             MoveSelectionDown();
         }
