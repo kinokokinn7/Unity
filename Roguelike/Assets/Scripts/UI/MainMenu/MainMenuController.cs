@@ -96,11 +96,11 @@ public class MainMenuController : MonoBehaviour, IMenuController
         {
             ExecuteSelection();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (current.upArrowKey.wasPressedThisFrame)
         {
             MoveSelectionUp();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (current.downArrowKey.wasPressedThisFrame)
         {
             MoveSelectionDown();
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using Roguelike.Window;
+using UnityEngine.InputSystem;
 
 class Player : MapObjectBase
 {
@@ -183,11 +184,20 @@ class Player : MapObjectBase
         {
             yield return null;
 
+            // 現在のキーボード情報
+            var current = Keyboard.current;
+            // キーボード接続チェック
+            if (current == null)
+            {
+                Debug.LogWarning("キーボードが接続されていません。");
+                yield return null;
+            }
+
             // キーボード入力のチェック
-            if (Input.GetKey(KeyCode.UpArrow)) NowAction = Action.MoveUp;
-            if (Input.GetKey(KeyCode.DownArrow)) NowAction = Action.MoveDown;
-            if (Input.GetKey(KeyCode.RightArrow)) NowAction = Action.MoveRight;
-            if (Input.GetKey(KeyCode.LeftArrow)) NowAction = Action.MoveLeft;
+            if (current.upArrowKey.isPressed) NowAction = Action.MoveUp;
+            if (current.downArrowKey.isPressed) NowAction = Action.MoveDown;
+            if (current.rightArrowKey.isPressed) NowAction = Action.MoveRight;
+            if (current.leftArrowKey.isPressed) NowAction = Action.MoveLeft;
         }
     }
 

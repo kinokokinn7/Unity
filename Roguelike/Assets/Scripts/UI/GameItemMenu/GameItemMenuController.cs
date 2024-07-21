@@ -212,19 +212,19 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         {
             ExecuteSelection();
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (current.upArrowKey.wasPressedThisFrame)
         {
             MoveSelectionUp();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (current.downArrowKey.wasPressedThisFrame)
         {
             MoveSelectionDown();
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (current.rightArrowKey.wasPressedThisFrame)
         {
             ShowNextPage();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (current.leftArrowKey.wasPressedThisFrame)
         {
             ShowPreviousPage();
         }
