@@ -14,27 +14,20 @@ public class Weapon : Item
     public Atk Attack = new Atk();
 
     /// <summary>
-    /// 装備中か否か。
-    /// </summary>
-    public bool IsEquipped { get; private set; } = false;
-
-    /// <summary>
     /// 武器を装備します。
     /// </summary>
     /// <param name="target">装備する対象のキャラ。</param>
     public override void Use(MapObjectBase target)
     {
-        if (target.CurrentWeapon != this)
+        if (target.CurrentWeapon?.id != this.id)
         {
             MessageWindow.Instance?.AppendMessage($"{this.Name}を装備した！");
             target.CurrentWeapon = this;
-            IsEquipped = true;
         }
         else
         {
             MessageWindow.Instance?.AppendMessage($"武器を取り外した！");
             target.CurrentWeapon = null;
-            IsEquipped = false;
         }
     }
 
@@ -50,6 +43,7 @@ public class Weapon : Item
             SoundEffectManager.Instance.PlayAttachWeaponSound();
         }
         obj.Attack.IncreaseCurrentValue(Attack.GetCurrentValue());
+        Debug.Log($"{this.Name}: {this.GetInstanceID()} has been equipped.");
     }
 
     /// <summary>
@@ -60,6 +54,7 @@ public class Weapon : Item
     public void Detach(MapObjectBase obj)
     {
         obj.Attack.DecreaseCurrentValue(Attack.GetCurrentValue());
+        Debug.Log($"{this.Name}: {this.GetInstanceID()} has been unequipped.");
     }
 
     /// <summary>

@@ -28,6 +28,21 @@ public class ItemInventory : MonoBehaviour
     public readonly int MaxItems = 30;
 
     /// <summary>
+    /// ゲーム開始時にアイテムリストの各アイテムを複製（インスタンス化）します。
+    /// </summary>
+    private void Awake()
+    {
+        // アイテムリストを複製
+        var originalItems = new List<Item>(_items);
+        _items = new List<Item>();
+        foreach (var item in originalItems)
+        {
+            var newItem = Instantiate(item);
+            _items.Add(newItem);
+        }
+    }
+
+    /// <summary>
     /// アイテムを所持アイテム一覧に追加します。
     /// </summary>
     /// <param name="item">追加対象のアイテム。</param>
@@ -40,8 +55,10 @@ public class ItemInventory : MonoBehaviour
             MessageWindow.Instance.AppendMessage("アイテムの上に乗った。");
             return false;
         }
-        Items.Add(item);
-        MessageWindow.Instance.AppendMessage($"{item.Name}を手に入れた！");
+        // Itemのインスタンスを複製する
+        var newItem = Instantiate(item);
+        Items.Add(newItem);
+        MessageWindow.Instance.AppendMessage($"{newItem.Name}を手に入れた！");
         return true;
     }
 

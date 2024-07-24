@@ -5,10 +5,16 @@ using Roguelike.Window;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class GameItemMenuController : MonoBehaviour, IMenuController
 {
     private MenuControllerCommon _menuControllerCommon;
+
+    /// <summary>
+    /// プレイヤー。
+    /// </summary>
+    private Player _player;
 
     /// <summary>
     /// UIドキュメント。
@@ -57,7 +63,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     private bool _isMenuJustShown = false;
 
     /// <summary>
-    /// リスト項目。
+    /// ウィンドウ上に表示するアイテムのリスト。
     /// </summary>
     private List<Item> _itemList = new List<Item>();
 
@@ -82,9 +88,10 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     void Start()
     {
-        _menuControllerCommon = UnityEngine.Object.FindObjectOfType<MenuControllerCommon>();
-        _mainMenuController = UnityEngine.Object.FindObjectOfType<MainMenuController>();
-        _itemInventory = UnityEngine.Object.FindObjectOfType<ItemInventory>();
+        _player = UnityEngine.Object.FindAnyObjectByType<Player>();
+        _menuControllerCommon = UnityEngine.Object.FindAnyObjectByType<MenuControllerCommon>();
+        _mainMenuController = UnityEngine.Object.FindAnyObjectByType<MainMenuController>();
+        _itemInventory = UnityEngine.Object.FindAnyObjectByType<ItemInventory>();
     }
 
     /// <summary>
@@ -127,10 +134,12 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
                 element.Clear();
                 element.AddToClassList("item-container");
 
+                Debug.Log($"{item.Name}: {item.GetInstanceID()}");
+
                 if (item is Weapon)
                 {
                     var weapon = item as Weapon;
-                    if (weapon.IsEquipped)
+                    if (_player.CurrentWeapon?.GetInstanceID() == weapon.GetInstanceID())
                     {
                         var equippedLabel = new Label("E");
                         equippedLabel.AddToClassList("equipped-indicator");
@@ -298,7 +307,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             {
                 return;
             }
-            var player = UnityEngine.Object.FindObjectOfType<Player>();
+            var player = UnityEngine.Object.FindAnyObjectByType<Player>();
             selectedItem.Use(player);
 
             // アイテムが消耗品の場合はアイテムを一覧から削除する

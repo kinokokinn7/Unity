@@ -22,7 +22,7 @@ public class MainMenuController : MonoBehaviour, IMenuController
 
     void Start()
     {
-        _menuControllerCommon = UnityEngine.Object.FindObjectOfType<MenuControllerCommon>();
+        _menuControllerCommon = UnityEngine.Object.FindAnyObjectByType<MenuControllerCommon>();
 
         _selectedItems.Add("アイテム", new MainMenuSelectedItem_GameItem());
         _selectedItems.Add("設定", new MainMenuSelectedItem_Settings());
