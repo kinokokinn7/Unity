@@ -95,12 +95,9 @@ class Player : MapObjectBase
         Attack = saveData.Attack;
         FoodValue.CurrentValue = saveData.Food;
         Exp = saveData.Exp;
-        if (saveData.WeaponName != "")
+        if (saveData.Weapon)
         {
-            var weapon = ScriptableObject.CreateInstance<Weapon>();
-            weapon.Name = saveData.WeaponName;
-            weapon.Attack.SetCurrentValue(saveData.WeaponAttack);
-            CurrentWeapon = weapon;
+            CurrentWeapon = saveData.Weapon;
         }
         Floor = saveData.Floor;
     }
@@ -270,10 +267,8 @@ class Player : MapObjectBase
         player.FoodValue.CurrentValue = FoodValue.CurrentValue;
         player.Exp = Exp;
         player.Level = Level;
-        player.CurrentWeapon = CurrentWeapon;
         player.Attack = Attack;
-        // CurrentWeapon呼び出し時にAttackが上昇してしまうので
-        // Attack代入はCurrentPosition代入の後
+        player.CurrentWeapon = CurrentWeapon;
 
         // 階層を1つ下げる
         Floor += 1;
@@ -287,14 +282,7 @@ class Player : MapObjectBase
         saveData.Exp = Exp;
         if (CurrentWeapon != null)
         {
-            saveData.Attack.DecreaseCurrentValue(CurrentWeapon.Attack.GetCurrentValue());
-            saveData.WeaponName = CurrentWeapon.Name;
-            saveData.WeaponAttack = CurrentWeapon.Attack.GetCurrentValue();
-        }
-        else
-        {
-            saveData.WeaponName = "";
-            saveData.WeaponAttack = 0;
+            saveData.Weapon = CurrentWeapon;
         }
         saveData.MapData = Map.MapData;
         saveData.Floor = Floor;

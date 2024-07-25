@@ -14,8 +14,7 @@ class SaveData
     public int Food; // プレイヤーの満腹度
 
     public Exp Exp; // プレイヤーの経験値
-    public string WeaponName; // 装備している武器の名前
-    public int WeaponAttack; // 装備している武器の攻撃力
+    public Weapon Weapon; // 装備している武器
     public List<string> MapData; // マップデータ
 
     /// <summary>

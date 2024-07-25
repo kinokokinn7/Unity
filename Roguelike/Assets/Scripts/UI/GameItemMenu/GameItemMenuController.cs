@@ -161,7 +161,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             _listView.selectionType = SelectionType.Single;
 
             // 選択イベントの処理
-            _listView.onSelectionChange += items =>
+            _listView.selectionChanged += items =>
             {
                 foreach (var item in items)
                 {
