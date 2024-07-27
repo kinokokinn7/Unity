@@ -139,6 +139,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
                 if (item is Weapon)
                 {
                     var weapon = item as Weapon;
+                    _player = UnityEngine.Object.FindAnyObjectByType<Player>();
                     if (_player.CurrentWeapon?.GetInstanceID() == weapon.GetInstanceID())
                     {
                         var equippedLabel = new Label("E");
@@ -300,7 +301,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         var selectedItem = _listView.selectedItem as Item;
         if (selectedItem != null)
         {
-            Debug.Log($"{selectedItem}が選択されました。");
+            Debug.Log($"{selectedItem}が使用されました。");
 
             // アイテムが使用不可の場合は処理終了
             if (!selectedItem.Usable)
@@ -316,11 +317,11 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
                 // アイテム使用後、一覧から除去する
                 _itemList.Remove(selectedItem);
                 _listView.itemsSource = _itemList;
-                _listView.RefreshItems();
 
                 // アイテム管理クラスのリストから削除する
                 _itemInventory.RemoveItem(selectedItem);
             }
+            _listView.RefreshItems();
         }
 
         // 全てのメニューウィンドウを閉じる
@@ -452,6 +453,4 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         _currentMaxPage = (_itemInventory.Items.Count - 1) / _itemsPerPage + 1;
         _pageNumber.text = $"{_currentPage}/{_currentMaxPage}";
     }
-
-
 }

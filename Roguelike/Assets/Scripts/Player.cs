@@ -43,21 +43,6 @@ class Player : MapObjectBase
         StartCoroutine(ActionCoroutine());
 
         UpdateVisibleMass();
-
-        // プレイヤーの初期装備の武器をアイテムリストに追加
-        InitializeWeapon();
-    }
-
-    /// <summary>
-    /// プレイヤーの初期装備の武器をアイテムリストに追加し、装備します。
-    /// </summary>
-    private void InitializeWeapon()
-    {
-        var ItemInventory = FindAnyObjectByType<ItemInventory>();
-        if (ItemInventory != null && CurrentWeapon != null)
-        {
-            ItemInventory.Items.Insert(0, CurrentWeapon);
-        }
     }
 
     /// <summary>
