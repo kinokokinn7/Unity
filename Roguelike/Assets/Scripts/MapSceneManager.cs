@@ -43,16 +43,23 @@ public class MapSceneManager : MonoBehaviour
 
         var map = GetComponent<Map>();
 
-        var saveData = SaveData.Load();
+        var saveLoadController = Object.FindObjectOfType<SaveLoadController>();
+        var saveData = saveLoadController?.Load();
         if (saveData != null)
         {
             try
             {
+                // マップ情報のロード
                 map.BuildMap(saveData.MapData);
-
                 mapData = saveData.MapData.Aggregate("", (_s, _c) => _s + _c + '\n');
+
+                // プレイヤー情報のロード
                 var player = Object.FindObjectOfType<Player>();
-                player.Recover(saveData);
+                player?.Recover(saveData);
+
+                // Todo: アイテムリストのロード
+                var itemInventory = Object.FindObjectOfType<ItemInventory>();
+
                 return;
             }
             catch (System.Exception e)

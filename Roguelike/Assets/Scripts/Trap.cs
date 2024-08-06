@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// ゲーム内のトラップオブジェクトを表すクラスです。プレイヤーがこのトラップに触れると特定の効果が発生します。
 /// </summary>
-class Trap : MapObjectBase
+public class Trap : MapObjectBase
 {
     /// <summary>
     /// トラップの種類を表します。LifeDownはHPを減少させ、FoodDownは満腹度を減少させます。

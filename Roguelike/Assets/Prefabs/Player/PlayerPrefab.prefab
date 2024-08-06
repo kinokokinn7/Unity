@@ -25,6 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4237930585412848495}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,7 +34,6 @@ Transform:
   - {fileID: 4237930585441683920}
   - {fileID: 3516264876513247138}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5732376194580380183
 MonoBehaviour:
@@ -54,8 +54,8 @@ MonoBehaviour:
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
-    currentValue: 10
-    maxValue: 10
+    currentValue: 30
+    maxValue: 30
   Attack:
     currentValue: 3
   CurrentGroup: 0
@@ -66,7 +66,6 @@ MonoBehaviour:
     maxValue: 100
   Floor: 1
   VisibleRange: 5
-  virtualGamePadPrefab: {fileID: 5225560522620194386, guid: 0c50ac022ceb0487f9cf66d1fa16e9c7, type: 3}
   CameraDistance: 5
   CameraDirection: {x: 0, y: 7, z: -5}
 --- !u!114 &-5477741973771178318
@@ -109,13 +108,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4237930585441683923}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4237930585412848492}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &4237930585441683921
 CapsuleCollider:
@@ -125,8 +124,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4237930585441683923}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -136,6 +144,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 4237930585412848492}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 62f389be5d3ee41a9bcf8109acc13fe5, type: 3}
@@ -199,10 +208,16 @@ PrefabInstance:
       value: neemaro_Walking4
       objectReference: {fileID: 0}
     - target: {fileID: 3727956284482021115, guid: 62f389be5d3ee41a9bcf8109acc13fe5, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1cb9e41baaf7b4f6ca4997efadde7d2f, type: 2}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 62f389be5d3ee41a9bcf8109acc13fe5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6856015644839863511}
   m_SourcePrefab: {fileID: 100100000, guid: 62f389be5d3ee41a9bcf8109acc13fe5, type: 3}
 --- !u!4 &3516264876513247138 stripped
 Transform:
@@ -216,7 +231,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &6856015644839863511
 Animator:
-  serializedVersion: 4
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -230,7 +245,9 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

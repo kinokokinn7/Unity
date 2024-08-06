@@ -37,6 +37,7 @@ public class ItemInventory : MonoBehaviour
         _items = new List<Item>();
         foreach (var item in originalItems)
         {
+            if (item == null) continue;
             var newItem = Instantiate(item);
             _items.Add(newItem);
         }
@@ -71,4 +72,30 @@ public class ItemInventory : MonoBehaviour
         Items.Remove(item);
     }
 
+    /// <summary>
+    /// アイテムリストをセーブデータ用に変換して取得します。
+    /// </summary>
+    /// <returns>セーブデータ用のアイテムリスト。</returns>
+    public List<ItemData> GetItemDataList()
+    {
+        var itemDataList = new List<ItemData>();
+        foreach (var item in Items)
+        {
+            itemDataList.Add(item.ToItemData());
+        }
+        return itemDataList;
+    }
+
+    /// <summary>
+    /// セーブデータからアイテムリストの状態を復元します。
+    /// </summary>
+    /// <param name="savedItemList">復元するためのセーブデータ。</param>
+    public void Recover(List<ItemData> itemDataList)
+    {
+        Items = new List<Item>();
+        foreach (var itemData in itemDataList)
+        {
+            Items.Add(itemData.ToItem());
+        }
+    }
 }

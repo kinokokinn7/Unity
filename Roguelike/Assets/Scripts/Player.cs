@@ -6,7 +6,7 @@ using System;
 using Roguelike.Window;
 using UnityEngine.InputSystem;
 
-class Player : MapObjectBase
+public class Player : MapObjectBase
 {
     public int Level = 1;   // レベル
     public Food FoodValue;  // 満腹度
@@ -259,19 +259,13 @@ class Player : MapObjectBase
         Floor += 1;
         player.Floor = Floor;
 
-        var saveData = new SaveData();
-        saveData.Level = Level;
-        saveData.Hp = Hp;
-        saveData.Attack = Attack;
-        saveData.Food = FoodValue.CurrentValue;
-        saveData.Exp = Exp;
-        if (CurrentWeapon != null)
+        // セーブする
+        var saveController = UnityEngine.Object.FindObjectOfType<SaveLoadController>();
+        if (saveController != null)
         {
-            saveData.Weapon = CurrentWeapon;
+            var itemInventory = UnityEngine.Object.FindObjectOfType<ItemInventory>();
+            saveController.Save(player, Map, itemInventory);
         }
-        saveData.MapData = Map.MapData;
-        saveData.Floor = Floor;
-        saveData.Save();
 
         this.CanMove = true;
     }

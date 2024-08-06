@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 /// <summary>
 /// Exp(経験値)を表すクラス。
@@ -12,6 +13,7 @@ public class Exp
     /// 現在の経験値。
     /// </summary>
     [SerializeField]
+    [JsonProperty("currentValue")]
     private int currentValue;
 
     /// <summary>

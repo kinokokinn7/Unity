@@ -99,17 +99,6 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     void OnEnable()
     {
-        // 所持アイテム数が0の場合は処理終了
-        if (_itemInventory.Items.Count == 0) return;
-
-        // 所持アイテム一覧を取得
-        int startIndex = (_currentPage - 1) * _itemsPerPage;
-        int endIndex = Mathf.Min(startIndex + _itemsPerPage, _itemInventory.Items.Count);
-        _itemList.AddRange(_itemInventory.Items.GetRange(startIndex, endIndex));
-
-        // 現在表示できる最大ページ数を設定
-        _currentMaxPage = ((_itemInventory.Items.Count - 1) / _itemsPerPage) + 1;
-
         // アイテムメニューウィンドウのUI Root を取得
         var root = _document.rootVisualElement;
 
@@ -123,6 +112,17 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             // 初期状態で非表示
             _itemMenu.style.display = DisplayStyle.None;
         }
+
+        // 所持アイテム数が0の場合は処理終了
+        if (_itemInventory.Items.Count == 0) return;
+
+        // 所持アイテム一覧を取得
+        int startIndex = (_currentPage - 1) * _itemsPerPage;
+        int endIndex = Mathf.Min(startIndex + _itemsPerPage, _itemInventory.Items.Count);
+        _itemList.AddRange(_itemInventory.Items.GetRange(startIndex, endIndex));
+
+        // 現在表示できる最大ページ数を設定
+        _currentMaxPage = ((_itemInventory.Items.Count - 1) / _itemsPerPage) + 1;
 
         if (_listView != null)
         {
@@ -188,6 +188,12 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     void Update()
     {
+        if (_itemMenu == null)
+        {
+            Debug.LogWarning("アイテムメニューのVisualElementが取得されていません。");
+            return;
+        }
+
         // 現在のキーボード情報
         var current = Keyboard.current;
         // キーボード接続チェック
@@ -197,6 +203,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             return;
         }
 
+        // 画面が表示されている状態でキャンセルボタン押下時は
+        // 画面を非表示にしてメインメニュー画面にフォーカスを移動する
         if (current.xKey.wasPressedThisFrame
             && _itemMenu.style.display == DisplayStyle.Flex)
         {
@@ -204,6 +212,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             _mainMenuController.Focus();
         }
 
+        // ウィンドウが非表示の場合は処理を終了する
         if (_itemMenu.style.display == DisplayStyle.None)
         {
             return;

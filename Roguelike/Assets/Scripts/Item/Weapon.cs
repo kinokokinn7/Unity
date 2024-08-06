@@ -19,7 +19,7 @@ public class Weapon : Item
     /// <param name="target">装備する対象のキャラ。</param>
     public override void Use(MapObjectBase target)
     {
-        if (target.CurrentWeapon?.id != this.id)
+        if (target.CurrentWeapon?.GetInstanceID() != this.GetInstanceID())
         {
             MessageWindow.Instance?.AppendMessage($"{this.Name}を装備した！");
             target.CurrentWeapon = this;
@@ -43,7 +43,6 @@ public class Weapon : Item
             SoundEffectManager.Instance.PlayAttachWeaponSound();
         }
         obj.Attack.IncreaseCurrentValue(Attack.GetCurrentValue());
-        Debug.Log($"{this.Name}: {this.GetInstanceID()} has been equipped.");
     }
 
     /// <summary>
@@ -54,7 +53,6 @@ public class Weapon : Item
     public void Detach(MapObjectBase obj)
     {
         obj.Attack.DecreaseCurrentValue(Attack.GetCurrentValue());
-        Debug.Log($"{this.Name}: {this.GetInstanceID()} has been unequipped.");
     }
 
     /// <summary>
@@ -82,4 +80,19 @@ public class Weapon : Item
     {
         return $"{Name} Atk+{Attack.GetCurrentValue()}";
     }
+
+    public override ItemData ToItemData()
+    {
+        return new WeaponData(this);
+    }
+
+    public override void FromItemData(ItemData data)
+    {
+        base.FromItemData(data);
+        if (data is WeaponData weaponData)
+        {
+            Attack.SetCurrentValue(weaponData.Attack);
+        }
+    }
+
 }

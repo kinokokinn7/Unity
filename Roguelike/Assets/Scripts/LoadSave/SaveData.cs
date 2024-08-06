@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using Newtonsoft.Json;
 
 /// <summary>
 /// ゲームのセーブデータを管理するクラスです。プレイヤーの状態やゲームの進行状況を保存します。
 /// </summary>
 [System.Serializable]
-class SaveData
+public class SaveData
 {
     public int Floor; // 現在のフロア
     public int Level; // プレイヤーのレベル
@@ -16,27 +18,32 @@ class SaveData
     public Exp Exp; // プレイヤーの経験値
     public Weapon Weapon; // 装備している武器
     public List<string> MapData; // マップデータ
+    public List<ItemData> Items; // アイテムリスト
 
     /// <summary>
     /// セーブデータを保存します。現在のオブジェクトの状態をJSON形式で保存します。
     /// </summary>
-    public void Save()
+    public void Save(string filePath)
     {
-        var json = JsonUtility.ToJson(this);
-        PlayerPrefs.SetString("save", json);
+        var json = JsonConvert.SerializeObject(this, Formatting.Indented);
+        Debug.Log($"jsonfilePath:{filePath}");
+        Debug.Log($"json:{json}");
+
+        File.WriteAllText(filePath, json);
     }
 
     /// <summary>
     /// セーブデータを回復します。保存されているJSONデータからセーブデータを復元します。
     /// </summary>
     /// <returns>復元されたセーブデータ。セーブデータが存在しない場合はnullを返します。</returns>
-    public static SaveData Load()
+    public static SaveData Load(string filePath)
     {
-        if (PlayerPrefs.HasKey("save"))
+        if (File.Exists(filePath))
         {
-            var json = PlayerPrefs.GetString("save");
+            var json = File.ReadAllText(filePath);
+            Debug.Log($"jsonfilePath:{filePath}");
             Debug.Log($"json:{json}");
-            return JsonUtility.FromJson<SaveData>(json);
+            return JsonConvert.DeserializeObject<SaveData>(json);
         }
         else
         {

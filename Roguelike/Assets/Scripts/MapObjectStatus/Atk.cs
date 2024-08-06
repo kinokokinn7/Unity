@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 /// <summary>
 /// ATK(攻撃力)を表すクラス。
@@ -12,6 +13,7 @@ public class Atk
     /// 現在の攻撃力。
     /// </summary>
     [SerializeField]
+    [JsonProperty("currentValue")]
     private int currentValue;
 
     /// <summary>

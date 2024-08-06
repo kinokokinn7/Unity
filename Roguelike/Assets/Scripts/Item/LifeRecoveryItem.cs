@@ -41,4 +41,31 @@ public class LifeRecoveryItem : Item
         //プレハブを指定した位置に生成
         Instantiate(_healingEffectPrefab, position, Quaternion.identity);
     }
+
+    /// <summary>
+    /// シリアライズ用のデータクラスのインスタンスを生成します。
+    /// </summary>
+    /// <returns>シリアライズ用のデータクラスのインスタンス。</returns>
+
+    public override ItemData ToItemData()
+    {
+        return new LifeRecoveryItemData(this);
+    }
+
+
+    /// <summary>
+    /// シリアライズ用のデータクラスをもとにデシリアライズします。
+    /// </summary>    
+    public override void FromItemData(ItemData data)
+    {
+        base.FromItemData(data);
+        if (data is LifeRecoveryItemData recoveryItemData)
+        {
+            RecoveryPower = recoveryItemData.RecoveryPower;
+            if (!string.IsNullOrEmpty(recoveryItemData.HealingEffectPrefabName))
+            {
+                _healingEffectPrefab = Resources.Load<GameObject>(recoveryItemData.HealingEffectPrefabName);
+            }
+        }
+    }
 }

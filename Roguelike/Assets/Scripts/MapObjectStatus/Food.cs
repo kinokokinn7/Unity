@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Newtonsoft.Json;
 
 [System.Serializable]
 public class Food
@@ -9,6 +10,7 @@ public class Food
     /// 現在の満腹度。
     /// </summary>
     [SerializeField]
+    [JsonProperty("currentValue")]
     private int currentValue;
     public int CurrentValue
     {
@@ -20,6 +22,7 @@ public class Food
     /// 最大満腹度。
     /// </summary>
     [SerializeField]
+    [JsonProperty("maxValue")]
     private int maxValue;
     public int MaxValue
     {

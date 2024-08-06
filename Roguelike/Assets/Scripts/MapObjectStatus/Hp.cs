@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 /// <summary>
 /// HPを表すクラス。
@@ -12,12 +13,14 @@ public class Hp
     /// 現在のHP。
     /// </summary>
     [SerializeField]
+    [JsonProperty("currentValue")]
     private int currentValue;
 
     /// <summary>
     /// 最大HP。
     /// </summary>
     [SerializeField]
+    [JsonProperty("maxValue")]
     private int maxValue;
 
     /// <summary>

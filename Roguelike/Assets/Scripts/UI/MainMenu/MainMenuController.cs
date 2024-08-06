@@ -53,10 +53,6 @@ public class MainMenuController : MonoBehaviour, IMenuController
             // 選択イベントの処理
             _listView.onSelectionChange += items =>
             {
-                foreach (var item in items)
-                {
-                    Debug.Log($"{item}が選択されました。");
-                }
             };
         }
     }
