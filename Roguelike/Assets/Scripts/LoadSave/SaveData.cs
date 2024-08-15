@@ -38,12 +38,18 @@ public class SaveData
     /// <returns>復元されたセーブデータ。セーブデータが存在しない場合はnullを返します。</returns>
     public static SaveData Load(string filePath)
     {
+        var settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto,
+            Converters = new List<JsonConverter> { new ItemDataConverter() }
+        };
+
         if (File.Exists(filePath))
         {
             var json = File.ReadAllText(filePath);
             Debug.Log($"jsonfilePath:{filePath}");
             Debug.Log($"json:{json}");
-            return JsonConvert.DeserializeObject<SaveData>(json);
+            return JsonConvert.DeserializeObject<SaveData>(json, settings);
         }
         else
         {

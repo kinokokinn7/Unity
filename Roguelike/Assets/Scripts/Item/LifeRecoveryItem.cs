@@ -59,8 +59,9 @@ public class LifeRecoveryItem : Item
     public override void FromItemData(ItemData data)
     {
         base.FromItemData(data);
-        if (data is LifeRecoveryItemData recoveryItemData)
+        if (data.Type == "LifeRecoveryItem")
         {
+            var recoveryItemData = data as LifeRecoveryItemData;
             RecoveryPower = recoveryItemData.RecoveryPower;
             if (!string.IsNullOrEmpty(recoveryItemData.HealingEffectPrefabName))
             {

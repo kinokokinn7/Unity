@@ -9,6 +9,12 @@ public class LifeRecoveryItemData : ItemData
     /// <summary>
     /// [シリアライズ用] 回復アイテム。
     /// </summary>
+    public LifeRecoveryItemData() : base()
+    { }
+
+    /// <summary>
+    /// [シリアライズ用] 回復アイテム。
+    /// </summary>
     /// <param name="item"></param>
     public LifeRecoveryItemData(LifeRecoveryItem item) : base(item)
     {

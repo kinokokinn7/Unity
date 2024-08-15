@@ -5,6 +5,9 @@ public class FoodRecoveryItemData : ItemData
 {
     public int RecoveryPower;
 
+    public FoodRecoveryItemData() : base()
+    { }
+
     public FoodRecoveryItemData(FoodRecoveryItem item) : base(item)
     {
         RecoveryPower = item.RecoveryPower;

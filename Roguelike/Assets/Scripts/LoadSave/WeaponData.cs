@@ -3,6 +3,11 @@ public class WeaponData : ItemData
 {
     public int Attack;
 
+
+    public WeaponData() : base()
+    {
+    }
+
     public WeaponData(Weapon weapon) : base(weapon)
     {
         Attack = weapon.Attack.GetCurrentValue();
