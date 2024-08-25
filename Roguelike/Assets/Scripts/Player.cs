@@ -83,6 +83,11 @@ public class Player : MapObjectBase
         if (saveData.Weapon)
         {
             CurrentWeapon = saveData.Weapon;
+            var itemInventory = UnityEngine.Object.FindObjectOfType<ItemInventory>();
+            if (itemInventory != null)
+            {
+                itemInventory.ReplaceEquippedWeapon(CurrentWeapon);
+            }
         }
         Floor = saveData.Floor;
     }

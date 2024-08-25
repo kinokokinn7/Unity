@@ -28,22 +28,6 @@ public class ItemInventory : MonoBehaviour
     public readonly int MaxItems = 30;
 
     /// <summary>
-    /// ゲーム開始時にアイテムリストの各アイテムを複製（インスタンス化）します。
-    /// </summary>
-    private void Awake()
-    {
-        // アイテムリストを複製
-        var originalItems = new List<Item>(_items);
-        _items = new List<Item>();
-        foreach (var item in originalItems)
-        {
-            if (item == null) continue;
-            var newItem = Instantiate(item);
-            _items.Add(newItem);
-        }
-    }
-
-    /// <summary>
     /// アイテムを所持アイテム一覧に追加します。
     /// </summary>
     /// <param name="item">追加対象のアイテム。</param>
@@ -61,6 +45,25 @@ public class ItemInventory : MonoBehaviour
         Items.Add(newItem);
         MessageWindow.Instance.AppendMessage($"{newItem.Name}を手に入れた！");
         return true;
+    }
+
+    /// <summary>
+    /// 装備中のWeaponを指定されたWeaponに置き換えます。
+    /// </summary>
+    /// <param name="newWeapon">置き換える対象のWeapon。</param>
+    public void ReplaceEquippedWeapon(Weapon newWeapon)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i] is Weapon weapon && weapon.IsEquipped)
+            {
+                // 古い装備を削除
+                Items.RemoveAt(i);
+                // 新しい武器青同じ場所に挿入
+                Items.Insert(i, newWeapon);
+                break;
+            }
+        }
     }
 
     /// <summary>

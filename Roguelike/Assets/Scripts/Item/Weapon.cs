@@ -12,6 +12,7 @@ using UnityEngine.Serialization;
 public class Weapon : Item
 {
     public Atk Attack = new Atk();
+    public bool IsEquipped { get; set; } = false;
 
     /// <summary>
     /// 武器を装備します。
@@ -43,6 +44,8 @@ public class Weapon : Item
             SoundEffectManager.Instance.PlayAttachWeaponSound();
         }
         obj.Attack.IncreaseCurrentValue(Attack.GetCurrentValue());
+        this.IsEquipped = true;
+
     }
 
     /// <summary>
@@ -53,6 +56,7 @@ public class Weapon : Item
     public void Detach(MapObjectBase obj)
     {
         obj.Attack.DecreaseCurrentValue(Attack.GetCurrentValue());
+        this.IsEquipped = false;
     }
 
     /// <summary>
@@ -89,10 +93,13 @@ public class Weapon : Item
     public override void FromItemData(ItemData data)
     {
         base.FromItemData(data);
-        if (data is WeaponData weaponData)
+        if (data is not WeaponData weaponData)
         {
-            Attack.SetCurrentValue(weaponData.Attack);
+            return;
         }
+
+        Attack.SetCurrentValue(weaponData.Attack);
+        this.IsEquipped = weaponData.IsEquipped;
     }
 
 }
