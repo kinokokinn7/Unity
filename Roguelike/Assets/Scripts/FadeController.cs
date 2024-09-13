@@ -8,6 +8,8 @@ public class FadeController : MonoBehaviour
 {
     public static FadeController Instance { get; private set; }
 
+    public Boolean IsFading { get; private set; } = false;
+
     /// <summary>
     /// エディタから設定するフェード用のImage。
     /// </summary>
@@ -43,6 +45,8 @@ public class FadeController : MonoBehaviour
     /// <returns></returns>
     public IEnumerator FadeIn()
     {
+        IsFading = true;
+
         float elapsedTime = 0f;
         Color color = this.fadeImage.color;
 
@@ -56,10 +60,14 @@ public class FadeController : MonoBehaviour
 
         color.a = 0f;   // 完全に透明にする
         fadeImage.color = color;
+
+        IsFading = false;
     }
 
     public IEnumerator FadeOut()
     {
+        IsFading = true;
+
         float elapsedTime = 0f;
         Color color = this.fadeImage.color;
 
@@ -73,6 +81,8 @@ public class FadeController : MonoBehaviour
 
         color.a = 1f;   // 完全に不透明にする
         fadeImage.color = color;
+
+        IsFading = false;
     }
 
 }
