@@ -8,6 +8,8 @@ public class TitleManager : MonoBehaviour
     // タイトル後に有効化したいオブジェクトの配列
     public GameObject[] gameObjectsToEnable;
 
+    private Player player;
+
     void Start()
     {
         // ゲーム開始時に、タイトル用Canvasだけを有効化
@@ -18,6 +20,10 @@ public class TitleManager : MonoBehaviour
         {
             obj.SetActive(false);
         }
+
+        // Playerはアクティブにするが移動不可にする
+        this.player = Object.FindFirstObjectByType<Player>();
+        this.player.CanMove = false;
     }
 
     void Update()
@@ -39,6 +45,8 @@ public class TitleManager : MonoBehaviour
             {
                 obj.SetActive(true);
             }
+
+            this.player.CanMove = true;
         }
     }
 }
