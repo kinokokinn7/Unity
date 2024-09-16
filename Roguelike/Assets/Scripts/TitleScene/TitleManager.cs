@@ -26,7 +26,7 @@ public class TitleManager : MonoBehaviour
         this.player.CanMove = false;
     }
 
-    void Update()
+    public void StartGame()
     {
         // フェードイン中は操作を無効化する
         if (FadeController.Instance.IsFading)
@@ -34,19 +34,25 @@ public class TitleManager : MonoBehaviour
             return;
         }
 
-        // タイトル画面がクリックされたら
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Z))
+        // タイトル用Canvasを無効化
+        titleCanvas.SetActive(false);
+
+        // 他のオブジェクトを有効化
+        foreach (GameObject obj in gameObjectsToEnable)
         {
-            // タイトル用Canvasを無効化
-            titleCanvas.SetActive(false);
-
-            // 他のオブジェクトを有効化
-            foreach (GameObject obj in gameObjectsToEnable)
-            {
-                obj.SetActive(true);
-            }
-
-            this.player.CanMove = true;
+            obj.SetActive(true);
         }
+
+        this.player.CanMove = true;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
+
 }
