@@ -982,6 +982,7 @@ MonoBehaviour:
     GoalMinDistance: 10
     LimitMassPercent: 0.5
     RoadMassPercent: 0.7
+  itemInventory: {fileID: 0}
   mapData: 'IU0P
 
     T+++
@@ -3505,6 +3506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleManager: {fileID: 1575416222}
+  mapSceneManager: {fileID: 343470347}
+  saveLoadController: {fileID: 1806242481}
   _document: {fileID: 1090478006}
 --- !u!1 &1103009848
 GameObject:
@@ -4902,13 +4905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleCanvas: {fileID: 1575416221}
   gameObjectsToEnable:
-  - {fileID: 916504518}
   - {fileID: 1727713471}
-  - {fileID: 1996804589}
-  - {fileID: 1749581742}
-  - {fileID: 1075570417}
-  - {fileID: 777576456}
-  - {fileID: 1806242480}
 --- !u!114 &1575416223
 MonoBehaviour:
   m_ObjectHideFlags: 0

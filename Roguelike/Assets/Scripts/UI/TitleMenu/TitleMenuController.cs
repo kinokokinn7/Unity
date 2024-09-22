@@ -8,7 +8,9 @@ using UnityEngine.InputSystem;
 public class TitleMenuController : MonoBehaviour, IMenuController
 {
     [SerializeField]
-    private TitleManager titleManager;
+    public TitleManager titleManager;
+    public MapSceneManager mapSceneManager;
+    public SaveLoadController saveLoadController;
     private MenuControllerCommon _menuControllerCommon;
     public UIDocument _document;
     private VisualElement _titleMenu;
@@ -26,8 +28,8 @@ public class TitleMenuController : MonoBehaviour, IMenuController
     {
         _menuControllerCommon = UnityEngine.Object.FindAnyObjectByType<MenuControllerCommon>();
 
-        _selectedItems.Add("はじめから", new TitleMenuSelectedItem_Start(this.titleManager));
-        _selectedItems.Add("つづきから", new TitleMenuSelectedItem_Continue());
+        _selectedItems.Add("はじめから", new TitleMenuSelectedItem_Start(mapSceneManager, this.titleManager));
+        _selectedItems.Add("つづきから", new TitleMenuSelectedItem_Continue(this.mapSceneManager, this.titleManager, this.saveLoadController));
         _selectedItems.Add("さようなら", new TitleMenuSelectedItem_Quit(this.titleManager));
 
         ShowMenu();

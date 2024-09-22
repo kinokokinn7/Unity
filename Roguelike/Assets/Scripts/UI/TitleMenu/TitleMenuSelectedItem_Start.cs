@@ -1,9 +1,11 @@
 public class TitleMenuSelectedItem_Start : ISelectedItem
 {
+    private MapSceneManager mapSceneManager;
     private TitleManager titleManager;
 
-    public TitleMenuSelectedItem_Start(TitleManager titleManager)
+    public TitleMenuSelectedItem_Start(MapSceneManager mapSceneManager, TitleManager titleManager)
     {
+        this.mapSceneManager = mapSceneManager;
         this.titleManager = titleManager;
     }
 
@@ -12,6 +14,8 @@ public class TitleMenuSelectedItem_Start : ISelectedItem
     /// </summary>
     public void OnItemSelected()
     {
+        mapSceneManager.InitializeMapScene();
+        mapSceneManager.SetupMapSceneCommon();
         titleManager.StartGame();
     }
 }

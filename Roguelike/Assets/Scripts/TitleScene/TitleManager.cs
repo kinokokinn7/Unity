@@ -20,10 +20,6 @@ public class TitleManager : MonoBehaviour
         {
             obj.SetActive(false);
         }
-
-        // Playerはアクティブにするが移動不可にする
-        this.player = Object.FindFirstObjectByType<Player>();
-        this.player.CanMove = false;
     }
 
     public void StartGame()
@@ -42,8 +38,6 @@ public class TitleManager : MonoBehaviour
         {
             obj.SetActive(true);
         }
-
-        this.player.CanMove = true;
     }
 
     public void QuitGame()

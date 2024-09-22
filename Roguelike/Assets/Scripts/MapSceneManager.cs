@@ -13,6 +13,8 @@ public class MapSceneManager : MonoBehaviour
     public bool IsAutoGenerate = true; // 自動でマップを生成するかどうか
     [SerializeField] Map.GenerateParam GenerateParam; // マップ生成のパラメータ
 
+    public ItemInventory itemInventory;
+
     /// <summary>
     /// マップを生成します。既存のマップを破棄し、新しいマップを生成パラメータに基づいて作成します。
     /// </summary>
@@ -40,48 +42,6 @@ public class MapSceneManager : MonoBehaviour
     void Awake()
     {
         GameOver.SetActive(false);
-
-        var map = GetComponent<Map>();
-
-        var saveLoadController = Object.FindObjectOfType<SaveLoadController>();
-        var saveData = saveLoadController?.Load();
-        if (saveData != null)
-        {
-            try
-            {
-                // マップ情報のロード
-                map.BuildMap(saveData.MapData);
-                mapData = saveData.MapData.Aggregate("", (_s, _c) => _s + _c + '\n');
-
-                // プレイヤー情報のロード
-                var player = Object.FindObjectOfType<Player>();
-                player?.Recover(saveData);
-
-                // Todo: アイテムリストのロード
-                var itemInventory = Object.FindObjectOfType<ItemInventory>();
-
-                return;
-            }
-            catch (System.Exception e)
-            {
-                // エラー処理。復元に失敗したら普通のマップ生成を行う
-                Debug.LogWarning($"Fail to Recover Save Data...");
-            }
-        }
-
-        if (IsAutoGenerate)
-        {
-            map.GenerateMap(GenerateParam);
-        }
-        else
-        {
-            var lines = mapData.Split('\n').ToList();
-            map.BuildMap(lines);
-        }
-
-        // BGMを再生する
-        map.PlayBGM();
-
     }
 
     // デバッグ用: スペースキーを押すとマップを再生成します。
@@ -91,6 +51,51 @@ public class MapSceneManager : MonoBehaviour
         {
             GenerateMap();
         }
+    }
 
+
+    public void InitializeMapScene()
+    {
+        var map = GetComponent<Map>();
+        if (IsAutoGenerate)
+        {
+            map.GenerateMap(GenerateParam);
+        }
+        else
+        {
+            var lines = mapData.Split('\n').ToList();
+            map.BuildMap(lines);
+        }
+    }
+    public void SetupMapSceneCommon()
+    {
+        var map = GetComponent<Map>();
+        // BGMを再生する
+        map.PlayBGM();
+    }
+
+    public void LoadSavedMapScene(SaveData saveData)
+    {
+        var map = GetComponent<Map>();
+
+        if (saveData != null)
+        {
+            try
+            {
+                // マップ情報のロード
+                map.BuildMap(saveData.MapData);
+
+                // プレイヤー情報のロード
+                var player = Object.FindObjectOfType<Player>();
+                player?.Recover(saveData);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning("セーブデータの復元に失敗しました。新規マップを生成します。");
+                GenerateMap(); // セーブデータが壊れていた場合など、通常のマップ生成処理にフォールバック
+            }
+        }
+
+        SetupMapSceneCommon();
     }
 }
