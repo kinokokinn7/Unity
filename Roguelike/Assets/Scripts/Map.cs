@@ -83,7 +83,7 @@ public class Map : MonoBehaviour
     /// <summary>
     /// 利用可能な全マスデータ。
     /// </summary>
-    public MassData[] massDataList;
+    public List<FloorData> floorDataList;
 
     /// <summary>
     /// マスのオフセット。
@@ -208,7 +208,7 @@ public class Map : MonoBehaviour
     {
         MassDataDict = new Dictionary<MassType, MassData>();
         MapCharDict = new Dictionary<char, MassData>();
-        foreach (var massData in massDataList)
+        foreach (var massData in floorDataList[0].MassDataList)
         {
             // マスデータのディクショナリ作成
             MassDataDict.Add(massData.Type, massData);
