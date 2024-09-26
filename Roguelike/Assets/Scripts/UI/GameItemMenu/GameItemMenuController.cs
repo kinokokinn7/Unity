@@ -254,6 +254,9 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     public void ShowMenu()
     {
+        // 効果音を鳴らす
+        SoundEffectManager.Instance.PlayOpenWindowSound();
+
         _menuControllerCommon?.ShowMenu();
 
         _itemMenu.style.display = DisplayStyle.Flex;

@@ -10,8 +10,6 @@ public class MenuControllerCommon : MonoBehaviour, IMenuController
 
     public void ShowMenu()
     {
-        // 効果音を鳴らす
-        SoundEffectManager.Instance.PlayOpenWindowSound();
     }
 
     public void HideMenu()

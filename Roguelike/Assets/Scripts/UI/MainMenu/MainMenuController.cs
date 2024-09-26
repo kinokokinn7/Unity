@@ -116,6 +116,9 @@ public class MainMenuController : MonoBehaviour, IMenuController
 
     public void ShowMenu()
     {
+        // 効果音を鳴らす
+        SoundEffectManager.Instance.PlayOpenWindowSound();
+
         _menuControllerCommon?.ShowMenu();
 
         _mainMenu.style.display = DisplayStyle.Flex;
