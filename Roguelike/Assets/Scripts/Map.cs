@@ -81,7 +81,7 @@ public class Map : MonoBehaviour
     }
 
     /// <summary>
-    /// 利用可能な全マスデータ。
+    /// Inspectorから各階層のデータを設定するためのリスト。
     /// </summary>
     public List<FloorData> floorDataList;
 
@@ -208,7 +208,13 @@ public class Map : MonoBehaviour
     {
         MassDataDict = new Dictionary<MassType, MassData>();
         MapCharDict = new Dictionary<char, MassData>();
-        foreach (var massData in floorDataList[0].MassDataList)
+
+        var floor = MapSceneManager.Instance.CurrentFloor;
+        var floorData = floorDataList.Where(
+                floorData => floorData.FloorNumber == floor
+            ).FirstOrDefault();
+
+        foreach (var massData in floorData.MassDataList)
         {
             // マスデータのディクショナリ作成
             MassDataDict.Add(massData.Type, massData);

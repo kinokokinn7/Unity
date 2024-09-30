@@ -10,7 +10,13 @@ public class Player : MapObjectBase
 {
     public int Level = 1;   // レベル
     public Food FoodValue;  // 満腹度
-    public int Floor = 1;   // 階層
+
+    // 階層
+    public int Floor
+    {
+        get => MapSceneManager.Instance.CurrentFloor;
+        set => MapSceneManager.Instance.CurrentFloor = value;
+    }
 
     public readonly int NumberOfStepsToReduceFoodValue = 5;
     private int _numberOfSteps = 0;
@@ -89,7 +95,6 @@ public class Player : MapObjectBase
                 itemInventory.ReplaceEquippedWeapon(CurrentWeapon);
             }
         }
-        Floor = saveData.Floor;
     }
 
     /// <summary>
@@ -247,8 +252,10 @@ public class Player : MapObjectBase
         SoundEffectManager.Instance.PlayStairSound();
         yield return StartCoroutine(FadeController.Instance.FadeOut());
 
-        // マップを新規生成
         var mapSceneManager = UnityEngine.Object.FindObjectOfType<MapSceneManager>();
+        // 階層を1つ下げる
+        mapSceneManager.CurrentFloor += 1;
+        // マップを新規生成
         mapSceneManager.GenerateMap();
 
         // プレイヤーのデータを引き継ぐ
@@ -259,10 +266,6 @@ public class Player : MapObjectBase
         player.Level = Level;
         player.Attack = Attack;
         player.CurrentWeapon = CurrentWeapon;
-
-        // 階層を1つ下げる
-        Floor += 1;
-        player.Floor = Floor;
 
         // セーブする
         var saveController = UnityEngine.Object.FindObjectOfType<SaveLoadController>();

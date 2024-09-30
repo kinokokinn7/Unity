@@ -9,11 +9,36 @@ using System.Linq;
 /// </summary>
 public class MapSceneManager : MonoBehaviour
 {
+    public static MapSceneManager Instance { get; private set; }
+
+    public int CurrentFloor { get; set; } = 1;  // 現在の階層
+
     public GameObject GameOver; // ゲームオーバー画面
     public bool IsAutoGenerate = true; // 自動でマップを生成するかどうか
     [SerializeField] Map.GenerateParam GenerateParam; // マップ生成のパラメータ
 
     public ItemInventory itemInventory;
+
+    /// <summary>
+    /// オブジェクトが生成された際に呼び出されます。
+    /// ゲームオーバー画面を非表示にし、セーブデータがあればそれを用いてマップを復元します。
+    /// なければ新しいマップを生成します。
+    /// </summary>
+
+    private void Awake()
+    {
+        // シングルトンパターンでMapSceneManagerを管理
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        GameOver.SetActive(false);
+    }
 
     /// <summary>
     /// マップを生成します。既存のマップを破棄し、新しいマップを生成パラメータに基づいて作成します。
@@ -33,16 +58,6 @@ public class MapSceneManager : MonoBehaviour
         "0000\n" +
         "+++0\n" +
         "G000\n";
-
-    /// <summary>
-    /// オブジェクトが生成された際に呼び出されます。
-    /// ゲームオーバー画面を非表示にし、セーブデータがあればそれを用いてマップを復元します。
-    /// なければ新しいマップを生成します。
-    /// </summary>
-    void Awake()
-    {
-        GameOver.SetActive(false);
-    }
 
     // デバッグ用: スペースキーを押すとマップを再生成します。
     private void Update()
@@ -83,6 +98,7 @@ public class MapSceneManager : MonoBehaviour
             try
             {
                 // マップ情報のロード
+                CurrentFloor = saveData.Floor;
                 map.BuildMap(saveData.MapData);
 
                 // プレイヤー情報のロード
@@ -92,7 +108,8 @@ public class MapSceneManager : MonoBehaviour
             catch (System.Exception e)
             {
                 Debug.LogWarning("セーブデータの復元に失敗しました。新規マップを生成します。");
-                GenerateMap(); // セーブデータが壊れていた場合など、通常のマップ生成処理にフォールバック
+                // セーブデータが壊れていた場合など、通常のマップ生成処理にフォールバック
+                GenerateMap();
             }
         }
 

@@ -897,6 +897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorDataList:
   - {fileID: 11400000, guid: f213925df115c4933839f745b318b99a, type: 2}
+  - {fileID: 11400000, guid: fd3211114183341a1a932e0139752bae, type: 2}
   MassOffset: {x: 1, y: 1}
   bgmSource: {fileID: 343470348}
 --- !u!4 &343470346
