@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1f1196bc6cd47428186c666b36a683, type: 3}
+  m_Name: FirstForest_1F
+  m_EditorClassIdentifier: 
+  FloorNumber: 1
+  MassDataList:
+  - Prefab: {fileID: 526079949892376054, guid: 9fb7cf542710043958eade8624fe482d, type: 3}
+    Type: 0
+    MapChar: 48
+    IsRoad: 1
+    IsCharacter: 0
+  - Prefab: {fileID: 1941394312152730608, guid: c25cdff5382814f26a297bef69b1d56a, type: 3}
+    Type: 1
+    MapChar: 43
+    IsRoad: 0
+    IsCharacter: 0
+  - Prefab: {fileID: 1172546064056352735, guid: 9e980130ebd9b4d208d44b6fe67acc7f, type: 3}
+    Type: 3
+    MapChar: 71
+    IsRoad: 1
+    IsCharacter: 0
+  - Prefab: {fileID: 4237930585412848495, guid: 42fa72cb36a974c2ab7fd1e1c703b04a, type: 3}
+    Type: 2
+    MapChar: 80
+    IsRoad: 0
+    IsCharacter: 1
+  - Prefab: {fileID: 1625221395402176, guid: c9951ca0f61167b4593ffe21b0a089c8, type: 3}
+    Type: 4
+    MapChar: 69
+    IsRoad: 0
+    IsCharacter: 1
+  - Prefab: {fileID: 3892502269050869983, guid: 708bbf0a8d16a43919379c6757b49359, type: 3}
+    Type: 5
+    MapChar: 73
+    IsRoad: 0
+    IsCharacter: 0
+  - Prefab: {fileID: 3892502269050869983, guid: 32695e72b6c224e0e97a3ea3861c7fd2, type: 3}
+    Type: 6
+    MapChar: 74
+    IsRoad: 0
+    IsCharacter: 0
+  - Prefab: {fileID: 3892502269050869983, guid: bd90f1ffad1aa47ccaf9b51bdee39fb1, type: 3}
+    Type: 7
+    MapChar: 75
+    IsRoad: 0
+    IsCharacter: 0
+  - Prefab: {fileID: 2585115408085351063, guid: 9894931db769940999a7fdb9d8f9e015, type: 3}
+    Type: 8
+    MapChar: 84
+    IsRoad: 0
+    IsCharacter: 0
+  - Prefab: {fileID: 3154109949535884309, guid: a31e7566ce2054564b8c2b2ffafc0c3d, type: 3}
+    Type: 9
+    MapChar: 85
+    IsRoad: 0
+    IsCharacter: 0

@@ -896,8 +896,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorDataList:
-  - {fileID: 11400000, guid: f213925df115c4933839f745b318b99a, type: 2}
   - {fileID: 11400000, guid: fd3211114183341a1a932e0139752bae, type: 2}
+  - {fileID: 11400000, guid: 4acdaf29d4bf6452ebb53fca6163691d, type: 2}
+  - {fileID: 11400000, guid: 932d31b7fcd934e8995803254d7c623f, type: 2}
+  - {fileID: 11400000, guid: f213925df115c4933839f745b318b99a, type: 2}
+  - {fileID: 11400000, guid: 052776439e15947e7b1fb78f52668e63, type: 2}
+  - {fileID: 11400000, guid: 7f7d73fec3eb24dabaeb6f9344833945, type: 2}
   MassOffset: {x: 1, y: 1}
   bgmSource: {fileID: 343470348}
 --- !u!4 &343470346
