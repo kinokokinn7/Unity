@@ -20,6 +20,9 @@ public class TitleManager : MonoBehaviour
         {
             obj.SetActive(false);
         }
+
+        // タイトルBGMを再生
+        SoundEffectManager.Instance.PlayTitleBGM();
     }
 
     public void StartGame()

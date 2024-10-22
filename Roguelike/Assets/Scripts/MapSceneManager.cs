@@ -86,7 +86,7 @@ public class MapSceneManager : MonoBehaviour
     {
         var map = GetComponent<Map>();
         // BGMを再生する
-        map.PlayBGM();
+        SoundEffectManager.Instance.PlayDungeonBGM();
     }
 
     public void LoadSavedMapScene(SaveData saveData)

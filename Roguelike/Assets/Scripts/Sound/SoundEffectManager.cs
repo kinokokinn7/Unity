@@ -33,6 +33,10 @@ public class SoundEffectManager : MonoBehaviour
     public AudioClip SE_Stair; // 階段
     public AudioClip SE_LevelUp; // レベルアップ
     public AudioClip SE_AttachWeapon; // 武器装備
+
+    public AudioClip BGM_Title; // タイトル画面のBGM
+    private AudioClip BGM_Dungeon;   // ダンジョンのBGM
+
     void Awake()
     {
         // シングルトンのインスタンスを設定
@@ -172,5 +176,64 @@ public class SoundEffectManager : MonoBehaviour
     public void PlayAttachWeaponSound()
     {
         audioSource?.PlayOneShot(SE_AttachWeapon);
+    }
+
+    /// <summary>
+    /// [タイトル画面]BGMを指定して再生します。
+    /// </summary>
+    public void PlayTitleBGM()
+    {
+        if (audioSource == null) return;
+
+        audioSource.clip = BGM_Title;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
+    public void SetBGM_Dungeon(AudioClip bgm)
+    {
+        this.BGM_Dungeon = bgm;
+    }
+
+    /// <summary>
+    /// [ダンジョン]BGMを指定して再生します。
+    /// </summary>
+    public void PlayDungeonBGM()
+    {
+        if (audioSource == null) return;
+
+        audioSource.clip = BGM_Dungeon;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
+    /// <summary>
+    /// BGMをフェードアウトします。
+    /// </summary>
+    /// <param name="fadeDuration">フェードアウトにかかる時間。</param>
+    public void FadeOutBGM(float fadeDuration)
+    {
+        StartCoroutine(FadeOutCoroutine(fadeDuration));
+    }
+
+    /// <summary>
+    /// BGMのフェードアウトを行うコルーチン。
+    /// </summary>
+    /// <param name="fadeDuration"></param>
+    /// <returns></returns>
+    private IEnumerator FadeOutCoroutine(float fadeDuration)
+    {
+        float startVolume = audioSource.volume;
+
+        // 指定された時間の間、音量を徐々に減少させる
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / fadeDuration;
+            yield return null;
+        }
+
+        // 音量が0になったら停止
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }

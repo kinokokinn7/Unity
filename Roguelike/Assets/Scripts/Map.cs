@@ -91,11 +91,6 @@ public class Map : MonoBehaviour
     public Vector2 MassOffset = new Vector2(1, 1);
 
     /// <summary>
-    /// マップのBGM。
-    /// </summary>
-    public AudioSource bgmSource;
-
-    /// <summary>
     /// マップの生成中かどうかを示す値を取得します。
     /// </summary>
     public bool IsNowBuilding { get; private set; }
@@ -220,6 +215,9 @@ public class Map : MonoBehaviour
             MassDataDict.Add(massData.Type, massData);
             MapCharDict.Add(massData.MapChar, massData);
         }
+
+        // フロアのBGMを設定
+        SoundEffectManager.Instance.SetBGM_Dungeon(floorData.BGM);
     }
 
     /// <summary>
@@ -458,18 +456,6 @@ public class Map : MonoBehaviour
             placeMassCount--;
 
         }
-    }
-
-    /// <summary>
-    /// マップのBGMを再生します。
-    /// 再生中の場合は何も行いません。
-    /// </summary>
-    public void PlayBGM()
-    {
-        if (bgmSource == null) return;
-        if (bgmSource.isPlaying) return;
-
-        bgmSource.Play();
     }
 }
 

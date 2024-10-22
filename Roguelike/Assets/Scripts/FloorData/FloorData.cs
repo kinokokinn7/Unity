@@ -9,8 +9,14 @@ public class FloorData : ScriptableObject
     public int FloorNumber;
 
     /// <summary>
-    /// 各階層のMassData
+    /// 各階層のMassData。
     /// </summary>
     public MassData[] MassDataList;
+
+    /// <summary>
+    /// BGM。
+    /// </summary>
+    public AudioClip BGM;
+
 
 }
