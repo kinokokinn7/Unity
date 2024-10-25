@@ -10,7 +10,8 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public static SoundEffectManager Instance { get; private set; }
 
-    public AudioSource audioSource;
+    public AudioSource soundSource;
+    public AudioSource bgmSource;
 
     /// <summary>
     /// 効果音のリスト。
@@ -61,7 +62,7 @@ public class SoundEffectManager : MonoBehaviour
             return;
         }
 
-        audioSource.PlayOneShot(soundEffects[index]);
+        soundSource.PlayOneShot(soundEffects[index]);
     }
 
     /// <summary>
@@ -77,12 +78,19 @@ public class SoundEffectManager : MonoBehaviour
 
     private IEnumerator PlaySoundForDurationCoroutine(AudioClip clip, float duration, float pitch)
     {
-        audioSource.pitch = pitch;
-        audioSource.clip = clip;
-        audioSource.Play();
+        soundSource.clip = clip;
+
+        // 一時的にピッチを変更
+        float originalPitch = soundSource.pitch;
+        soundSource.pitch = pitch;
+
+        // 効果音を再生
+        soundSource.Play();
+
+        // 指定時間だけ待機してからピッチを元に戻す
         yield return new WaitForSeconds(duration);
-        audioSource.Stop();
-        audioSource.pitch = 1f;
+        soundSource.Stop();
+        soundSource.pitch = originalPitch;
     }
 
     /// <summary>
@@ -90,7 +98,7 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayOpenWindowSound()
     {
-        audioSource?.PlayOneShot(SE_OpenWindow);
+        soundSource?.PlayOneShot(SE_OpenWindow);
     }
 
     /// <summary>
@@ -98,7 +106,7 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayUseItemSound()
     {
-        audioSource?.PlayOneShot(SE_UseItem);
+        soundSource?.PlayOneShot(SE_UseItem);
     }
 
     /// <summary>
@@ -107,7 +115,7 @@ public class SoundEffectManager : MonoBehaviour
     public void PlayAttackSound()
     {
 
-        audioSource?.PlayOneShot(SE_Attack);
+        soundSource?.PlayOneShot(SE_Attack);
     }
 
     /// <summary>
@@ -115,7 +123,7 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayDamagedSound()
     {
-        audioSource?.PlayOneShot(SE_Damaged);
+        soundSource?.PlayOneShot(SE_Damaged);
     }
 
     /// <summary>
@@ -123,7 +131,7 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayRecoveredSound()
     {
-        audioSource?.PlayOneShot(SE_Recovered);
+        soundSource?.PlayOneShot(SE_Recovered);
     }
 
     /// <summary>
@@ -131,7 +139,7 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayFoodDamagedSound()
     {
-        audioSource?.PlayOneShot(SE_FoodDamaged);
+        soundSource?.PlayOneShot(SE_FoodDamaged);
     }
 
     /// <summary>
@@ -139,7 +147,7 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayFoodRecoveredSound()
     {
-        audioSource?.PlayOneShot(SE_FoodRecovered);
+        soundSource?.PlayOneShot(SE_FoodRecovered);
     }
 
     /// <summary>
@@ -147,7 +155,7 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayItemGetSound()
     {
-        audioSource?.PlayOneShot(SE_ItemGet);
+        soundSource?.PlayOneShot(SE_ItemGet);
     }
 
     /// <summary>
@@ -155,7 +163,7 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayStairSound()
     {
-        if (audioSource == null) return;
+        if (soundSource == null) return;
 
         PlaySound(SE_Stair, 0.8f, 3f);
     }
@@ -165,9 +173,9 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayLevelUpSound()
     {
-        if (audioSource == null) return;
-
-        PlaySound(SE_LevelUp, 0.5f, 3f);
+        if (soundSource == null) return;
+        float pitch = 3f;
+        PlaySound(SE_LevelUp, SE_LevelUp.length / pitch, 3f);
     }
 
     /// <summary>
@@ -175,7 +183,7 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayAttachWeaponSound()
     {
-        audioSource?.PlayOneShot(SE_AttachWeapon);
+        soundSource?.PlayOneShot(SE_AttachWeapon);
     }
 
     /// <summary>
@@ -183,11 +191,11 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayTitleBGM()
     {
-        if (audioSource == null) return;
+        if (bgmSource == null) return;
 
-        audioSource.clip = BGM_Title;
-        audioSource.loop = true;
-        audioSource.Play();
+        bgmSource.clip = BGM_Title;
+        bgmSource.loop = true;
+        bgmSource.Play();
     }
 
     public void SetBGM_Dungeon(AudioClip bgm)
@@ -200,11 +208,11 @@ public class SoundEffectManager : MonoBehaviour
     /// </summary>
     public void PlayDungeonBGM()
     {
-        if (audioSource == null) return;
+        if (bgmSource == null) return;
 
-        audioSource.clip = BGM_Dungeon;
-        audioSource.loop = true;
-        audioSource.Play();
+        bgmSource.clip = BGM_Dungeon;
+        bgmSource.loop = true;
+        bgmSource.Play();
     }
 
     /// <summary>
@@ -223,17 +231,17 @@ public class SoundEffectManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator FadeOutCoroutine(float fadeDuration)
     {
-        float startVolume = audioSource.volume;
+        float startVolume = bgmSource.volume;
 
         // 指定された時間の間、音量を徐々に減少させる
-        while (audioSource.volume > 0)
+        while (bgmSource.volume > 0)
         {
-            audioSource.volume -= startVolume * Time.deltaTime / fadeDuration;
+            bgmSource.volume -= startVolume * Time.deltaTime / fadeDuration;
             yield return null;
         }
 
         // 音量が0になったら停止
-        audioSource.Stop();
-        audioSource.volume = startVolume;
+        bgmSource.Stop();
+        bgmSource.volume = startVolume;
     }
 }
