@@ -257,6 +257,8 @@ public class Player : MapObjectBase
         mapSceneManager.CurrentFloor += 1;
         // マップを新規生成
         mapSceneManager.GenerateMap();
+        // BGMを再生する
+        SoundEffectManager.Instance.PlayDungeonBGM();
 
         // プレイヤーのデータを引き継ぐ
         var player = UnityEngine.Object.FindObjectOfType<Player>();

@@ -210,6 +210,13 @@ public class SoundEffectManager : MonoBehaviour
     {
         if (bgmSource == null) return;
 
+        // すでに同じBGMが再生されている場合は何もしない
+        AudioClip currentClip = bgmSource.clip;
+        if (currentClip == this.BGM_Dungeon)
+        {
+            return;
+        }
+
         bgmSource.clip = BGM_Dungeon;
         bgmSource.loop = true;
         bgmSource.Play();

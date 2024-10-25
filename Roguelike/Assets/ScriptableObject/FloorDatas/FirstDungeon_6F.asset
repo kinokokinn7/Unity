@@ -64,3 +64,4 @@ MonoBehaviour:
     MapChar: 85
     IsRoad: 0
     IsCharacter: 0
+  BGM: {fileID: 8300000, guid: 78ae82be8b1184d5fbb8db45406b23bb, type: 3}
