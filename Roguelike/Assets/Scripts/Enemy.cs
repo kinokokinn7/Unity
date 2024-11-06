@@ -183,6 +183,12 @@ class Enemy : MapObjectBase
     /// <param name="other">攻撃相手。</param>
     public override IEnumerator AttackTo(MapObjectBase other)
     {
+        // 他の敵が攻撃中であれば待機
+        while (UnityEngine.Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None).Any(e => e != this && e.IsNowAttacking))
+        {
+            yield return null;
+        }
+
         yield return base.AttackTo(other);
     }
 }
