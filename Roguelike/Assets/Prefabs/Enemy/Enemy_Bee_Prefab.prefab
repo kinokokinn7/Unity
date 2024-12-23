@@ -74,7 +74,7 @@ MonoBehaviour:
     currentValue: 6
     maxValue: 6
   Attack:
-    currentValue: 2
+    currentValue: 3
   CurrentGroup: 1
   _weapon: {fileID: 0}
   IsChasing: 0
