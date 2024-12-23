@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1625221395402176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4085869397129016}
+  - component: {fileID: 111413649560378406}
+  - component: {fileID: -4653739450908751657}
+  - component: {fileID: 7336948355369961106}
+  m_Layer: 0
+  m_Name: Enemy_Bee_Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4085869397129016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625221395402176}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029802318}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5160186966427276258}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
+--- !u!111 &111413649560378406
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625221395402176}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: b13df63982ffc744db2c0809b4977e14, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: b13df63982ffc744db2c0809b4977e14, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
+--- !u!114 &-4653739450908751657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625221395402176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa810bfecc304805802b44624330342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: "\u30D3\u30FC"
+  MoveSecond: 0.1
+  Exp:
+    currentValue: 3
+  Pos: {x: 0, y: 0}
+  Forward: 0
+  Hp:
+    currentValue: 6
+    maxValue: 6
+  Attack:
+    currentValue: 2
+  CurrentGroup: 1
+  _weapon: {fileID: 0}
+  IsChasing: 0
+  VisibleArea:
+    Area: '111
+
+      111
+
+      111'
+--- !u!114 &7336948355369961106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625221395402176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83be6d6bf51fe43f292f2e30358e939c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamagePopupPrefab: {fileID: 8381832865001718060, guid: 8a0db1edb039f4165a7441e57e4f9b9f, type: 3}
+  duration: 0.8
+  amplitude: 1
+  frequency: 2
+--- !u!1001 &5155640071844281382
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4085869397129016}
+    m_Modifications:
+    - target: {fileID: 1046869630431942, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_Name
+      value: FantasyBee
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c717f817a496cf247a92b830b355a407, type: 3}
+--- !u!4 &5160186966427276258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4549644435828676, guid: c717f817a496cf247a92b830b355a407, type: 3}
+  m_PrefabInstance: {fileID: 5155640071844281382}
+  m_PrefabAsset: {fileID: 0}

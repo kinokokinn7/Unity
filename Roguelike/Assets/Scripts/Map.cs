@@ -12,7 +12,10 @@ public enum MassType
     Wall,   // 壁 
     Player, // プレイヤー
     Goal,   // ゴール
-    Enemy,  // 敵
+    Enemy1,  // 敵1
+    Enemy2,  // 敵2
+    Enemy3,  // 敵3
+    Enemy4,  // 敵4
     Treasure,   // 宝箱（ライフ回復）
     FoodTreasure,   // 宝箱（食べ物）
     WeaponTreasure, // 宝箱（武器）

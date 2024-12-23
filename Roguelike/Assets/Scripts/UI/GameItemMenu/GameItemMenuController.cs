@@ -338,6 +338,10 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
 
         // 全てのメニューウィンドウを閉じる
         HideAllMenu();
+
+        // プレイヤーが1ターン消費したとみなす
+        _player.SetNowActionUseItem();
+
     }
 
     /// <summary>

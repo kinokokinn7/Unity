@@ -107,9 +107,16 @@ public class Player : MapObjectBase
         MoveDown,
         MoveRight,
         MoveLeft,
+        UseItem
     }
 
     public Action NowAction { get; private set; } = Action.None;
+
+    public void SetNowActionUseItem()
+    {
+        NowAction = Action.UseItem;
+    }
+
     public bool DoWaitEvent { get; set; } = false;
 
     public bool CanMove { get; set; } = true;
@@ -135,6 +142,8 @@ public class Player : MapObjectBase
                 case Action.MoveLeft:
                     Move(ToDirection(NowAction));
                     yield return new WaitWhile(() => IsNowMoving || IsNowAttacking);
+                    break;
+                case Action.UseItem:
                     break;
             }
             UpdateFood();
