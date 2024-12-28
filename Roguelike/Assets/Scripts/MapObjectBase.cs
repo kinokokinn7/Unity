@@ -391,7 +391,7 @@ public class MapObjectBase : MonoBehaviour
         if (CurrentWeapon != null)
         {
             // 起動時に装備している武器の設定処理を行う
-            CurrentWeapon.Attach(this, true);
+            CurrentWeapon.Attach(this);
         }
     }
 

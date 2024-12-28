@@ -59,7 +59,7 @@ public class ItemInventory : MonoBehaviour
             {
                 // 古い装備を削除
                 Items.RemoveAt(i);
-                // 新しい武器青同じ場所に挿入
+                // 新しい武器を同じ場所に挿入
                 Items.Insert(i, newWeapon);
                 break;
             }

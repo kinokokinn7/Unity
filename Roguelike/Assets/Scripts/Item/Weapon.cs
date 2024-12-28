@@ -23,6 +23,7 @@ public class Weapon : Item
         if (target.CurrentWeapon?.GetInstanceID() != this.GetInstanceID())
         {
             MessageWindow.Instance?.AppendMessage($"{this.Name}を装備した！");
+            SoundEffectManager.Instance.PlayAttachWeaponSound();
             target.CurrentWeapon = this;
         }
         else
@@ -37,12 +38,8 @@ public class Weapon : Item
     /// </summary>
     /// <param name="obj">装備するマップオブジェクト。</param>
     /// <param name="soundOff">効果音をオフにするか否か。</param>
-    public void Attach(MapObjectBase obj, bool soundOff = false)
+    public void Attach(MapObjectBase obj)
     {
-        if (!soundOff)
-        {
-            SoundEffectManager.Instance.PlayAttachWeaponSound();
-        }
         obj.Attack.IncreaseCurrentValue(Attack.GetCurrentValue());
         this.IsEquipped = true;
 
