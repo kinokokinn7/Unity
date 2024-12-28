@@ -1,9 +1,15 @@
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TitleManager : MonoBehaviour
 {
     // タイトル用のCanvas
     public GameObject titleCanvas;
+
+    // タイトルメニュー
+    [SerializeField]
+    private TitleMenuController titleMenuController;
 
     // タイトル後に有効化したいオブジェクトの配列
     public GameObject[] gameObjectsToEnable;
@@ -12,10 +18,12 @@ public class TitleManager : MonoBehaviour
 
     void Start()
     {
-        // ゲーム開始時に、タイトル用Canvasだけを有効化
-        titleCanvas.SetActive(true);
+        titleMenuController.HideMenu();
 
-        // 他のオブジェクトはすべて無効化する
+        // フェードイン完了時にタイトルメニューを表示
+        FadeController.Instance.OnFadeInComplete += ShowTitleMenu;
+
+        // 他のオブジェクトは無効化
         foreach (GameObject obj in gameObjectsToEnable)
         {
             obj.SetActive(false);
@@ -23,11 +31,26 @@ public class TitleManager : MonoBehaviour
 
         // タイトルBGMを再生
         SoundEffectManager.Instance.PlayTitleBGM();
+
+    }
+
+    private void OnDestroy()
+    {
+        // イベント登録解除
+        if (FadeController.Instance != null)
+        {
+            FadeController.Instance.OnFadeInComplete -= ShowTitleMenu;
+        }
+    }
+
+    private void ShowTitleMenu()
+    {
+        titleMenuController.ShowMenu();
     }
 
     public void StartGame()
     {
-        // フェードイン中は操作を無効化する
+        // フェードアウト中は操作を無効化する
         if (FadeController.Instance.IsFading)
         {
             return;

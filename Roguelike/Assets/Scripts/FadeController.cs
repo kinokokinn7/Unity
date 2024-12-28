@@ -20,6 +20,9 @@ public class FadeController : MonoBehaviour
     /// </summary>
     [SerializeField] private float fadeDuration = 1f;
 
+    // フェード完了時に通知するイベント
+    public event Action OnFadeInComplete;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -62,6 +65,9 @@ public class FadeController : MonoBehaviour
         fadeImage.color = color;
 
         IsFading = false;
+
+        // フェードイン完了を通知
+        OnFadeInComplete?.Invoke();
     }
 
     public IEnumerator FadeOut()
