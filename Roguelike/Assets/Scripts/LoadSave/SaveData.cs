@@ -13,10 +13,12 @@ public class SaveData
     public int Level; // プレイヤーのレベル
     public Hp Hp; // プレイヤーのHP
     public Atk Attack; // プレイヤーの攻撃力
+    public Def Defence; // プレイヤーの防御力
     public int Food; // プレイヤーの満腹度
 
     public Exp Exp; // プレイヤーの経験値
     public Weapon Weapon; // 装備している武器
+    public Armor Armor; // 装備している防具（鎧）
     public List<string> MapData; // マップデータ
     public List<ItemData> Items; // アイテムリスト
 

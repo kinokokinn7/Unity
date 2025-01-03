@@ -58,13 +58,15 @@ MonoBehaviour:
     maxValue: 30
   Attack:
     currentValue: 3
+  Defence:
+    currentValue: 0
   CurrentGroup: 0
   _weapon: {fileID: 11400000, guid: daaaa716ec8a843b28b9ee42d7f98c4f, type: 2}
+  _armor: {fileID: 11400000, guid: 2e59a7026ab90428e9b40551b9f99bfc, type: 2}
   Level: 1
   FoodValue:
     currentValue: 100
     maxValue: 100
-  Floor: 1
   VisibleRange: 5
   CameraDistance: 5
   CameraDirection: {x: 0, y: 7, z: -5}

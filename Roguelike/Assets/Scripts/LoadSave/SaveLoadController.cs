@@ -28,11 +28,16 @@ public class SaveLoadController : MonoBehaviour
         saveData.Level = player.Level;
         saveData.Hp = player.Hp;
         saveData.Attack = player.Attack;
+        saveData.Defence = player.Defence;
         saveData.Food = player.FoodValue.CurrentValue;
         saveData.Exp = player.Exp;
         if (player.CurrentWeapon != null)
         {
             saveData.Weapon = player.CurrentWeapon;
+        }
+        if (player.CurrentArmor != null)
+        {
+            saveData.Armor = player.CurrentArmor;
         }
 
         // マップデータ

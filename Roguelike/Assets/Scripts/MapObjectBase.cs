@@ -26,6 +26,7 @@ public class MapObjectBase : MonoBehaviour
 
     public Hp Hp; // HP
     public Atk Attack; // 攻撃力
+    public Def Defence; // 防御力
 
     /// <summary>
     /// オブジェクトの所属グループを表します。プレイヤー、敵、その他などがあります。
@@ -383,8 +384,32 @@ public class MapObjectBase : MonoBehaviour
         }
     }
 
+    [SerializeField] Armor _armor; // シリアライズされた武器オブジェクト
+
     /// <summary>
-    /// オブジェクトが生成された際に呼び出されます。装備している武器があれば、その設定処理を行います。
+    /// 現在装備している防具（鎧）。装備する際にはプロパティを通じて設定し、必要な設定処理を行います。
+    /// </summary>
+    public Armor CurrentArmor
+    {
+        get => _armor; // 現在装備している防具（鎧）を取得
+        set
+        {
+            if (_armor != null)
+            {
+                // 既に防具（鎧）を装備している場合は、古い防具（鎧）を外す
+                _armor.Detach(this);
+            }
+            _armor = value; // 新しい防具（鎧）を設定
+            if (_armor != null)
+            {
+                // 新しい防具（鎧）を装備する際の処理を行う
+                _armor.Attach(this);
+            }
+        }
+    }
+
+    /// <summary>
+    /// オブジェクトが生成された際に呼び出されます。装備している武器/防具があれば、その設定処理を行います。
     /// </summary>
     private void Awake()
     {
@@ -392,6 +417,11 @@ public class MapObjectBase : MonoBehaviour
         {
             // 起動時に装備している武器の設定処理を行う
             CurrentWeapon.Attach(this);
+        }
+        if (CurrentArmor != null)
+        {
+            // 起動時に装備している防具（鎧）の設定処理を行う
+            CurrentArmor.Attach(this);
         }
     }
 

@@ -84,6 +84,7 @@ public class Player : MapObjectBase
         Level = saveData.Level;
         Hp = saveData.Hp;
         Attack = saveData.Attack;
+        Defence = saveData.Defence;
         FoodValue.CurrentValue = saveData.Food;
         Exp = saveData.Exp;
         if (saveData.Weapon)
@@ -276,7 +277,9 @@ public class Player : MapObjectBase
         player.Exp = Exp;
         player.Level = Level;
         player.Attack = Attack;
+        player.Defence = Defence;
         player.CurrentWeapon = CurrentWeapon;
+        player.CurrentArmor = CurrentArmor;
 
         // セーブする
         var saveController = UnityEngine.Object.FindObjectOfType<SaveLoadController>();
@@ -386,6 +389,7 @@ public class Player : MapObjectBase
         Level += 1;
         Hp.IncreaseMaxHp(5);
         Attack.IncreaseCurrentValue(1);
+        Defence.IncreaseCurrentValue(1);
         Exp.Reset();
 
         SoundEffectManager.Instance.PlayLevelUpSound();

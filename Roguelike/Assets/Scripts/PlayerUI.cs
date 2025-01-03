@@ -12,6 +12,7 @@ class PlayerUI : MonoBehaviour
     [SerializeField] public Text HpText; // HPを表示するテキスト
     [SerializeField] public Text MaxHpText; // 最大HPを表示するテキスト
     [SerializeField] public Text AttackText; // 攻撃力を表示するテキスト
+    [SerializeField] public Text DefenceText; // 防御力を表示するテキスト
     [SerializeField] public Text ExpText; // 経験値を表示するテキスト
     [SerializeField] public Text FoodText; // 満腹度を表示するテキスト
     [SerializeField] public Text WeaponText; // 装備している武器を表示するテキスト
@@ -39,6 +40,7 @@ class PlayerUI : MonoBehaviour
         HpText.text = Player.Hp.GetCurrentValue().ToString(); // HPを更新
         MaxHpText.text = Player.Hp.GetMaxValue().ToString(); // MaxHPを更新
         AttackText.text = Player.Attack.GetCurrentValue().ToString(); // 攻撃力を更新
+        DefenceText.text = Player.Defence.GetCurrentValue().ToString(); // 防御力を更新
         ExpText.text = Player.Exp.ToString(); // 経験値を更新
         FoodText.text = Player.FoodValue.CurrentValue.ToString(); // 満腹度を更新
         WeaponText.text = Player.CurrentWeapon != null ? Player.CurrentWeapon.ToString() : ""; // 装備している武器を更新

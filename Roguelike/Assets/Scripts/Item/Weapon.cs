@@ -28,7 +28,7 @@ public class Weapon : Item
         }
         else
         {
-            MessageWindow.Instance?.AppendMessage($"武器を取り外した！");
+            MessageWindow.Instance?.AppendMessage($"{this.Name}を取り外した！");
             target.CurrentWeapon = null;
         }
     }

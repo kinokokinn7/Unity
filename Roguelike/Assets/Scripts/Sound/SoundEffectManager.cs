@@ -34,6 +34,7 @@ public class SoundEffectManager : MonoBehaviour
     public AudioClip SE_Stair; // 階段
     public AudioClip SE_LevelUp; // レベルアップ
     public AudioClip SE_AttachWeapon; // 武器装備
+    public AudioClip SE_AttachArmor; // 防具装備
 
     public AudioClip BGM_Title; // タイトル画面のBGM
     private AudioClip BGM_Dungeon;   // ダンジョンのBGM
@@ -184,6 +185,14 @@ public class SoundEffectManager : MonoBehaviour
     public void PlayAttachWeaponSound()
     {
         soundSource?.PlayOneShot(SE_AttachWeapon);
+    }
+
+    /// <summary>
+    /// [防具装備]SEを指定して再生します。
+    /// </summary>
+    public void PlayAttachArmorSound()
+    {
+        soundSource?.PlayOneShot(SE_AttachArmor);
     }
 
     /// <summary>
