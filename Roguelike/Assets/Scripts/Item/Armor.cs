@@ -41,7 +41,7 @@ public class Armor : Item
     /// <param name="soundOff">効果音をオフにするか否か。</param>
     public void Attach(MapObjectBase obj)
     {
-        obj.Attack.IncreaseCurrentValue(Defence.GetCurrentValue());
+        obj.Defence.IncreaseCurrentValue(Defence.GetCurrentValue());
         this.IsEquipped = true;
 
     }
@@ -53,7 +53,7 @@ public class Armor : Item
     /// <param name="soundOff">効果音をオフにするか否か。</param>
     public void Detach(MapObjectBase obj)
     {
-        obj.Attack.DecreaseCurrentValue(Defence.GetCurrentValue());
+        obj.Defence.DecreaseCurrentValue(Defence.GetCurrentValue());
         this.IsEquipped = false;
     }
 

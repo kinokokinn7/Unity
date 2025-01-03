@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: WoodenStick
   m_EditorClassIdentifier: 
   Name: "\u6728\u306E\u68D2"
-  Description: "\u653B\u6483\u529B\u304C+2\u4E0A\u304C\u308B\u3002"
+  Description: "\u653B\u6483\u529B\u304C+3\u4E0A\u304C\u308B\u3002"
   Money: 5
   Usable: 1
   Consumable: 0
   Attack:
-    currentValue: 2
+    currentValue: 3

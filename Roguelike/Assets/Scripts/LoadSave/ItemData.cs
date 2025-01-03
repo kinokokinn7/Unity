@@ -35,6 +35,9 @@ public class ItemData
             case "Weapon":
                 item = ScriptableObject.CreateInstance<Weapon>();
                 break;
+            case "Armor":
+                item = ScriptableObject.CreateInstance<Armor>();
+                break;
             case "LifeRecoveryItem":
                 item = ScriptableObject.CreateInstance<LifeRecoveryItem>();
                 break;

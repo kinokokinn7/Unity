@@ -85,7 +85,7 @@ MonoBehaviour:
   Name: "\u3072\u3068\u3064\u3081\u30AD\u30CE\u30B3"
   MoveSecond: 0.1
   Exp:
-    currentValue: 5
+    currentValue: 7
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
@@ -93,8 +93,11 @@ MonoBehaviour:
     maxValue: 9
   Attack:
     currentValue: 5
+  Defence:
+    currentValue: 1
   CurrentGroup: 1
   _weapon: {fileID: 0}
+  _armor: {fileID: 0}
   IsChasing: 0
   VisibleArea:
     Area: '111

@@ -74,9 +74,12 @@ MonoBehaviour:
     currentValue: 6
     maxValue: 6
   Attack:
-    currentValue: 3
+    currentValue: 8
+  Defence:
+    currentValue: 4
   CurrentGroup: 1
   _weapon: {fileID: 0}
+  _armor: {fileID: 0}
   IsChasing: 0
   VisibleArea:
     Area: '111

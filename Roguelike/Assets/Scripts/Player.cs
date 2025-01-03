@@ -123,7 +123,8 @@ public class Player : MapObjectBase
     public bool CanMove { get; set; } = true;
 
     /// <summary>
-    /// プレイヤーのアクションをコルーチンで管理します。入力待ち、アクションの実行、食糧の更新、可視マスの更新、イベントの確認を行います。
+    /// プレイヤーのアクションをコルーチンで管理します。
+    /// 入力待ち、アクションの実行、食糧の更新、可視マスの更新、イベントの確認を行います。
     /// </summary>
     IEnumerator ActionCoroutine()
     {

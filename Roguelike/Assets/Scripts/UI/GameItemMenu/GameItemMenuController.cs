@@ -146,7 +146,20 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
                         equippedLabel.AddToClassList("equipped-indicator");
                         element.Add(equippedLabel);
                     }
-
+                    var itemNameLabel = new Label(item.Name);
+                    itemNameLabel.AddToClassList("item-name");
+                    element.Add(itemNameLabel);
+                }
+                else if (item is Armor)
+                {
+                    var armor = item as Armor;
+                    _player = UnityEngine.Object.FindAnyObjectByType<Player>();
+                    if (_player.CurrentArmor?.GetInstanceID() == armor.GetInstanceID())
+                    {
+                        var equippedLabel = new Label("E");
+                        equippedLabel.AddToClassList("equipped-indicator");
+                        element.Add(equippedLabel);
+                    }
                     var itemNameLabel = new Label(item.Name);
                     itemNameLabel.AddToClassList("item-name");
                     element.Add(itemNameLabel);

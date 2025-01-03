@@ -198,12 +198,9 @@ public class MapObjectBase : MonoBehaviour
             yield break;
         }
 
-        MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{Attack.GetCurrentValue()}のダメージ！");
-
-        // 効果音を鳴らす
-        SoundEffectManager.Instance.PlayAttackSound();
-
-        int damageAmount = Attack.GetCurrentValue();
+        PhysicsDamageCalculator damageCalculator = new PhysicsDamageCalculator();
+        int damageAmount = damageCalculator.calculate(this, other);
+        MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{damageAmount}のダメージ！");
         other.Damaged(damageAmount);
 
         // 効果音を鳴らす
