@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -450487204647636549}
   - component: {fileID: -5241873067686546423}
   m_Layer: 0
-  m_Name: Enemy_Mushroom_Prefab
+  m_Name: 01_Enemy_Mushroom_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,12 +85,12 @@ MonoBehaviour:
   Name: "\u3072\u3068\u3064\u3081\u30AD\u30CE\u30B3"
   MoveSecond: 0.1
   Exp:
-    currentValue: 7
+    currentValue: 2
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
-    currentValue: 9
-    maxValue: 9
+    currentValue: 5
+    maxValue: 5
   Attack:
     currentValue: 5
   Defence:

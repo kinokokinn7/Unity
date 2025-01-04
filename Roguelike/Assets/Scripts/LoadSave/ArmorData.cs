@@ -9,17 +9,17 @@ public class ArmorData : ItemData
     {
     }
 
-    public ArmorData(Armor Armor) : base(Armor)
+    public ArmorData(Armor armor) : base(armor)
     {
-        Defence = Armor.Defence.GetCurrentValue();
-        IsEquipped = Armor.IsEquipped;
+        Defence = armor.Defence.GetCurrentValue();
+        IsEquipped = armor.IsEquipped;
     }
 
     public override Item ToItem()
     {
-        var Armor = base.ToItem() as Armor;
-        Armor.Defence.SetCurrentValue(Defence);
-        Armor.IsEquipped = IsEquipped;
-        return Armor;
+        var armor = base.ToItem() as Armor;
+        armor.Defence.SetCurrentValue(Defence);
+        armor.IsEquipped = IsEquipped;
+        return armor;
     }
 }

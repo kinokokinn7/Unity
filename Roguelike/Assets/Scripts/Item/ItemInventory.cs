@@ -67,6 +67,25 @@ public class ItemInventory : MonoBehaviour
     }
 
     /// <summary>
+    /// 装備中のArmorを指定されたArmorに置き換えます。
+    /// </summary>
+    /// <param name="newArmor">置き換える対象のArmor。</param>
+    public void ReplaceEquippedArmor(Armor newArmor)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i] is Armor armor && armor.IsEquipped)
+            {
+                // 古い装備を削除
+                Items.RemoveAt(i);
+                // 新しい防具（鎧）を同じ場所に挿入
+                Items.Insert(i, newArmor);
+                break;
+            }
+        }
+    }
+
+    /// <summary>
     /// アイテムを所持アイテム一覧から削除します。
     /// </summary>
     /// <param name="item">削除対象のアイテム。</param>

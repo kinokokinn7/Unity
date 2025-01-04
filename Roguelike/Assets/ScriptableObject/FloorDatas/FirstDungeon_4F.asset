@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b1f1196bc6cd47428186c666b36a683, type: 3}
-  m_Name: FirstForest_1F
+  m_Name: FirstDungeon_4F
   m_EditorClassIdentifier: 
-  FloorNumber: 1
+  FloorNumber: 4
   MassDataList:
-  - Prefab: {fileID: 526079949892376054, guid: 9fb7cf542710043958eade8624fe482d, type: 3}
+  - Prefab: {fileID: 526079949892376054, guid: 1d45ee6d7284a42bd9256efd087a102e, type: 3}
     Type: 0
     MapChar: 48
     IsRoad: 1
     IsCharacter: 0
-  - Prefab: {fileID: 1941394312152730608, guid: c25cdff5382814f26a297bef69b1d56a, type: 3}
+  - Prefab: {fileID: 1941394312152730608, guid: 7203a61de95b940008304bfce36e1c24, type: 3}
     Type: 1
     MapChar: 43
     IsRoad: 0
@@ -34,14 +34,14 @@ MonoBehaviour:
     MapChar: 80
     IsRoad: 0
     IsCharacter: 1
-  - Prefab: {fileID: 1625221395402176, guid: acfe7c08529724f368c86edba3ac1329, type: 3}
+  - Prefab: {fileID: 1625221395402176, guid: c9951ca0f61167b4593ffe21b0a089c8, type: 3}
     Type: 4
-    MapChar: 101
+    MapChar: 69
     IsRoad: 0
     IsCharacter: 1
-  - Prefab: {fileID: 1382258774799692, guid: 30991314fcf2f4238a0e2031667e0a30, type: 3}
+  - Prefab: {fileID: 1625221395402176, guid: 07cdd470422084de49ca61d5ffdf2f9e, type: 3}
     Type: 5
-    MapChar: 70
+    MapChar: 101
     IsRoad: 0
     IsCharacter: 1
   - Prefab: {fileID: 3892502269050869983, guid: 708bbf0a8d16a43919379c6757b49359, type: 3}
@@ -69,4 +69,4 @@ MonoBehaviour:
     MapChar: 85
     IsRoad: 0
     IsCharacter: 0
-  BGM: {fileID: 8300000, guid: 77bd646cf0fe3456aadd0987d7c0a29f, type: 3}
+  BGM: {fileID: 8300000, guid: 78ae82be8b1184d5fbb8db45406b23bb, type: 3}

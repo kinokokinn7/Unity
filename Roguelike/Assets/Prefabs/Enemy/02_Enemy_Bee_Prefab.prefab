@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4653739450908751657}
   - component: {fileID: 7336948355369961106}
   m_Layer: 0
-  m_Name: Enemy_Bee_Prefab
+  m_Name: 02_Enemy_Bee_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

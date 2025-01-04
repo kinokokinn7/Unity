@@ -94,6 +94,7 @@ public class Player : MapObjectBase
             if (itemInventory != null)
             {
                 itemInventory.ReplaceEquippedWeapon(CurrentWeapon);
+                itemInventory.ReplaceEquippedArmor(CurrentArmor);
             }
         }
     }

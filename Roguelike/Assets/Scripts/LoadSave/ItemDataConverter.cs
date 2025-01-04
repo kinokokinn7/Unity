@@ -19,6 +19,9 @@ public class ItemDataConverter : JsonConverter
             case "Weapon":
                 itemData = new WeaponData();
                 break;
+            case "Armor":
+                itemData = new ArmorData();
+                break;
             case "LifeRecoveryItem":
                 itemData = new LifeRecoveryItemData();
                 break;
