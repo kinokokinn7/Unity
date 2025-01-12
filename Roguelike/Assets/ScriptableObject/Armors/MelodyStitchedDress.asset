@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ba56d238b324279b7f7eff89229099, type: 3}
+  m_Name: MelodyStitchedDress
+  m_EditorClassIdentifier: 
+  Name: "\u97F3\u7B26\u306E\u523A\u7E4D\u30C9\u30EC\u30B9"
+  Description: "\u9632\u5FA1\u529B\u304C+40\u4E0A\u304C\u308B\u3002"
+  Money: 8000
+  Usable: 1
+  Consumable: 0
+  Defence:
+    currentValue: 40

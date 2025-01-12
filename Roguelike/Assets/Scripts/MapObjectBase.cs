@@ -200,11 +200,20 @@ public class MapObjectBase : MonoBehaviour
 
         PhysicsDamageCalculator damageCalculator = new PhysicsDamageCalculator();
         int damageAmount = damageCalculator.calculate(this, other);
-        MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{damageAmount}のダメージ！");
-        other.Damaged(damageAmount);
+        if (damageAmount > 0)
+        {
+            MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{damageAmount}のダメージ！");
+            other.Damaged(damageAmount);
+            // 効果音を鳴らす
+            SoundEffectManager.Instance.PlayAttackSound();
+        }
+        else
+        {
+            MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！　{other.Name}にダメージを与えられない！");
+            // 効果音を鳴らす
+            SoundEffectManager.Instance.PlayAttackSound();
+        }
 
-        // 効果音を鳴らす
-        SoundEffectManager.Instance.PlayAttackSound();
 
         // 一定時間待機
         yield return new WaitForSeconds(0.5f);

@@ -1986,6 +1986,7 @@ MonoBehaviour:
   SE_OpenWindow: {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
   SE_UseItem: {fileID: 8300000, guid: ba39bf8baf6d13046889b2d64822381a, type: 3}
   SE_Attack: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
+  SE_AttackMiss: {fileID: 8300000, guid: f11db4559b3ffff45b62e9327fc5535d, type: 3}
   SE_Damaged: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
   SE_Recovered: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   SE_FoodDamaged: {fileID: 8300000, guid: acbcb75601b0082458fda8807f67c813, type: 3}
@@ -1994,7 +1995,7 @@ MonoBehaviour:
   SE_Stair: {fileID: 8300000, guid: 9b713c76b05f8b04882a23a60605b0d2, type: 3}
   SE_LevelUp: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
   SE_AttachWeapon: {fileID: 8300000, guid: 490bfbc72255342408984f60044487de, type: 3}
-  SE_AttachArmor: {fileID: 0}
+  SE_AttachArmor: {fileID: 8300000, guid: 490bfbc72255342408984f60044487de, type: 3}
   BGM_Title: {fileID: 8300000, guid: fdba9d42e71ff4b30bd4a784c3be4ad7, type: 3}
 --- !u!4 &777576458
 Transform:
@@ -3414,6 +3415,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: daaaa716ec8a843b28b9ee42d7f98c4f, type: 2}
   - {fileID: 11400000, guid: a8524a21a5e14447d85fcacfd8327cce, type: 2}
   - {fileID: 11400000, guid: 2e59a7026ab90428e9b40551b9f99bfc, type: 2}
+  - {fileID: 11400000, guid: dddf1e8b5b9d74dc4818c567ff731259, type: 2}
 --- !u!1 &1090478004
 GameObject:
   m_ObjectHideFlags: 0

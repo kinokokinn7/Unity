@@ -24,6 +24,7 @@ public class SoundEffectManager : MonoBehaviour
     public AudioClip SE_OpenWindow; // ウィンドウを開く
     public AudioClip SE_UseItem; // アイテムを使用する
     public AudioClip SE_Attack; // 攻撃
+    public AudioClip SE_AttackMiss; // 攻撃ミス
     public AudioClip SE_Damaged; // ダメージ
     public AudioClip SE_Recovered; // 回復
 
@@ -117,6 +118,15 @@ public class SoundEffectManager : MonoBehaviour
     {
 
         soundSource?.PlayOneShot(SE_Attack);
+    }
+
+    /// <summary>
+    /// [攻撃ミス]SEを指定して再生します。
+    /// </summary>
+    public void PlayAttackMissSound()
+    {
+
+        soundSource?.PlayOneShot(SE_AttackMiss);
     }
 
     /// <summary>
