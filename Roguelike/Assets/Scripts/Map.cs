@@ -16,7 +16,7 @@ public enum MassType
     Enemy2,  // 敵2
     Enemy3,  // 敵3
     Enemy4,  // 敵4
-    Treasure,   // 宝箱（ライフ回復）
+    ItemTreasure,   // 宝箱（ライフ回復）
     FoodTreasure,   // 宝箱（食べ物）
     WeaponTreasure, // 宝箱（武器）
     Trap,           // 罠
@@ -130,6 +130,17 @@ public class Map : MonoBehaviour
     public List<string> MapData { get; private set; }
 
     /// <summary>
+    /// 環境光。
+    /// </summary>
+    private Light directionalLight;
+
+    void Start()
+    {
+        // フロアのDirectional Lightを取得
+        directionalLight = GameObject.FindObjectOfType<Light>();
+    }
+
+    /// <summary>
     /// マップデータを基にマップを構築します。
     /// </summary>
     /// <param name="map">マップデータを表す文字列のリスト。</param>
@@ -164,7 +175,7 @@ public class Map : MonoBehaviour
                     massData = this[MassType.Road];
                 }
                 else if (
-                    massData.Type == MassType.Treasure ||
+                    massData.Type == MassType.ItemTreasure ||
                     massData.Type == MassType.FoodTreasure ||
                     massData.Type == MassType.WeaponTreasure ||
                     massData.Type == MassType.Trap ||
@@ -221,6 +232,12 @@ public class Map : MonoBehaviour
 
         // フロアのBGMを設定
         SoundEffectManager.Instance.SetBGM_Dungeon(floorData.BGM);
+
+        // フロアの明るさを調整
+        if (directionalLight != null)
+        {
+            directionalLight.intensity = floorData.DirectionalLightIntensity;
+        }
     }
 
     /// <summary>

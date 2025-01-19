@@ -18,5 +18,9 @@ public class FloorData : ScriptableObject
     /// </summary>
     public AudioClip BGM;
 
+    /// <summary>
+    /// 環境光の明るさ。
+    /// </summary>
+    public float DirectionalLightIntensity = 1f;
 
 }

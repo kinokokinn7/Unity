@@ -982,6 +982,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a542537424d704b4cb3b0c3bb4743852, type: 2}
   - {fileID: 11400000, guid: 23911ff6ce9c64b91897c17cc996938f, type: 2}
   - {fileID: 11400000, guid: 291ebae2b4388475193041489f06262f, type: 2}
+  - {fileID: 11400000, guid: 06aa0531b5e8b46408a0d62f3a428213, type: 2}
+  - {fileID: 11400000, guid: e56ef7cafb1da4aa2a923cbcd27bd5e3, type: 2}
   MassOffset: {x: 1, y: 1}
 --- !u!4 &343470346
 Transform:
@@ -1238,7 +1240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.29803923}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2282,7 +2284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.2509804}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4641,7 +4643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1437220880
 MeshCollider:
   m_ObjectHideFlags: 0
