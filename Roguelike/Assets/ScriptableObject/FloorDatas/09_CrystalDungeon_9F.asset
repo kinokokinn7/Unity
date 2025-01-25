@@ -71,3 +71,4 @@ MonoBehaviour:
     IsCharacter: 0
   BGM: {fileID: 8300000, guid: a5577977eaf2445359dc6354dcdac34a, type: 3}
   DirectionalLightIntensity: 1
+  MapData: []

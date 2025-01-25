@@ -340,7 +340,7 @@ public class Map : MonoBehaviour
     /// マップを生成し、初期化します。プレイヤーとゴールの位置を決定し、マップ上に障害物や特別なマスを配置します。
     /// </summary>
     /// <param name="generateParam">マップ生成のためのパラメータ。</param>
-    public void GenerateMap(GenerateParam generateParam)
+    public void GenerateRandomMap(GenerateParam generateParam)
     {
         InitMassData();
 

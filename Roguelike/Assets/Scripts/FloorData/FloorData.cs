@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "FloorData", menuName = "Map/FloorData", order = 1)]
@@ -22,5 +23,11 @@ public class FloorData : ScriptableObject
     /// 環境光の明るさ。
     /// </summary>
     public float DirectionalLightIntensity = 1f;
+
+    /// <summary>
+    /// 固有のマップデータ（任意）。
+    /// null であればランダム生成されます。
+    /// </summary>
+    public List<string> MapData;
 
 }

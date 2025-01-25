@@ -47,9 +47,22 @@ public class MapSceneManager : MonoBehaviour
     {
         var map = GetComponent<Map>();
         map.DestroyMap();
-        map.GenerateMap(GenerateParam);
-    }
 
+        // 階層のデータを取得
+        var floorData = map.floorDataList.Where(
+                floorData => floorData.FloorNumber == CurrentFloor
+            ).FirstOrDefault();
+        if (floorData?.MapData != null && floorData.MapData.Count > 0)
+        {
+            // 固有のマップデータを使用
+            map.BuildMap(floorData.MapData);
+        }
+        else
+        {
+            // ランダム生成
+            map.GenerateRandomMap(GenerateParam);
+        }
+    }
 
     [TextArea(3, 15)]
     public string mapData = // デフォルトのマップデータ
@@ -71,16 +84,7 @@ public class MapSceneManager : MonoBehaviour
 
     public void InitializeMapScene()
     {
-        var map = GetComponent<Map>();
-        if (IsAutoGenerate)
-        {
-            map.GenerateMap(GenerateParam);
-        }
-        else
-        {
-            var lines = mapData.Split('\n').ToList();
-            map.BuildMap(lines);
-        }
+        GenerateMap();
     }
     public void SetupMapSceneCommon()
     {
