@@ -223,14 +223,14 @@ MonoBehaviour:
   Name: "\u30D0\u30C3\u30C8"
   MoveSecond: 0.1
   Exp:
-    currentValue: 3
+    currentValue: 6
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
-    currentValue: 6
-    maxValue: 6
+    currentValue: 9
+    maxValue: 9
   Attack:
-    currentValue: 6
+    currentValue: 10
   Defence:
     currentValue: 2
   CurrentGroup: 1

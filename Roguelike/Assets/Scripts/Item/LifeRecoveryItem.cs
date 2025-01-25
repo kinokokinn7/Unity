@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using Roguelike.Window;
+using System.Threading.Tasks;
+using System;
 
 /// <summary>
 /// 回復用のアイテムクラス
@@ -23,23 +25,33 @@ public class LifeRecoveryItem : Item
     /// ※回復後のHPが最大HPより大きい場合は最大HPに設定されます。
     /// </summary>
     /// <param name="target">回復対象のバトルパラメータ</param>
-    public override void Use(MapObjectBase target)
+    public override async void Use(MapObjectBase target)
     {
+        var player = FindAnyObjectByType<Player>();
+        player.IsNowUsingItem = true;
+
         MessageWindow.Instance.AppendMessage($"{this.Name}を使った！");
         MessageWindow.Instance.AppendMessage($"{target.Name}のHPが{RecoveryPower}回復した！");
         SpawnHealingEffect(target.transform.position);
+
         target.HpRecovered(RecoveryPower);
         target.Hp.Recover(RecoveryPower);
-    }
 
+        await Task.Delay(1000);
+
+        player.IsNowUsingItem = false;
+    }
     /// <summary>
     /// エフェクトを生成します。
     /// </summary>
     /// <param name="position">エフェクトの生成位置。</param>
-    private void SpawnHealingEffect(Vector3 position)
+    /// <returns>生成されたエフェクトのParticleSystem。</returns>
+    private ParticleSystem SpawnHealingEffect(Vector3 position)
     {
         //プレハブを指定した位置に生成
-        Instantiate(_healingEffectPrefab, position, Quaternion.identity);
+        var effectInstance = Instantiate(_healingEffectPrefab, position, Quaternion.identity);
+        return effectInstance.GetComponent<ParticleSystem>();
+
     }
 
     /// <summary>

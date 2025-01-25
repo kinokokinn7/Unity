@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1f1196bc6cd47428186c666b36a683, type: 3}
   m_Name: 10_LastFloor_10F
   m_EditorClassIdentifier: 
-  FloorNumber: 1
+  FloorNumber: 10
   MassDataList:
   - Prefab: {fileID: 526079949892376054, guid: 40cfe20cce5b848788deb4651820405d, type: 3}
     Type: 0

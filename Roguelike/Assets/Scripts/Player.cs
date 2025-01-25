@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using Roguelike.Window;
 using UnityEngine.InputSystem;
+using System.Threading.Tasks;
 
 public class Player : MapObjectBase
 {
@@ -147,6 +148,7 @@ public class Player : MapObjectBase
                     yield return new WaitWhile(() => IsNowMoving || IsNowAttacking);
                     break;
                 case Action.UseItem:
+                    yield return new WaitWhile(() => IsNowUsingItem);
                     break;
             }
             UpdateFood();
@@ -238,6 +240,7 @@ public class Player : MapObjectBase
         foreach (var enemy in UnityEngine.Object.FindObjectsOfType<Enemy>())
         {
             enemy.MoveStart();
+            yield return new WaitWhile(() => enemy.IsNowAttacking);
         }
         yield return new WaitWhile(() =>
             UnityEngine.Object.FindObjectsOfType<Enemy>().Any(_e => _e.IsNowAttacking));
@@ -386,7 +389,7 @@ public class Player : MapObjectBase
     /// <summary>
     /// プレイヤーのレベルアップ処理を行います。
     /// </summary>
-    public void LevelUp()
+    public async void LevelUp()
     {
         Level += 1;
         Hp.IncreaseMaxHp(5);
@@ -397,6 +400,13 @@ public class Player : MapObjectBase
         SoundEffectManager.Instance.PlayLevelUpSound();
         MessageWindow.AppendMessage($"{this.Name}のレベルが{Level}に上がった！");
         MessageWindow.AppendMessage($"  HP +5  Atk + 1");
+
+        // プレイヤーの移動を一時的に停止
+        CanMove = false;
+        // ウェイトを追加
+        await Task.Delay(1000);
+        // プレイヤーの移動を再開
+        CanMove = true;
     }
 
     /// <summary>

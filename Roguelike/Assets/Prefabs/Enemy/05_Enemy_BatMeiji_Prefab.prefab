@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: -4653739450908751657}
   - component: {fileID: 7336948355369961106}
   m_Layer: 0
-  m_Name: 05_Enemy_Bat_Prefab2
+  m_Name: 05_Enemy_BatMeiji_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,12 +223,12 @@ MonoBehaviour:
   Name: "\u30D0\u30C3\u30C8\u30E1\u30A4\u30B8"
   MoveSecond: 0.1
   Exp:
-    currentValue: 5
+    currentValue: 9
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
-    currentValue: 8
-    maxValue: 8
+    currentValue: 12
+    maxValue: 12
   Attack:
     currentValue: 12
   Defence:

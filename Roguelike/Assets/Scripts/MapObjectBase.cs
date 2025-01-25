@@ -68,6 +68,11 @@ public class MapObjectBase : MonoBehaviour
     public bool IsNowAttacking { get; set; }
 
     /// <summary>
+    /// アイテム使用中の場合は `true` を返すフラグ。
+    /// </summary>
+    public bool IsNowUsingItem { get; set; }
+
+    /// <summary>
     /// 死亡しているか否かを表すフラグ。
     /// </summary>
     public bool IsDead

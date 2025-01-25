@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 5428177229227856110}
   - component: {fileID: 2923056795660567318}
   m_Layer: 0
-  m_Name: 03_SlimeRabbit_Prefab
+  m_Name: 03_Enemy_SlimeRabbit_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -463,14 +463,14 @@ MonoBehaviour:
   Name: "\u30B9\u30E9\u30A4\u30E0\u30E9\u30D3\u30C3\u30C8"
   MoveSecond: 0.1
   Exp:
-    currentValue: 9
+    currentValue: 5
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
-    currentValue: 11
-    maxValue: 11
+    currentValue: 7
+    maxValue: 7
   Attack:
-    currentValue: 10
+    currentValue: 9
   Defence:
     currentValue: 4
   CurrentGroup: 1
