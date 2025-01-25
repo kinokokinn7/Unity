@@ -403,10 +403,44 @@ public class Player : MapObjectBase
 
         // プレイヤーの移動を一時的に停止
         CanMove = false;
-        // ウェイトを追加
-        await Task.Delay(1000);
+
+        // 回転アニメーションを開始
+        await RotateWithEffects();
+
         // プレイヤーの移動を再開
         CanMove = true;
+    }
+
+    /// <summary>
+    /// プレイヤーを回転させるアニメーションを行います。
+    /// </summary>
+    private async Task RotateWithEffects()
+    {
+        float duration = 1.0f;  // アニメーションの長さ（秒）
+        float elapsedTime = 0.0f;   // 経過時間（秒）
+        Vector3 originalPosition = transform.position;
+        Color originalColor = GetComponentInChildren<Renderer>().material.color;
+
+        // 最初に正面を向く
+        transform.rotation = Quaternion.Euler(0, 180, 0);
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+
+            // 回転
+            transform.Rotate(0, 360 * Time.deltaTime / duration, 0);
+
+            // 色を変える
+            GetComponentInChildren<Renderer>().material.color = Color.Lerp(originalColor, Color.yellow, t);
+
+            elapsedTime += Time.deltaTime;
+            await Task.Yield();
+        }
+
+        // 元の色に戻す
+        GetComponentInChildren<Renderer>().material.color = originalColor;
+
     }
 
     /// <summary>
