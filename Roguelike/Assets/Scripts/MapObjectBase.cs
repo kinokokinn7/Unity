@@ -142,15 +142,19 @@ public class MapObjectBase : MonoBehaviour
         {
             case Direction.North:
                 this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                this.Forward = Direction.North;
                 break;
             case Direction.South:
                 this.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+                this.Forward = Direction.South;
                 break;
             case Direction.East:
                 this.transform.rotation = Quaternion.Euler(0.0f, 90.0f, 0.0f);
+                this.Forward = Direction.East;
                 break;
             case Direction.West:
                 this.transform.rotation = Quaternion.Euler(0.0f, -90.0f, 0.0f);
+                this.Forward = Direction.West;
                 break;
         }
     }

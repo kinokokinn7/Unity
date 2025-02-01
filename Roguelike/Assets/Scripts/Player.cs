@@ -110,7 +110,8 @@ public class Player : MapObjectBase
         MoveDown,
         MoveRight,
         MoveLeft,
-        UseItem
+        UseItem,
+        Attack
     }
 
     public Action NowAction { get; private set; } = Action.None;
@@ -149,6 +150,16 @@ public class Player : MapObjectBase
                     break;
                 case Action.UseItem:
                     yield return new WaitWhile(() => IsNowUsingItem);
+                    break;
+                case Action.Attack:
+                    // 攻撃処理を追加
+                    var enemy = FindEnemyInFront();
+                    if (enemy != null)
+                    {
+                        StartCoroutine(AttackTo(enemy));
+                        var (movedMass, movedPos) = Map.GetMovePos(Pos, this.Forward);
+                        yield return StartCoroutine(NotMoveCoroutine(movedPos));
+                    }
                     break;
             }
             UpdateFood();
@@ -219,6 +230,7 @@ public class Player : MapObjectBase
             if (current.downArrowKey.isPressed) NowAction = Action.MoveDown;
             if (current.rightArrowKey.isPressed) NowAction = Action.MoveRight;
             if (current.leftArrowKey.isPressed) NowAction = Action.MoveLeft;
+            if (current.zKey.isPressed) NowAction = Action.Attack; // Zキーで攻撃
         }
     }
 
@@ -499,5 +511,15 @@ public class Player : MapObjectBase
         mass.ExistTreasureOrTrap = null;
         mass.Type = MassType.Road;
         UnityEngine.Object.Destroy(trap.gameObject);
+    }
+
+    /// <summary>
+    /// プレイヤーの前方にいる敵を探します。
+    /// </summary>
+    /// <returns>敵キャラ。</returns>
+    Enemy FindEnemyInFront()
+    {
+        var (movedMass, movedPos) = Map.GetMovePos(Pos, this.Forward);
+        return movedMass.ExistCharacter?.GetComponent<Enemy>();
     }
 }
