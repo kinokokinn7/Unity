@@ -21,6 +21,7 @@ public enum MassType
     WeaponTreasure, // 宝箱（武器）
     Trap,           // 罠
     FoodTrap,       // 罠（食べ物）
+    FinalGoal,   // 最終ゴール
 }
 
 /// <summary>
@@ -179,7 +180,8 @@ public class Map : MonoBehaviour
                     massData.Type == MassType.FoodTreasure ||
                     massData.Type == MassType.WeaponTreasure ||
                     massData.Type == MassType.Trap ||
-                    massData.Type == MassType.FoodTrap)
+                    massData.Type == MassType.FoodTrap ||
+                    massData.Type == MassType.FinalGoal)
                 {
                     mass.ExistTreasureOrTrap = Object.Instantiate(massData.Prefab, transform);
                     var mapObject = mass.ExistTreasureOrTrap.GetComponent<MapObjectBase>();

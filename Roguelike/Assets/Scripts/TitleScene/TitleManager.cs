@@ -18,6 +18,11 @@ public class TitleManager : MonoBehaviour
 
     void Start()
     {
+        StartTitle();
+    }
+
+    internal void StartTitle()
+    {
         titleMenuController.HideMenu();
 
         // フェードイン完了時にタイトルメニューを表示
@@ -31,7 +36,6 @@ public class TitleManager : MonoBehaviour
 
         // タイトルBGMを再生
         SoundEffectManager.Instance.PlayTitleBGM();
-
     }
 
     private void OnDestroy()

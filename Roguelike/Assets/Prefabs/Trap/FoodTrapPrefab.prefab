@@ -26,12 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3154109949439993386}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3154109949535884306}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3154109949439993366
 MeshFilter:
@@ -52,11 +53,15 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -90,9 +95,17 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3154109949439993386}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3154109949535884309
@@ -119,13 +132,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3154109949535884309}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 320, y: 240, z: 0}
   m_LocalScale: {x: 0.5, y: 0.2, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3154109949439993387}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-8533352976080470219
 MonoBehaviour:
@@ -139,14 +153,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ab8ed79d0d14539b49632a8f48f9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 
   MoveSecond: 0.1
-  Exp: 0
+  Exp:
+    currentValue: 0
   Pos: {x: 0, y: 0}
   Forward: 0
-  Hp: 5
-  Attack: 2
+  Hp:
+    currentValue: 0
+    maxValue: 0
+  Attack:
+    currentValue: 0
+  Defence:
+    currentValue: 0
   CurrentGroup: 2
   _weapon: {fileID: 0}
+  _armor: {fileID: 0}
   CurrentType: 1
   Value: 10
+  _effectPrefab: {fileID: 7333403968637262863, guid: eb912c169311546d49f74c541025194a, type: 3}
   Hide: 1

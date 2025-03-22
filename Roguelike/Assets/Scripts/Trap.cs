@@ -18,6 +18,7 @@ public class Trap : MapObjectBase
 
     public Type CurrentType = Type.LifeDown; // 現在のトラップの種類
     public int Value = 5; // トラップの効果の強さ
+    public GameObject _effectPrefab; // エフェクトのプレハブ
 
     public bool Hide = true; // トラップがデフォルトで隠されているかどうか
 
@@ -40,5 +41,22 @@ public class Trap : MapObjectBase
         {
             child.gameObject.SetActive(doHide);
         }
+    }
+
+    /// <summary>
+    /// エフェクトを生成します。
+    /// </summary>
+    /// <param name="position">エフェクトの生成位置。</param>
+    /// <returns>生成されたエフェクトのParticleSystem。</returns>
+    internal ParticleSystem SpawnHealingEffect(Vector3 position)
+    {
+        if (!_effectPrefab)
+        {
+            return null;
+        }
+        //プレハブを指定した位置に生成
+        var effectInstance = Instantiate(_effectPrefab, position, Quaternion.identity);
+        return effectInstance.GetComponent<ParticleSystem>();
+
     }
 }

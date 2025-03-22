@@ -452,7 +452,30 @@ public class Player : MapObjectBase
 
         // 元の色に戻す
         GetComponentInChildren<Renderer>().material.color = originalColor;
+    }
 
+    /// <summary>
+    /// プレイヤーをジャンプさせるアニメーションを行います。
+    /// </summary>
+    internal async Task JumpWithEffects()
+    {
+        float duration = 0.5f;  // アニメーションの長さ（秒）
+        float elapsedTime = 0.0f;   // 経過時間（秒）
+        Vector3 originalPosition = transform.position;
+
+        // 最初に正面を向く
+        transform.rotation = Quaternion.Euler(0, 180, 0);
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+
+            // ジャンプ
+            transform.position = Mathf.Sin(t * Mathf.PI) * Vector3.up + originalPosition;
+
+            elapsedTime += Time.deltaTime;
+            await Task.Yield();
+        }
     }
 
     /// <summary>
@@ -479,6 +502,12 @@ public class Player : MapObjectBase
                 StartCoroutine(NotMoveCoroutine(movedPos));
                 return;
             }
+            else if (otherTreasureOrTrap is FinalGoal)
+            {
+                var finalGoal = (otherTreasureOrTrap as FinalGoal);
+                finalGoal.Execute();
+                return;
+            }
         }
         base.MoveToExistObject(mass, movedPos, true);
     }
@@ -493,6 +522,7 @@ public class Player : MapObjectBase
     protected void StampTrap(Trap trap, Map.Mass mass, Vector2Int movedPos)
     {
         MessageWindow.AppendMessage($"トラップにひっかかった！！");
+        trap.SpawnHealingEffect(transform.position);
         switch (trap.CurrentType)
         {
             case Trap.Type.LifeDown:
@@ -521,5 +551,19 @@ public class Player : MapObjectBase
     {
         var (movedMass, movedPos) = Map.GetMovePos(Pos, this.Forward);
         return movedMass.ExistCharacter?.GetComponent<Enemy>();
+    }
+
+    internal async void PlayAnimationForFinalGoal()
+    {
+        // プレイヤーの移動を一時的に停止
+        CanMove = false;
+
+        // 回転
+        await RotateWithEffects();
+        // ジャンプ
+        await JumpWithEffects();
+
+        MessageWindow.AppendMessage("ゲームクリア！");
+
     }
 }
