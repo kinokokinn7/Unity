@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 36bda8cb935e5c2428c2e743ef9893ff
+timeCreated: 1523321638
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116216
+  packageName: Fantasy Slime
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/Fantasy Slime/Animations/Damage.anim
+  uploadId: 239892

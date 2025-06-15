@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2bc1b50a21e3c5742aecf583c8382cb2
+timeCreated: 1491495756
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 87449
+  packageName: Fantasy Wizard
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/FantasyWizard/Prefab/Wizard.prefab
+  uploadId: 172473

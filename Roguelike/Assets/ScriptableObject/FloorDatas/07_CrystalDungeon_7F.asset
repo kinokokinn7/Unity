@@ -34,14 +34,19 @@ MonoBehaviour:
     MapChar: 80
     IsRoad: 0
     IsCharacter: 1
-  - Prefab: {fileID: 1625221395402176, guid: c9951ca0f61167b4593ffe21b0a089c8, type: 3}
+  - Prefab: {fileID: 1713781036754730, guid: c6c28086ab91e42bbba54809eca5ec1c, type: 3}
     Type: 4
     MapChar: 69
     IsRoad: 0
     IsCharacter: 1
-  - Prefab: {fileID: 1625221395402176, guid: 07cdd470422084de49ca61d5ffdf2f9e, type: 3}
+  - Prefab: {fileID: 1287758029709606, guid: bbf1480dcf7ba473794ef3a9e687d168, type: 3}
     Type: 5
     MapChar: 101
+    IsRoad: 0
+    IsCharacter: 1
+  - Prefab: {fileID: 1589179102761264, guid: f38245d3d43b24743b7856cf23545148, type: 3}
+    Type: 6
+    MapChar: 70
     IsRoad: 0
     IsCharacter: 1
   - Prefab: {fileID: 3892502269050869983, guid: 708bbf0a8d16a43919379c6757b49359, type: 3}
@@ -70,5 +75,5 @@ MonoBehaviour:
     IsRoad: 0
     IsCharacter: 0
   BGM: {fileID: 8300000, guid: a5577977eaf2445359dc6354dcdac34a, type: 3}
-  DirectionalLightIntensity: 0
+  DirectionalLightIntensity: 1
   MapData: []

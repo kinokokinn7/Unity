@@ -1,0 +1,404 @@
+fileFormatVersion: 2
+guid: 2b62fb08f190dc545a6652e1aa409e58
+timeCreated: 1523321351
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone001
+    100002: Bone002
+    100004: Bone003
+    100006: Bone004
+    100008: Bone006
+    100010: Dummy001
+    100012: Dummy002
+    100014: Dummy003
+    100016: Dummy_Helmet
+    100018: Dummy_Top
+    100020: //RootNode
+    100022: Slime
+    100024: Slime_Helmet
+    100026: Slime_Tongue
+    400000: Bone001
+    400002: Bone002
+    400004: Bone003
+    400006: Bone004
+    400008: Bone006
+    400010: Dummy001
+    400012: Dummy002
+    400014: Dummy003
+    400016: Dummy_Helmet
+    400018: Dummy_Top
+    400020: //RootNode
+    400022: Slime
+    400024: Slime_Helmet
+    400026: Slime_Tongue
+    4300000: Slime_Tongue
+    4300002: Slime
+    4300004: Slime_Helmet
+    7400000: Idle
+    7400002: Run
+    7400004: Attack
+    7400006: Damage
+    7400008: Death
+    9500000: //RootNode
+    13700000: Slime
+    13700002: Slime_Helmet
+    13700004: Slime_Tongue
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: max_05
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone001
+        weight: 1
+      - path: Bone001/Bone002
+        weight: 1
+      - path: Bone001/Bone002/Bone003
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet/Dummy_Top
+        weight: 1
+      - path: Bone001/Bone004
+        weight: 1
+      - path: Bone001/Bone006
+        weight: 1
+      - path: Bone001/Dummy001
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002/Dummy003
+        weight: 1
+      - path: Slime
+        weight: 1
+      - path: Slime_Helmet
+        weight: 1
+      - path: Slime_Tongue
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: max_05
+      firstFrame: 40
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone001
+        weight: 1
+      - path: Bone001/Bone002
+        weight: 1
+      - path: Bone001/Bone002/Bone003
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet/Dummy_Top
+        weight: 1
+      - path: Bone001/Bone004
+        weight: 1
+      - path: Bone001/Bone006
+        weight: 1
+      - path: Bone001/Dummy001
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002/Dummy003
+        weight: 1
+      - path: Slime
+        weight: 1
+      - path: Slime_Helmet
+        weight: 1
+      - path: Slime_Tongue
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack
+      takeName: max_05
+      firstFrame: 70
+      lastFrame: 95
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone001
+        weight: 1
+      - path: Bone001/Bone002
+        weight: 1
+      - path: Bone001/Bone002/Bone003
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet/Dummy_Top
+        weight: 1
+      - path: Bone001/Bone004
+        weight: 1
+      - path: Bone001/Bone006
+        weight: 1
+      - path: Bone001/Dummy001
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002/Dummy003
+        weight: 1
+      - path: Slime
+        weight: 1
+      - path: Slime_Helmet
+        weight: 1
+      - path: Slime_Tongue
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Damage
+      takeName: max_05
+      firstFrame: 100
+      lastFrame: 113
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone001
+        weight: 1
+      - path: Bone001/Bone002
+        weight: 1
+      - path: Bone001/Bone002/Bone003
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet/Dummy_Top
+        weight: 1
+      - path: Bone001/Bone004
+        weight: 1
+      - path: Bone001/Bone006
+        weight: 1
+      - path: Bone001/Dummy001
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002/Dummy003
+        weight: 1
+      - path: Slime
+        weight: 1
+      - path: Slime_Helmet
+        weight: 1
+      - path: Slime_Tongue
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Death
+      takeName: max_05
+      firstFrame: 120
+      lastFrame: 138
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone001
+        weight: 1
+      - path: Bone001/Bone002
+        weight: 1
+      - path: Bone001/Bone002/Bone003
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet
+        weight: 1
+      - path: Bone001/Bone002/Dummy_Helmet/Dummy_Top
+        weight: 1
+      - path: Bone001/Bone004
+        weight: 1
+      - path: Bone001/Bone006
+        weight: 1
+      - path: Bone001/Dummy001
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002
+        weight: 1
+      - path: Bone001/Dummy001/Dummy002/Dummy003
+        weight: 1
+      - path: Slime
+        weight: 1
+      - path: Slime_Helmet
+        weight: 1
+      - path: Slime_Tongue
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116216
+  packageName: Fantasy Slime
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/Fantasy Slime/Fantasy Slime.FBX
+  uploadId: 239892

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b2a043ec20cf0f744a951db15b0cc572
+timeCreated: 1523322668
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116216
+  packageName: Fantasy Slime
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/Fantasy Slime/Prefab/Fantasy Slime.prefab
+  uploadId: 239892

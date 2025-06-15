@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 229f4ec1b1fb3ae4c8268f79856d9b95
+timeCreated: 1523321638
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116216
+  packageName: Fantasy Slime
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/Fantasy Slime/Animations/Idle.anim
+  uploadId: 239892

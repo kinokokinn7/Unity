@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: aa8958122a47d474d85551e6b31619a2
+timeCreated: 1491491593
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 87449
+  packageName: Fantasy Wizard
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/FantasyWizard/Materials/Fantasy_Wizard_map.mat
+  uploadId: 172473

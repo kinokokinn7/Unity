@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3ded9bbc9d6974e46960b742b1babff7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 136267
+  packageName: Fantasy Orc
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/Fantasy Orc/Script/OrcAnimation.cs
+  uploadId: 285742

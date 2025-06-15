@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 62ae94888af2e8e42a270a7ba3eed61f
+timeCreated: 1523321893
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116216
+  packageName: Fantasy Slime
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/Fantasy Slime/Script/Slime_Anim.cs
+  uploadId: 239892

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5c8e4b72bec40bf4faa98613ccf01783
+timeCreated: 1523321638
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116216
+  packageName: Fantasy Slime
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/Fantasy Slime/Animations/Attack.anim
+  uploadId: 239892

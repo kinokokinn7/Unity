@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 05789d52266ba904fb72403ebbda3766
+timeCreated: 1523323471
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 116216
+  packageName: Fantasy Slime
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/Fantasy Slime/Prefab/Fantasy Slime_Helmet.prefab
+  uploadId: 239892

@@ -1018,7 +1018,7 @@ MonoBehaviour:
   GenerateParam:
     Size: {x: 20, y: 20}
     GoalMinDistance: 10
-    LimitMassPercent: 0.5
+    LimitMassPercent: 0.4
     RoadMassPercent: 0.7
   itemInventory: {fileID: 0}
   mapData: 'IU0P

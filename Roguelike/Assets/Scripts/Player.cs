@@ -362,11 +362,22 @@ public class Player : MapObjectBase
             Exp.IncreaseCurrentValue(other.Exp.GetCurrentValue());
 
             // レベルアップ処理
-            if (Exp.GetCurrentValue() >= 10)
+            if (Exp.GetCurrentValue() >= GetExpValue())
             {
                 LevelUp();
             }
         }
+    }
+
+    /// <summary>
+    /// レベルに応じた経験値を取得します。
+    /// プレイヤーのレベルが上がるごとに経験値の値も増加します。
+    /// </summary>
+    /// <returns></returns>
+    private int GetExpValue()
+    {
+        // レベルに応じた経験値を返す
+        return Level * 10; // 例: レベル1で10, レベル2で20, ...
     }
 
     /// <summary>
@@ -550,7 +561,12 @@ public class Player : MapObjectBase
     Enemy FindEnemyInFront()
     {
         var (movedMass, movedPos) = Map.GetMovePos(Pos, this.Forward);
-        return movedMass.ExistCharacter?.GetComponent<Enemy>();
+        var character = movedMass.ExistCharacter;
+        if (character == null || character.Equals(null))
+        {
+            return null;
+        }
+        return character.GetComponent<Enemy>();
     }
 
     internal async void PlayAnimationForFinalGoal()

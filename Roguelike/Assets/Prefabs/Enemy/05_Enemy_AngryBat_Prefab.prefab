@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: -4653739450908751657}
   - component: {fileID: 7336948355369961106}
   m_Layer: 0
-  m_Name: 05_Enemy_BatMeiji_Prefab
+  m_Name: 05_Enemy_AngryBat_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa810bfecc304805802b44624330342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u30D0\u30C3\u30C8\u30E1\u30A4\u30B8"
+  Name: "\u30A2\u30F3\u30B0\u30EA\u30FC\u30D0\u30C3\u30C8"
   MoveSecond: 0.1
   Exp:
     currentValue: 9
