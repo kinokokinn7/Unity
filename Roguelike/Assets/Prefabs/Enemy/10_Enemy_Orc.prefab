@@ -2053,9 +2053,10 @@ MonoBehaviour:
     currentValue: 50
     maxValue: 50
   Attack:
-    currentValue: 43
+    currentValue: 38
   Defence:
     currentValue: 9
+  CriticalChance: 0.1
   CurrentGroup: 1
   _weapon: {fileID: 0}
   _armor: {fileID: 0}

@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa810bfecc304805802b44624330342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: "\u30B9\u30E9\u30A4\u30E0\u30E9\u30D3\u30C3\u30C8"
+  Name: "\u3077\u308B\u3077\u308B\u30E9\u30D3\u30C3\u30C8"
   MoveSecond: 0.1
   Exp:
     currentValue: 5
@@ -473,6 +473,7 @@ MonoBehaviour:
     currentValue: 9
   Defence:
     currentValue: 4
+  CriticalChance: 0.1
   CurrentGroup: 1
   _weapon: {fileID: 0}
   _armor: {fileID: 0}

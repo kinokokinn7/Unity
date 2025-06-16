@@ -40,6 +40,10 @@ public class Player : MapObjectBase
     protected override void Start()
     {
         base.Start();
+
+        // プレイヤーの初期ステータス設定
+        CriticalChance = 0.15f;
+
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
         playerUI.Set(this);
 
@@ -362,7 +366,7 @@ public class Player : MapObjectBase
             Exp.IncreaseCurrentValue(other.Exp.GetCurrentValue());
 
             // レベルアップ処理
-            if (Exp.GetCurrentValue() >= GetExpValue())
+            if (Exp.GetCurrentValue() >= GetNextRequiredExpValue())
             {
                 LevelUp();
             }
@@ -374,7 +378,7 @@ public class Player : MapObjectBase
     /// プレイヤーのレベルが上がるごとに経験値の値も増加します。
     /// </summary>
     /// <returns></returns>
-    private int GetExpValue()
+    private int GetNextRequiredExpValue()
     {
         // レベルに応じた経験値を返す
         return Level * 10; // 例: レベル1で10, レベル2で20, ...
@@ -516,7 +520,7 @@ public class Player : MapObjectBase
             else if (otherTreasureOrTrap is FinalGoal)
             {
                 var finalGoal = (otherTreasureOrTrap as FinalGoal);
-                finalGoal.Execute();
+                StartCoroutine(finalGoal.Execute());
                 return;
             }
         }
@@ -569,7 +573,7 @@ public class Player : MapObjectBase
         return character.GetComponent<Enemy>();
     }
 
-    internal async void PlayAnimationForFinalGoal()
+    internal async Task PlayAnimationForFinalGoal()
     {
         // プレイヤーの移動を一時的に停止
         CanMove = false;

@@ -22,6 +22,17 @@ class Enemy : MapObjectBase
     }
 
     /// <summary>
+    /// 敵キャラクターの初期化を行います。
+    /// </summary>
+    protected override void Start()
+    {
+        base.Start();
+
+        // クリティカル率を設定
+        this.CriticalChance = 0.05f;
+    }
+
+    /// <summary>
     /// 敵の移動を開始します。プレイヤーを追跡するか、ランダムに移動します。
     /// </summary>
     public virtual void MoveStart()

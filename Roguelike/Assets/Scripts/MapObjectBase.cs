@@ -28,6 +28,8 @@ public class MapObjectBase : MonoBehaviour
     public Atk Attack; // 攻撃力
     public Def Defence; // 防御力
 
+    public float CriticalChance = 0.1f; // クリティカルヒットの確率
+
     /// <summary>
     /// オブジェクトの所属グループを表します。プレイヤー、敵、その他などがあります。
     /// </summary>
@@ -207,11 +209,32 @@ public class MapObjectBase : MonoBehaviour
             yield break;
         }
 
+        // クリティカルヒット判定
+        bool isCritical = IsCriticalHit(this.CriticalChance);
+        if (isCritical)
+        {
+            // クリティカルヒットのアニメーションを実行
+            StartCoroutine(CriticalSpinAnimation());
+            // 効果音を鳴らす
+            SoundEffectManager.Instance.PlayCriticalHitSound();
+            MessageWindow.Instance.AppendMessage($"{this.Name}のクリティカルヒット！");
+        }
+
         PhysicsDamageCalculator damageCalculator = new PhysicsDamageCalculator();
-        int damageAmount = damageCalculator.calculate(this, other);
+        int damageAmount = damageCalculator.calculate(this, other, isCritical);
         if (damageAmount > 0)
         {
-            MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{damageAmount}のダメージ！");
+            if (isCritical)
+            {
+                // クリティカルヒットのダメージを表示
+                MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！");
+                MessageWindow.Instance.AppendMessage($"クリティカルヒット！　{other.Name}に{damageAmount}のダメージ！");
+            }
+            else
+            {
+                // 通常のダメージを表示
+                MessageWindow.Instance.AppendMessage($"{this.Name}のこうげき！　{other.Name}に{damageAmount}のダメージ！");
+            }
             other.Damaged(damageAmount);
             // 効果音を鳴らす
             SoundEffectManager.Instance.PlayAttackSound();
@@ -228,6 +251,34 @@ public class MapObjectBase : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         this.IsNowAttacking = false;
+    }
+
+    /// <summary>
+    /// クリティカルヒットの判定を行います。指定された確率でクリティカルヒットが発生します。
+    /// </summary>
+    /// <param name="chance">クリティカルヒットの発生確率（0.0から1.0の範囲）。</param>
+    /// <returns>クリティカルヒットが発生した場合はtrue、そうでなければfalse。</returns>
+    protected bool IsCriticalHit(float chance)
+    {
+        return UnityEngine.Random.value < chance;
+    }
+
+    /// <summary>
+    /// クリティカルヒットのアニメーションを実行します。指定された時間でオブジェクトを回転させます。
+    /// </summary>
+    /// <param name="duration">アニメーションの持続時間（デフォルトは0.3秒）。</param>
+    /// <returns>IEnumeratorを返し、コルーチンの実行を可能にします。</returns>
+    protected IEnumerator CriticalSpinAnimation(float duration = 0.3f)
+    {
+        float elapsed = 0f;
+        float rotationSpeed = 360f / duration;
+
+        while (elapsed < duration)
+        {
+            transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);  // Y軸1回転（3D用）
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 
     /// <summary>

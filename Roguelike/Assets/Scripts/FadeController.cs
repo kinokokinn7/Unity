@@ -20,8 +20,15 @@ public class FadeController : MonoBehaviour
     /// </summary>
     [SerializeField] private float fadeDuration = 1f;
 
-    // フェード完了時に通知するイベント
+    /// <summary>
+    /// フェードイン完了時に通知するイベント。
+    /// </summary>
     public event Action OnFadeInComplete;
+
+    /// <summary>
+    /// フェードアウト完了時に通知するイベント。
+    /// </summary>
+    public event Action OnFadeOutComplete;
 
     private void Awake()
     {
@@ -89,6 +96,9 @@ public class FadeController : MonoBehaviour
         fadeImage.color = color;
 
         IsFading = false;
+
+        // フェードイン完了を通知
+        OnFadeInComplete?.Invoke();
     }
 
 }

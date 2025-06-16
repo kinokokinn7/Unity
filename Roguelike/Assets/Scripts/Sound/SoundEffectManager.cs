@@ -26,6 +26,7 @@ public class SoundEffectManager : MonoBehaviour
     public AudioClip SE_Attack; // 攻撃
     public AudioClip SE_AttackMiss; // 攻撃ミス
     public AudioClip SE_Damaged; // ダメージ
+    public AudioClip SE_CriticalHit; // クリティカルヒット
     public AudioClip SE_Recovered; // 回復
 
     public AudioClip SE_FoodDamaged; // 満腹度ダメージ
@@ -135,6 +136,15 @@ public class SoundEffectManager : MonoBehaviour
     public void PlayDamagedSound()
     {
         soundSource?.PlayOneShot(SE_Damaged);
+    }
+
+    /// <summary>
+    /// [クリティカルヒット]SEを指定して再生します。
+    /// </summary>
+    public void PlayCriticalHitSound()
+    {
+
+        soundSource?.PlayOneShot(SE_CriticalHit);
     }
 
     /// <summary>

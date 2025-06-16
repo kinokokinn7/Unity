@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,11 +17,29 @@ public class TitleManager : MonoBehaviour
 
     private Player player;
 
+    public static TitleManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         StartTitle();
     }
 
+    /// <summary>
+    /// タイトルを開始するメソッドです。
+    /// </summary>
     internal void StartTitle()
     {
         titleMenuController.HideMenu();
@@ -38,6 +57,9 @@ public class TitleManager : MonoBehaviour
         SoundEffectManager.Instance.PlayTitleBGM();
     }
 
+    /// <summary>
+    /// タイトルマネージャーが破棄されるときの処理です。
+    /// </summary>
     private void OnDestroy()
     {
         // イベント登録解除
@@ -47,11 +69,17 @@ public class TitleManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// タイトルメニューを表示するメソッドです。
+    /// </summary>
     private void ShowTitleMenu()
     {
         titleMenuController.ShowMenu();
     }
 
+    /// <summary>
+    /// ゲームを開始するメソッドです。
+    /// </summary>
     public void StartGame()
     {
         // フェードアウト中は操作を無効化する
@@ -70,6 +98,9 @@ public class TitleManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ゲームを終了するメソッドです。
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();
@@ -79,4 +110,20 @@ public class TitleManager : MonoBehaviour
 #endif
     }
 
+    /// <summary>
+    /// タイトルに戻るメソッドです。
+    /// </summary>
+    public IEnumerator GoToTitle()
+    {
+        // フェードアウトを待つ
+        yield return FadeController.Instance.FadeOut();
+
+        // タイトル用Canvasを有効化
+        titleCanvas.SetActive(true);
+
+        // フェードインを待つ
+        yield return FadeController.Instance.FadeIn();
+
+        ShowTitleMenu();
+    }
 }

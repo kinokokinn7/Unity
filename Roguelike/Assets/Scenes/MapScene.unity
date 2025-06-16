@@ -1984,7 +1984,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
   - {fileID: 8300000, guid: 7cc057bed53baf34799f52aab3c84800, type: 3}
   - {fileID: 8300000, guid: 1ed8fb76fc64e4e46847348138782234, type: 3}
-  - {fileID: 8300000, guid: ba39bf8baf6d13046889b2d64822381a, type: 3}
+  - {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
   - {fileID: 8300000, guid: 490bfbc72255342408984f60044487de, type: 3}
   - {fileID: 8300000, guid: 78ad99fd0a0a5144280b07bbdba84815, type: 3}
   - {fileID: 8300000, guid: b83bf8726a7fac349a54389f0c57cda6, type: 3}
@@ -1994,6 +1994,7 @@ MonoBehaviour:
   SE_Attack: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
   SE_AttackMiss: {fileID: 8300000, guid: f11db4559b3ffff45b62e9327fc5535d, type: 3}
   SE_Damaged: {fileID: 8300000, guid: 8b23b175a78d6b5458322e3a6c9905d0, type: 3}
+  SE_CriticalHit: {fileID: 8300000, guid: 323e15cfe809e114ab92c9f4b25e8bc2, type: 3}
   SE_Recovered: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
   SE_FoodDamaged: {fileID: 8300000, guid: acbcb75601b0082458fda8807f67c813, type: 3}
   SE_FoodRecovered: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
@@ -3773,7 +3774,7 @@ GameObject:
   - component: {fileID: 1126438153}
   - component: {fileID: 1126438152}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
