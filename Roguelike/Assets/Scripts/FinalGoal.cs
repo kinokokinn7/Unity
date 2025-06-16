@@ -28,6 +28,6 @@ public class FinalGoal : MapObjectBase
         yield return new WaitForSeconds(5f);
 
         // タイトル画面に戻る
-        StartCoroutine(TitleManager.Instance.GoToTitle());
+        yield return TitleManager.Instance.GoToTitle();
     }
 }
