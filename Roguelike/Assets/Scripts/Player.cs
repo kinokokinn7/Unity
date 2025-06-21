@@ -347,7 +347,9 @@ public class Player : MapObjectBase
         var mapManager = UnityEngine.Object.FindObjectOfType<MapSceneManager>();
         mapManager.GameOver.SetActive(true);
 
-        SaveData.Destroy();
+        // 「復活用広告」ボタンはGameOverパネル側のUIで実施
+        // ここではセーブデータはまだ破棄しない
+        // SaveData.Destroy();
 
     }
 
@@ -585,5 +587,26 @@ public class Player : MapObjectBase
 
         MessageWindow.AppendMessage("ゲームクリア！");
 
+    }
+
+    /// <summary>
+    /// 広告報酬でプレイヤーを復活させる処理を行います。
+    /// </summary>
+    public void ReviveFromAd()
+    {
+        if (!IsDead) return;
+
+        // HPを最大値まで回復
+        Hp.SetCurrentValue(this.Hp.GetMaxValue());
+        this.CanMove = true;
+
+        // メッセージウィンドウに復活メッセージを表示
+        MessageWindow.AppendMessage("広告を視聴して復活した！");
+    }
+
+    public void Destroy()
+    {
+        // プレイヤーオブジェクトを削除
+        Destroy(gameObject);
     }
 }

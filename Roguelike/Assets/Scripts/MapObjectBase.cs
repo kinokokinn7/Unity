@@ -325,8 +325,8 @@ public class MapObjectBase : MonoBehaviour
     }
 
     /// <summary>
-    /// 死亡した際の処理を行います。オブジェクトの破棄などの処理を実装します。
-    /// NOTE: ダメージ値表示が完了するまで一定時間ウェイトを行い、その後Destroyします。
+    /// 死亡した際の処理を行います。
+    /// NOTE: ダメージ値表示が完了するまで一定時間ウェイトを行います。
     /// </summary>
     public virtual void Dead()
     {
@@ -548,7 +548,12 @@ public class MapObjectBase : MonoBehaviour
         }
 
         material.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
-        UnityEngine.Object.Destroy(gameObject);
+
+        // プレイヤー以外の場合はオブジェクトを破棄
+        if (CurrentGroup != Group.Player)
+        {
+            UnityEngine.Object.Destroy(gameObject);
+        }
     }
 
 }
