@@ -19,6 +19,7 @@ public enum MassType
     ItemTreasure,   // 宝箱（ライフ回復）
     FoodTreasure,   // 宝箱（食べ物）
     WeaponTreasure, // 宝箱（武器）
+    ArmorTreasure, // 宝箱（防具）
     Trap,           // 罠
     FoodTrap,       // 罠（食べ物）
     FinalGoal,   // 最終ゴール
@@ -179,6 +180,7 @@ public class Map : MonoBehaviour
                     massData.Type == MassType.ItemTreasure ||
                     massData.Type == MassType.FoodTreasure ||
                     massData.Type == MassType.WeaponTreasure ||
+                    massData.Type == MassType.ArmorTreasure ||
                     massData.Type == MassType.Trap ||
                     massData.Type == MassType.FoodTrap ||
                     massData.Type == MassType.FinalGoal)
