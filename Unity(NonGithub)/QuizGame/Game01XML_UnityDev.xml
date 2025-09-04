@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<record>
+		<Question>スタジオの制作物のうち公開可能な情報の取り扱いは、
+			多くの場合、以下に示す法的契約のどれに準拠しますか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">拘束契約</Answer>
+			<Answer correct="false">知的財産宣言契約</Answer>
+			<Answer correct="false">合意契約</Answer>
+			<Answer correct="true">秘密保持契約</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>コンセプトアートとは何ですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="true">アートディレクションの方向性を定める</Answer>
+			<Answer correct="false">使用する光やMaterialを全て割り付ける</Answer>
+			<Answer correct="false">一人称視点のゲームでのみ使われる</Answer>
+			<Answer correct="false">ゲームプレイやメカニクスの決定に役立つ</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>This game type often features mechanics such as card
+		games, board games, simple arcade style games, and puzzles:</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Console games</Answer>
+			<Answer correct="true">Casual games</Answer>
+			<Answer correct="false">INstallation games</Answer>
+			<Answer correct="false">Exploration games</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>累計スコア、攻撃、プレイヤーHPなどは
+		どのような項目に関する用語ですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">物理設計</Answer>
+			<Answer correct="true">ゲームのメカニクス</Answer>
+			<Answer correct="false">ゲームナラティブ</Answer>
+			<Answer correct="false">オーディオ設計</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>ゲームスタジオにおいて、
+			ゲームの見た目や印象の一貫性を保つのはどの人の役割でしょうか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">コンセプトアーティスト</Answer>
+			<Answer correct="false">ゲームデザイナー</Answer>
+			<Answer correct="false">レベルデザイナー</Answer>
+			<Answer correct="true">アートディレクター</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Projectウィンドウで可能なこと:</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="true">アセットのファイル構造の修正</Answer>
+			<Answer correct="false">GameObjectへのコンポーネントの追加</Answer>
+			<Answer correct="false">Textureの最大サイズの変更</Answer>
+			<Answer correct="false">階層内のオブジェクトの親子化</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Unity Editorにおいて、ゲーム内の全アセットの表示、
+		並べ替え、管理に使用するウィンドウはどれですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Scene Viewウィンドウ</Answer>
+			<Answer correct="false">Inspectorウィンドウ</Answer>
+			<Answer correct="true">Projectウィンドウ</Answer>
+			<Answer correct="false">Hierarchyウィンドウ</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>GameObjectの親子化が可能なウィンドウはどれですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Outliner</Answer>
+			<Answer correct="false">Project</Answer>
+			<Answer correct="true">Hierarchy</Answer>
+			<Answer correct="false">Inspector</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Unity Editorのユーザインタフェースを再設定する
+		ための操作はどれですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">windowprefs.csスクリプトを
+				開いて移動先を入力する</Answer>
+			<Answer correct="false">Ctrlキーを押しながらタブをクリックし、
+				次に移動先を選択する</Answer>
+			<Answer correct="true">ウィンドウのタブを新しい位置に
+				ドラッグ＆ドロップする</Answer>
+			<Answer correct="false">メニューからWindow &gt; Window Locations
+				を選択する</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>QuadとPlaneの違いとして最も適切な文を選択してください。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Quadの表面はXY面に広がっている</Answer>
+			<Answer correct="false">QuadはTerrainツールで加工できる</Answer>
+			<Answer correct="false">Planeの方が構造が簡素</Answer>
+			<Answer correct="true">Planeは内部が分割されておりポリゴン数が多い</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Save Sceneで保存されるのは何ですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="true">SceneとHierarchyにおけるオブジェクトの現在地</Answer>
+			<Answer correct="false">プロジェクトにバンドルされる全ての関連SceneとAsset</Answer>
+			<Answer correct="false">Inspectorの設定、スクリプト、アセット、階層化したPrefab構造</Answer>
+			<Answer correct="false">オブジェクトの移動、プロジェクト設定、アンドゥ履歴</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Unity EditorにおけるPrefabの説明として最も適切な文を選択してください。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">スクリプトやアニメーションで用いる、GameObjectに付与されたモジュラーコンポーネント</Answer>
+			<Answer correct="true">コンポーネントとプロパティを持つGameObjectからなるAssetタイプ</Answer>
+			<Answer correct="false">スクリプトなしでAnimatorにアクセスできる特殊なGameObject</Answer>
+			<Answer correct="false">UnityプロジェクトとSceneの間でAssetのやり取りが可能なファイル形式</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Unityがメッシュやボーン、スキンウェイト、アニメーションを含むモデルのインポートができるファイルフォーマットはどれですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">DXF</Answer>
+			<Answer correct="true">FBX</Answer>
+			<Answer correct="false">HCQ</Answer>
+			<Answer correct="false">OBJ</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>画像を複数のスプライトに分割するのに使うツールはどれですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">UI Canvas</Answer>
+			<Answer correct="true">Sprite Editor</Answer>
+			<Answer correct="false">Bitmapツール</Answer>
+			<Answer correct="false">2D Prefabエディター</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>GameObjectの親子関係化が可能なウィンドウはどれですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Scene Viewウィンドウ</Answer>
+			<Answer correct="false">Inspectorウィンドウ</Answer>
+			<Answer correct="true">Hierarchyウィンドウ</Answer>
+			<Answer correct="false">Projectウィンドウ</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>GameObjectへのBox Colliderの追加をトップメニューから行うための操作として最も適切なものを選択してください。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Objects > Physics > Box Collider</Answer>
+			<Answer correct="false">Assets > Create > Colliders > Box</Answer>
+			<Answer correct="true">Components > Physics > Box Collider</Answer>
+			<Answer correct="false">Physics > Collisions > Box</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Rigidbodyでオブジェクトを落下させる方法として最も適切なものを選択してください。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="true">Use Gravity</Answer>
+			<Answer correct="false">Scene.gravityメソッド</Answer>
+			<Answer correct="false">Mass.Applyメソッド</Answer>
+			<Answer correct="false">Massを有効化</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Raycastの役割の説明として最も適切なものを下記の選択肢の中から選択してください。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">プレイヤーに対する障害物を生成する</Answer>
+			<Answer correct="false">Shaderの法線角度に基づくライトの情報を返す</Answer>
+			<Answer correct="false">自律型エージェントの行動範囲を指定する</Answer>
+			<Answer correct="true">光の道筋にColliderを配置する</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Rigidbodyコンポーネントが力を受けて動く時の空気抵抗を決めるプロパティはどれですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="true">Drag</Answer>
+			<Answer correct="false">Mass</Answer>
+			<Answer correct="false">Interpolation</Answer>
+			<Answer correct="false">Collision Detection</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>This view in the Animation Window allows multiple objects' keys 
+			to be shown on horizontal tracks:</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Animator</Answer>
+			<Answer correct="false">Curve Editor</Answer>
+			<Answer correct="false">Animation component</Answer>
+			<Answer correct="true">Dope Sheet</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>アニメーションをグラフ表示するAnimationウィンドウのビューはどれですか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Animationコンポーネント</Answer>
+			<Answer correct="false">Dope Sheet</Answer>
+			<Answer correct="false">Animator</Answer>
+			<Answer correct="true">Curve Editor</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Unityプロジェクトのアニメーションはどこに保存されますか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">モーションファイル</Answer>
+			<Answer correct="false">Animatorエレメント</Answer>
+			<Answer correct="true">アニメーションクリップ</Answer>
+			<Answer correct="false">Animationコンポーネント</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>The play controls shown in red indicate the Unity Editor is in this Mode:</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Animator Setting</Answer>
+			<Answer correct="false">Real-time Effects</Answer>
+			<Answer correct="true">Animation Record</Answer>
+			<Answer correct="false">Motion Tracking</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Animator Controllerで可能なことの説明として最も適切なものを選択してください。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">スピード制御に接線を用いたGameObjectのアニメート</Answer>
+			<Answer correct="false">GameObject用コントローラーの作成とアニメート</Answer>
+			<Answer correct="false">距離に基づくアニメーションタイムラインのイベントトリガー</Answer>
+			<Answer correct="true">GameObjectのアニメーションセットの配置と管理</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>GameObjectにAnimator Controllerを適用する方法の説明として最も適切なものを選択してください。
+		</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">Alt/Option+Shiftキーを押した状態でScene内のGameObjectをクリックする</Answer>
+			<Answer correct="false">Scene内のGameObjectを選択した状態でInsertボタンをクリックする</Answer>
+			<Answer correct="true">ProjectウィンドウからInspector内のGameObjectにドラッグ＆ドロップする</Answer>
+			<Answer correct="false">InspectorからHierarchy内のGameObjectにドラッグ＆ドロップする</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>Any Stateの役割と定義の説明として最も適切なものを選択してください。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="false">全てのステートで共通する振る舞いを記述するためのステート</Answer>
+			<Answer correct="false">他のアニメーションを補足するアニメーション</Answer>
+			<Answer correct="false">Booleanパラメータがtrueでない場合のみアクセスできる制限のないステート</Answer>
+			<Answer correct="true">自分を除く全てのステートからのTransitionを許可するためのステート</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+	<record>
+		<Question>デフォルトのTransitionは何に基づいて決まりますか。</Question>
+		<Image>
+		</Image>
+		<Video>
+		</Video>
+		<Answers>
+			<Answer correct="true">Exit Time</Answer>
+			<Answer correct="false">Last Key</Answer>
+			<Answer correct="false">End Time</Answer>
+			<Answer correct="false">Speed Factor</Answer>
+		</Answers>
+		<Bonus>100</Bonus>
+		<Time>30</Time>
+	</record>
+</data-set>

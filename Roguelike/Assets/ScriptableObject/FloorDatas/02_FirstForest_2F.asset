@@ -59,7 +59,7 @@ MonoBehaviour:
     MapChar: 74
     IsRoad: 0
     IsCharacter: 0
-  - Prefab: {fileID: 3892502269050869983, guid: bd90f1ffad1aa47ccaf9b51bdee39fb1, type: 3}
+  - Prefab: {fileID: 3892502269050869983, guid: f201839c818ab46a0901375eaddc1e70, type: 3}
     Type: 10
     MapChar: 75
     IsRoad: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
     MapChar: 84
     IsRoad: 0
     IsCharacter: 0
-  - Prefab: {fileID: 3892502269050869983, guid: eb8e1e7b2905c4c3ea04d0a82dd23c10, type: 3}
+  - Prefab: {fileID: 3892502269050869983, guid: 9caf6d2c6ad4f4f478b098be6aa1da15, type: 3}
     Type: 11
     MapChar: 76
     IsRoad: 0
