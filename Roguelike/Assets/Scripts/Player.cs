@@ -394,15 +394,34 @@ public class Player : MapObjectBase
         this.CanMove = false;
 
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
-        playerUI.HpText.text = "0";
+        if (playerUI != null)
+        {
+            if (playerUI.HpText != null)
+                playerUI.HpText.text = "0";
+            else
+                Debug.LogWarning("PlayerUI.HpText が Inspector で設定されていません。");
+        }
+        else
+        {
+            Debug.LogWarning("PlayerUI がシーン上に見つかりません。");
+        }
 
         var mapManager = UnityEngine.Object.FindObjectOfType<MapSceneManager>();
+        if (mapManager == null)
+        {
+            Debug.LogError("MapSceneManager がシーン上に見つかりません。GameOver 表示に失敗しました。");
+            return;
+        }
+
+        if (mapManager.GameOver == null)
+        {
+            Debug.LogError("MapSceneManager.GameOver が Inspector で割り当てられていません。");
+            return;
+        }
+        var go = mapManager.GameOver;
+        go.SetActive(true);
+
         mapManager.GameOver.SetActive(true);
-
-        // 「復活用広告」ボタンはGameOverパネル側のUIで実施
-        // ここではセーブデータはまだ破棄しない
-        // SaveData.Destroy();
-
     }
 
     /// <summary>

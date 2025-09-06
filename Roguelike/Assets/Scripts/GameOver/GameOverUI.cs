@@ -1,29 +1,8 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
-    /// <summary>
-    /// 「広告を見て復活」ボタン。
-    /// </summary>
-    [SerializeField] Button reviveButton;
-
-    /// <summary>
-    /// 「ギブアップ」ボタン。
-    /// </summary>
-    [SerializeField] Button giveUpButton;
-
-#if UNITY_EDITOR
-    [Header("Editor Debug")]
-    [Tooltip("Editor上で広告をスキップして即復活するか")]
-    [SerializeField] bool simulateAdsInEditor = true;
-#endif
-
-    /// <summary>
-    /// プレイヤー。
-    /// </summary>
-    Player _player;
-
     /// <summary>
     /// パネルが表示中かどうか。
     /// </summary>
@@ -31,9 +10,6 @@ public class GameOverUI : MonoBehaviour
 
     void Awake()
     {
-        reviveButton.onClick.AddListener(OnClickRevive);
-        giveUpButton.onClick.AddListener(OnClickGiveUp);
-
         _isActive = false;
         gameObject.SetActive(false); // 初期状態では非表示
     }
@@ -41,6 +17,8 @@ public class GameOverUI : MonoBehaviour
     private void OnEnable()
     {
         _isActive = true;
+        // GameOver 表示時に自動でタイトルへ戻す（短い遅延を挟んで UI が表示されるようにする）
+        StartCoroutine(AutoReturnToTitle());
     }
 
     private void OnDisable()
@@ -48,87 +26,43 @@ public class GameOverUI : MonoBehaviour
         _isActive = false;
     }
 
-    private void Update()
+    private IEnumerator AutoReturnToTitle()
     {
-        if (!_isActive) return;
+        // UI が一瞬描画されるように短い遅延（任意）。即戻したければ 0 に。
+        yield return new WaitForSeconds(2.0f);
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // もしパネルが表示中なら、ギブアップボタンを押したのと同じ処理を行う
-            OnClickGiveUp();
-        }
-        else if (Input.GetKeyDown(KeyCode.Z))
-        {
-            // もしパネルが表示中なら、広告を見て復活ボタンを押したのと同じ処理を行う
-            OnClickRevive();
-        }
+        yield return DoGiveUp();
     }
 
-    void OnClickRevive()
+    /// <summary>
+    /// ゲームオーバー処理（プレイヤー削除・セーブ破棄・タイトルへ遷移）
+    /// </summary>
+    private IEnumerator DoGiveUp()
     {
-        // もしボタンが無効化されていたら、何もしない
-        if (!reviveButton.interactable) return;
-
-#if UNITY_EDITOR
-        if (simulateAdsInEditor)
-        {
-            // エディタでは広告をスキップして即復活テスト
-            HandleReward("revive", 1);
-        }
-#endif
-        // 1. 広告視聴終了をハンドリングする
-        AdsManager.Instance.OnRewardGranted += HandleReward;
-
-        // 2. 必要ならプレースメント名を指定
-        AdsManager.Instance.ShowRewardedAd("revive");
-        // 2重タップ防止
-        reviveButton.interactable = false;
-        giveUpButton.interactable = true;
-
-        _isActive = false; // パネルを非表示にする
-    }
-
-    void HandleReward(string rewardName, int rewardAmount)
-    {
-        AdsManager.Instance.OnRewardGranted -= HandleReward;
-
-        // プレイヤーを復活
-        _player = FindObjectOfType<Player>();
-        if (_player == null)
-        {
-            Debug.LogError("Player not found in the scene.");
-            return;
-        }
-        _player.ReviveFromAd();
-
-        // パネルを閉じる
-        gameObject.SetActive(false);
-    }
-
-    void OnClickGiveUp()
-    {
-        // 広告の報酬待ちを念のため解除
-        AdsManager.Instance.OnRewardGranted -= HandleReward;
-
-        // 2重タップ防止
-        reviveButton.interactable = false;
-        giveUpButton.interactable = false;
+        // 2重実行防止
+        if (!_isActive) yield return null;
+        _isActive = false;
 
         // プレイヤーを削除
-        _player = FindObjectOfType<Player>();
-        if (_player != null)
+        var player = FindObjectOfType<Player>();
+        if (player != null)
         {
-            _player.Destroy();
+            player.Destroy();
         }
 
         // セーブデータを破棄
         SaveData.Destroy();
 
-        // タイトル画面へ戻る
-        TitleManager.Instance.GoToTitle();
+        // タイトル画面へ戻る（IEnumerator を StartCoroutine で実行する）
+        if (TitleManager.Instance == null)
+        {
+            Debug.LogError("TitleManager.Instance が見つかりません。タイトルへ戻れません。");
+        }
+
+        // TitleManager に紐づくコルーチンとして開始すると、GameOverUI が無効化されても処理が継続する
+        yield return TitleManager.Instance.GoToTitle();
 
         // ゲームオーバーのパネルを閉じる
-        _isActive = false; // パネルを非表示にする
         gameObject.SetActive(false);
     }
 }
