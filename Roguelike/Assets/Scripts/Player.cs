@@ -120,9 +120,12 @@ public class Player : MapObjectBase
 
     public Action NowAction { get; private set; } = Action.None;
 
+    private bool _requestUseItem = false; // UIからのアイテム使用要求フラグ
+
     public void SetNowActionUseItem()
     {
-        NowAction = Action.UseItem;
+        // NowAction を直接変えず要求フラグを立てる
+        _requestUseItem = true;
     }
 
     public bool DoWaitEvent { get; set; } = false;
@@ -137,7 +140,8 @@ public class Player : MapObjectBase
     {
         while (true)
         {
-            StartCoroutine(WaitInput());
+            // 入力待ちをコルーチンとして完全に待機
+            yield return StartCoroutine(WaitInput());
             yield return new WaitWhile(() => NowAction == Action.None);
 
             // プレイヤーが移動不可能な場合は移動処理を行わない
@@ -153,10 +157,11 @@ public class Player : MapObjectBase
                     yield return new WaitWhile(() => IsNowMoving || IsNowAttacking);
                     break;
                 case Action.UseItem:
+                    // アイテム使用時、エフェクト再生が完了するまで待機
                     yield return new WaitWhile(() => IsNowUsingItem);
                     break;
                 case Action.Attack:
-                    // 攻撃処理を追加
+                    Debug.Log("Attack Action");
                     var enemy = FindEnemyInFront();
                     if (enemy != null)
                     {
@@ -170,7 +175,7 @@ public class Player : MapObjectBase
             NowAction = Action.None;
 
             UpdateVisibleMass();
-            CheckEvent();
+            CheckEvent(); // ここで敵ターンに移行
             _numberOfSteps++;
             yield return new WaitWhile(() => DoWaitEvent);
         }
@@ -216,25 +221,79 @@ public class Player : MapObjectBase
     IEnumerator WaitInput()
     {
         NowAction = Action.None;
+        // 前フレームのキー状態
+        bool prevUseItem = false;
+        bool prevAttack = false;
+        bool prevUp = false;
+        bool prevDown = false;
+        bool prevRight = false;
+        bool prevLeft = false;
+
         while (NowAction == Action.None)
         {
             yield return null;
-
-            // 現在のキーボード情報
             var current = Keyboard.current;
-            // キーボード接続チェック
             if (current == null)
             {
                 Debug.LogWarning("キーボードが接続されていません。");
                 yield return null;
             }
 
-            // キーボード入力のチェック
-            if (current.upArrowKey.isPressed) NowAction = Action.MoveUp;
-            if (current.downArrowKey.isPressed) NowAction = Action.MoveDown;
-            if (current.rightArrowKey.isPressed) NowAction = Action.MoveRight;
-            if (current.leftArrowKey.isPressed) NowAction = Action.MoveLeft;
-            if (current.zKey.isPressed) NowAction = Action.Attack; // Zキーで攻撃
+            // UIからの要求があれば優先して確定
+            if (_requestUseItem)
+            {
+                _requestUseItem = false;
+                NowAction = Action.UseItem;
+                yield break;
+            }
+
+            // 現在のキー状態
+            bool useItem = current != null && current.xKey.isPressed;
+            bool attack = current != null && current.zKey.isPressed;
+            bool up = current != null && current.upArrowKey.isPressed;
+            bool down = current != null && current.downArrowKey.isPressed;
+            bool right = current != null && current.rightArrowKey.isPressed;
+            bool left = current != null && current.leftArrowKey.isPressed;
+
+            // 押された瞬間のみアクション確定
+            if (useItem && !prevUseItem)
+            {
+                NowAction = Action.UseItem;
+                yield break;
+            }
+            else if (attack && !prevAttack)
+            {
+                NowAction = Action.Attack;
+                yield break;
+            }
+            else if (up && !prevUp)
+            {
+                NowAction = Action.MoveUp;
+                yield break;
+            }
+            else if (down && !prevDown)
+            {
+                NowAction = Action.MoveDown;
+                yield break;
+            }
+            else if (right && !prevRight)
+            {
+                NowAction = Action.MoveRight;
+                yield break;
+            }
+            else if (left && !prevLeft)
+            {
+                NowAction = Action.MoveLeft;
+                yield break;
+            }
+
+            // 状態更新
+            prevUseItem = useItem;
+            prevAttack = attack;
+            prevUp = up;
+            prevDown = down;
+            prevRight = right;
+            prevLeft = left;
         }
     }
 

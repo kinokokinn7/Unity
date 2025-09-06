@@ -28,18 +28,32 @@ public class LifeRecoveryItem : Item
     public override async void Use(MapObjectBase target)
     {
         var player = FindAnyObjectByType<Player>();
+        // アイテム使用中フラグON
         player.IsNowUsingItem = true;
 
         MessageWindow.Instance.AppendMessage($"{this.Name}を使った！");
         MessageWindow.Instance.AppendMessage($"{target.Name}のHPが{RecoveryPower}回復した！");
-        SpawnHealingEffect(target.transform.position);
+        var effect = SpawnHealingEffect(target.transform.position);
 
         target.HpRecovered(RecoveryPower);
         target.Hp.Recover(RecoveryPower);
 
-        await Task.Delay(1000);
+        // パーティクルエフェクトの再生が終わるまで待機
+        if (effect != null)
+        {
+            while (effect.isPlaying)
+            {
+                await Task.Yield();
+            }
+        }
+        else
+        {
+            await Task.Delay(1000);
+        }
 
+        // アイテム使用中フラグOFF（ここでプレイヤーターンが進む）
         player.IsNowUsingItem = false;
+        Debug.Log("Use LifeRecoveryItem");
     }
     /// <summary>
     /// エフェクトを生成します。
