@@ -161,7 +161,6 @@ public class Player : MapObjectBase
                     yield return new WaitWhile(() => IsNowUsingItem);
                     break;
                 case Action.Attack:
-                    Debug.Log("Attack Action");
                     var enemy = FindEnemyInFront();
                     if (enemy != null)
                     {
@@ -170,6 +169,9 @@ public class Player : MapObjectBase
                         yield return StartCoroutine(NotMoveCoroutine(movedPos));
                     }
                     break;
+                case Action.None:
+                    // アクションがNoneの場合は何もしない
+                    continue;
             }
             UpdateFood();
             NowAction = Action.None;
@@ -222,7 +224,6 @@ public class Player : MapObjectBase
     {
         NowAction = Action.None;
         // 前フレームのキー状態
-        bool prevUseItem = false;
         bool prevAttack = false;
         bool prevUp = false;
         bool prevDown = false;
@@ -248,20 +249,13 @@ public class Player : MapObjectBase
             }
 
             // 現在のキー状態
-            bool useItem = current != null && current.xKey.isPressed;
             bool attack = current != null && current.zKey.isPressed;
             bool up = current != null && current.upArrowKey.isPressed;
             bool down = current != null && current.downArrowKey.isPressed;
             bool right = current != null && current.rightArrowKey.isPressed;
             bool left = current != null && current.leftArrowKey.isPressed;
 
-            // 押された瞬間のみアクション確定
-            if (useItem && !prevUseItem)
-            {
-                NowAction = Action.UseItem;
-                yield break;
-            }
-            else if (attack && !prevAttack)
+            if (attack && !prevAttack)
             {
                 NowAction = Action.Attack;
                 yield break;
@@ -288,7 +282,6 @@ public class Player : MapObjectBase
             }
 
             // 状態更新
-            prevUseItem = useItem;
             prevAttack = attack;
             prevUp = up;
             prevDown = down;
