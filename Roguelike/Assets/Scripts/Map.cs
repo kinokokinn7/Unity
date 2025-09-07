@@ -481,6 +481,15 @@ public class Map : MonoBehaviour
 
         }
     }
+
+    public void ClearMapObjects()
+    {
+        // MassTypeで定義されているマップ上のオブジェクト（MapObjectBase継承）を全て削除
+        foreach (var obj in FindObjectsOfType<MapObjectBase>())
+        {
+            Destroy(obj.gameObject);
+        }
+    }
 }
 
 

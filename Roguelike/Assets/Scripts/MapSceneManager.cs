@@ -72,18 +72,12 @@ public class MapSceneManager : MonoBehaviour
         "+++0\n" +
         "G000\n";
 
-    // デバッグ用: スペースキーを押すとマップを再生成します。
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GenerateMap();
-        }
-    }
-
-
     public void InitializeMapScene()
     {
+        var map = GetComponent<Map>();
+        map.ClearMapObjects();
+
+        CurrentFloor = 1;
         GenerateMap();
     }
     public void SetupMapSceneCommon()
@@ -96,6 +90,7 @@ public class MapSceneManager : MonoBehaviour
     public void LoadSavedMapScene(SaveData saveData)
     {
         var map = GetComponent<Map>();
+        map.ClearMapObjects();
 
         if (saveData != null)
         {

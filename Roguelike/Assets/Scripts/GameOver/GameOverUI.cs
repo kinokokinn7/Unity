@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Roguelike.Window;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class GameOverUI : MonoBehaviour
 
         // セーブデータを破棄
         SaveData.Destroy();
+
+        // メッセージウィンドウをクリア
+        MessageWindow.Instance.Clear();
 
         // タイトル画面へ戻る（IEnumerator を StartCoroutine で実行する）
         if (TitleManager.Instance == null)

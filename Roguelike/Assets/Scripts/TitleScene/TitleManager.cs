@@ -115,11 +115,17 @@ public class TitleManager : MonoBehaviour
     /// </summary>
     public IEnumerator GoToTitle()
     {
+        // BGMをフェードアウト（1秒でフェードアウトする例）
+        SoundEffectManager.Instance.FadeOutBGM(1.0f);
+
         // フェードアウトを待つ
         yield return FadeController.Instance.FadeOut();
 
         // タイトル用Canvasを有効化
         titleCanvas.SetActive(true);
+
+        // タイトルBGMを再生
+        SoundEffectManager.Instance.PlayTitleBGM();
 
         // フェードインを待つ
         yield return FadeController.Instance.FadeIn();
