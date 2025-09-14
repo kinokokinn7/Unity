@@ -5,6 +5,8 @@ using Roguelike.Window;
 
 public class FinalGoal : MapObjectBase
 {
+    [SerializeField] private ParticleSystem clearEffect;
+
     /// <summary>
     /// 最終ゴール（クリスタル）を取得したときの処理です。
     /// </summary>
@@ -19,6 +21,13 @@ public class FinalGoal : MapObjectBase
         // メッセージウィンドウをクリア
         var messageWindow = MessageWindow.Instance;
         messageWindow.Clear();
+
+        // クリアエフェクトを再生
+        if (clearEffect != null)
+        {
+            var effect = Instantiate(clearEffect, transform.position, Quaternion.identity);
+            effect.Play();
+        }
 
         // キャラクターのアニメーションを再生する
         var player = UnityEngine.Object.FindObjectOfType<Player>();

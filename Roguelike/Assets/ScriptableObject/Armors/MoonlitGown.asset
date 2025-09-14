@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MoonlitGown
   m_EditorClassIdentifier: 
   Name: "\u6708\u5149\u306E\u30AC\u30A6\u30F3"
-  Description: "\u9632\u5FA1\u529B\u304C+50\u4E0A\u304C\u308B\u3002"
+  Description: "\u9632\u5FA1\u529B\u304C+30\u4E0A\u304C\u308B\u3002"
   Money: 12600
   Usable: 1
   Consumable: 0
   Defence:
-    currentValue: 50
+    currentValue: 30

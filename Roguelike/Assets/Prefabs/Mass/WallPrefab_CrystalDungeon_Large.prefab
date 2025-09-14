@@ -152,9 +152,11 @@ MonoBehaviour:
     currentValue: 0
   Defence:
     currentValue: 0
+  CriticalChance: 0.1
   CurrentGroup: 2
   _weapon: {fileID: 0}
   _armor: {fileID: 0}
+  clearEffect: {fileID: 7333403968637262865, guid: 169b58a3463c049a1945da372a084c0e, type: 3}
 --- !u!1 &1411908645871010
 GameObject:
   m_ObjectHideFlags: 0

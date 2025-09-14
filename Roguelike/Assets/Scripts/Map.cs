@@ -36,6 +36,8 @@ public class MassData
     public char MapChar;    // マスの文字
     public bool IsRoad;     // 通路かどうか
     public bool IsCharacter;// キャラクター（プレイヤー or 敵）かどうか？
+    [Range(0, 1)]
+    public float SpawnRate = 0.1f; // 出現率
 }
 
 public enum Direction
@@ -453,13 +455,18 @@ public class Map : MonoBehaviour
             && _k != MassType.Road)
             .ToList();
 
+        // 出現率リスト作成
+        var spawnRates = placeMassKeys
+            .Select(k => MassDataDict[k].SpawnRate)
+            .ToList();
+        var totalRate = spawnRates.Sum();
+
         while (placeMassCount > 0)
         {
             var pos = Vector2Int.zero;
             var loopCount = placeMassCount * 10;
             do
             {
-                // mapData[pos.y][pos.x] != wallData.MapChar条件の無限ループ回避用
                 if (loopCount-- < 0)
                     break;
                 pos = new Vector2Int(rnd.Next(generateParam.Size.x),
@@ -473,12 +480,24 @@ public class Map : MonoBehaviour
             }
             else
             {
-                var placeMassKey = placeMassKeys[rnd.Next(placeMassKeys.Count)];
+                // 出現率に基づいて選択
+                float r = (float)rnd.NextDouble() * totalRate;
+                float acc = 0f;
+                int selectedIndex = 0;
+                for (int i = 0; i < placeMassKeys.Count; i++)
+                {
+                    acc += spawnRates[i];
+                    if (r <= acc)
+                    {
+                        selectedIndex = i;
+                        break;
+                    }
+                }
+                var placeMassKey = placeMassKeys[selectedIndex];
                 var placeMass = this[placeMassKey];
                 mapData[pos.y][pos.x] = placeMass.MapChar;
             }
             placeMassCount--;
-
         }
     }
 
