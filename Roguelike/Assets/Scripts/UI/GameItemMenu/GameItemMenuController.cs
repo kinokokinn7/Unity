@@ -326,8 +326,6 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         var selectedItem = _listView.selectedItem as Item;
         if (selectedItem != null)
         {
-            Debug.Log($"{selectedItem}が使用されました。");
-
             // アイテムが使用不可の場合は処理終了
             if (!selectedItem.Usable)
             {

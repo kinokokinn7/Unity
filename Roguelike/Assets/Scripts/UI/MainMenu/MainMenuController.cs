@@ -17,7 +17,7 @@ public class MainMenuController : MonoBehaviour, IMenuController
     /// <summary>
     /// リストアイテム。
     /// </summary>
-    private readonly string[] _items = new string[] { "アイテム", "設定" };
+    private readonly string[] _items = new string[] { "アイテム" };
     private readonly Dictionary<string, ISelectedItem> _selectedItems = new Dictionary<string, ISelectedItem>();
 
     void Start()
@@ -25,7 +25,6 @@ public class MainMenuController : MonoBehaviour, IMenuController
         _menuControllerCommon = UnityEngine.Object.FindAnyObjectByType<MenuControllerCommon>();
 
         _selectedItems.Add("アイテム", new MainMenuSelectedItem_GameItem());
-        _selectedItems.Add("設定", new MainMenuSelectedItem_Settings());
     }
 
     void OnEnable()
@@ -155,7 +154,6 @@ public class MainMenuController : MonoBehaviour, IMenuController
         var selectedItem = _listView.selectedItem;
         if (selectedItem != null)
         {
-            Debug.Log($"{selectedItem}が実行されました。");
             _selectedItems[selectedItem as string].OnItemSelected();
         }
     }

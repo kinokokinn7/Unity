@@ -53,7 +53,6 @@ public class LifeRecoveryItem : Item
 
         // アイテム使用中フラグOFF（ここでプレイヤーターンが進む）
         player.IsNowUsingItem = false;
-        Debug.Log("Use LifeRecoveryItem");
     }
     /// <summary>
     /// エフェクトを生成します。

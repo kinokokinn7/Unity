@@ -28,9 +28,6 @@ public class SaveData
     public void Save(string filePath)
     {
         var json = JsonConvert.SerializeObject(this, Formatting.Indented);
-        Debug.Log($"jsonfilePath:{filePath}");
-        Debug.Log($"json:{json}");
-
         File.WriteAllText(filePath, json);
     }
 
@@ -49,8 +46,6 @@ public class SaveData
         if (File.Exists(filePath))
         {
             var json = File.ReadAllText(filePath);
-            Debug.Log($"jsonfilePath:{filePath}");
-            Debug.Log($"json:{json}");
             return JsonConvert.DeserializeObject<SaveData>(json, settings);
         }
         else

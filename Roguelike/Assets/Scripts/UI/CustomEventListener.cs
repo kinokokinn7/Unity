@@ -20,13 +20,11 @@ public class CustomEventListener
         button.RegisterCallback<MouseDownEvent>(evt =>
         {
             MouseDownAction.Invoke(evt);
-            Debug.Log($"{EventName} MouseDownEvent");
         });
 
         button.RegisterCallback<MouseUpEvent>(evt =>
         {
             MouseUpAction.Invoke(evt);
-            Debug.Log($"{EventName} MouseUpEvent");
         });
     }
 }

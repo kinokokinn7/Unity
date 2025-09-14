@@ -130,7 +130,6 @@ public class TitleMenuController : MonoBehaviour, IMenuController
         var selectedItem = _listView.selectedItem;
         if (selectedItem != null)
         {
-            Debug.Log($"{selectedItem}が実行されました。");
             _selectedItems[selectedItem as string].OnItemSelected();
         }
     }
