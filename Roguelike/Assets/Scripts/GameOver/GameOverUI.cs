@@ -64,7 +64,7 @@ public class GameOverUI : MonoBehaviour
         }
 
         // TitleManager に紐づくコルーチンとして開始すると、GameOverUI が無効化されても処理が継続する
-        yield return TitleManager.Instance.GoToTitle();
+        yield return TitleManager.Instance.GoToTitle(true);
 
         // ゲームオーバーのパネルを閉じる
         gameObject.SetActive(false);
