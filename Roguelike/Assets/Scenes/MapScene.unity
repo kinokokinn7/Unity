@@ -3476,8 +3476,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u77E2\u5370: \u79FB\u52D5\nZ: \u6C7A\u5B9A\nX: \u30AD\u30E3\u30F3\u30BB\u30EB\nC:
-    \u30E1\u30CB\u30E5\u30FC"
+  m_Text: "\u77E2\u5370: \u79FB\u52D5/\u653B\u6483\nZ: \u6C7A\u5B9A/\u653B\u6483\nX:
+    \u30AD\u30E3\u30F3\u30BB\u30EB\nC: \u30E1\u30CB\u30E5\u30FC"
 --- !u!222 &1062467142
 CanvasRenderer:
   m_ObjectHideFlags: 0

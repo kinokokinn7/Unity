@@ -464,13 +464,13 @@ public class Player : MapObjectBase
     public void FoodValueDamaged(int damage)
     {
         // 空腹度を減らす
-        FoodValue.CurrentValue -= damage;
+        FoodValue.CurrentValue = Mathf.Max(FoodValue.CurrentValue - damage, 0);
 
         SoundEffectManager.Instance.PlayFoodDamagedSound();
 
         // ダメージ値を黄色文字でポップアップ表示する
         DamagePopup damagePopup = GetComponent<DamagePopup>();
-        damagePopup.ShowDamage(damage, transform.position, Color.yellow);
+        damagePopup.ShowDamage(damage, transform.position, Color.blue);
     }
 
     /// <summary>
@@ -610,7 +610,7 @@ public class Player : MapObjectBase
     protected void StampTrap(Trap trap, Map.Mass mass, Vector2Int movedPos)
     {
         MessageWindow.AppendMessage($"トラップにひっかかった！！");
-        trap.SpawnHealingEffect(transform.position);
+        trap.SpawnEffect(transform.position);
         switch (trap.CurrentType)
         {
             case Trap.Type.LifeDown:

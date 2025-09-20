@@ -53,7 +53,20 @@ public class TitleMenuController : MonoBehaviour, IMenuController
         {
             // リストビューの設定
             _listView.makeItem = () => new Label();
-            _listView.bindItem = (element, i) => (element as Label).text = _items[i];
+            _listView.bindItem = (element, i) =>
+            {
+                var label = element as Label;
+                label.text = _items[i];
+                // 「つづきから」だけグレーアウト
+                if (_items[i] == "つづきから" && !_saveLoadController.HasSaveData())
+                {
+                    label.style.color = new StyleColor(Color.gray);
+                }
+                else
+                {
+                    label.style.color = new StyleColor(Color.white);
+                }
+            };
             _listView.itemsSource = _items;
             _listView.selectionType = SelectionType.Single;
 
@@ -130,7 +143,14 @@ public class TitleMenuController : MonoBehaviour, IMenuController
         var selectedItem = _listView.selectedItem;
         if (selectedItem != null)
         {
-            _selectedItems[selectedItem as string].OnItemSelected();
+            var itemStr = selectedItem as string;
+            if (itemStr == "つづきから" && !_saveLoadController.HasSaveData())
+            {
+                Debug.LogWarning("セーブデータがありません。");
+                // 必要ならここでエラー表示UIを出す
+                return;
+            }
+            _selectedItems[itemStr].OnItemSelected();
         }
     }
 

@@ -65,5 +65,12 @@ public class SaveLoadController : MonoBehaviour
         return saveData;
     }
 
+    /// <summary>
+    /// セーブデータが存在するかどうか
+    /// </summary>
+    public bool HasSaveData()
+    {
+        return File.Exists(filePath);
+    }
 
 }

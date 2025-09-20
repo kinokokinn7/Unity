@@ -48,7 +48,7 @@ public class Trap : MapObjectBase
     /// </summary>
     /// <param name="position">エフェクトの生成位置。</param>
     /// <returns>生成されたエフェクトのParticleSystem。</returns>
-    internal ParticleSystem SpawnHealingEffect(Vector3 position)
+    internal ParticleSystem SpawnEffect(Vector3 position)
     {
         if (!_effectPrefab)
         {
