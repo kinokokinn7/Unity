@@ -19,56 +19,67 @@ MonoBehaviour:
     MapChar: 48
     IsRoad: 1
     IsCharacter: 0
+    SpawnRate: 0.1
   - Prefab: {fileID: 1941394312152730608, guid: 7203a61de95b940008304bfce36e1c24, type: 3}
     Type: 1
     MapChar: 43
     IsRoad: 0
     IsCharacter: 0
+    SpawnRate: 0.1
   - Prefab: {fileID: 1172546064056352735, guid: 9e980130ebd9b4d208d44b6fe67acc7f, type: 3}
     Type: 3
     MapChar: 71
     IsRoad: 1
     IsCharacter: 0
+    SpawnRate: 0.1
   - Prefab: {fileID: 4237930585412848495, guid: 42fa72cb36a974c2ab7fd1e1c703b04a, type: 3}
     Type: 2
     MapChar: 80
     IsRoad: 0
     IsCharacter: 1
+    SpawnRate: 0.1
   - Prefab: {fileID: 1625221395402176, guid: c9951ca0f61167b4593ffe21b0a089c8, type: 3}
     Type: 4
     MapChar: 69
     IsRoad: 0
     IsCharacter: 1
+    SpawnRate: 0.05
   - Prefab: {fileID: 1625221395402176, guid: 07cdd470422084de49ca61d5ffdf2f9e, type: 3}
     Type: 5
     MapChar: 101
     IsRoad: 0
     IsCharacter: 1
+    SpawnRate: 0.05
   - Prefab: {fileID: 1368681146971013890, guid: 1a5f95f32eddc4692839963130a9f95e, type: 3}
     Type: 6
     MapChar: 70
     IsRoad: 0
     IsCharacter: 1
+    SpawnRate: 0.05
   - Prefab: {fileID: 3892502269050869983, guid: 708bbf0a8d16a43919379c6757b49359, type: 3}
     Type: 8
     MapChar: 73
     IsRoad: 0
     IsCharacter: 0
+    SpawnRate: 0.1
   - Prefab: {fileID: 3892502269050869983, guid: 32695e72b6c224e0e97a3ea3861c7fd2, type: 3}
     Type: 9
     MapChar: 74
     IsRoad: 0
     IsCharacter: 0
+    SpawnRate: 0.1
   - Prefab: {fileID: 2585115408085351063, guid: 9894931db769940999a7fdb9d8f9e015, type: 3}
     Type: 11
     MapChar: 84
     IsRoad: 0
     IsCharacter: 0
+    SpawnRate: 0.1
   - Prefab: {fileID: 3154109949535884309, guid: a31e7566ce2054564b8c2b2ffafc0c3d, type: 3}
     Type: 12
     MapChar: 85
     IsRoad: 0
     IsCharacter: 0
+    SpawnRate: 0.1
   BGM: {fileID: 8300000, guid: 78ae82be8b1184d5fbb8db45406b23bb, type: 3}
   DirectionalLightIntensity: 1
   MapData: []

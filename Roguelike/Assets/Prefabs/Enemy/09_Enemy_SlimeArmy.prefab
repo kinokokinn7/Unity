@@ -497,12 +497,12 @@ MonoBehaviour:
   Name: "\u30B9\u30E9\u30A4\u30E0\u30A2\u30FC\u30DF\u30FC"
   MoveSecond: 0.1
   Exp:
-    currentValue: 24
+    currentValue: 36
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
-    currentValue: 24
-    maxValue: 24
+    currentValue: 11
+    maxValue: 11
   Attack:
     currentValue: 25
   Defence:

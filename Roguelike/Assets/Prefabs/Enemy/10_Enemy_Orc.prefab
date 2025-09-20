@@ -2046,7 +2046,7 @@ MonoBehaviour:
   Name: "\u30AA\u30FC\u30AF"
   MoveSecond: 0.1
   Exp:
-    currentValue: 31
+    currentValue: 62
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:

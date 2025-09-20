@@ -223,7 +223,7 @@ MonoBehaviour:
   Name: "\u30D0\u30C3\u30C8"
   MoveSecond: 0.1
   Exp:
-    currentValue: 6
+    currentValue: 9
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
@@ -233,6 +233,7 @@ MonoBehaviour:
     currentValue: 10
   Defence:
     currentValue: 2
+  CriticalChance: 0.1
   CurrentGroup: 1
   _weapon: {fileID: 0}
   _armor: {fileID: 0}

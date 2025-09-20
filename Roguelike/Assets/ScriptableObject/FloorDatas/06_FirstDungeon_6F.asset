@@ -43,19 +43,19 @@ MonoBehaviour:
     MapChar: 69
     IsRoad: 0
     IsCharacter: 1
-    SpawnRate: 0.1
+    SpawnRate: 0.05
   - Prefab: {fileID: 1625221395402176, guid: 07cdd470422084de49ca61d5ffdf2f9e, type: 3}
     Type: 5
     MapChar: 101
     IsRoad: 0
     IsCharacter: 1
-    SpawnRate: 0.1
+    SpawnRate: 0.05
   - Prefab: {fileID: 1368681146971013890, guid: 1a5f95f32eddc4692839963130a9f95e, type: 3}
     Type: 6
     MapChar: 70
     IsRoad: 0
     IsCharacter: 1
-    SpawnRate: 0.1
+    SpawnRate: 0.05
   - Prefab: {fileID: 3892502269050869983, guid: 708bbf0a8d16a43919379c6757b49359, type: 3}
     Type: 8
     MapChar: 73

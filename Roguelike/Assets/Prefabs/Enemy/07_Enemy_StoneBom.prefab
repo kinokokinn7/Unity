@@ -308,7 +308,7 @@ MonoBehaviour:
   Name: "\u30B9\u30C8\u30FC\u30F3\u30DC\u30E0"
   MoveSecond: 0.1
   Exp:
-    currentValue: 0
+    currentValue: 25
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
@@ -317,7 +317,8 @@ MonoBehaviour:
   Attack:
     currentValue: 17
   Defence:
-    currentValue: 17
+    currentValue: 10
+  CriticalChance: 0.1
   CurrentGroup: 1
   _weapon: {fileID: 0}
   _armor: {fileID: 0}

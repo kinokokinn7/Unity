@@ -463,7 +463,7 @@ MonoBehaviour:
   Name: "\u3077\u308B\u3077\u308B\u30E9\u30D3\u30C3\u30C8"
   MoveSecond: 0.1
   Exp:
-    currentValue: 5
+    currentValue: 7
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:

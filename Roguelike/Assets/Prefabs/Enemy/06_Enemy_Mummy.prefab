@@ -103,7 +103,7 @@ MonoBehaviour:
   Name: "\u30DE\u30DF\u30FC"
   MoveSecond: 0.1
   Exp:
-    currentValue: 12
+    currentValue: 18
   Pos: {x: 0, y: 0}
   Forward: 0
   Hp:
@@ -113,6 +113,7 @@ MonoBehaviour:
     currentValue: 16
   Defence:
     currentValue: 0
+  CriticalChance: 0.1
   CurrentGroup: 1
   _weapon: {fileID: 0}
   _armor: {fileID: 0}
