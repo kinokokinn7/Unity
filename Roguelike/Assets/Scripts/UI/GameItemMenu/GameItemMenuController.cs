@@ -458,13 +458,14 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     {
         switch (command)
         {
-            case "つかう":
+            case GameItemCommandMenuController.CommandNames.Use:
                 ExecuteUseItem(item);
                 break;
-            case "そうび":
+            case GameItemCommandMenuController.CommandNames.Equip:
+            case GameItemCommandMenuController.CommandNames.Remove:
                 ExecuteEquipItem(item);
                 break;
-            case "すてる":
+            case GameItemCommandMenuController.CommandNames.Drop:
                 ExecuteDropItem(item);
                 break;
         }
