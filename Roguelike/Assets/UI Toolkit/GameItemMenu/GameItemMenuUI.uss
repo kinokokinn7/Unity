@@ -1,5 +1,5 @@
 .game-item-menu-list {
-    font-size: 25px;
+    font-size: 60px;
     border-left-width: 6px;
     border-right-width: 6px;
     border-top-width: 6px;

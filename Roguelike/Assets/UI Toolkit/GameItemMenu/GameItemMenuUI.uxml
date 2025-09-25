@@ -1,19 +1,53 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/GameItemMenu/GameItemMenuUI.uss?fileID=7433441132597879392&amp;guid=ef5102c7f5f074292b25f98734f55b6e&amp;type=3#GameItemMenuUI" />
-    <ui:VisualElement name="GameItemMenuRoot" style="flex-grow: 1; align-items: flex-start; justify-content: center; background-color: rgba(118, 118, 118, 0); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); translate: 0 0; cursor: initial; position: relative; top: auto;">
-        <ui:VisualElement name="GameItemMenuWindow" style="flex-direction: column; height: auto; translate: 0 0; justify-content: flex-start; transform-origin: center; top: 250px; position: absolute; left: 900px;">
+    <Style src="project://database/Assets/UI Toolkit/GameItemMenu/GameItemMenuUI.uss?fileID=7433441132597879392&amp;guid=ef5102c7f5f074292b25f98734f55b6e&amp;type=3#GameItemMenuUI" />
+    <ui:VisualElement
+        name="GameItemMenuRoot"
+        style="
+            flex-grow: 1;
+            align-items: flex-start;
+            justify-content: center;
+            background-color: rgba(118, 118, 118, 0);
+            border-left-color: rgb(255, 255, 255);
+            border-right-color: rgb(255, 255, 255);
+            border-top-color: rgb(255, 255, 255);
+            border-bottom-color: rgb(255, 255, 255);
+            translate: 0 0;
+            cursor: initial;
+            position: relative;
+            top: auto;
+        ">
+        <ui:VisualElement
+            name="GameItemMenuWindow"
+            style="
+                flex-direction: column;
+                height: auto;
+                translate: 0 0;
+                justify-content: flex-start;
+                transform-origin: center;
+                top: 250px;
+                position: absolute;
+                left: 900px;
+            ">
             <ui:ListView
                 focusable="true"
                 name="GameItemMenuList"
                 fixed-item-height="30"
                 virtualization-method="DynamicHeight"
                 class="game-item-menu-list"
-                style="width: 700px; height: 700px;" />
+                style="
+                    width: 700px;
+                    height: 700px;
+                " />
             <ui:Label
                 text="5/5"
                 display-tooltip-when-elided="true"
                 name="PageNumber"
-                style="-unity-text-align: upper-right; color: rgb(255, 255, 255); font-size: 40px; top: -60px;" />
+                style="
+                    -unity-text-align: upper-right;
+                    color: rgb(255, 255, 255);
+                    font-size: 40px;
+                    top: -60px;
+                " />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
