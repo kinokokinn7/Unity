@@ -40,21 +40,23 @@ public class TitleManager : MonoBehaviour
     /// <summary>
     /// タイトルを開始するメソッドです。
     /// </summary>
+    public bool IsInGame { get; private set; } = false;
+
     internal void StartTitle()
     {
         titleMenuController.HideMenu();
 
-        // フェードイン完了時にタイトルメニューを表示
         FadeController.Instance.OnFadeInComplete += ShowTitleMenu;
 
-        // 他のオブジェクトは無効化
         foreach (GameObject obj in gameObjectsToEnable)
         {
             obj.SetActive(false);
         }
 
-        // タイトルBGMを再生
         SoundEffectManager.Instance.PlayTitleBGM();
+
+        // タイトル画面中
+        IsInGame = false;
     }
 
     /// <summary>
@@ -96,6 +98,9 @@ public class TitleManager : MonoBehaviour
         {
             obj.SetActive(true);
         }
+
+        // ゲーム中
+        IsInGame = true;
     }
 
     /// <summary>
@@ -136,5 +141,8 @@ public class TitleManager : MonoBehaviour
         yield return FadeController.Instance.FadeIn();
 
         ShowTitleMenu();
+
+        // タイトル画面中
+        IsInGame = false;
     }
 }

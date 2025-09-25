@@ -58,6 +58,18 @@ public class MainMenuController : MonoBehaviour, IMenuController
 
     void Update()
     {
+        // ゴール演出中はメニュー操作を無効化
+        if (FinalGoal.IsGoalSequenceRunning)
+        {
+            return;
+        }
+
+        // ゲーム中でなければメニュー操作を無効化
+        if (TitleManager.Instance != null && !TitleManager.Instance.IsInGame)
+        {
+            return;
+        }
+
         // メニューウィンドウが表示されていてかつフォーカスされていない場合は何も処理をしない
         if (_mainMenu.style.display == DisplayStyle.Flex && !Focused)
         {

@@ -7,11 +7,16 @@ public class FinalGoal : MapObjectBase
 {
     [SerializeField] private ParticleSystem clearEffect;
 
+    // ゴール演出中フラグ
+    public static bool IsGoalSequenceRunning { get; private set; } = false;
+
     /// <summary>
     /// 最終ゴール（クリスタル）を取得したときの処理です。
     /// </summary>
     internal IEnumerator Execute()
     {
+        IsGoalSequenceRunning = true;
+
         // タイトルBGMを再生
         SoundEffectManager.Instance.PlayTitleBGM();
 
@@ -38,5 +43,7 @@ public class FinalGoal : MapObjectBase
 
         // タイトル画面に戻る
         yield return TitleManager.Instance.GoToTitle(false);
+
+        IsGoalSequenceRunning = false;
     }
 }
