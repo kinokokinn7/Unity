@@ -65,7 +65,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// <summary>
     /// ウィンドウ上に表示するアイテムのリスト。
     /// </summary>
-    private List<Item> _itemList = new List<Item>();
+    public List<Item> _itemList = new List<Item>();
 
     /// <summary>
     /// 現在のページ数。1始まりの値。
@@ -84,6 +84,11 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     private int _currentMaxPage = 1;
 
     /// <summary>
+    /// アイテムコマンドメニューコントローラへの参照を追加
+    /// </summary>
+    public GameItemCommandMenuController _itemCommandMenuController;
+
+    /// <summary>
     /// クラスインスタンス変数の初期化を行います。
     /// </summary>
     void Start()
@@ -92,6 +97,13 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         _menuControllerCommon = UnityEngine.Object.FindAnyObjectByType<MenuControllerCommon>();
         _mainMenuController = UnityEngine.Object.FindAnyObjectByType<MainMenuController>();
         _itemInventory = UnityEngine.Object.FindAnyObjectByType<ItemInventory>();
+
+        // コマンドメニューからのコールバックを設定
+        if (_itemCommandMenuController != null)
+        {
+            _itemCommandMenuController.OnCommandSelected = OnCommandSelectedFromCommandMenu;
+            _itemCommandMenuController.ItemMenuController = this;
+        }
     }
 
     /// <summary>
@@ -134,8 +146,6 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
                 element.Clear();
                 element.AddToClassList("item-container");
 
-                Debug.Log($"{item.Name}: {item.GetInstanceID()}");
-
                 if (item is Weapon)
                 {
                     var weapon = item as Weapon;
@@ -174,14 +184,8 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             _listView.itemsSource = _itemList;
             _listView.selectionType = SelectionType.Single;
 
-            // 選択イベントの処理
-            _listView.selectionChanged += items =>
-            {
-                foreach (var item in items)
-                {
-                    Debug.Log($"{item}が選択されました。");
-                }
-            };
+            // カーソルで選択された時は何もしない（コマンドメニューは表示しない）
+            // _listView.selectionChanged += ... は削除またはコメントアウト
         }
 
         if (_pageNumber != null)
@@ -201,23 +205,22 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     void Update()
     {
+        if (!Focused)
+            return;
+
         if (_itemMenu == null)
         {
             Debug.LogWarning("アイテムメニューのVisualElementが取得されていません。");
             return;
         }
 
-        // 現在のキーボード情報
         var current = Keyboard.current;
-        // キーボード接続チェック
         if (current == null)
         {
             Debug.LogWarning("キーボードが接続されていません。");
             return;
         }
 
-        // 画面が表示されている状態でキャンセルボタン押下時は
-        // 画面を非表示にしてメインメニュー画面にフォーカスを移動する
         if (current.xKey.wasPressedThisFrame
             && _itemMenu.style.display == DisplayStyle.Flex)
         {
@@ -225,17 +228,13 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
             _mainMenuController.Focus();
         }
 
-        // ウィンドウが非表示の場合は処理を終了する
         if (_itemMenu.style.display == DisplayStyle.None)
         {
             return;
         }
 
-        // NOTE: ウィンドウを開いた時に自動的に先頭行の項目の選択が決定されるのを防ぐため、
-        //        _isMenuJustShownフラグがtrueの場合はフラグをfalseにして以降の処理を中断する
         if (_isMenuJustShown == true)
         {
-            // 初めて表示されたタイミングを過ぎたためフラグをリセット
             _isMenuJustShown = false;
             return;
         }
@@ -243,6 +242,7 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
         if (current.zKey.wasPressedThisFrame && _itemMenu.style.display == DisplayStyle.Flex)
         {
             ExecuteSelection();
+            return;
         }
         if (current.upArrowKey.wasPressedThisFrame)
         {
@@ -317,42 +317,12 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     /// </summary>
     public void ExecuteSelection()
     {
-        _menuControllerCommon?.ExecuteSelection();
-
-        // 効果音を鳴らす
-        SoundEffectManager.Instance.PlayUseItemSound();
-
-        // 選択されたアイテムを使用する
         var selectedItem = _listView.selectedItem as Item;
-        if (selectedItem != null)
+        if (selectedItem != null && _itemCommandMenuController != null)
         {
-            // アイテムが使用不可の場合は処理終了
-            if (!selectedItem.Usable)
-            {
-                return;
-            }
-            var player = UnityEngine.Object.FindAnyObjectByType<Player>();
-            selectedItem.Use(player);
-
-            // アイテムが消耗品の場合はアイテムを一覧から削除する
-            if (selectedItem.Consumable)
-            {
-                // アイテム使用後、一覧から除去する
-                _itemList.Remove(selectedItem);
-                _listView.itemsSource = _itemList;
-
-                // アイテム管理クラスのリストから削除する
-                _itemInventory.RemoveItem(selectedItem);
-            }
-            _listView.RefreshItems();
+            _itemCommandMenuController.ShowMenu(selectedItem);
+            Blur();
         }
-
-        // 全てのメニューウィンドウを閉じる
-        HideAllMenu();
-
-        // プレイヤーが1ターン消費したとみなす
-        _player.SetNowActionUseItem();
-
     }
 
     /// <summary>
@@ -479,5 +449,77 @@ public class GameItemMenuController : MonoBehaviour, IMenuController
     {
         _currentMaxPage = (_itemInventory.Items.Count - 1) / _itemsPerPage + 1;
         _pageNumber.text = $"{_currentPage}/{_currentMaxPage}";
+    }
+
+    /// <summary>
+    /// コマンドメニューからコマンドが選択された時の処理
+    /// </summary>
+    private void OnCommandSelectedFromCommandMenu(string command, Item item)
+    {
+        switch (command)
+        {
+            case "つかう":
+                ExecuteUseItem(item);
+                break;
+            case "そうび":
+                ExecuteEquipItem(item);
+                break;
+            case "すてる":
+                ExecuteDropItem(item);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// アイテムを使用する処理
+    /// </summary>
+    private void ExecuteUseItem(Item selectedItem)
+    {
+        if (selectedItem == null || !selectedItem.Usable) return;
+
+        SoundEffectManager.Instance.PlayUseItemSound();
+        selectedItem.Use(_player);
+
+        if (selectedItem.Consumable)
+        {
+            _itemList.Remove(selectedItem);
+            _listView.itemsSource = _itemList;
+            _itemInventory.RemoveItem(selectedItem);
+        }
+        _listView.RefreshItems();
+
+        HideAllMenu();
+        _player.SetNowActionUseItem();
+    }
+
+    /// <summary>
+    /// アイテムを装備する処理
+    /// </summary>
+    private void ExecuteEquipItem(Item selectedItem)
+    {
+        SoundEffectManager.Instance.PlayUseItemSound();
+        selectedItem.Use(_player);
+
+        HideAllMenu();
+        _player.SetNowActionUseItem();
+    }
+
+    /// <summary>
+    /// アイテムを捨てる処理
+    /// </summary>
+    private void ExecuteDropItem(Item selectedItem)
+    {
+        if (selectedItem == null) return;
+
+        // メッセージウィンドウに「〇〇を捨てた！」と表示
+        Roguelike.Window.MessageWindow.Instance.AppendMessage($"{selectedItem.Name}を捨てた！");
+
+        _itemList.Remove(selectedItem);
+        _listView.itemsSource = _itemList;
+        _itemInventory.RemoveItem(selectedItem);
+        _listView.RefreshItems();
+
+        HideAllMenu();
+        _player.SetNowActionUseItem();
     }
 }

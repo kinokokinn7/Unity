@@ -1,5 +1,36 @@
 .game-item-menu-list {
-    font-size: 60px;
+    font-size: 25px;
+    border-left-width: 6px;
+    border-right-width: 6px;
+    border-top-width: 6px;
+    border-bottom-width: 6px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.75);
+    color: rgb(255, 255, 255);
+    -unity-font: none;
+    -unity-font-style: normal;
+    -unity-font-definition: url("project://database/Assets/Fonts/YuseiMagic-Regular.ttf?fileID=12800000&guid=c5e66373e9b7645ee887276c27c31371&type=3#YuseiMagic-Regular");
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    -unity-text-align: middle-left;
+    -unity-paragraph-spacing: 0;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    letter-spacing: 0;
+    word-spacing: 0;
+    min-height: 20px;
 }
 
 .item-container {
