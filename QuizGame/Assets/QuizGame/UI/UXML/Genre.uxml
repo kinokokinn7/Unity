@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:VisualElement class="root">
+    <ui:Label text="試験種類を選択" class="h1"/>
+    <ui:ListView name="list" class="list" selection-type="Single" />
+    <ui:Button name="btnBack" text="戻る" class="btn"/>
+  </ui:VisualElement>
+</ui:UXML>

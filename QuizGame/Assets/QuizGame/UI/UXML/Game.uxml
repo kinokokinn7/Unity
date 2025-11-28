@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:VisualElement class="gameRoot">
+    <ui:Label name="progress" class="progress"/>
+    <ui:VisualElement name="questionCard" class="card">
+      <ui:Label name="question" class="question"/>
+    </ui:VisualElement>
+
+    <ui:VisualElement class="choices">
+      <ui:Button name="choice0" class="choice"/>
+      <ui:Button name="choice1" class="choice"/>
+      <ui:Button name="choice2" class="choice"/>
+      <ui:Button name="choice3" class="choice"/>
+    </ui:VisualElement>
+
+    <ui:Label name="explain" class="explain"/>
+  </ui:VisualElement>
+</ui:UXML>

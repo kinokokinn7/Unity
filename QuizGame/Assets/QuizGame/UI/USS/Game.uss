@@ -1,0 +1,10 @@
+.gameRoot { height: 100%; padding: 24px; }
+.progress  { position: absolute; right: 24px; top: 24px; color: white; font-size: 24px; }
+.card {
+  align-self: center; max-width: 1000px; min-height: 160px;
+  background-color: rgba(0,0,0,.6); border-radius: 16px; padding: 24px;
+}
+.question { color: white; font-size: 36px; unity-text-align: middle-center; white-space: normal; }
+.choices { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+.choice { width: 320px; height: 64px; font-size: 24px; }
+.explain { margin-top: 16px; align-self: center; max-width: 1000px; color: #fff; opacity: .9; }

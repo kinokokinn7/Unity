@@ -13,10 +13,3 @@ public class QuizQuestion
     public string Topic;
     [TextArea] public string FallbackExplanation;
 }
-
-// QuizQuestionDB.cs
-[CreateAssetMenu(menuName = "Quiz/QuestionDB")]
-public class QuizQuestionDB : ScriptableObject
-{
-    public QuizQuestion[] Questions;
-}

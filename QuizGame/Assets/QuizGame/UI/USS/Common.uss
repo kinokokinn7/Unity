@@ -1,0 +1,7 @@
+.root { flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 16px; }
+.h1 { font-size: 48px; unity-font-style: bold; color: white; text-shadow: 0 2px 8px rgba(0,0,0,.5); }
+.btn { width: 320px; height: 56px; font-size: 24px; }
+.btn.primary { background-color: #2d6cdf; color: white; }
+
+.list { width: 600px; height: 500px; background-color: rgba(0,0,0,.25); }
+.list .unity-list-view__item { height: 56px; }

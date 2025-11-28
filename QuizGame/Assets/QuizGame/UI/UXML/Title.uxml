@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:VisualElement class="root">
+    <ui:Label name="title" text="Quiz Game" class="h1"/>
+    <ui:Button name="btnStart" text="スタート" class="btn primary"/>
+    <ui:Button name="btnQuit"  text="終了"   class="btn"/>
+  </ui:VisualElement>
+</ui:UXML>
