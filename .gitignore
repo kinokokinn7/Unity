@@ -74,3 +74,6 @@ RPGMakerUniteTest1/*
 RPGMakerUniteTest2/*
 PLATEAU_Test/*
 Roguelike/obj/Debug/*
+QuizGame/Assets/Settings/HDRPDefaultResources/DefaultSettingsVolumeProfile.asset
+QuizGame/UserSettings/HDRPUserSettings.asset
+QuizGame/UserSettings/Layouts/default-6000.dwlt
