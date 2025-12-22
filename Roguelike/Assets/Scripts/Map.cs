@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Zenject;
 
 /// <summary>
 /// マップ上のマスの種類を表す列挙型です。
@@ -138,6 +139,9 @@ public class Map : MonoBehaviour
     /// </summary>
     private Light directionalLight;
 
+    [Inject]
+    DiContainer _container;
+
     void Start()
     {
         // フロアのDirectional Lightを取得
@@ -171,7 +175,7 @@ public class Map : MonoBehaviour
                 var pos = CalcMapPos(i, Data.Count);    // Count:Lengthと同じ
                 if (massData.IsCharacter)
                 {
-                    mass.ExistCharacter = Object.Instantiate(massData.Prefab, transform);
+                    mass.ExistCharacter = _container.InstantiatePrefab(massData.Prefab, transform);
                     var mapObject = mass.ExistCharacter.GetComponent<MapObjectBase>();
                     mapObject.SetPosAndForward(new Vector2Int(i, Data.Count), Direction.South);
 
@@ -187,7 +191,7 @@ public class Map : MonoBehaviour
                     massData.Type == MassType.FoodTrap ||
                     massData.Type == MassType.FinalGoal)
                 {
-                    mass.ExistTreasureOrTrap = Object.Instantiate(massData.Prefab, transform);
+                    mass.ExistTreasureOrTrap = _container.InstantiatePrefab(massData.Prefab, transform);
                     var mapObject = mass.ExistTreasureOrTrap.GetComponent<MapObjectBase>();
                     mapObject.SetPosAndForward(new Vector2Int(i, Data.Count), Direction.South);
 
@@ -201,7 +205,7 @@ public class Map : MonoBehaviour
                 }
 
                 mass.Type = massData.Type;
-                mass.MassGameObject = Object.Instantiate(massData.Prefab, transform);
+                mass.MassGameObject = _container.InstantiatePrefab(massData.Prefab, transform);
                 mass.MassGameObject.transform.position = pos;
                 lineData.Add(mass);
                 mass.Visible = false;   // 初期状態では非表示にする

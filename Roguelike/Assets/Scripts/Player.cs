@@ -7,6 +7,8 @@ using Roguelike.Window;
 using UnityEngine.InputSystem;
 using System.Threading.Tasks;
 
+using Zenject;
+
 public class Player : MapObjectBase
 {
     public int Level = 1;   // レベル
@@ -24,15 +26,19 @@ public class Player : MapObjectBase
 
     [Range(1, 10)] public int VisibleRange = 5; // 周りのマスが見える範囲
 
-    MessageWindow _messageWindow;
+    private PlayerInputProvider _inputProvider;
+    private PlayerFoodHandler _foodHandler;
+    private MessageWindow _messageWindow;
 
-    /// <summary>
-    /// メッセージウィンドウインスタンスを取得または生成します。
-    /// </summary>
-    MessageWindow MessageWindow
+    [Inject]
+    public void Construct(PlayerInputProvider inputProvider, PlayerFoodHandler foodHandler, MessageWindow messageWindow)
     {
-        get => _messageWindow != null ? _messageWindow : (_messageWindow = MessageWindow.Instance);
+        _inputProvider = inputProvider;
+        _foodHandler = foodHandler;
+        _messageWindow = messageWindow;
     }
+
+    public MessageWindow MessageWindow => _messageWindow;
 
     /// <summary>
     /// オブジェクトの初期化時に一度だけ呼ばれます。プレイヤーUIの設定、カメラの移動、アクションの開始、マスの可視性更新を行います。
@@ -46,6 +52,8 @@ public class Player : MapObjectBase
 
         var playerUI = UnityEngine.Object.FindObjectOfType<PlayerUI>();
         playerUI.Set(this);
+        
+        _foodHandler.Initialize(this, FoodValue);
 
         MessageWindow.Hide();
 
@@ -118,14 +126,25 @@ public class Player : MapObjectBase
         Attack
     }
 
-    public Action NowAction { get; private set; } = Action.None;
-
-    private bool _requestUseItem = false; // UIからのアイテム使用要求フラグ
-
+    public Action NowAction
+    {
+        get => _inputProvider.NowAction;
+        private set { } // InputProvider manages state, but we might need dummy setter for compatibility or change usages. 
+        // actually NowAction was used as setter in WaitInput.
+        // We will change WaitInput to not set this property but InputProvider's state.
+        // For external assignments (if any).. check.
+    }
+    
+    // We remove the setter logic from here effectively by redirecting to inputProvider, 
+    // but the property syntax `get; private set;` creates a backing field if auto-prop.
+    // I should change it to non-auto prop.
+    // However, I can't easily change all usages if I don't expose setter.
+    // But WaitInput is local. 
+    // Let's implement NowAction as a proxy.
+   
     public void SetNowActionUseItem()
     {
-        // NowAction を直接変えず要求フラグを立てる
-        _requestUseItem = true;
+        _inputProvider.RequestUseItem();
     }
 
     public bool DoWaitEvent { get; set; } = false;
@@ -174,7 +193,7 @@ public class Player : MapObjectBase
                     continue;
             }
             UpdateFood();
-            NowAction = Action.None;
+            _inputProvider.ResetAction();
 
             UpdateVisibleMass();
             CheckEvent(); // ここで敵ターンに移行
@@ -188,16 +207,7 @@ public class Player : MapObjectBase
     /// </summary>
     void UpdateFood()
     {
-        // 満腹度が1減る歩数を満たしていない場合は処理をスキップする
-        if (_numberOfSteps % NumberOfStepsToReduceFoodValue != 0) return;
-
-        FoodValue.CurrentValue--;
-        if (FoodValue.CurrentValue <= 0)
-        {
-            FoodValue.CurrentValue = 0;
-            MessageWindow.AppendMessage($"空腹で1ダメージ！");
-            Damaged(1);
-        }
+        _foodHandler.UpdateFood(_numberOfSteps, NumberOfStepsToReduceFoodValue);
     }
 
     /// <summary>
@@ -222,71 +232,14 @@ public class Player : MapObjectBase
     /// </summary>
     IEnumerator WaitInput()
     {
-        NowAction = Action.None;
+        _inputProvider.ResetAction();
         // 前フレームのキー状態
-        bool prevAttack = false;
-        bool prevUp = false;
-        bool prevDown = false;
-        bool prevRight = false;
-        bool prevLeft = false;
+        // Handled by PlayerInputProvider
 
         while (NowAction == Action.None)
         {
             yield return null;
-            var current = Keyboard.current;
-            if (current == null)
-            {
-                Debug.LogWarning("キーボードが接続されていません。");
-                yield return null;
-            }
-
-            // UIからの要求があれば優先して確定
-            if (_requestUseItem)
-            {
-                _requestUseItem = false;
-                NowAction = Action.UseItem;
-                yield break;
-            }
-
-            // 現在のキー状態
-            bool attack = current != null && current.zKey.isPressed;
-            bool up = current != null && current.upArrowKey.isPressed;
-            bool down = current != null && current.downArrowKey.isPressed;
-            bool right = current != null && current.rightArrowKey.isPressed;
-            bool left = current != null && current.leftArrowKey.isPressed;
-
-            if (attack && !prevAttack)
-            {
-                NowAction = Action.Attack;
-                yield break;
-            }
-            else if (up && !prevUp)
-            {
-                NowAction = Action.MoveUp;
-                yield break;
-            }
-            else if (down && !prevDown)
-            {
-                NowAction = Action.MoveDown;
-                yield break;
-            }
-            else if (right && !prevRight)
-            {
-                NowAction = Action.MoveRight;
-                yield break;
-            }
-            else if (left && !prevLeft)
-            {
-                NowAction = Action.MoveLeft;
-                yield break;
-            }
-
-            // 状態更新
-            prevAttack = attack;
-            prevUp = up;
-            prevDown = down;
-            prevRight = right;
-            prevLeft = left;
+            _inputProvider.PollInput();
         }
     }
 
