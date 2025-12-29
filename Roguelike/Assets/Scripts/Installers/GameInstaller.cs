@@ -18,5 +18,10 @@ public class GameInstaller : MonoInstaller
         // Assuming MessageWindow is a singleton in scene.
         // If MessageWindow is a MonoBehaviour in the scene context, we can bind it like this:
         Container.Bind<MessageWindow>().FromComponentInHierarchy().AsSingle();
+
+        // New Player Managers
+        Container.Bind<IPlayerLevelManager>().To<PlayerLevelManager>().AsSingle();
+        Container.Bind<IPlayerInteractionManager>().To<PlayerInteractionManager>().AsSingle();
+        Container.Bind<IPlayerEffectManager>().To<PlayerEffectManager>().AsSingle();
     }
 }

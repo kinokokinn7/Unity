@@ -30,12 +30,26 @@ public class Player : MapObjectBase
     private PlayerFoodHandler _foodHandler;
     private MessageWindow _messageWindow;
 
+    private IPlayerLevelManager _levelManager;
+    private IPlayerInteractionManager _interactionManager;
+    private IPlayerEffectManager _effectManager;
+
     [Inject]
-    public void Construct(PlayerInputProvider inputProvider, PlayerFoodHandler foodHandler, MessageWindow messageWindow)
+    public void Construct(
+        PlayerInputProvider inputProvider, 
+        PlayerFoodHandler foodHandler, 
+        MessageWindow messageWindow,
+        IPlayerLevelManager levelManager,
+        IPlayerInteractionManager interactionManager,
+        IPlayerEffectManager effectManager
+        )
     {
         _inputProvider = inputProvider;
         _foodHandler = foodHandler;
         _messageWindow = messageWindow;
+        _levelManager = levelManager;
+        _interactionManager = interactionManager;
+        _effectManager = effectManager;
     }
 
     public MessageWindow MessageWindow => _messageWindow;
@@ -54,6 +68,9 @@ public class Player : MapObjectBase
         playerUI.Set(this);
         
         _foodHandler.Initialize(this, FoodValue);
+        _levelManager.Initialize(this);
+        _interactionManager.Initialize(this);
+        _effectManager.Initialize(this);
 
         MessageWindow.Hide();
 
@@ -147,7 +164,11 @@ public class Player : MapObjectBase
         _inputProvider.RequestUseItem();
     }
 
-    public bool DoWaitEvent { get; set; } = false;
+    public bool DoWaitEvent 
+    { 
+        get => _interactionManager.DoWaitEvent;
+        set => _interactionManager.SetDoWaitEvent(value);
+    }
 
     public bool CanMove { get; set; } = true;
 
@@ -243,80 +264,16 @@ public class Player : MapObjectBase
         }
     }
 
+
     /// <summary>
     /// イベントの確認を行い、存在する場合はそれを実行します。
     /// </summary>
     void CheckEvent()
     {
-        DoWaitEvent = true;
-        StartCoroutine(RunEvents());
+        _interactionManager.CheckEvent();
     }
 
-    /// <summary>
-    /// イベントの実行を行います。
-    /// 敵の移動、敵の移動完了の待機、ゴール判定、ゴール時の処理を含みます。
-
-    IEnumerator RunEvents()
-    {
-        foreach (var enemy in UnityEngine.Object.FindObjectsOfType<Enemy>())
-        {
-            enemy.MoveStart();
-            yield return new WaitWhile(() => enemy.IsNowAttacking);
-        }
-        yield return new WaitWhile(() =>
-            UnityEngine.Object.FindObjectsOfType<Enemy>().Any(_e => _e.IsNowAttacking));
-
-        var mass = Map[Pos.x, Pos.y];
-        if (mass.Type == MassType.Goal)
-        {
-            StartCoroutine(Goal());
-        }
-        else
-        {
-            DoWaitEvent = false;
-        }
-    }
-
-    /// <summary>
-    /// ゴール時の処理を行います。
-    /// 新しいマップの生成、プレイヤーのデータ引継ぎ、セーブデータの作成と保存を含みます。
-    /// </summary>
-    private IEnumerator Goal()
-    {
-        this.CanMove = false;
-
-        SoundEffectManager.Instance.PlayStairSound();
-        yield return StartCoroutine(FadeController.Instance.FadeOut());
-
-        var mapSceneManager = UnityEngine.Object.FindObjectOfType<MapSceneManager>();
-        // 階層を1つ下げる
-        mapSceneManager.CurrentFloor += 1;
-        // マップを新規生成
-        mapSceneManager.GenerateMap();
-        // BGMを再生する
-        SoundEffectManager.Instance.PlayDungeonBGM();
-
-        // プレイヤーのデータを引き継ぐ
-        var player = UnityEngine.Object.FindObjectOfType<Player>();
-        player.Hp = Hp;
-        player.FoodValue.CurrentValue = FoodValue.CurrentValue;
-        player.Exp = Exp;
-        player.Level = Level;
-        player.Attack = Attack;
-        player.Defence = Defence;
-        player.CurrentWeapon = CurrentWeapon;
-        player.CurrentArmor = CurrentArmor;
-
-        // セーブする
-        var saveController = UnityEngine.Object.FindObjectOfType<SaveLoadController>();
-        if (saveController != null)
-        {
-            var itemInventory = UnityEngine.Object.FindObjectOfType<ItemInventory>();
-            saveController.Save(player, Map, itemInventory);
-        }
-
-        this.CanMove = true;
-    }
+    // RunEvents and Goal have been moved to PlayerInteractionManager
 
     [Range(0, 100)] public float CameraDistance;
     public Vector3 CameraDirection = new Vector3(0, 10, -3);
@@ -388,27 +345,12 @@ public class Player : MapObjectBase
         if (other.IsDead)
         {
             MessageWindow.AppendMessage($"{other.Name}を倒した！ {other.Exp.GetCurrentValue()}ポイントの経験値を手に入れた！");
-            // 攻撃の結果、敵を倒したら、その敵のExp分自身のExpを上げる
-            Exp.IncreaseCurrentValue(other.Exp.GetCurrentValue());
-
-            // レベルアップ処理
-            if (Exp.GetCurrentValue() >= GetNextRequiredExpValue())
-            {
-                LevelUp();
-            }
+            
+            _levelManager.AddExperience(other.Exp.GetCurrentValue());
         }
     }
 
-    /// <summary>
-    /// レベルに応じた経験値を取得します。
-    /// プレイヤーのレベルが上がるごとに経験値の値も増加します。
-    /// </summary>
-    /// <returns></returns>
-    private int GetNextRequiredExpValue()
-    {
-        // レベルに応じた経験値を返す
-        return Level * 10; // 例: レベル1で10, レベル2で20, ...
-    }
+    // GetNextRequiredExpValue moved to PlayerLevelManager
 
     /// <summary>
     /// プレイヤーが満腹度のダメージを受けた際の処理を行います。
@@ -439,85 +381,7 @@ public class Player : MapObjectBase
         damagePopup.ShowDamage(value, transform.position, Color.cyan);
     }
 
-    /// <summary>
-    /// プレイヤーのレベルアップ処理を行います。
-    /// </summary>
-    public async void LevelUp()
-    {
-        Level += 1;
-        Hp.IncreaseMaxHp(5);
-        Attack.IncreaseCurrentValue(1);
-        Defence.IncreaseCurrentValue(1);
-        Exp.Reset();
-
-        SoundEffectManager.Instance.PlayLevelUpSound();
-        MessageWindow.AppendMessage($"{this.Name}のレベルが{Level}に上がった！");
-        MessageWindow.AppendMessage($"  HP +5  Atk + 1");
-
-        // プレイヤーの移動を一時的に停止
-        CanMove = false;
-
-        // 回転アニメーションを開始
-        await RotateWithEffects();
-
-        // プレイヤーの移動を再開
-        CanMove = true;
-    }
-
-    /// <summary>
-    /// プレイヤーを回転させるアニメーションを行います。
-    /// </summary>
-    private async Task RotateWithEffects()
-    {
-        float duration = 1.0f;  // アニメーションの長さ（秒）
-        float elapsedTime = 0.0f;   // 経過時間（秒）
-        Vector3 originalPosition = transform.position;
-        Color originalColor = GetComponentInChildren<Renderer>().material.color;
-
-        // 最初に正面を向く
-        transform.rotation = Quaternion.Euler(0, 180, 0);
-
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;
-
-            // 回転
-            transform.Rotate(0, 360 * Time.deltaTime / duration, 0);
-
-            // 色を変える
-            GetComponentInChildren<Renderer>().material.color = Color.Lerp(originalColor, Color.yellow, t);
-
-            elapsedTime += Time.deltaTime;
-            await Task.Yield();
-        }
-
-        // 元の色に戻す
-        GetComponentInChildren<Renderer>().material.color = originalColor;
-    }
-
-    /// <summary>
-    /// プレイヤーをジャンプさせるアニメーションを行います。
-    /// </summary>
-    internal async Task JumpWithEffects()
-    {
-        float duration = 0.5f;  // アニメーションの長さ（秒）
-        float elapsedTime = 0.0f;   // 経過時間（秒）
-        Vector3 originalPosition = transform.position;
-
-        // 最初に正面を向く
-        transform.rotation = Quaternion.Euler(0, 180, 0);
-
-        while (elapsedTime < duration)
-        {
-            float t = elapsedTime / duration;
-
-            // ジャンプ
-            transform.position = Mathf.Sin(t * Mathf.PI) * Vector3.up + originalPosition;
-
-            elapsedTime += Time.deltaTime;
-            await Task.Yield();
-        }
-    }
+    // LevelUp, RotateWithEffects, JumpWithEffects moved to PlayerLevelManager and PlayerEffectManager
 
     /// <summary>
     /// アイテムやトラップなどのオブジェクトが存在するマスへ移動します。
@@ -604,13 +468,9 @@ public class Player : MapObjectBase
         // プレイヤーの移動を一時的に停止
         CanMove = false;
 
-        // 回転
-        await RotateWithEffects();
-        // ジャンプ
-        await JumpWithEffects();
+        await _effectManager.PlayGoalEffect();
 
         MessageWindow.AppendMessage("ゲームクリア！");
-
     }
 
     /// <summary>
